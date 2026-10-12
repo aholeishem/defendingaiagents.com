@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parent
 SITE = "https://defendingaiagents.com"
 EMAIL = "shimon@defendingaiagents.com"
 # The waitlist Worker (private repo, backend/waitlist). Set after `wrangler deploy`.
-WAITLIST_URL = "https://defendingaiagents-waitlist.WORKERS_SUBDOMAIN.workers.dev"
+WAITLIST_URL = "https://waitlist.defendingaiagents.workers.dev"
 E = html.escape
 
 EN = {
