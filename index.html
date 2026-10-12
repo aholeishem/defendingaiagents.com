@@ -1,53 +1,110 @@
 <!doctype html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" class="no-js">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Defending AI Agents</title>
-<meta name="description" content="A course that teaches ML engineers, statisticians and data scientists to secure AI agents, by building every component themselves.">
-<link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/">
-<link rel="stylesheet" href="/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Defending AI Agents: a free course for data scientists</title>
+<meta name="description" content="A free, build-it-yourself course that teaches ML engineers, statisticians and data scientists to secure AI agents, and to reason about what changes at scale.">
+<link rel="canonical" href="https://defendingaiagents.com/"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Defending AI Agents">
+<meta property="og:title" content="Defending AI Agents: a free course for data scientists"><meta property="og:description" content="A free, build-it-yourself course that teaches ML engineers, statisticians and data scientists to secure AI agents, and to reason about what changes at scale.">
+<meta property="og:url" content="https://defendingaiagents.com/"><meta property="og:image" content="https://defendingaiagents.com/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
 </head>
 <body>
-<main>
-  <nav><a href="/he/" lang="he">עברית</a></nav>
-
-  <h1>Defending AI Agents</h1>
-  <p class="subtitle">A course for data scientists</p>
-
-  <p>AI agents now send email, run code and change records. Keeping them safe is
-  less about clever prompts than about problems data scientists already know:
-  detecting rare events, choosing a threshold under a false-alarm budget,
-  noticing when production data stops looking like your test set, and judging
-  whether a policy change helps before you turn it on.</p>
-
-  <p>This course teaches ML engineers, statisticians and data scientists the
-  security half, by having you build every component yourself on a laptop,
-  and then working through what changes at the scale of a large organisation.</p>
-
-  <h2>What you will build</h2>
-  <ul>
-    <li>A small tool-calling agent, and the attack that breaks it</li>
-    <li>A gateway that intercepts every tool call before it runs</li>
-    <li>Prompt-injection detectors, with thresholds set from measured false-positive budgets</li>
-    <li>An evaluation harness that tests on data shaped like real tool calls, not prose</li>
-    <li>A policy engine that allows, refuses, or holds an action for a person</li>
-    <li>A tamper-evident, signed audit log, and replay of a policy change over past traffic</li>
-  </ul>
-
-  <h2>Who it is for</h2>
-  <p>People who are comfortable with Python, probability and machine learning.
-  No security background is assumed.</p>
-
-  <div class="card">
-    <p><strong>In preparation.</strong> The whole course will be free to read and build.
-    A paid final exam, reviewed personally with written feedback, leads to a certificate.</p>
-    <p>To hear when the first modules open, write to
-    <a href="mailto:shimon@defendingaiagents.com?subject=Waitlist">shimon@defendingaiagents.com</a>.
-    Your address is used only to tell you about this course.</p>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="./"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">Defending AI Agents</span></a>
+  <nav aria-label="Main"><a class="label" href="./#curriculum">Curriculum</a><a class="label" href="./#certificate">Certificate</a><a class="label" href="./#faq">FAQ</a></nav>
+  <div class="end">
+    <a class="lang label" href="he/" lang="he" hreflang="he">עברית</a>
+    <a class="btn" href="mailto:shimon@defendingaiagents.com?subject=Waitlist" data-waitlist>Join waitlist<span class="kbd" aria-hidden="true">W</span></a>
   </div>
+</header>
+<main id="main">
+  <section class="hero" aria-label="Defending AI Agents">
+    <canvas data-field role="img" aria-label="Animation: ten thousand tool calls drawn as dots. About one in a hundred is flagged as an alert; one is a real attack."></canvas>
+    <p class="kicker label"><i></i>Free course · for data scientists · in preparation</p>
+    <div class="word">
+      <h1><span>Defending</span><span>AI agents</span></h1>
+      <div class="side"><p>Agent security is a statistics problem. Build every defence yourself on a laptop, then learn what it becomes at fifty million calls a day.</p><div class="readout"><span class="label">Calls<b class="">10,000</b></span><span class="label">Alerts<b class="">101</b></span><span class="label">Attacks<b class="s">1</b></span><span class="label">Real<b class="">0.98%</b></span></div></div>
+    </div>
+  </section>
 
-  <footer>© 2026 Defending AI Agents · <a href="mailto:shimon@defendingaiagents.com">Contact</a></footer>
+  <section>
+    <div class="sec-head reveal"><div class="label"><em>01</em>The problem</div><div><h2>You already know the hard part.</h2><p>The central problems of securing AI agents have statistical twins. The course supplies the security half.</p></div></div>
+    <div class="twins"><article class="twin reveal"><div class="label">01</div><h3>Rare events</h3><p>Attacks are rare. How often an alert is right is set by the base rate, not by how good the detector looks on a balanced test set.</p></article><article class="twin reveal"><div class="label">02</div><h3>Operating points</h3><p>Every threshold spends a false-alarm budget. You choose where to spend it, and measure it where the system acts.</p></article><article class="twin reveal"><div class="label">03</div><h3>Distribution shift</h3><p>A detector tested on prose meets JSON, logs, diffs and SQL in production, and behaves differently.</p></article><article class="twin reveal"><div class="label">04</div><h3>Counterfactuals</h3><p>Will a new policy help? Replay it over last month&#x27;s traffic and run it in shadow before you enforce it.</p></article></div>
+  </section>
+
+  <section id="try">
+    <div class="sec-head reveal"><div class="label"><em>02</em>Try it</div><div><h2>Four sliders. One uncomfortable number.</h2><p>A detector that catches 99% of attacks and flags 1% of harmless calls sounds excellent. Move the sliders and see how many of its alerts are real.</p></div></div>
+    <div class="calc reveal" id="calc">
+      <div class="calc-controls"><div class="field"><label for="base"><span class="label">Attacks per 10,000 calls</span><output></output></label><input type="range" id="base" name="base" min="0" max="8" step="1" value="2"></div><div class="field"><label for="tpr"><span class="label">Attacks it catches</span><output></output></label><input type="range" id="tpr" name="tpr" min="0" max="8" step="1" value="7"></div><div class="field"><label for="fpr"><span class="label">Harmless calls it flags</span><output></output></label><input type="range" id="fpr" name="fpr" min="0" max="6" step="1" value="4"></div><div class="field"><label for="calls"><span class="label">Tool calls per day</span><output></output></label><input type="range" id="calls" name="calls" min="0" max="4" step="1" value="2"></div></div>
+      <div class="calc-out" aria-live="polite">
+        <div><div class="label">Alerts that are real attacks</div><span class="big">1%</span></div>
+        <p class="calc-sentence"></p>
+        <div class="stats">
+          <div class="stat"><span class="label">Alerts per day</span><span class="v" data-k="alerts"></span></div>
+          <div class="stat"><span class="label">Real attacks among them</span><span class="v" data-k="real"></span></div>
+        </div>
+        <div>
+          <div class="alerts" role="img" aria-label="100 alerts, filled when real"></div>
+          <div class="alerts-key label"><span class="real">Real attack</span><span>False alarm</span><span class="alerts-note"></span></div>
+        </div>
+      </div>
+    </div>
+    <script type="application/json" id="calc-strings">{"sentenceLow": "When it fires, it is wrong {wrong} times in 100.| At this base rate, most of the {alerts} alerts a day are false alarms that someone has to clear.", "sentenceHigh": "When it fires, it is right {right} times in 100.| The base rate is high enough for most of its alerts to be real.", "fewerThanOne": "Fewer than 1 alert in 100 is real."}</script>
+  </section>
+
+  <section>
+    <div class="sec-head reveal"><div class="label"><em>03</em>What you build</div><div><h2>Every component, with your own hands.</h2><p>No security product, commercial or open-source, is used or taught. You build a miniature agent gateway with general-purpose open tools, one component per module.</p></div></div>
+    <ol class="build indent"><li class="reveal"><span class="label">M01</span><span>A small tool-calling agent, and the attack that breaks it</span></li><li class="reveal"><span class="label">M03</span><span>A gateway that intercepts every tool call before it runs</span></li><li class="reveal"><span class="label">M04</span><span>Prompt-injection detectors: patterns and a fine-tuned classifier</span></li><li class="reveal"><span class="label">M05</span><span>Thresholds set from a measured false-positive budget</span></li><li class="reveal"><span class="label">M06</span><span>An evaluation harness on data shaped like real tool calls</span></li><li class="reveal"><span class="label">M07</span><span>A red-team harness with honest coverage reports</span></li><li class="reveal"><span class="label">M08</span><span>A policy engine that allows, refuses, or holds for a person</span></li><li class="reveal"><span class="label">M09</span><span>Behavioural baselines and sequence detectors</span></li><li class="reveal"><span class="label">M10</span><span>A model loader that checks before it trusts</span></li><li class="reveal"><span class="label">M11</span><span>Personal-data detection, redaction and erasure</span></li><li class="reveal"><span class="label">M12</span><span>A signed, tamper-evident log, and replay of a policy change</span></li><li class="reveal"><span class="label">M13</span><span>A policy learner with a shadow stage</span></li></ol>
+  </section>
+
+  <section>
+    <div class="sec-head reveal"><div class="label"><em>04</em>Scale</div><div><h2>Build it small. Reason about it at scale.</h2><p>Every module ends with what the same component becomes at millions of calls a day, thousands of agents and many teams, worked out from your own measurements.</p></div></div>
+    <div class="scale indent"><div class="reveal"><div class="label">On your laptop</div><span class="num">40<small>ms</small></span><p>Your detector scores one tool call in <strong>40 milliseconds</strong>. You measured it, you understand every line, and it runs in 8 GB of memory with no GPU.</p></div><div class="reveal"><div class="label">At 50 million calls a day</div><span class="num">23<small>cores</small></span><p>The same detector keeps about <strong>23 cores busy around the clock</strong>. Where does it run? What happens to a call when it is slow or down? Who reviews its alerts?</p></div></div>
+  </section>
+
+  <section id="curriculum">
+    <div class="sec-head reveal"><div class="label"><em>05</em>Curriculum</div><div><h2>Fifteen modules and a capstone.</h2><p>Each module ends at a measurement you produce and defend, not at a page you have read. About 105 hours, self-paced, in English and Hebrew.</p></div></div>
+    <div class="parts"><article class="part reveal"><div class="label">I</div><h3>Foundations</h3><ol><li><span class="label">00</span><span>Orientation: why agent security is a statistics problem</span></li><li><span class="label">01</span><span>Setting up your lab and your toy agent</span></li><li><span class="label">02</span><span>Security fundamentals for data people</span></li><li><span class="label">03</span><span>Anatomy of an agent and its attack surface</span></li></ol></article><article class="part reveal"><div class="label">II</div><h3>Detection</h3><ol><li><span class="label">04</span><span>Prompt injection, direct and indirect</span></li><li><span class="label">05</span><span>Detectors are classifiers: base rates, budgets, operating points</span></li><li><span class="label">06</span><span>Evaluation hygiene and distribution shift</span></li><li><span class="label">07</span><span>Adversarial robustness and red-teaming</span></li></ol></article><article class="part reveal"><div class="label">III</div><h3>Enforcement</h3><ol><li><span class="label">08</span><span>From score to decision: policy, holds and humans</span></li><li><span class="label">09</span><span>Behavioural and sequence anomaly detection</span></li><li><span class="label">10</span><span>The ML supply chain</span></li><li><span class="label">11</span><span>Data protection: personal data, redaction, erasure</span></li></ol></article><article class="part reveal"><div class="label">IV</div><h3>Operations</h3><ol><li><span class="label">12</span><span>Evidence: audit trails, replay and counterfactual evaluation</span></li><li><span class="label">13</span><span>Learning policy from traffic, safely</span></li><li><span class="label">14</span><span>Governance, audit and regulation for engineers</span></li></ol></article></div>
+    <div class="capstone reveal"><span class="label">Capstone</span><strong>Build it, then break someone else&#x27;s.</strong><span class="d">Your own gateway for a new scenario, a scale memo, and a red-team report on another learner&#x27;s work.</span></div>
+  </section>
+
+  <section id="certificate">
+    <div class="sec-head reveal"><div class="label"><em>06</em>Certificate</div><div><h2>Free to learn. Paid to certify.</h2><p>The whole course is open. The only paid part is the final exam, which a person reviews.</p></div></div>
+    <div class="cert indent"><div class="reveal"><span class="price">Free</span><h3>The course<small>No account needed to read.</small></h3><ul><li>Every lesson, build and test</li><li>English and Hebrew</li><li>A starter kit and automated checks for each module</li><li>Yours to keep and revisit</li></ul></div><div class="reveal"><span class="price">Paid</span><h3>Final exam and certificate<small>Optional. Price announced at launch.</small></h3><ul><li>Your capstone, reviewed personally</li><li>Detailed written feedback</li><li>A signed certificate that anyone can verify</li><li>A public page linking your reviewed work, if you choose</li></ul></div></div>
+  </section>
+
+  <section id="faq">
+    <div class="sec-head reveal"><div class="label"><em>07</em>Questions</div><div><h2>Frequently asked.</h2></div></div>
+    <div class="faq indent reveal"><details><summary>Do I need a security background?</summary><p>No. The course assumes Python, probability and machine learning, and teaches the security from the ground up.</p></details><details><summary>What do I need to run it?</summary><p>A laptop with 8 GB of memory, running macOS, Windows (with WSL 2) or Linux. No GPU is required. Installing Docker and setting up the lab is a module of its own.</p></details><details><summary>Which products does it teach?</summary><p>None. You build every component yourself with open, general-purpose tools, and wherever a tool is chosen the lesson names an alternative.</p></details><details><summary>Is it really free?</summary><p>Yes. Every lesson, build and automated check is free. Only the final exam, which a person reviews, and the certificate that follows are paid.</p></details><details><summary>In which languages?</summary><p>English and Hebrew. Code, commands and tools stay in English in both.</p></details><details><summary>When does it open?</summary><p>It is in preparation. Join the waitlist to hear when the first modules are published.</p></details></div>
+  </section>
+
+  <section class="cta">
+    <a class="big-link reveal" href="mailto:shimon@defendingaiagents.com?subject=Waitlist">Join the<br>waitlist <span class="arrow" aria-hidden="true">→</span></a>
+    <div class="fine reveal"><span class="label"><em style="font-style:normal;color:var(--sig)">08</em>&nbsp; Waitlist</span><p>One e-mail when the first modules are published, and occasional notes on how the course is going. Write to shimon@defendingaiagents.com; your address is used only for this course, and you can ask to be removed at any time.</p></div>
+  </section>
 </main>
+
+<footer class="foot label">
+  <span>© 2026 Defending AI Agents</span>
+  <nav aria-label="Footer">
+    <a href="mailto:shimon@defendingaiagents.com">Contact</a>
+    <a href=".well-known/security.txt">Security</a>
+    <a href="he/" lang="he" hreflang="he">עברית</a>
+  </nav>
+</footer>
+<script src="assets/site.js" defer></script>
 </body>
 </html>
