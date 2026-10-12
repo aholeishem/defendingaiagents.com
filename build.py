@@ -96,6 +96,7 @@ EN = {
 
     "s7": "Questions", "s7_h": "Frequently asked.",
     "faq": [
+        ("Why this course?", "We reviewed 24 university courses on machine-learning, LLM and agent security. None gives runtime defence of AI agents, or evaluation at production scale, more than a lecture or two. This course is built around both."),
         ("Do I need a security background?", "No. The course assumes Python, probability and machine learning, and teaches the security from the ground up."),
         ("What do I need to run it?", "A laptop with 8 GB of memory, running macOS, Windows (with WSL 2) or Linux. No GPU is required. Installing Docker and setting up the lab is a module of its own."),
         ("Which products does it teach?", "None. You build every component yourself with open, general-purpose tools, and wherever a tool is chosen the lesson names an alternative."),
@@ -198,6 +199,7 @@ HE = {
 
     "s7": "שאלות", "s7_h": "שאלות נפוצות.",
     "faq": [
+        ("למה הקורס הזה?", "סקרנו 24 קורסים אוניברסיטאיים באבטחת למידת מכונה, מודלי שפה וסוכני AI. אף אחד מהם לא מקדיש להגנה על סוכני AI בזמן ריצה, או להערכה בהיקף של סביבת ייצור, יותר מהרצאה או שתיים. הקורס הזה בנוי סביב שני הנושאים האלה."),
         ("צריך רקע באבטחת מידע?", "לא. הקורס מניח היכרות עם Python, הסתברות ולמידת מכונה, ומלמד את אבטחת המידע מהיסוד."),
         ("מה צריך כדי להריץ אותו?", "מחשב נייד עם 8GB זיכרון, עם macOS,‏ Windows (עם WSL 2) או Linux. אין צורך ב־GPU. התקנת Docker והקמת המעבדה הן מודול בפני עצמו."),
         ("אילו מוצרים הקורס מלמד?", "אף אחד. אתם בונים כל רכיב בעצמכם בכלים פתוחים וכלליים, ובכל מקום שבו נבחר כלי, השיעור מציין גם חלופה."),
