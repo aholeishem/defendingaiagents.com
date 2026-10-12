@@ -14,6 +14,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 SITE = "https://defendingaiagents.com"
 EMAIL = "shimon@defendingaiagents.com"
+# The waitlist Worker (private repo, backend/waitlist). Set after `wrangler deploy`.
+WAITLIST_URL = "https://defendingaiagents-waitlist.WORKERS_SUBDOMAIN.workers.dev"
 E = html.escape
 
 EN = {
@@ -103,8 +105,15 @@ EN = {
     ],
 
     "cta_label": "Waitlist", "cta_link": ["Join the", "waitlist"],
-    "cta_fine": "One e-mail when the first modules are published, and occasional notes on how the course is going. Write to " + EMAIL + "; your address is used only for this course, and you can ask to be removed at any time.",
-    "mail_subject": "Waitlist",
+    "cta_fine": "One e-mail when the first modules are published, and occasional notes on how the course is going. Your address is used only for this course and is never shared. To be removed, write to " + EMAIL + ".",
+    "wl_label": "Your e-mail address", "wl_placeholder": "you@example.com", "wl_button": "Join",
+    "wl_msgs": {
+        "sending": "Adding you…",
+        "ok": "You are on the list. We will write when the first modules are out.",
+        "invalid": "That does not look like an e-mail address. Check it and try again.",
+        "busy": "Too many attempts from your network. Please try again in an hour.",
+        "error": "The list could not be reached. Please try again, or write to " + EMAIL + ".",
+    },
     "foot_copy": "© 2026 Defending AI Agents", "foot_contact": "Contact", "foot_security": "Security",
 
     "nf_title": "Page not found · Defending AI Agents", "nf_label": "404 · not found",
@@ -198,8 +207,15 @@ HE = {
     ],
 
     "cta_label": "רשימת המתנה", "cta_link": ["הצטרפו לרשימת", "ההמתנה"],
-    "cta_fine": "מייל אחד כשהמודולים הראשונים מתפרסמים, ומדי פעם עדכון על התקדמות הקורס. כתבו ל־" + EMAIL + "; הכתובת שלכם תשמש רק לקורס הזה, ותוכלו לבקש להסיר אותה בכל עת.",
-    "mail_subject": "Waitlist",
+    "cta_fine": "מייל אחד כשהמודולים הראשונים מתפרסמים, ומדי פעם עדכון על התקדמות הקורס. הכתובת שלכם תשמש רק לקורס הזה ולא תועבר לאיש. להסרה, כתבו ל־" + EMAIL + ".",
+    "wl_label": "כתובת המייל שלכם", "wl_placeholder": "you@example.com", "wl_button": "הצטרפות",
+    "wl_msgs": {
+        "sending": "מוסיפים אתכם…",
+        "ok": "נרשמתם. נכתוב כשהמודולים הראשונים יתפרסמו.",
+        "invalid": "זו לא נראית כמו כתובת מייל. בדקו ונסו שוב.",
+        "busy": "יותר מדי ניסיונות מהרשת שלכם. נסו שוב בעוד שעה.",
+        "error": "לא הצלחנו להגיע לרשימה. נסו שוב, או כתבו ל־" + EMAIL + ".",
+    },
     "foot_copy": "© 2026 הגנה על סוכני AI", "foot_contact": "יצירת קשר", "foot_security": "אבטחה",
 
     "nf_title": "הדף לא נמצא · הגנה על סוכני AI", "nf_label": "404 · לא נמצא",
@@ -247,7 +263,6 @@ def head(t, prefix, title, canonical, noindex=False):
 
 def topbar(t, prefix, home):
     nav = "".join(f'<a class="label" href="{home}{h}">{E(l)}</a>' for h, l in t["nav"])
-    mail = f"mailto:{EMAIL}?subject={t['mail_subject']}"
     return f"""
 <a class="skip" href="#main">{E(t['skip'])}</a>
 <header class="top">
@@ -255,7 +270,7 @@ def topbar(t, prefix, home):
   <nav aria-label="Main">{nav}</nav>
   <div class="end">
     <a class="lang label" href="{prefix}{t['other_path']}" lang="{t['other_lang']}" hreflang="{t['other_lang']}">{E(t['other_label'])}</a>
-    <a class="btn" href="{mail}" data-waitlist>{E(t['nav_cta'])}<span class="kbd" aria-hidden="true">W</span></a>
+    <a class="btn" href="{home}#waitlist" data-waitlist>{E(t['nav_cta'])}<span class="kbd" aria-hidden="true">W</span></a>
   </div>
 </header>"""
 
@@ -283,7 +298,6 @@ def sec_head(n, label, h, p=None):
 
 
 def page(t, prefix):
-    mail = f"mailto:{EMAIL}?subject={t['mail_subject']}"
     readout = "".join(f'<span class="label">{E(l)}<b class="{c}">{E(v)}</b></span>' for l, v, c in t["readout"])
     twins = "".join(f'<article class="twin reveal"><div class="label">{k}</div><h3>{E(h)}</h3><p>{E(p)}</p></article>' for k, h, p in t["twins"])
     builds = "".join(f'<li class="reveal"><span class="label">M{m}</span><span>{E(s)}</span></li>' for m, s in t["build"])
@@ -365,8 +379,20 @@ def page(t, prefix):
     <div class="faq indent reveal">{faq}</div>
   </section>
 
-  <section class="cta">
-    <a class="big-link reveal" href="{mail}">{E(t['cta_link'][0])}<br>{E(t['cta_link'][1])} {ARROW}</a>
+  <section class="cta" id="waitlist">
+    <h2 class="big-link reveal">{E(t['cta_link'][0])}<br>{E(t['cta_link'][1])}</h2>
+    <form class="wl reveal" action="{WAITLIST_URL}/join" method="post" novalidate>
+      <label class="label" for="wl-email">{E(t['wl_label'])}</label>
+      <div class="wl-row">
+        <input id="wl-email" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" required maxlength="254" dir="ltr" placeholder="{E(t['wl_placeholder'])}">
+        <button type="submit">{E(t['wl_button'])} {ARROW}</button>
+      </div>
+      <input type="hidden" name="lang" value="{t['lang']}">
+      <div class="wl-hp" aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off"></label></div>
+      <p class="wl-status" role="status" aria-live="polite"></p>
+      {"".join(f'<p class="wl-note" id="wl-{k}" data-state="{k}">{E(v)}</p>' for k, v in t['wl_msgs'].items() if k != "sending")}
+      <script type="application/json" id="wl-strings">{json.dumps(t['wl_msgs'], ensure_ascii=False)}</script>
+    </form>
     <div class="fine reveal"><span class="label"><em style="font-style:normal;color:var(--sig)">08</em>&nbsp; {E(t['cta_label'])}</span><p>{E(t['cta_fine'])}</p></div>
   </section>
 </main>

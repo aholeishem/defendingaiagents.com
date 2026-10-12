@@ -22,13 +22,68 @@
     reveals.forEach(function (el) { el.classList.add("in"); });
   }
 
-  // "W" opens the waitlist e-mail, unless the visitor is typing.
-  var waitlist = document.querySelector("[data-waitlist]");
+  // The waitlist form. Without this script the form still posts, and the
+  // server sends the visitor back here with ?waitlist=<outcome>.
+  var form = document.querySelector("form.wl");
+  var email = form && form.querySelector('input[type="email"]');
+  function goToForm(e) {
+    if (!email) return;
+    if (e) e.preventDefault();
+    form.scrollIntoView({ behavior: reduce.matches ? "auto" : "smooth", block: "center" });
+    email.focus({ preventScroll: true });
+  }
+  if (form) {
+    var M = JSON.parse(document.getElementById("wl-strings").textContent);
+    var status = form.querySelector(".wl-status");
+    var button = form.querySelector("button");
+    var show = function (state) {
+      status.textContent = M[state] || M.error;
+      status.setAttribute("data-state", state);
+      form.classList.toggle("done", state === "ok");
+    };
+    var VALID = /^[^\s@<>"(),;:\\]{1,64}@[^\s@<>"(),;:\\]+\.[^\s@<>"(),;:\\.]{2,}$/;
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (form.getAttribute("aria-busy") === "true") return;
+      var value = email.value.trim();
+      if (!VALID.test(value) || value.length > 254) { show("invalid"); email.focus(); return; }
+      var data = { email: value, lang: form.lang.value, website: form.website.value };
+      form.setAttribute("aria-busy", "true"); button.disabled = true; show("sending");
+      fetch(form.action, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) })
+        .then(function (r) { return r.json().catch(function () { return { outcome: "error" }; }); })
+        .then(function (res) {
+          var outcome = res && M[res.outcome] ? res.outcome : "error";
+          show(outcome);
+          if (outcome === "ok") email.value = "";
+          else email.focus();
+        })
+        .catch(function () { show("error"); })
+        .then(function () { form.removeAttribute("aria-busy"); button.disabled = false; });
+    });
+    email.addEventListener("input", function () {
+      if (status.getAttribute("data-state") === "invalid") { status.textContent = ""; status.removeAttribute("data-state"); }
+    });
+    // Back from a script-less submission.
+    var back = new URLSearchParams(window.location.search).get("waitlist");
+    if (back && M[back] && back !== "sending") {
+      show(back);
+      if (window.history.replaceState) window.history.replaceState(null, "", window.location.pathname);
+      goToForm();
+    }
+  }
+  document.querySelectorAll("[data-waitlist]").forEach(function (a) {
+    a.addEventListener("click", function (e) { if (email) goToForm(e); });
+  });
+
+  // "W" goes to the waitlist, unless the visitor is typing.
   document.addEventListener("keydown", function (e) {
-    if (!waitlist || e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
     var t = e.target;
-    if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
-    if (e.key === "w" || e.key === "W" || e.key === "'") { window.location.href = waitlist.href; }
+    if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT|BUTTON)$/.test(t.tagName))) return;
+    if (e.key === "w" || e.key === "W" || e.key === "'") {
+      if (email) goToForm(e);
+      else { var a = document.querySelector("[data-waitlist]"); if (a) window.location.href = a.href; }
+    }
   });
 
   // The dot field: every dot a tool call, about 1 in 100 a false alarm, one real attack.

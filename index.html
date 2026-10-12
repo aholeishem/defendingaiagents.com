@@ -27,7 +27,7 @@
   <nav aria-label="Main"><a class="label" href="./#curriculum">Curriculum</a><a class="label" href="./#certificate">Certificate</a><a class="label" href="./#faq">FAQ</a></nav>
   <div class="end">
     <a class="lang label" href="he/" lang="he" hreflang="he">עברית</a>
-    <a class="btn" href="mailto:shimon@defendingaiagents.com?subject=Waitlist" data-waitlist>Join waitlist<span class="kbd" aria-hidden="true">W</span></a>
+    <a class="btn" href="./#waitlist" data-waitlist>Join waitlist<span class="kbd" aria-hidden="true">W</span></a>
   </div>
 </header>
 <main id="main">
@@ -91,9 +91,21 @@
     <div class="faq indent reveal"><details><summary>Do I need a security background?</summary><p>No. The course assumes Python, probability and machine learning, and teaches the security from the ground up.</p></details><details><summary>What do I need to run it?</summary><p>A laptop with 8 GB of memory, running macOS, Windows (with WSL 2) or Linux. No GPU is required. Installing Docker and setting up the lab is a module of its own.</p></details><details><summary>Which products does it teach?</summary><p>None. You build every component yourself with open, general-purpose tools, and wherever a tool is chosen the lesson names an alternative.</p></details><details><summary>Is it really free?</summary><p>Yes. Every lesson, build and automated check is free. Only the final exam, which a person reviews, and the certificate that follows are paid.</p></details><details><summary>In which languages?</summary><p>English and Hebrew. Code, commands and tools stay in English in both.</p></details><details><summary>When does it open?</summary><p>It is in preparation. Join the waitlist to hear when the first modules are published.</p></details></div>
   </section>
 
-  <section class="cta">
-    <a class="big-link reveal" href="mailto:shimon@defendingaiagents.com?subject=Waitlist">Join the<br>waitlist <span class="arrow" aria-hidden="true">→</span></a>
-    <div class="fine reveal"><span class="label"><em style="font-style:normal;color:var(--sig)">08</em>&nbsp; Waitlist</span><p>One e-mail when the first modules are published, and occasional notes on how the course is going. Write to shimon@defendingaiagents.com; your address is used only for this course, and you can ask to be removed at any time.</p></div>
+  <section class="cta" id="waitlist">
+    <h2 class="big-link reveal">Join the<br>waitlist</h2>
+    <form class="wl reveal" action="https://defendingaiagents-waitlist.WORKERS_SUBDOMAIN.workers.dev/join" method="post" novalidate>
+      <label class="label" for="wl-email">Your e-mail address</label>
+      <div class="wl-row">
+        <input id="wl-email" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" required maxlength="254" dir="ltr" placeholder="you@example.com">
+        <button type="submit">Join <span class="arrow" aria-hidden="true">→</span></button>
+      </div>
+      <input type="hidden" name="lang" value="en">
+      <div class="wl-hp" aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off"></label></div>
+      <p class="wl-status" role="status" aria-live="polite"></p>
+      <p class="wl-note" id="wl-ok" data-state="ok">You are on the list. We will write when the first modules are out.</p><p class="wl-note" id="wl-invalid" data-state="invalid">That does not look like an e-mail address. Check it and try again.</p><p class="wl-note" id="wl-busy" data-state="busy">Too many attempts from your network. Please try again in an hour.</p><p class="wl-note" id="wl-error" data-state="error">The list could not be reached. Please try again, or write to shimon@defendingaiagents.com.</p>
+      <script type="application/json" id="wl-strings">{"sending": "Adding you…", "ok": "You are on the list. We will write when the first modules are out.", "invalid": "That does not look like an e-mail address. Check it and try again.", "busy": "Too many attempts from your network. Please try again in an hour.", "error": "The list could not be reached. Please try again, or write to shimon@defendingaiagents.com."}</script>
+    </form>
+    <div class="fine reveal"><span class="label"><em style="font-style:normal;color:var(--sig)">08</em>&nbsp; Waitlist</span><p>One e-mail when the first modules are published, and occasional notes on how the course is going. Your address is used only for this course and is never shared. To be removed, write to shimon@defendingaiagents.com.</p></div>
   </section>
 </main>
 

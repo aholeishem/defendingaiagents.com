@@ -217,14 +217,43 @@ input[type="range"]::-moz-range-thumb { width: 14px; height: 14px; background: v
 
 /* Closing call */
 .cta { padding-top: 140px; padding-bottom: 140px; }
-.cta a.big-link { display: block; text-decoration: none; font-family: var(--display); font-stretch: 125%; font-weight: 800; font-size: clamp(44px, 9vw, 168px); line-height: .86; letter-spacing: -0.05em; text-transform: uppercase; transition: color .2s ease; }
-:lang(he) .cta a.big-link { letter-spacing: -0.01em; line-height: .98; }
-.cta a.big-link:hover { color: var(--sig); }
-.cta a.big-link .arrow { display: inline-block; transition: transform .25s ease; }
-.cta a.big-link:hover .arrow { transform: translateX(.12em); }
-:lang(he) .cta a.big-link .arrow { transform: scaleX(-1); }
-:lang(he) .cta a.big-link:hover .arrow { transform: scaleX(-1) translateX(.12em); }
-.cta .fine { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 24px; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line-2); }
+.cta .big-link { display: block; margin: 0; font-family: var(--display); font-stretch: 125%; font-weight: 800; font-size: clamp(44px, 9vw, 168px); line-height: .86; letter-spacing: -0.05em; text-transform: uppercase; }
+:lang(he) .cta .big-link { letter-spacing: -0.01em; line-height: .98; }
+
+/* Waitlist form */
+.wl { position: relative; margin-top: 56px; max-width: 980px; }
+.wl > .label { display: block; margin-bottom: 10px; }
+.wl-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 16px; border-bottom: 2px solid var(--fg); transition: border-color .15s ease; }
+.wl-row:focus-within { border-color: var(--sig); }
+.wl input[type="email"] { min-width: 0; width: 100%; border: 0; border-radius: 0; background: transparent; color: var(--fg); padding: 6px 0 12px; font: 500 clamp(24px, 3.6vw, 48px)/1.1 var(--sans); letter-spacing: -0.02em; text-align: left; }
+.wl input[type="email"]::placeholder { color: var(--dim); opacity: 1; }
+.wl input[type="email"]:focus { outline: none; }
+:lang(he) .wl input[type="email"]:placeholder-shown { text-align: right; }
+.wl button { margin-bottom: 12px; display: inline-flex; align-items: center; gap: 10px; border: 0; border-radius: 6px; cursor: pointer; background: var(--sig); color: var(--on-sig); padding: 16px 22px; font: 500 14px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; transition: background-color .15s ease, color .15s ease, opacity .15s ease; }
+:lang(he) .wl button { font: 600 16px/1 var(--sans); letter-spacing: 0; }
+.wl button:hover { background: var(--fg); color: var(--bg); }
+.wl button .arrow { display: inline-block; transition: transform .25s ease; }
+.wl button:hover .arrow { transform: translateX(.2em); }
+:lang(he) .wl button .arrow { transform: scaleX(-1); }
+:lang(he) .wl button:hover .arrow { transform: scaleX(-1) translateX(.2em); }
+.wl[aria-busy="true"] button { opacity: .55; cursor: progress; }
+.wl-hp { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.wl-status { min-height: 1.5em; margin: 14px 0 0; font: 500 15px/1.5 var(--sans); color: var(--fg-2); }
+.wl-status[data-state="ok"] { color: var(--fg); }
+.wl-status[data-state="ok"]::before { content: ""; display: inline-block; width: 9px; height: 9px; margin-inline-end: 10px; background: var(--sig); border-radius: 50%; vertical-align: 1px; }
+.wl-status[data-state="invalid"], .wl-status[data-state="busy"], .wl-status[data-state="error"] { color: var(--sig); }
+.wl.done .wl-row { border-color: var(--line-2); }
+/* Messages for a visit without scripts: the server returns to #wl-<outcome>. */
+.wl-note { display: none; margin: 14px 0 0; font: 500 15px/1.5 var(--sans); color: var(--sig); }
+.wl-note[data-state="ok"] { color: var(--fg); }
+.no-js .wl-note:target { display: block; }
+@media (max-width: 559px) {
+  .wl-row { grid-template-columns: 1fr; gap: 4px; border-bottom: 0; }
+  .wl input[type="email"] { border-bottom: 2px solid var(--fg); }
+  .wl-row:focus-within input[type="email"] { border-color: var(--sig); }
+  .wl button { margin: 14px 0 0; justify-content: center; padding: 18px 22px; }
+}
+.cta .fine { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 24px; margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line-2); }
 .cta .fine p { margin: 0; color: var(--fg-2); max-width: 38rem; }
 @media (max-width: 899px) { .cta .fine { grid-template-columns: 1fr; gap: 8px; } }
 

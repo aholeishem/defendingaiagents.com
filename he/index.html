@@ -27,7 +27,7 @@
   <nav aria-label="Main"><a class="label" href="./#curriculum">תוכנית הלימודים</a><a class="label" href="./#certificate">תעודה</a><a class="label" href="./#faq">שאלות</a></nav>
   <div class="end">
     <a class="lang label" href="../" lang="en" hreflang="en">English</a>
-    <a class="btn" href="mailto:shimon@defendingaiagents.com?subject=Waitlist" data-waitlist>לרשימת ההמתנה<span class="kbd" aria-hidden="true">W</span></a>
+    <a class="btn" href="./#waitlist" data-waitlist>לרשימת ההמתנה<span class="kbd" aria-hidden="true">W</span></a>
   </div>
 </header>
 <main id="main">
@@ -91,9 +91,21 @@
     <div class="faq indent reveal"><details><summary>צריך רקע באבטחת מידע?</summary><p>לא. הקורס מניח היכרות עם Python, הסתברות ולמידת מכונה, ומלמד את אבטחת המידע מהיסוד.</p></details><details><summary>מה צריך כדי להריץ אותו?</summary><p>מחשב נייד עם 8GB זיכרון, עם macOS,‏ Windows (עם WSL 2) או Linux. אין צורך ב־GPU. התקנת Docker והקמת המעבדה הן מודול בפני עצמו.</p></details><details><summary>אילו מוצרים הקורס מלמד?</summary><p>אף אחד. אתם בונים כל רכיב בעצמכם בכלים פתוחים וכלליים, ובכל מקום שבו נבחר כלי, השיעור מציין גם חלופה.</p></details><details><summary>הוא באמת חינמי?</summary><p>כן. כל שיעור, בנייה ובדיקה אוטומטית הם בחינם. רק המבחן המסכם, שנבדק בידי אדם, והתעודה שבאה אחריו הם בתשלום.</p></details><details><summary>באילו שפות?</summary><p>עברית ואנגלית. הקוד, הפקודות והכלים נשארים באנגלית בשתי הגרסאות.</p></details><details><summary>מתי הוא נפתח?</summary><p>הוא בהכנה. הצטרפו לרשימת ההמתנה כדי לשמוע כשהמודולים הראשונים יתפרסמו.</p></details></div>
   </section>
 
-  <section class="cta">
-    <a class="big-link reveal" href="mailto:shimon@defendingaiagents.com?subject=Waitlist">הצטרפו לרשימת<br>ההמתנה <span class="arrow" aria-hidden="true">→</span></a>
-    <div class="fine reveal"><span class="label"><em style="font-style:normal;color:var(--sig)">08</em>&nbsp; רשימת המתנה</span><p>מייל אחד כשהמודולים הראשונים מתפרסמים, ומדי פעם עדכון על התקדמות הקורס. כתבו ל־shimon@defendingaiagents.com; הכתובת שלכם תשמש רק לקורס הזה, ותוכלו לבקש להסיר אותה בכל עת.</p></div>
+  <section class="cta" id="waitlist">
+    <h2 class="big-link reveal">הצטרפו לרשימת<br>ההמתנה</h2>
+    <form class="wl reveal" action="https://defendingaiagents-waitlist.WORKERS_SUBDOMAIN.workers.dev/join" method="post" novalidate>
+      <label class="label" for="wl-email">כתובת המייל שלכם</label>
+      <div class="wl-row">
+        <input id="wl-email" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" required maxlength="254" dir="ltr" placeholder="you@example.com">
+        <button type="submit">הצטרפות <span class="arrow" aria-hidden="true">→</span></button>
+      </div>
+      <input type="hidden" name="lang" value="he">
+      <div class="wl-hp" aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off"></label></div>
+      <p class="wl-status" role="status" aria-live="polite"></p>
+      <p class="wl-note" id="wl-ok" data-state="ok">נרשמתם. נכתוב כשהמודולים הראשונים יתפרסמו.</p><p class="wl-note" id="wl-invalid" data-state="invalid">זו לא נראית כמו כתובת מייל. בדקו ונסו שוב.</p><p class="wl-note" id="wl-busy" data-state="busy">יותר מדי ניסיונות מהרשת שלכם. נסו שוב בעוד שעה.</p><p class="wl-note" id="wl-error" data-state="error">לא הצלחנו להגיע לרשימה. נסו שוב, או כתבו ל־shimon@defendingaiagents.com.</p>
+      <script type="application/json" id="wl-strings">{"sending": "מוסיפים אתכם…", "ok": "נרשמתם. נכתוב כשהמודולים הראשונים יתפרסמו.", "invalid": "זו לא נראית כמו כתובת מייל. בדקו ונסו שוב.", "busy": "יותר מדי ניסיונות מהרשת שלכם. נסו שוב בעוד שעה.", "error": "לא הצלחנו להגיע לרשימה. נסו שוב, או כתבו ל־shimon@defendingaiagents.com."}</script>
+    </form>
+    <div class="fine reveal"><span class="label"><em style="font-style:normal;color:var(--sig)">08</em>&nbsp; רשימת המתנה</span><p>מייל אחד כשהמודולים הראשונים מתפרסמים, ומדי פעם עדכון על התקדמות הקורס. הכתובת שלכם תשמש רק לקורס הזה ולא תועבר לאיש. להסרה, כתבו ל־shimon@defendingaiagents.com.</p></div>
   </section>
 </main>
 
