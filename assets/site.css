@@ -178,17 +178,17 @@ input[type="range"]::-moz-range-thumb { width: 14px; height: 14px; background: v
 @media (max-width: 760px) { .scale { grid-template-columns: 1fr; } .scale > div { padding-inline: 0; } .scale > div + div { padding-inline-start: 0; border-inline-start: 0; border-top: 1px solid var(--line-2); } }
 
 /* Curriculum */
-.parts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line-2); }
+.parts { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-top: 1px solid var(--line-2); }
 .part { padding: 20px 20px 0 0; border-inline-end: 1px solid var(--line); }
 .part + .part { padding-inline-start: 20px; }
 .part:last-child { border-inline-end: 0; }
 .part h3 { margin: 10px 0 18px; font: 600 20px/1.2 var(--sans); letter-spacing: -0.01em; }
 .part ol { list-style: none; margin: 0; padding: 0; }
 .part li { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 8px; padding: 12px 0; border-top: 1px solid var(--line); font-size: 15px; color: var(--fg-2); }
-.capstone { display: grid; grid-template-columns: 220px minmax(0, 1fr) auto; gap: 24px; align-items: baseline; margin-top: 40px; padding: 24px 0; border-top: 1px solid var(--line-2); border-bottom: 1px solid var(--line-2); }
+.capstone { display: grid; grid-template-columns: 220px minmax(0, 1fr) minmax(0, 1.4fr); gap: 24px; align-items: baseline; margin-top: 40px; padding: 24px 0; border-top: 1px solid var(--line-2); border-bottom: 1px solid var(--line-2); }
 .capstone strong { font: 600 20px/1.3 var(--sans); }
 .capstone span.d { color: var(--fg-2); }
-@media (max-width: 1000px) { .parts { grid-template-columns: repeat(2, minmax(0, 1fr)); } .part:nth-child(2) { border-inline-end: 0; } .part:nth-child(3) { padding-inline-start: 0; } .part:nth-child(n+3) { border-top: 1px solid var(--line-2); margin-top: 24px; } }
+@media (max-width: 1200px) { .parts { grid-template-columns: repeat(2, minmax(0, 1fr)); } .part:nth-child(2n) { border-inline-end: 0; } .part:nth-child(2n+1) { padding-inline-start: 0; } .part:nth-child(n+3) { border-top: 1px solid var(--line-2); margin-top: 24px; } }
 @media (max-width: 620px) { .parts { grid-template-columns: 1fr; } .part, .part + .part { padding-inline: 0; border-inline-end: 0; } .part + .part { border-top: 1px solid var(--line-2); margin-top: 24px; } .capstone { grid-template-columns: 1fr; gap: 8px; } }
 
 /* Certificate */
