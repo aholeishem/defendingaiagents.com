@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Defending AI Agents: blog</title>
+  <link href="https://defendingaiagents.com/blog/"/>
+  <link rel="self" href="https://defendingaiagents.com/blog/feed.xml"/>
+  <id>https://defendingaiagents.com/blog/</id>
+  <updated>2026-10-13T00:00:00Z</updated>
+  <author><name>Shimon R. Malka</name><uri>https://www.linkedin.com/in/srmalka/</uri></author>
+  <entry>
+    <title>Payload splitting: when the detector and the model read different pages</title>
+    <link href="https://defendingaiagents.com/blog/payload-splitting/"/>
+    <id>https://defendingaiagents.com/blog/payload-splitting/</id>
+    <published>2026-10-13T00:00:00Z</published>
+    <updated>2026-10-13T00:00:00Z</updated>
+    <summary>An attacker cuts an injection in the middle of a token and puts one unrelated line between the halves. Every pattern goes blind; the model reads straight through. The fix comes from network intrusion detection.</summary>
+  </entry>
+</feed>

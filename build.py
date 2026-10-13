@@ -2,13 +2,17 @@
 """Build the site's pages (English, Hebrew, 404) from one template.
 
 Run:  python3 build.py
-Writes index.html, he/index.html and 404.html. Both languages share every
-structure; only the strings differ, so a section added to one is added to both.
+Writes index.html, he/index.html, 404.html and the blog (blog/index.html,
+blog/<slug>/index.html, blog/feed.xml). Both languages share every structure;
+only the strings differ, so a section added to one is added to both. The blog
+is in English; each post's body is an HTML fragment in content/blog/<slug>.html.
 """
 from __future__ import annotations
 
 import html
 import json
+import re
+from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -16,14 +20,39 @@ SITE = "https://defendingaiagents.com"
 EMAIL = "shimon@defendingaiagents.com"
 # The waitlist Worker (private repo, backend/waitlist). Set after `wrangler deploy`.
 WAITLIST_URL = "https://waitlist.defendingaiagents.workers.dev"
+AUTHOR = "Shimon R. Malka"
+LINKEDIN = "https://www.linkedin.com/in/srmalka/"
 E = html.escape
+
+# Blog posts, newest first. Every reference carries a link that was checked by hand.
+POSTS = [
+    {
+        "slug": "payload-splitting",
+        "date": "2026-10-13",
+        "title": "Payload splitting: when the detector and the model read different pages",
+        "dek": "An attacker cuts an injection in the middle of a token and puts one unrelated line between the halves. Every pattern goes blind; the model reads straight through. The fix comes from network intrusion detection.",
+        "tags": ["Prompt injection", "Detection", "Evasion"],
+        "refs": [
+            ("Kang, Li, Stoica, Guestrin, Zaharia, Hashimoto (2023). Exploiting Programmatic Behavior of LLMs: Dual-Use Through Standard Security Attacks.", "https://arxiv.org/abs/2302.05733"),
+            ("Lee, Wei, Dong, Erichson (2026). Divide and Inject: Can Agents Reconstruct an Indirect Prompt Injection from Fragments?", "https://arxiv.org/abs/2609.36576"),
+            ("Ptacek, Newsham (1998). Insertion, Evasion, and Denial of Service: Eluding Network Intrusion Detection. Secure Networks, Inc.", "https://insecure.org/stf/secnet_ids/secnet_ids.html"),
+            ("Handley, Paxson, Kreibich (2001). Network Intrusion Detection: Evasion, Traffic Normalization, and End-to-End Protocol Semantics. USENIX Security.", "https://www.usenix.org/conference/10th-usenix-security-symposium/network-intrusion-detection-evasion-traffic-normalization"),
+            ("Berners-Lee, Fielding, Masinter (2005). RFC 3986: Uniform Resource Identifier (URI): Generic Syntax, Appendix C.", "https://www.rfc-editor.org/rfc/rfc3986#appendix-C"),
+            ("Kumar, Agarwal, Srinivas, Li, Feizi, Lakkaraju (2023). Certifying LLM Safety against Adversarial Prompting.", "https://arxiv.org/abs/2309.02705"),
+            ("Debenedetti et al. (2024). AgentDojo: A Dynamic Environment to Evaluate Prompt Injection Attacks and Defenses for LLM Agents.", "https://arxiv.org/abs/2406.13352"),
+            ("Zhan, Liang, Ying, Kang (2024). InjecAgent: Benchmarking Indirect Prompt Injections in Tool-Integrated Large Language Model Agents.", "https://arxiv.org/abs/2403.02691"),
+            ("Zhang et al. (2024). Agent Security Bench (ASB): Formalizing and Benchmarking Attacks and Defenses in LLM-based Agents.", "https://arxiv.org/abs/2410.02644"),
+            ("Evtimov et al. (2025). WASP: Benchmarking Web Agent Security Against Prompt Injection Attacks.", "https://arxiv.org/abs/2504.18575"),
+        ],
+    },
+]
 
 EN = {
     "lang": "en", "dir": "ltr", "path": "/", "other_path": "he/", "other_lang": "he", "other_label": "עברית",
     "title": "Defending AI Agents: a free course for data scientists",
     "description": "A free, build-it-yourself course that teaches ML engineers, statisticians and data scientists to secure AI agents, and to reason about what changes at scale.",
     "og_image": "og.png", "brand": "Defending AI Agents", "skip": "Skip to content",
-    "nav": [("#curriculum", "Curriculum"), ("#certificate", "Certificate"), ("#faq", "FAQ")],
+    "nav": [("#curriculum", "Curriculum"), ("#certificate", "Certificate"), ("#faq", "FAQ"), ("blog/", "Blog")],
     "nav_cta": "Join waitlist",
     "kicker": "Free course · for data scientists · in preparation",
     "h1": ["Defending", "AI agents"],
@@ -125,6 +154,11 @@ EN = {
 
     "nf_title": "Page not found · Defending AI Agents", "nf_label": "404 · not found",
     "nf_h1": ["Nothing", "here"], "nf_btn": "Back to the home page",
+
+    "blog_title": "Blog · Defending AI Agents", "blog_label": "Blog",
+    "blog_h1": "Notes from the lab",
+    "blog_p": "Technical posts on securing AI agents: attacks we reproduce, defences we build, and what they score when measured.",
+    "blog_by": "By", "blog_min": "min read", "blog_refs": "References", "blog_all": "All posts", "blog_feed": "Atom feed",
 }
 
 HE = {
@@ -132,7 +166,7 @@ HE = {
     "title": "הגנה על סוכני AI: קורס חינמי למדעני נתונים",
     "description": "קורס חינמי, שבו בונים הכול בעצמכם, שמלמד מהנדסי ML, סטטיסטיקאים ומדעני נתונים לאבטח סוכני AI, ולחשוב על מה שמשתנה בהיקף של ארגון גדול.",
     "og_image": "og-he.png", "brand": "הגנה על סוכני AI", "skip": "דילוג לתוכן",
-    "nav": [("#curriculum", "תוכנית הלימודים"), ("#certificate", "תעודה"), ("#faq", "שאלות")],
+    "nav": [("#curriculum", "תוכנית הלימודים"), ("#certificate", "תעודה"), ("#faq", "שאלות"), ("blog/", "בלוג")],
     "nav_cta": "לרשימת ההמתנה",
     "kicker": "קורס חינמי · למדעני נתונים · בהכנה",
     "h1": ["הגנה על", "סוכני AI"],
@@ -243,25 +277,25 @@ MARK = ('<svg viewBox="0 0 22 22" aria-hidden="true" focusable="false">'
 ARROW = '<span class="arrow" aria-hidden="true">→</span>'
 
 
-def head(t, prefix, title, canonical, noindex=False):
+def head(t, prefix, title, canonical, noindex=False, description=None, og_type="website", alternates=True, extra=""):
     display = "rubik-hebrew.woff2" if t["lang"] == "he" else "archivo-latin.woff2"
     body = "heebo-hebrew.woff2" if t["lang"] == "he" else "inter-latin.woff2"
-    seo = '<meta name="robots" content="noindex">' if noindex else (
-        f'<link rel="canonical" href="{SITE}{canonical}">'
+    description = description or t["description"]
+    seo = '<meta name="robots" content="noindex">' if noindex else f'<link rel="canonical" href="{SITE}{canonical}">' + (
         f'<link rel="alternate" hreflang="en" href="{SITE}/"><link rel="alternate" hreflang="he" href="{SITE}/he/">'
-        f'<link rel="alternate" hreflang="x-default" href="{SITE}/">')
+        f'<link rel="alternate" hreflang="x-default" href="{SITE}/">' if alternates else "")
     return f"""<!doctype html>
 <html lang="{t['lang']}" dir="{t['dir']}" class="no-js">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{E(title)}</title>
-<meta name="description" content="{E(t['description'])}">
-{seo}
+<meta name="description" content="{E(description)}">
+{seo}{extra}
 <meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
-<meta property="og:type" content="website"><meta property="og:site_name" content="{E(t['brand'])}">
-<meta property="og:title" content="{E(title)}"><meta property="og:description" content="{E(t['description'])}">
+<meta property="og:type" content="{og_type}"><meta property="og:site_name" content="{E(t['brand'])}">
+<meta property="og:title" content="{E(title)}"><meta property="og:description" content="{E(description)}">
 <meta property="og:url" content="{SITE}{canonical}"><meta property="og:image" content="{SITE}/{t['og_image']}">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta property="og:locale" content="{'he_IL' if t['lang'] == 'he' else 'en_US'}"><meta name="twitter:card" content="summary_large_image">
@@ -276,7 +310,7 @@ def head(t, prefix, title, canonical, noindex=False):
 
 
 def topbar(t, prefix, home):
-    nav = "".join(f'<a class="label" href="{home}{h}">{E(l)}</a>' for h, l in t["nav"])
+    nav = "".join(f'<a class="label" href="{home if h.startswith("#") else prefix}{h}">{E(l)}</a>' for h, l in t["nav"])
     return f"""
 <a class="skip" href="#main">{E(t['skip'])}</a>
 <header class="top">
@@ -428,12 +462,121 @@ def not_found(t):
     return head(t, "/", t["nf_title"], "/404.html", noindex=True) + topbar(t, "/", "/") + body + footer(t, "/")
 
 
+def fmt_date(iso):
+    d = date.fromisoformat(iso)
+    return f"{d.day} {d:%B %Y}"
+
+
+def post_body(p):
+    return (ROOT / "content" / "blog" / f"{p['slug']}.html").read_text(encoding="utf-8")
+
+
+def minutes(body):
+    return max(1, round(len(re.sub(r"<[^>]+>", " ", body).split()) / 230))
+
+
+def byline(t, p, body):
+    return (f'<p class="byline">{E(t["blog_by"])} <a href="{LINKEDIN}" rel="author">{E(AUTHOR)}</a></p>'
+            f'<p class="label meta"><time datetime="{p["date"]}">{fmt_date(p["date"])}</time>'
+            f'<span>{minutes(body)} {E(t["blog_min"])}</span>{"".join(f"<span>{E(x)}</span>" for x in p["tags"])}</p>')
+
+
+FEED_LINK = '<link rel="alternate" type="application/atom+xml" title="Defending AI Agents: blog" href="{0}">'
+
+
+def blog_index(t):
+    prefix = "../"
+    items = ""
+    for p in POSTS:
+        items += (f'<li class="reveal"><a href="{p["slug"]}/"><span class="label"><time datetime="{p["date"]}">{fmt_date(p["date"])}</time></span>'
+                  f'<span><strong>{E(p["title"])}</strong><span class="d">{E(p["dek"])}</span>'
+                  f'<span class="label">{E(t["blog_by"])} {E(AUTHOR)} · {minutes(post_body(p))} {E(t["blog_min"])}</span></span></a></li>')
+    body = f"""
+<main id="main">
+  <section class="blog">
+    {sec_head(1, t['blog_label'], t['blog_h1'], t['blog_p']).replace("<h2>", "<h1>").replace("</h2>", "</h1>")}
+    <ol class="posts indent">{items}</ol>
+    <p class="label indent feed"><a href="feed.xml">{E(t['blog_feed'])}</a></p>
+  </section>
+</main>
+"""
+    return (head(t, prefix, t["blog_title"], "/blog/", description=t["blog_p"], alternates=False, extra=FEED_LINK.format("feed.xml"))
+            + topbar(t, prefix, prefix) + body + footer(t, prefix))
+
+
+def post_page(t, p):
+    prefix = "../../"
+    body_html = post_body(p)
+    url = f"/blog/{p['slug']}/"
+    ld = {
+        "@context": "https://schema.org", "@type": "BlogPosting", "headline": p["title"], "description": p["dek"],
+        "datePublished": p["date"], "url": SITE + url, "image": f"{SITE}/{t['og_image']}",
+        "author": {"@type": "Person", "name": AUTHOR, "url": LINKEDIN},
+        "publisher": {"@type": "Organization", "name": t["brand"], "url": SITE + "/"},
+    }
+    extra = (FEED_LINK.format("../feed.xml") + f'<meta property="article:published_time" content="{p["date"]}">'
+             f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>')
+    refs = "".join(f'<li>{E(text)} <a href="{E(href)}">{E(href.split("://", 1)[1])}</a></li>' for text, href in p["refs"])
+    body = f"""
+<main id="main">
+  <article class="post">
+    <header class="post-head">
+      <p class="label crumb"><a href="../">{E(t['blog_label'])}</a></p>
+      <h1>{E(p['title'])}</h1>
+      <p class="dek">{E(p['dek'])}</p>
+      {byline(t, p, body_html)}
+    </header>
+    <div class="prose">
+{body_html}
+    </div>
+    <footer class="prose refs">
+      <h2 id="references">{E(t['blog_refs'])}</h2>
+      <ol>{refs}</ol>
+      <p class="label"><a href="../">← {E(t['blog_all'])}</a></p>
+    </footer>
+  </article>
+</main>
+"""
+    return (head(t, prefix, f"{p['title']} · {t['brand']}", url, description=p["dek"], og_type="article", alternates=False, extra=extra)
+            + topbar(t, prefix, prefix) + body + footer(t, prefix))
+
+
+def feed(t):
+    X = lambda s: html.escape(s, quote=False)
+    entries = "".join(f"""
+  <entry>
+    <title>{X(p['title'])}</title>
+    <link href="{SITE}/blog/{p['slug']}/"/>
+    <id>{SITE}/blog/{p['slug']}/</id>
+    <published>{p['date']}T00:00:00Z</published>
+    <updated>{p['date']}T00:00:00Z</updated>
+    <summary>{X(p['dek'])}</summary>
+  </entry>""" for p in POSTS)
+    return f"""<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Defending AI Agents: blog</title>
+  <link href="{SITE}/blog/"/>
+  <link rel="self" href="{SITE}/blog/feed.xml"/>
+  <id>{SITE}/blog/</id>
+  <updated>{POSTS[0]['date']}T00:00:00Z</updated>
+  <author><name>{AUTHOR}</name><uri>{LINKEDIN}</uri></author>{entries}
+</feed>
+"""
+
+
 def main():
     (ROOT / "index.html").write_text(page(EN, ""), encoding="utf-8")
     (ROOT / "he").mkdir(exist_ok=True)
     (ROOT / "he" / "index.html").write_text(page(HE, "../"), encoding="utf-8")
     (ROOT / "404.html").write_text(not_found(EN), encoding="utf-8")
-    print("built index.html, he/index.html, 404.html")
+    blog = ROOT / "blog"
+    blog.mkdir(exist_ok=True)
+    (blog / "index.html").write_text(blog_index(EN), encoding="utf-8")
+    (blog / "feed.xml").write_text(feed(EN), encoding="utf-8")
+    for p in POSTS:
+        (blog / p["slug"]).mkdir(exist_ok=True)
+        (blog / p["slug"] / "index.html").write_text(post_page(EN, p), encoding="utf-8")
+    print(f"built index.html, he/index.html, 404.html, blog/ ({len(POSTS)} posts)")
 
 
 if __name__ == "__main__":
