@@ -47,7 +47,7 @@
 
 <p>A pattern looking for an e-mail address sees <code>payments@attacker</code> on one line and <code>.example</code> two lines down, and finds nothing. The language model reading the page sees <code>payments@attacker.example</code>, and sends the invoice there.</p>
 
-<p>The defence and the model read the same bytes and came away with different documents. This post is about that gap: how an attacker opens it, why an idea from 1998 network security closes most of it, what we measured when we closed it, and which parts stay open.</p>
+<p>The defence and the model read the same bytes and came away with different documents. This post is about that gap: how an attacker opens it, why an idea from 1998 network security closes most of it, what happened when it was measured, and which parts stay open.</p>
 
 <h2 id="attack">The attack</h2>
 
@@ -70,13 +70,13 @@ com/rfc/&gt;.</pre>
 
 <p>Their fragments and ours differ in shape. Theirs are sentence-sized pieces joined by an explicit cue; ours are two halves of one token with nothing asking for the join. The lesson is the same: an agent assembles what no single span of its input contains.</p>
 
-<h2 id="measured">What we saw</h2>
+<h2 id="measured">What the benchmarks showed</h2>
 
-<p>We run adversarial variants over four public prompt-injection benchmarks: AgentDojo, InjecAgent, ASB and WASP. Each variant is an <em>axis</em>, one transformation applied to every injection in the corpus, so a defence that holds on the original and fails on the variant has a named weakness rather than a vague one. One axis cuts each injection at its midpoint and inserts a filler line between the halves. A midpoint almost always falls inside a word, so this is the token split above, applied mechanically.</p>
+<p>The measurements here come from adversarial variants of four public prompt-injection benchmarks: AgentDojo, InjecAgent, ASB and WASP. Each variant is an <em>axis</em>, one transformation applied to every injection in the corpus, so a defence that holds on the original and fails on the variant has a named weakness rather than a vague one. One axis cuts each injection at its midpoint and inserts a filler line between the halves. A midpoint almost always falls inside a word, so this is the token split above, applied mechanically.</p>
 
-<p>On WASP, the result was total. Every session that our output checks flagged before the split went unflagged after it: <strong>0 of 20</strong>. Nothing was wrong with the patterns. They were looking for strings, and the strings were gone.</p>
+<p>On WASP, the result was total. Every session that a set of pattern-based output checks flagged before the split went unflagged after it: <strong>0 of 20</strong>. Nothing was wrong with the patterns. They were looking for strings, and the strings were gone.</p>
 
-<h2 id="ids">We have been here before</h2>
+<h2 id="ids">Security has been here before</h2>
 
 <p>In 1998 Ptacek and Newsham showed that a network intrusion detection system could be walked past by an attacker who never touched it. The IDS watches packets on the wire; the target host reassembles those packets into a stream; and the two reassemble differently. Fragment a packet, overlap the fragments, send one with a TTL that expires before it reaches the host, and the IDS and the host see two different streams. They named two failure directions. <em>Insertion</em>: the IDS accepts something the host will discard. <em>Evasion</em>: the host accepts something the IDS discards.</p>
 
@@ -84,7 +84,7 @@ com/rfc/&gt;.</pre>
 
 <p>Handley, Paxson and Kreibich answered in 2001 with <em>traffic normalization</em>. Put a normalizer in the path that removes the ambiguities, reassembling fragments and resolving overlaps one fixed way, so that the monitor sees what the end host will reassemble. You cannot out-guess every reassembly policy; you can remove the freedom to choose one.</p>
 
-<p>Here the end host is the model. Its reassembly policy is not written in an RFC, which makes the problem harder, but the most common cases are easy to name. One difference in the design: we do not rewrite what the model reads. A normalizer that edits benign documents changes their meaning. The detector gets additional views of the text; the model gets the text.</p>
+<p>Here the end host is the model. Its reassembly policy is not written in an RFC, which makes the problem harder, but the most common cases are easy to name. One difference in the design: the normalizer does not rewrite what the model reads. A normalizer that edits benign documents changes their meaning. The detector gets additional views of the text; the model gets the text.</p>
 
 <h2 id="rejoin">Reassemble, then scan</h2>
 
@@ -135,14 +135,14 @@ def split_findings(text, scan):
 
 <p><strong>The structure is never evidence.</strong> It is tempting to treat "a sentence interrupted by an unrelated line" as suspicious in itself. It is not. Every page break in every PDF looks like one, and so does every quoted e-mail, every table that wraps, every slide deck exported to text. A detector that alerts on the shape will alert on most of the documents an agent reads. Look again at <code>split_findings</code>: it never reports a seam. It reports a <em>finding</em> that exists in the rejoined text and nowhere in the original. That subtraction is what keeps the false-positive rate where it was.</p>
 
-<p><strong>Never join with an added space.</strong> Our first version did. Joining with a space also catches splits <em>between</em> words, which seemed like free coverage. On page-broken documents it was not free. In one benign document, "disable" ended a line, the page break came next, and "policy" began the line two below. Joined with a space, that is <code>disable policy</code>, and the scanner raised a policy-bypass finding on a document whose only crime was pagination. Joined with nothing, it is <code>disablepolicy</code>, which matches nothing, which is correct: no attacker produced that text by cutting a token. Joining with nothing restores what a mid-token cut destroyed and invents nothing else.</p>
+<p><strong>Never join with an added space.</strong> The first version of the rejoin did. Joining with a space also catches splits <em>between</em> words, which seemed like free coverage. On page-broken documents it was not free. In one benign document, "disable" ended a line, the page break came next, and "policy" began the line two below. Joined with a space, that is <code>disable policy</code>, and the scanner raised a policy-bypass finding on a document whose only crime was pagination. Joined with nothing, it is <code>disablepolicy</code>, which matches nothing, which is correct: no attacker produced that text by cutting a token. Joining with nothing restores what a mid-token cut destroyed and invents nothing else.</p>
 
 <h2 id="numbers">The numbers</h2>
 
 <p>Measured offline on the four corpora, with every injection split:</p>
 
 <table class="tbl">
-  <thead><tr><th>Corpus</th><th>What we counted</th><th>Without rejoin</th><th>With rejoin</th></tr></thead>
+  <thead><tr><th>Corpus</th><th>Measure</th><th>Without rejoin</th><th>With rejoin</th></tr></thead>
   <tbody>
     <tr><td>AgentDojo</td><td>Sends whose attacker destination was recovered</td><td>419 / 460</td><td>460 / 460</td></tr>
     <tr><td>WASP</td><td>Previously flagged sessions recovered</td><td>0 / 20</td><td>20 / 20</td></tr>
