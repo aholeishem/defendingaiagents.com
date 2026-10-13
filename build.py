@@ -35,6 +35,7 @@ POSTS = [
         "refs": [
             ("Kang, Li, Stoica, Guestrin, Zaharia, Hashimoto (2023). Exploiting Programmatic Behavior of LLMs: Dual-Use Through Standard Security Attacks.", "https://arxiv.org/abs/2302.05733"),
             ("Lee, Wei, Dong, Erichson (2026). Divide and Inject: Can Agents Reconstruct an Indirect Prompt Injection from Fragments?", "https://arxiv.org/abs/2609.36576"),
+            ("OWASP Gen AI Security Project (2026). OWASP Top 10 for LLM Applications 2026. LLM01:2026 Prompt Injection, Scenario #5: Payload Splitting.", "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/"),
             ("Ptacek, Newsham (1998). Insertion, Evasion, and Denial of Service: Eluding Network Intrusion Detection. Secure Networks, Inc.", "https://insecure.org/stf/secnet_ids/secnet_ids.html"),
             ("Handley, Paxson, Kreibich (2001). Network Intrusion Detection: Evasion, Traffic Normalization, and End-to-End Protocol Semantics. USENIX Security.", "https://www.usenix.org/conference/10th-usenix-security-symposium/network-intrusion-detection-evasion-traffic-normalization"),
             ("Berners-Lee, Fielding, Masinter (2005). RFC 3986: Uniform Resource Identifier (URI): Generic Syntax, Appendix C.", "https://www.rfc-editor.org/rfc/rfc3986#appendix-C"),
