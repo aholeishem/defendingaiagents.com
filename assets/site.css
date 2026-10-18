@@ -206,6 +206,28 @@ input[type="range"]::-moz-range-thumb { width: 14px; height: 14px; background: v
 .cert > div + div li::before { background: var(--sig); }
 @media (max-width: 760px) { .cert { grid-template-columns: 1fr; } .cert > div { padding-inline: 0; } .cert > div + div { padding-inline-start: 0; border-inline-start: 0; border-top: 1px solid var(--line-2); } }
 
+/* Two ways in: live workshop / online course */
+main > section.split { padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-bottom: 1px solid var(--line-2); }
+.half { display: flex; flex-direction: column; gap: 12px; padding: 30px var(--pad) 26px; text-decoration: none; color: var(--fg); transition: background-color .2s ease, color .2s ease; }
+.half + .half { border-inline-start: 1px solid var(--line-2); }
+.half:hover, .half:focus-visible { background: var(--fg); color: var(--bg); }
+.half .label { color: inherit; opacity: .7; }
+.half .label em { font-style: normal; color: var(--sig); opacity: 1; margin-inline-end: 8px; }
+.half h2 { font-size: clamp(30px, 3.4vw, 52px); max-width: 12ch; }
+.half p { margin: 0; max-width: 30rem; font-size: 16px; color: inherit; opacity: .8; text-wrap: pretty; }
+.half ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid currentColor; opacity: .85; }
+.half li { padding: 6px 0; border-bottom: 1px solid var(--line); font: 500 12px/1.4 var(--mono); letter-spacing: .05em; text-transform: uppercase; }
+.half .go { margin-top: auto; padding-top: 4px; font: 500 12px/1 var(--mono); letter-spacing: .07em; text-transform: uppercase; color: var(--sig); }
+/* The split overlays the foot of the hero: translucent, so the dot field shows through it. */
+:root { --split-h: 360px; }
+@media (min-width: 761px) {
+  .hero.hero-over { min-height: 700px; }
+  .hero.hero-over .word { bottom: calc(var(--split-h) + 24px); }
+  main > section.split { position: relative; z-index: 3; margin-top: calc(-1 * var(--split-h)); min-height: var(--split-h); background: color-mix(in srgb, var(--bg) 46%, transparent); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); border-top: 1px solid var(--line-2); }
+  .half:hover, .half:focus-visible { background: color-mix(in srgb, var(--fg) 92%, transparent); }
+}
+@media (max-width: 760px) { main > section.split { grid-template-columns: 1fr; } .half + .half { border-inline-start: 0; border-top: 1px solid var(--line-2); } }
+
 /* FAQ */
 .faq { border-top: 1px solid var(--line-2); }
 .faq details { border-bottom: 1px solid var(--line); }

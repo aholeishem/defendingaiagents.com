@@ -91,6 +91,8 @@
     var ctx = canvas.getContext("2d");
     var W, H, step, cols, rows, falseAlarms, attack, running = false, visible = true;
     var styles = getComputedStyle(root);
+    // The pointer is a detector sweeping the field: dots under it swell and turn to alerts; a click raises one.
+    var ptr = { x: 0, y: 0, tx: 0, ty: 0, power: 0, on: false }, pulses = [];
     function colours() { styles = getComputedStyle(root); }
     function rng(seed) { return function () { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }; }
     function size() {
@@ -117,23 +119,31 @@
     }
     function draw(t) {
       var fg = styles.getPropertyValue("--fg").trim(), sig = styles.getPropertyValue("--sig").trim();
+      ptr.x += (ptr.tx - ptr.x) * 0.18; ptr.y += (ptr.ty - ptr.y) * 0.18;
+      ptr.power += ((ptr.on ? 1 : 0) - ptr.power) * 0.12;
+      var R = Math.max(120, W * 0.11), lit = ptr.power > 0.01;
       ctx.clearRect(0, 0, W, H);
       ctx.fillStyle = fg; ctx.strokeStyle = fg; ctx.lineWidth = 1;
       for (var j = 0; j < rows; j++) {
         var py = j * step + step / 2;
-        var fade = Math.min(1, py / (H * 0.55)) * (1 - Math.max(0, (py - H * 0.55) / (H * 0.6)));
+        var fade = Math.max(0.5, Math.min(1, py / (H * 0.55)) * (1 - Math.max(0, (py - H * 0.55) / (H * 0.6))));
         for (var i = 0; i < cols; i++) {
           var k = j * cols + i, px = i * step + step / 2;
           if (k === attack) continue;
+          var near = 0;
+          if (lit) { var d = Math.hypot(px - ptr.x, py - ptr.y) / R; if (d < 1) near = (1 - d) * (1 - d) * ptr.power; }
           if (falseAlarms.has(k)) {
-            ctx.globalAlpha = Math.sin(t * 2 + k) > 0.2 ? 0.9 : 0.32;
-            ctx.strokeRect(px - step * 0.32, py - step * 0.32, step * 0.64, step * 0.64);
+            ctx.globalAlpha = Math.min(1, (Math.sin(t * 2 + k) > 0.2 ? 0.9 : 0.32) + near);
+            ctx.strokeStyle = near > 0.3 ? sig : fg;
+            ctx.strokeRect(px - step * (0.32 + near * 0.5), py - step * (0.32 + near * 0.5), step * (0.64 + near), step * (0.64 + near));
+            ctx.strokeStyle = fg;
             continue;
           }
           var v = (noise(i, j, t) + 2.1) / 4.2; v = v < 0 ? 0 : v > 1 ? 1 : v;
-          var r = v * v * step * 0.24;
+          var r = v * v * step * 0.24 + near * step * 0.5;
           if (r < 0.35) continue;
-          ctx.globalAlpha = 0.16 + fade * 0.38;
+          ctx.globalAlpha = Math.min(1, 0.16 + fade * 0.38 + near * 0.6);
+          ctx.fillStyle = near > 0.25 ? sig : fg;
           ctx.fillRect(px - r, py - r, r * 2, r * 2);
         }
       }
@@ -143,10 +153,30 @@
       ctx.globalAlpha = 0.18 * pulse; ctx.beginPath(); ctx.arc(ax, ay, step * 2.2, 0, 7); ctx.fill();
       ctx.globalAlpha = 1; ctx.beginPath(); ctx.arc(ax, ay, step * 0.42, 0, 7); ctx.fill();
       ctx.globalAlpha = 1;
+      if (lit) {
+        ctx.strokeStyle = sig; ctx.lineWidth = 1;
+        ctx.globalAlpha = 0.55 * ptr.power; ctx.beginPath(); ctx.arc(ptr.x, ptr.y, R * 0.55, 0, 7); ctx.stroke();
+        ctx.globalAlpha = 0.9 * ptr.power; ctx.beginPath();
+        ctx.moveTo(ptr.x - 6, ptr.y); ctx.lineTo(ptr.x + 6, ptr.y); ctx.moveTo(ptr.x, ptr.y - 6); ctx.lineTo(ptr.x, ptr.y + 6); ctx.stroke();
+      }
+      pulses = pulses.filter(function (p) { return t - p.t0 < 1.1; });
+      pulses.forEach(function (p) {
+        var a = Math.max(0, (t - p.t0) / 1.1);
+        ctx.strokeStyle = sig; ctx.lineWidth = 1.5; ctx.globalAlpha = 1 - a;
+        ctx.beginPath(); ctx.arc(p.x, p.y, R * 0.2 + a * R * 1.6, 0, 7); ctx.stroke();
+      });
+      ctx.globalAlpha = 1; ctx.lineWidth = 1;
+    }
+    var clock = 0;
+    function place(e) {
+      var b = canvas.getBoundingClientRect();
+      var x = e.clientX - b.left, y = e.clientY - b.top;
+      return { x: x, y: y, inside: x >= 0 && y >= 0 && x <= b.width && y <= b.height };
     }
     function loop(ms) {
       if (!running) return;
-      draw(ms / 1000);
+      clock = ms / 1000;
+      draw(clock);
       requestAnimationFrame(loop);
     }
     function sync() {
@@ -154,6 +184,19 @@
       if (go && !running) { running = true; requestAnimationFrame(loop); }
       if (!go) running = false;
     }
+    // Listen on the window: the translucent split and the headline sit above the canvas and would swallow the events.
+    window.addEventListener("pointermove", function (e) {
+      if (e.pointerType === "touch") return;
+      var p = place(e);
+      if (p.inside && !ptr.on) { ptr.x = p.x; ptr.y = p.y; }
+      ptr.tx = p.x; ptr.ty = p.y; ptr.on = p.inside;
+    }, { passive: true });
+    document.addEventListener("pointerleave", function () { ptr.on = false; });
+    window.addEventListener("pointerdown", function (e) {
+      if (e.pointerType === "touch" || reduce.matches) return;
+      var p = place(e);
+      if (p.inside) pulses.push({ x: p.x, y: p.y, t0: clock });
+    }, { passive: true });
     size();
     window.addEventListener("resize", size);
     window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function () { colours(); draw(0); });

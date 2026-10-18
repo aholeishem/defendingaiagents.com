@@ -61,6 +61,13 @@ EN = {
     "readout": [("Calls", "10,000", ""), ("Alerts", "101", ""), ("Attacks", "1", "s"), ("Real", "0.98%", "")],
     "field_aria": "Animation: ten thousand tool calls drawn as dots. About one in a hundred is flagged as an alert; one is a real attack.",
 
+    "split_aria": "Two ways in: the live workshop and the online course",
+    "split": [
+        ("live-label", "Live · in Hebrew", "Workshop", "A half-day for your team. Attack an AI assistant in the morning, defend it, and measure whether it worked.",
+         ["4 hours · up to 15 people", "Hands-on lab, no installs", "At your office or on Zoom"], "See the workshop", "he/workshop/"),
+        ("course-label", "Online · free", "Course", "Build every defence yourself on a laptop, from the first attack to incident response. At your own pace.",
+         ["22 modules · five parts", "Free · paid exam optional", "English now, Hebrew to follow"], "See the curriculum", "#curriculum"),
+    ],
     "s1": "The problem", "s1_h": "You already know the hard part.",
     "s1_p": "The central problems of securing AI agents have statistical twins. The course supplies the security half.",
     "twins": [
@@ -175,6 +182,13 @@ HE = {
     "readout": [("קריאות", "10,000", ""), ("התרעות", "101", ""), ("מתקפות", "1", "s"), ("אמיתיות", "0.98%", "")],
     "field_aria": "הנפשה: עשרת אלפים קריאות לכלים מצוירות כנקודות. בערך אחת ממאה מסומנת כהתרעה; אחת היא מתקפה אמיתית.",
 
+    "split_aria": "שתי דרכים להתחיל: הסדנה החיה והקורס המקוון",
+    "split": [
+        ("live-label", "חי · בעברית", "סדנה", "חצי יום לצוות שלכם. תוקפים עוזר AI בבוקר, מגינים עליו, וממדדים אם זה עבד.",
+         ["4 שעות · עד 15 משתתפים", "מעבדה מעשית, בלי התקנות", "אצלכם או בזום"], "לפרטי הסדנה", "he/workshop/"),
+        ("course-label", "אונליין · חינם", "קורס", "בונים כל הגנה בעצמכם על המחשב הנייד, מהמתקפה הראשונה ועד טיפול באירוע. בקצב שלכם.",
+         ["22 מודולים · חמישה חלקים", "חינם · מבחן בתשלום, לבחירה", "באנגלית עכשיו, בעברית בהמשך"], "לתוכנית הלימודים", "#curriculum"),
+    ],
     "s1": "הבעיה", "s1_h": "את החלק הקשה אתם כבר יודעים.",
     "s1_p": "לבעיות המרכזיות באבטחת סוכני AI יש תאומות סטטיסטיות. הקורס משלים את החצי של אבטחת המידע.",
     "twins": [
@@ -360,6 +374,12 @@ def page(t, prefix):
         lis = "".join(f"<li>{E(s)}</li>" for s in items)
         cert += f'<div class="reveal"><span class="price">{E(price)}</span><h3>{E(h)}<small>{E(sub)}</small></h3><ul>{lis}</ul></div>'
     faq = "".join(f"<details><summary>{E(q)}</summary><p>{E(a)}</p></details>" for q, a in t["faq"])
+    halves = ""
+    for i, (_, kicker, h, p, facts, cta, href) in enumerate(t["split"], 1):
+        link = href if href.startswith("#") else prefix + href
+        lis = "".join(f"<li>{E(f)}</li>" for f in facts)
+        halves += (f'<a class="half reveal" href="{link}"><span class="label"><em>{i:02d}</em>{E(kicker)}</span>'
+                   f'<h2>{E(h)}</h2><p>{E(p)}</p><ul>{lis}</ul><span class="go">{E(cta)} {ARROW}</span></a>')
     L = t["calc_labels"]
 
     def slider(name, max_i, val):
@@ -368,7 +388,7 @@ def page(t, prefix):
 
     body = f"""
 <main id="main">
-  <section class="hero" aria-label="{E(t['brand'])}">
+  <section class="hero hero-over" aria-label="{E(t['brand'])}">
     <canvas data-field role="img" aria-label="{E(t['field_aria'])}"></canvas>
     <p class="kicker label"><i></i>{E(t['kicker'])}</p>
     <div class="word">
@@ -376,6 +396,8 @@ def page(t, prefix):
       <div class="side"><p>{E(t['hero_p'])}</p><div class="readout">{readout}</div></div>
     </div>
   </section>
+
+  <section class="split" aria-label="{E(t['split_aria'])}">{halves}</section>
 
   <section>
     {sec_head(1, t['s1'], t['s1_h'], t['s1_p'])}
