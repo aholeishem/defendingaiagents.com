@@ -50,14 +50,14 @@ POSTS = [
 
 EN = {
     "lang": "en", "dir": "ltr", "path": "/", "other_path": "he/", "other_lang": "he", "other_label": "עברית",
-    "title": "Defending AI Agents: a free course for data scientists",
-    "description": "A free, build-it-yourself course that teaches ML engineers, statisticians and data scientists to secure AI agents, and to reason about what changes at scale.",
+    "title": "Defending AI Agents: a free course for data and AI practitioners",
+    "description": "A free, build-it-yourself course for ML engineers, applied AI engineers, data scientists and analysts. No security background needed. Learn to secure AI agents, and to reason about what changes at scale.",
     "og_image": "og.png", "brand": "Defending AI Agents", "skip": "Skip to content",
     "nav": [("#curriculum", "Curriculum"), ("#certificate", "Certificate"), ("#faq", "FAQ"), ("blog/", "Blog")],
     "nav_cta": "Join waitlist",
-    "kicker": "Free course · for data scientists · in preparation",
+    "kicker": "Free course · ML, data and AI practitioners · in preparation",
     "h1": ["Defending", "AI agents"],
-    "hero_p": "Agent security is a statistics problem. Build every defence yourself on a laptop, then learn what it becomes at fifty million calls a day.",
+    "hero_p": "You build ML and AI systems. Now learn to defend them. No security background needed: build every defence yourself on a laptop, then learn what it becomes at fifty million calls a day.",
     "readout": [("Calls", "10,000", ""), ("Alerts", "101", ""), ("Attacks", "1", "s"), ("Real", "0.98%", "")],
     "field_aria": "Animation: ten thousand tool calls drawn as dots. About one in a hundred is flagged as an alert; one is a real attack.",
 
@@ -69,7 +69,7 @@ EN = {
          ["22 modules · five parts", "Free · paid exam optional", "English now, Hebrew to follow"], "See the curriculum", "#curriculum"),
     ],
     "s1": "The problem", "s1_h": "You already know the hard part.",
-    "s1_p": "The central problems of securing AI agents have statistical twins. The course supplies the security half.",
+    "s1_p": "Whether you train models, ship AI features or analyse data, the central problems of securing AI agents have statistical twins in your own toolbox. The course supplies the security half.",
     "twins": [
         ("01", "Rare events", "Attacks are rare. How often an alert is right is set by the base rate, not by how good the detector looks on a balanced test set."),
         ("02", "Operating points", "Every threshold spends a false-alarm budget. You choose where to spend it, and measure it where the system acts."),
@@ -140,7 +140,7 @@ EN = {
     "s7": "Questions", "s7_h": "Frequently asked.",
     "faq": [
         ("Why this course?", "We reviewed the 26 university courses on machine-learning, LLM and agent security whose schedules are public. None teaches runtime enforcement, evidence or operations for AI agents as a subject. This course is built around them, and around evaluation at production scale."),
-        ("Do I need a security background?", "No. The course assumes Python, probability and machine learning, and teaches the security from the ground up."),
+        ("Do I need a security background?", "No. The course assumes Python and the basics of statistics or machine learning, and teaches the security from the ground up. A free four-hour on-ramp covers the web plumbing."),
         ("What do I need to run it?", "A laptop with 8 GB of memory, running macOS, Windows (with WSL 2) or Linux. No GPU is required. Installing Docker and setting up the lab is a module of its own."),
         ("Which products does it teach?", "None. You build every component yourself with open, general-purpose tools, and wherever a tool is chosen the lesson names an alternative."),
         ("Is it really free?", "Yes. Every lesson, build and automated check is free. Only the final exam, which a person reviews, and the certificate that follows are paid."),
@@ -171,14 +171,14 @@ EN = {
 
 HE = {
     "lang": "he", "dir": "rtl", "path": "/he/", "other_path": "", "other_lang": "en", "other_label": "English",
-    "title": "הגנה על סוכני AI: קורס חינמי למדעני נתונים",
-    "description": "קורס חינמי, שבו בונים הכול בעצמכם, שמלמד מהנדסי ML, סטטיסטיקאים ומדעני נתונים לאבטח סוכני AI, ולחשוב על מה שמשתנה בהיקף של ארגון גדול.",
+    "title": "הגנה על סוכני AI: קורס חינמי לאנשי ML, נתונים ו־AI",
+    "description": "קורס חינמי, שבו בונים הכול בעצמכם, למהנדסי ML ו־AI יישומי, מדעני נתונים ואנליסטים. לא נדרש רקע באבטחה. לומדים לאבטח סוכני AI, ולחשוב על מה שמשתנה בהיקף של ארגון גדול.",
     "og_image": "og-he.png", "brand": "הגנה על סוכני AI", "skip": "דילוג לתוכן",
     "nav": [("#curriculum", "תוכנית הלימודים"), ("#certificate", "תעודה"), ("#faq", "שאלות"), ("he/workshop/", "סדנאות"), ("blog/", "בלוג")],
     "nav_cta": "לרשימת ההמתנה",
-    "kicker": "קורס חינמי · למדעני נתונים · בהכנה",
+    "kicker": "קורס חינמי · לאנשי ML, נתונים ו־AI · בהכנה",
     "h1": ["הגנה על", "סוכני AI"],
-    "hero_p": "אבטחת סוכני AI היא בעיה סטטיסטית. בונים כל הגנה בעצמכם על המחשב הנייד, ולומדים מה היא הופכת להיות בחמישים מיליון קריאות ביום.",
+    "hero_p": "אתם בונים מערכות ML ו־AI. הגיע הזמן ללמוד להגן עליהן. לא נדרש רקע באבטחה: בונים כל הגנה בעצמכם על המחשב הנייד, ולומדים מה היא הופכת להיות בחמישים מיליון קריאות ביום.",
     "readout": [("קריאות", "10,000", ""), ("התרעות", "101", ""), ("מתקפות", "1", "s"), ("אמיתיות", "0.98%", "")],
     "field_aria": "הנפשה: עשרת אלפים קריאות לכלים מצוירות כנקודות. בערך אחת ממאה מסומנת כהתרעה; אחת היא מתקפה אמיתית.",
 
@@ -190,7 +190,7 @@ HE = {
          ["22 מודולים · חמישה חלקים", "חינם · מבחן בתשלום, לבחירה", "באנגלית עכשיו, בעברית בהמשך"], "לתוכנית הלימודים", "#curriculum"),
     ],
     "s1": "הבעיה", "s1_h": "את החלק הקשה אתם כבר יודעים.",
-    "s1_p": "לבעיות המרכזיות באבטחת סוכני AI יש תאומות סטטיסטיות. הקורס משלים את החצי של אבטחת המידע.",
+    "s1_p": "בין שאתם מאמנים מודלים, מעלים לאוויר יכולות AI או מנתחים נתונים, לבעיות המרכזיות באבטחת סוכני AI יש תאומות סטטיסטיות בארגז הכלים שלכם. הקורס משלים את החצי של אבטחת המידע.",
     "twins": [
         ("01", "אירועים נדירים", "מתקפות הן נדירות. הסיכוי שהתרעה אמיתית נקבע לפי שיעור הבסיס, לא לפי כמה טוב הגלאי נראה על סט בדיקה מאוזן."),
         ("02", "נקודות עבודה", "כל סף מוציא תקציב של התרעות שווא. אתם בוחרים איפה להוציא אותו, ומודדים אותו במקום שבו המערכת פועלת."),
@@ -261,7 +261,7 @@ HE = {
     "s7": "שאלות", "s7_h": "שאלות נפוצות.",
     "faq": [
         ("למה הקורס הזה?", "סקרנו את 26 הקורסים האוניברסיטאיים באבטחת למידת מכונה, מודלי שפה וסוכני AI שתוכנית הלימודים שלהם פומבית. אף אחד מהם אינו מלמד אכיפה בזמן ריצה, תיעוד ראייתי או תפעול של סוכני AI כנושא בפני עצמו. הקורס הזה בנוי סביב הנושאים האלה, וסביב הערכה בהיקף של סביבת ייצור."),
-        ("צריך רקע באבטחת מידע?", "לא. הקורס מניח היכרות עם Python, הסתברות ולמידת מכונה, ומלמד את אבטחת המידע מהיסוד."),
+        ("צריך רקע באבטחת מידע?", "לא. הקורס מניח היכרות עם Python ועם יסודות הסטטיסטיקה או למידת המכונה, ומלמד את אבטחת המידע מהיסוד. מודול הכנה חינמי של ארבע שעות מכסה את יסודות הרשת."),
         ("מה צריך כדי להריץ אותו?", "מחשב נייד עם 8GB זיכרון, עם macOS,‏ Windows (עם WSL 2) או Linux. אין צורך ב־GPU. התקנת Docker והקמת המעבדה הן מודול בפני עצמו."),
         ("אילו מוצרים הקורס מלמד?", "אף אחד. אתם בונים כל רכיב בעצמכם בכלים פתוחים וכלליים, ובכל מקום שבו נבחר כלי, השיעור מציין גם חלופה."),
         ("הוא באמת חינמי?", "כן. כל שיעור, בנייה ובדיקה אוטומטית הם בחינם. רק המבחן המסכם, שנבדק בידי אדם, והתעודה שבאה אחריו הם בתשלום."),
@@ -474,7 +474,7 @@ def page(t, prefix):
 WORKSHOP_MAIL = f"mailto:{EMAIL}?subject=" + "%D7%A1%D7%93%D7%A0%D7%AA%20%D7%90%D7%91%D7%98%D7%97%D7%AA%20%D7%A1%D7%95%D7%9B%D7%A0%D7%99%20AI"
 
 HE_WS = {
-    "title": "אבטחת סוכני AI: סדנה לצוותי דאטה ופיתוח",
+    "title": "אבטחת סוכני AI: סדנה לצוותי ML, AI ונתונים",
     "description": "סדנה מעשית בעברית, חצי יום, לצוותים שמשלבים מודלי שפה וסוכנים במוצר: תוקפים עוזר AI, מגינים עליו, וממדדים אם ההגנה באמת עובדת.",
     "kicker": "סדנה לצוותים · בעברית · חצי יום",
     "h1": ["אבטחת", "סוכני AI"],
@@ -482,7 +482,7 @@ HE_WS = {
     "readout": [("משך", "4 שעות", ""), ("משתתפים", "עד 15", ""), ("רקע באבטחה", "לא נדרש", "s"), ("התקנות", "אין", "")],
 
     "s1": ("01", "למי", "לצוותים שכבר שולחים AI למשתמשים.",
-           "מדעני נתונים, מהנדסי ML ומפתחים שמחברים מודל לכלים, למסמכים או למייל. אתם לא צוות אבטחה, ואף אחד לא חיכה לכם עם רשימת בדיקה."),
+           "מהנדסי ML ו־AI יישומי, מדעני נתונים, אנליסטים ומפתחים שמחברים מודל לכלים, למסמכים או למייל. אתם לא צוות אבטחה, ואף אחד לא חיכה לכם עם רשימת בדיקה."),
     "who": [
         ("01", "אתם בונים סוכן", "המודל קורא קבצים, מחפש בארגון, קורא ל־API או שולח הודעות בשם משתמש."),
         ("02", "אתם מכירים סטטיסטיקה", "אחוזי דיוק, שיעורי בסיס, מדגם קטן. הסדנה משתמשת בהם כדי להראות למה «עבר הבדיקה» לא אומר «בטוח»."),
