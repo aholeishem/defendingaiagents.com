@@ -109,6 +109,8 @@ EN = {
         ("16", "A signed, tamper-evident log, replay, and off-policy estimates"),
         ("17", "A policy learner that a patient attacker cannot train"),
         ("18", "An incident runbook, tested on a recorded attack"),
+        ("20", "An agent inventory that links appearances across sources and estimates how many no source has seen"),
+        ("21", "An in-path control, measured for latency, capacity and failure"),
     ],
 
     "s4": "Scale", "s4_h": "Build it small. Reason about it at scale.",
@@ -118,14 +120,14 @@ EN = {
         ("At 50 million calls a day: work it out", "500,000", "false alarms", "The same 1% error rate. At 30 seconds each, that is <strong>about 520 analysts</strong>, working full time, just to clear the false ones. You get there by calculation from your own measurements."),
     ],
 
-    "s5": "Curriculum", "s5_h": "Twenty modules and a capstone.",
-    "s5_p": "Each module ends at a measurement you produce and defend, not at a page you have read. About 134 hours, self-paced, in English and Hebrew.",
+    "s5": "Curriculum", "s5_h": "Twenty-two modules and a capstone.",
+    "s5_p": "Each module ends at a measurement you produce and defend, not at a page you have read. About 248 hours, self-paced, in English and Hebrew.",
     "parts": [
         ("I", "Foundations", [("00", "Orientation: why agent security is a statistics problem"), ("01", "Setting up your lab and your toy agent"), ("02", "Security fundamentals for data people"), ("03", "Anatomy of an agent and its attack surface")]),
         ("II", "Attacks", [("04", "Prompt injection and jailbreaks"), ("05", "Poisoning, backdoors and agent memory"), ("06", "Privacy attacks and differential privacy")]),
         ("III", "Measurement", [("07", "Detectors are classifiers: base rates, budgets, operating points"), ("08", "Evaluation hygiene and distribution shift"), ("09", "Adversarial robustness and red-teaming"), ("10", "Behavioural and sequence anomaly detection")]),
         ("IV", "Enforcement", [("11", "Secure by design: architectures injected text cannot steer"), ("12", "Identity, least privilege and containment"), ("13", "From score to decision: policy, holds and humans"), ("14", "The supply chain: models, packages and tools"), ("15", "Data protection: personal data, redaction, erasure")]),
-        ("V", "Operations", [("16", "Evidence: audit trails, replay and counterfactual evaluation"), ("17", "Learning policy from traffic, safely"), ("18", "Monitoring and incident response for agents"), ("19", "Governance, audit and regulation for engineers")]),
+        ("V", "Operations", [("16", "Evidence: audit trails, replay and counterfactual evaluation"), ("17", "Learning policy from traffic, safely"), ("18", "Monitoring and incident response for agents"), ("19", "Governance, audit and regulation for engineers"), ("20", "Finding the agents: discovery, linkage and coverage"), ("21", "Running an in-path control: latency, capacity and failure")]),
     ],
     "cap_label": "Capstone", "cap_h": "Build it, then break someone else's.",
     "cap_p": "Your own design and gateway for a new scenario, run against a hidden attack suite; a scale memo; and a red-team report on another learner's work.",
@@ -230,6 +232,8 @@ HE = {
         ("16", "יומן חתום שחושף שינויים, הרצה חוזרת והערכה מנתונים קיימים"),
         ("17", "לומד מדיניות שתוקף סבלני לא יכול לאמן"),
         ("18", "נוהל טיפול באירוע, שנבדק על מתקפה מוקלטת"),
+        ("20", "מלאי סוכנים שמקשר את הופעותיהם בין מקורות, ומעריך כמה אף מקור לא ראה"),
+        ("21", "בקרה בנתיב הקריאה, שנמדדת להשהיה, לקיבולת ולכשל"),
     ],
 
     "s4": "קנה מידה", "s4_h": "בונים בקטן. חושבים בגדול.",
@@ -239,14 +243,14 @@ HE = {
         ("ב־50 מיליון קריאות ביום: מחשבים", "500,000", "התרעות שווא", "אותו שיעור שגיאה של 1%. ב־30 שניות להתרעה, זה <strong>כ־520 אנליסטים</strong> במשרה מלאה, רק כדי לסגור את השגויות. מגיעים לזה בחישוב, מתוך המדידות שלכם."),
     ],
 
-    "s5": "תוכנית הלימודים", "s5_h": "עשרים מודולים ופרויקט גמר.",
-    "s5_p": "כל מודול מסתיים במדידה שאתם מפיקים ומגינים עליה, לא בעמוד שקראתם. כ־134 שעות, בקצב שלכם, בעברית ובאנגלית.",
+    "s5": "תוכנית הלימודים", "s5_h": "עשרים ושניים מודולים ופרויקט גמר.",
+    "s5_p": "כל מודול מסתיים במדידה שאתם מפיקים ומגינים עליה, לא בעמוד שקראתם. כ־248 שעות, בקצב שלכם, בעברית ובאנגלית.",
     "parts": [
         ("I", "יסודות", [("00", "התמצאות: למה אבטחת סוכנים היא בעיה סטטיסטית"), ("01", "הקמת המעבדה והסוכן שלכם"), ("02", "יסודות אבטחת מידע לאנשי נתונים"), ("03", "האנטומיה של סוכן ומשטח התקיפה שלו")]),
         ("II", "מתקפות", [("04", "הזרקת הנחיות ופריצת מגבלות"), ("05", "הרעלה, דלתות אחוריות וזיכרון של סוכנים"), ("06", "מתקפות על פרטיות ופרטיות דיפרנציאלית")]),
         ("III", "מדידה", [("07", "גלאים הם מסווגים: שיעורי בסיס, תקציבים ונקודות עבודה"), ("08", "היגיינת הערכה ושינוי בהתפלגות"), ("09", "עמידות מול יריב ותקיפה יזומה"), ("10", "זיהוי חריגות בהתנהגות וברצפים")]),
         ("IV", "אכיפה", [("11", "אבטחה כבר בתכנון: ארכיטקטורות שטקסט מוזרק לא יכול להטות"), ("12", "זהות, הרשאה מינימלית ובידוד"), ("13", "מציון להחלטה: מדיניות, עיכובים ובני אדם"), ("14", "שרשרת האספקה: מודלים, חבילות וכלים"), ("15", "הגנה על מידע: מידע אישי, השחרה ומחיקה")]),
-        ("V", "תפעול", [("16", "ראיות: יומני ביקורת, הרצה חוזרת והערכה קונטרפקטואלית"), ("17", "למידת מדיניות מתעבורה, בבטחה"), ("18", "ניטור וטיפול באירועים בסוכנים"), ("19", "ממשל, ביקורת ורגולציה למהנדסים")]),
+        ("V", "תפעול", [("16", "ראיות: יומני ביקורת, הרצה חוזרת והערכה קונטרפקטואלית"), ("17", "למידת מדיניות מתעבורה, בבטחה"), ("18", "ניטור וטיפול באירועים בסוכנים"), ("19", "ממשל, ביקורת ורגולציה למהנדסים"), ("20", "מציאת הסוכנים: גילוי, קישור וכיסוי"), ("21", "הפעלת בקרה בנתיב הקריאה: השהיה, קיבולת וכשל")]),
     ],
     "cap_label": "פרויקט גמר", "cap_h": "לבנות, ואז לשבור את של מישהו אחר.",
     "cap_p": "תכנון ושער משלכם לתרחיש חדש, שנבחנים מול סדרת מתקפות סמויה; מסמך על קנה מידה; ודוח תקיפה יזומה על עבודה של משתתף אחר.",

@@ -1,0 +1,30 @@
+<!doctype html>
+<!-- Social-preview image source. Render with headless Chrome (1200x630):
+  chrome --headless=new --window-size=1200,630 --virtual-time-budget=3000 --hide-scrollbars \
+    --screenshot=og.png "file://$PWD/tools/og.html?lang=en"      (and ?lang=he -> og-he.png) -->
+<meta charset="utf-8">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+  html, body { margin: 0; height: 630px; overflow: hidden; }
+  .hero { height: 630px; min-height: 0; }
+  .og-url { position: absolute; z-index: 2; top: 30px; inset-inline-end: 28px; margin: 0; }
+  .hero .kicker { top: 30px; }
+  .hero .word { grid-template-columns: 1fr; bottom: 20px; }
+  .hero h1 { font-size: 118px; }
+  :lang(he) .hero h1 { font-size: 128px; }
+</style>
+<body>
+<section class="hero" id="hero">
+  <canvas data-field></canvas>
+  <p class="kicker label"><i></i><span id="kicker"></span></p>
+  <p class="og-url label">defendingaiagents.com</p>
+  <div class="word"><h1 id="h1"></h1></div>
+</section>
+<script>
+  var he = new URLSearchParams(location.search).get("lang") === "he";
+  document.documentElement.lang = he ? "he" : "en";
+  document.documentElement.dir = he ? "rtl" : "ltr";
+  document.getElementById("kicker").textContent = he ? "קורס חינמי לאנשי ML, נתונים ו־AI" : "A free course for ML, data and AI practitioners";
+  document.getElementById("h1").innerHTML = he ? "<span>הגנה על</span><span>סוכני AI</span>" : "<span>Defending</span><span>AI agents</span>";
+</script>
+<script src="../assets/site.js"></script>
