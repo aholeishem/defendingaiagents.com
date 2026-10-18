@@ -167,7 +167,7 @@ HE = {
     "title": "הגנה על סוכני AI: קורס חינמי למדעני נתונים",
     "description": "קורס חינמי, שבו בונים הכול בעצמכם, שמלמד מהנדסי ML, סטטיסטיקאים ומדעני נתונים לאבטח סוכני AI, ולחשוב על מה שמשתנה בהיקף של ארגון גדול.",
     "og_image": "og-he.png", "brand": "הגנה על סוכני AI", "skip": "דילוג לתוכן",
-    "nav": [("#curriculum", "תוכנית הלימודים"), ("#certificate", "תעודה"), ("#faq", "שאלות"), ("blog/", "בלוג")],
+    "nav": [("#curriculum", "תוכנית הלימודים"), ("#certificate", "תעודה"), ("#faq", "שאלות"), ("he/workshop/", "סדנאות"), ("blog/", "בלוג")],
     "nav_cta": "לרשימת ההמתנה",
     "kicker": "קורס חינמי · למדעני נתונים · בהכנה",
     "h1": ["הגנה על", "סוכני AI"],
@@ -449,6 +449,130 @@ def page(t, prefix):
     return head(t, prefix, t["title"], t["path"]) + topbar(t, prefix, "./") + body + footer(t, prefix)
 
 
+WORKSHOP_MAIL = f"mailto:{EMAIL}?subject=" + "%D7%A1%D7%93%D7%A0%D7%AA%20%D7%90%D7%91%D7%98%D7%97%D7%AA%20%D7%A1%D7%95%D7%9B%D7%A0%D7%99%20AI"
+
+HE_WS = {
+    "title": "אבטחת סוכני AI: סדנה לצוותי דאטה ופיתוח",
+    "description": "סדנה מעשית בעברית, חצי יום, לצוותים שמשלבים מודלי שפה וסוכנים במוצר: תוקפים עוזר AI, מגינים עליו, וממדדים אם ההגנה באמת עובדת.",
+    "kicker": "סדנה לצוותים · בעברית · חצי יום",
+    "h1": ["אבטחת", "סוכני AI"],
+    "hero_p": "העוזר שלכם קורא מסמכים, שולח מיילים ומריץ כלים. מה קורה כשאחד המסמכים מנסה לתת לו הוראות? תוקפים אותו בבוקר, מגינים עליו, וממדדים אם זה עבד.",
+    "readout": [("משך", "4 שעות", ""), ("משתתפים", "עד 15", ""), ("רקע באבטחה", "לא נדרש", "s"), ("התקנות", "אין", "")],
+
+    "s1": ("01", "למי", "לצוותים שכבר שולחים AI למשתמשים.",
+           "מדעני נתונים, מהנדסי ML ומפתחים שמחברים מודל לכלים, למסמכים או למייל. אתם לא צוות אבטחה, ואף אחד לא חיכה לכם עם רשימת בדיקה."),
+    "who": [
+        ("01", "אתם בונים סוכן", "המודל קורא קבצים, מחפש בארגון, קורא ל־API או שולח הודעות בשם משתמש."),
+        ("02", "אתם מכירים סטטיסטיקה", "אחוזי דיוק, שיעורי בסיס, מדגם קטן. הסדנה משתמשת בהם כדי להראות למה «עבר הבדיקה» לא אומר «בטוח»."),
+        ("03", "אתם לא צריכים רקע באבטחה", "מגדירים כל מושג בפעם הראשונה שהוא מופיע. המעבדה רצה על Python סטנדרטי, בלי התקנות ובלי אינטרנט."),
+    ],
+
+    "s2": ("02", "מה קורה בסדנה", "ארבע שעות. מחצית מהן ידיים על המקלדת.",
+           "הלב הוא מעבדה אחת, שכתובה כך שאפשר למדוד בה: עוזר קטן, שלושה כלים, סוד אחד, וסט בדיקה שנותן שני מספרים."),
+    "agenda": [
+        ("0:00", "למה סוכנים נכשלים: המודל לא יודע מי הבוס. הוראה של משתמש וטקסט במסמך מגיעים אליו באותה צורה."),
+        ("0:30", "תוקפים: כותבים מסמך ספק מורעל שגורם לעוזר למסור קובץ סודי, בלי שהמשתמש עשה משהו חריג."),
+        ("1:15", "מגינים, בדרך שכולם מנסים קודם: מסנן מילים על מה שהמודל קורא. מודדים. רואים מה עבר, ומה נשבר."),
+        ("2:15", "מגינים, מבנית: לא «מה המודל קורא» אלא «מה המודל רשאי לעשות». כלל אחד, ובודקים אותו."),
+        ("3:00", "מה מדדתם באמת: למה אפס דליפות ב־7 ניסיונות לא מוכיח כלום, ומה כן."),
+        ("3:30", "לוקחים איתכם: רשימת בדיקה לסוכן שלכם, והמעבדה, כדי להריץ אותה על קוד אמיתי."),
+    ],
+
+    "s3": ("03", "מה תמדדו", "אותו סט בדיקה, שלוש הגנות.",
+           "אלה המספרים שהמעבדה מדפיסה היום: שבע מתקפות, חמש עבודות לגיטימיות. הצוות שלכם יראה אותם נעים בזמן אמת."),
+    "results": [
+        ("בלי הגנה", "7 מתוך 7 מתקפות עוברות · תועלת 100%"),
+        ("מסנן מילים", "5 מתוך 7 עוברות · תועלת 60%: הוא חוסם גם מסמכים תקינים"),
+        ("בדיקה בשיטת «מכיל»", "1 מתוך 7 עוברת: אותה טעות שעושים בקוד אמיתי"),
+        ("כלל מבני", "0 מתוך 7 · תועלת 100% · והגבול העליון על שיעור הדליפה עדיין כ־43%"),
+    ],
+
+    "s4": ("04", "פורמט", "לצוות שלכם, או פתוח לכולם.", None),
+    "formats": [
+        ("סדנה לצוות", "מותאם", "בעברית, אצלכם או בזום",
+         ["חצי יום, עד 15 משתתפים", "מעבדה על הדוגמאות שלכם: סוג הכלים, סוג המסמכים", "רשימת בדיקה ותבנית מודל איום לסוכן שלכם", "מחיר היכרות לסדנאות הראשונות. כתבו ונסכם"]),
+        ("מחזור פתוח", "בקרוב", "ערבים, בזום, לפי רשימה",
+         ["ארבעה מפגשים של שעתיים", "אותה מעבדה, בקצב איטי יותר, עם משוב על הקוד שלכם", "נפתח כשיש מספיק נרשמים", "כתבו כדי להיכנס לרשימה"]),
+    ],
+
+    "s5": ("05", "מי מעביר", "שמעון ר. מלכה.", "מחבר הקורס הפתוח «הגנה על סוכני AI», 22 מודולים שבהם בונים כל הגנה בעצמכם. הסדנה היא הגרסה של חצי יום, לצוות שרוצה להתחיל מחר."),
+
+    "s6": ("06", "שאלות", "שאלות נפוצות.", None),
+    "faq": [
+        ("צריך להכיר אבטחת מידע?", "לא. צריך להכיר Python ולהבין איך מחברים מודל לכלים. כל מושג באבטחה מוגדר כשהוא מופיע."),
+        ("עם איזה מודל עובדים?", "המעבדה משתמשת במודל תחליפי דטרמיניסטי, שמציית גם למשתמש וגם למה שהוא קורא במסמך, כדי שכל אחד יקבל את אותה תוצאה וניתן יהיה למדוד. מודל אמיתי נכשל באותה דרך, פחות בעקביות, ולכן הסדנה מלמדת למדוד שיעורים ולא להסתפק בדוגמה. אפשר להחליף למודל שלכם."),
+        ("זה מתאים לסוכן שלנו?", "העקרונות כן: הפרדה בין הוראות לנתונים, מקור הכתובת והנתונים, ומה מותר לכלי לעשות. בסדנה לצוות אפשר להכניס את סוגי הכלים והמסמכים שלכם. אין הבטחה שסוכן ספציפי «בטוח» אחרי חצי יום."),
+        ("מה עם הקורס החינמי?", "הקורס עדיין בהכנה. הסדנה לא תלויה בו, והיא נותנת לכם את ההתחלה. מי שרוצה להעמיק יוכל להמשיך אליו."),
+        ("אפשר חשבונית?", "כן. כתבו ונסכם פרטים."),
+    ],
+
+    "cta_link": ["נדבר על סדנה", "לצוות שלכם"],
+    "cta_btn": "כתבו לשמעון",
+    "cta_fine": "מענה תוך יום עסקים. תכתבו כמה אתם, מה אתם בונים, ואיזה סוג כלים יש לסוכן. הכתובת שלכם תשמש רק לשיחה הזאת.",
+}
+
+
+def workshop_page(t, w):
+    prefix = "../../"
+    readout = "".join(f'<span class="label">{E(l)}<b class="{c}">{E(v)}</b></span>' for l, v, c in w["readout"])
+    twins = "".join(f'<article class="twin reveal"><div class="label">{k}</div><h3>{E(h)}</h3><p>{E(p)}</p></article>' for k, h, p in w["who"])
+    agenda = "".join(f'<li class="reveal"><span class="label" dir="ltr">{E(tm)}</span><span>{E(s)}</span></li>' for tm, s in w["agenda"])
+    results = "".join(f'<li class="reveal"><span class="label">{E(k)}</span><span>{E(v)}</span></li>' for k, v in w["results"])
+    cert = ""
+    for h, price, sub, items in w["formats"]:
+        lis = "".join(f"<li>{E(s)}</li>" for s in items)
+        cert += f'<div class="reveal"><span class="price">{E(price)}</span><h3>{E(h)}<small>{E(sub)}</small></h3><ul>{lis}</ul></div>'
+    faq = "".join(f"<details><summary>{E(q)}</summary><p>{E(a)}</p></details>" for q, a in w["faq"])
+    body = f"""
+<main id="main">
+  <section class="hero" aria-label="{E(w['title'])}">
+    <canvas data-field role="img" aria-label="{E(t['field_aria'])}"></canvas>
+    <p class="kicker label"><i></i>{E(w['kicker'])}</p>
+    <div class="word">
+      <h1><span>{E(w['h1'][0])}</span><span>{E(w['h1'][1])}</span></h1>
+      <div class="side"><p>{E(w['hero_p'])}</p><div class="readout">{readout}</div><p><a class="btn" href="{WORKSHOP_MAIL}">{E(w['cta_btn'])}</a></p></div>
+    </div>
+  </section>
+
+  <section>
+    {sec_head(int(w['s1'][0]), w['s1'][1], w['s1'][2], w['s1'][3])}
+    <div class="twins" style="grid-template-columns:repeat(3,minmax(0,1fr))">{twins}</div>
+  </section>
+
+  <section>
+    {sec_head(int(w['s2'][0]), w['s2'][1], w['s2'][2], w['s2'][3])}
+    <ol class="build indent" style="grid-template-columns:1fr">{agenda}</ol>
+  </section>
+
+  <section>
+    {sec_head(int(w['s3'][0]), w['s3'][1], w['s3'][2], w['s3'][3])}
+    <ol class="build indent" style="grid-template-columns:1fr">{results}</ol>
+  </section>
+
+  <section>
+    {sec_head(int(w['s4'][0]), w['s4'][1], w['s4'][2])}
+    <div class="cert indent">{cert}</div>
+  </section>
+
+  <section>
+    {sec_head(int(w['s5'][0]), w['s5'][1], w['s5'][2], w['s5'][3])}
+  </section>
+
+  <section id="faq">
+    {sec_head(int(w['s6'][0]), w['s6'][1], w['s6'][2])}
+    <div class="faq indent reveal">{faq}</div>
+  </section>
+
+  <section class="cta" id="contact">
+    <h2 class="big-link reveal"><a href="{WORKSHOP_MAIL}">{E(w['cta_link'][0])}<br>{E(w['cta_link'][1])} {ARROW}</a></h2>
+    <div class="fine reveal"><span class="label"><em style="font-style:normal;color:var(--sig)">07</em>&nbsp; {E(EMAIL)}</span><p>{E(w['cta_fine'])}</p></div>
+  </section>
+</main>
+"""
+    return (head(t, prefix, f"{w['title']} · {t['brand']}", "/he/workshop/", description=w["description"], alternates=False)
+            + topbar(t, prefix, "../") + body + footer(t, prefix))
+
+
 def not_found(t):
     body = f"""
 <main id="main">
@@ -569,6 +693,8 @@ def main():
     (ROOT / "index.html").write_text(page(EN, ""), encoding="utf-8")
     (ROOT / "he").mkdir(exist_ok=True)
     (ROOT / "he" / "index.html").write_text(page(HE, "../"), encoding="utf-8")
+    (ROOT / "he" / "workshop").mkdir(exist_ok=True)
+    (ROOT / "he" / "workshop" / "index.html").write_text(workshop_page(HE, HE_WS), encoding="utf-8")
     (ROOT / "404.html").write_text(not_found(EN), encoding="utf-8")
     blog = ROOT / "blog"
     blog.mkdir(exist_ok=True)
@@ -577,7 +703,7 @@ def main():
     for p in POSTS:
         (blog / p["slug"]).mkdir(exist_ok=True)
         (blog / p["slug"] / "index.html").write_text(post_page(EN, p), encoding="utf-8")
-    print(f"built index.html, he/index.html, 404.html, blog/ ({len(POSTS)} posts)")
+    print(f"built index.html, he/index.html, he/workshop/, 404.html, blog/ ({len(POSTS)} posts)")
 
 
 if __name__ == "__main__":
