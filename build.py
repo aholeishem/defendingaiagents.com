@@ -112,10 +112,10 @@ EN = {
     ],
 
     "s4": "Scale", "s4_h": "Build it small. Reason about it at scale.",
-    "s4_p": "Every module ends with what the same component becomes at millions of calls a day, thousands of agents and many teams, worked out from your own measurements.",
+    "s4_p": "Every module of the course, and the workshop in half a day, runs the same two steps: build and measure it locally, then work out what it becomes at scale. A 1% false-alarm rate is a rounding error on a laptop, and an organisation at fifty million calls a day.",
     "scale": [
-        ("On your laptop", "40", "ms", "Your detector scores one tool call in <strong>40 milliseconds</strong>. You measured it, you understand every line, and it runs in 8 GB of memory with no GPU."),
-        ("At 50 million calls a day", "23", "cores", "The same detector keeps about <strong>23 cores busy around the clock</strong>. Where does it run? What happens to a call when it is slow or down? Who reviews its alerts?"),
+        ("Locally: build and measure", "101", "alerts", "You attack an agent, defend it and measure it yourself: 10,000 calls, one real attack, 101 alerts. Every number is one you produced and can explain."),
+        ("At 50 million calls a day: work it out", "500,000", "false alarms", "The same 1% error rate. At 30 seconds each, that is <strong>about 520 analysts</strong>, working full time, just to clear the false ones. You get there by calculation from your own measurements."),
     ],
 
     "s5": "Curriculum", "s5_h": "Twenty modules and a capstone.",
@@ -233,10 +233,10 @@ HE = {
     ],
 
     "s4": "קנה מידה", "s4_h": "בונים בקטן. חושבים בגדול.",
-    "s4_p": "כל מודול מסתיים במה שהרכיב הופך להיות במיליוני קריאות ביום, באלפי סוכנים ובצוותים רבים, מחושב מהמדידות שלכם.",
+    "s4_p": "בכל מודול בקורס, ובסדנה בתוך חצי יום, עושים אותם שני צעדים: בונים וממדדים במקום, ואז מחשבים מה זה הופך להיות בקנה מידה גדול. שיעור התרעות שווא של 1% הוא שגיאת עיגול על המחשב הנייד, וארגון שלם בחמישים מיליון קריאות ביום.",
     "scale": [
-        ("על המחשב הנייד", "40", "מ״ש", "הגלאי שלכם בודק קריאה לכלי ב־<strong>40 מילישניות</strong>. מדדתם אותו, אתם מבינים כל שורה בו, והוא רץ על 8GB זיכרון בלי GPU."),
-        ("ב־50 מיליון קריאות ביום", "23", "ליבות", "אותו גלאי מעסיק <strong>כ־23 ליבות מסביב לשעון</strong>. איפה הוא רץ? מה קורה לקריאה כשהוא איטי או לא זמין? מי בודק את ההתרעות שלו?"),
+        ("במקום: בונים וממדדים", "101", "התרעות", "תוקפים סוכן, מגינים עליו וממדדים בעצמכם: 10,000 קריאות, מתקפה אמיתית אחת, 101 התרעות. כל מספר הוא מספר שהפקתם ושאתם יכולים להסביר."),
+        ("ב־50 מיליון קריאות ביום: מחשבים", "500,000", "התרעות שווא", "אותו שיעור שגיאה של 1%. ב־30 שניות להתרעה, זה <strong>כ־520 אנליסטים</strong> במשרה מלאה, רק כדי לסגור את השגויות. מגיעים לזה בחישוב, מתוך המדידות שלכם."),
     ],
 
     "s5": "תוכנית הלימודים", "s5_h": "עשרים מודולים ופרויקט גמר.",
@@ -496,7 +496,7 @@ HE_WS = {
         ("0:30", "תוקפים: כותבים מסמך ספק מורעל שגורם לעוזר למסור קובץ סודי, בלי שהמשתמש עשה משהו חריג."),
         ("1:15", "מגינים, בדרך שכולם מנסים קודם: מסנן מילים על מה שהמודל קורא. מודדים. רואים מה עבר, ומה נשבר."),
         ("2:15", "מגינים, מבנית: לא «מה המודל קורא» אלא «מה המודל רשאי לעשות». כלל אחד, ובודקים אותו."),
-        ("3:00", "מה מדדתם באמת: למה אפס דליפות ב־7 ניסיונות לא מוכיח כלום, ומה כן."),
+        ("3:00", "מה מדדתם באמת, ומה זה אומר בקנה מידה: למה אפס דליפות ב־7 ניסיונות לא מוכיח כלום, ומה קורה לאחוז שגיאה של 1% בחמישים מיליון קריאות ביום."),
         ("3:30", "לוקחים איתכם: רשימת בדיקה לסוכן שלכם, והמעבדה, כדי להריץ אותה על קוד אמיתי."),
     ],
 

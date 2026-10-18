@@ -167,11 +167,12 @@ input[type="range"]::-moz-range-thumb { width: 14px; height: 14px; background: v
 
 /* Scale */
 .scale { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line-2); border-bottom: 1px solid var(--line-2); }
-.scale > div { padding: 28px 28px 32px 0; }
-.scale > div + div { padding-inline-start: 28px; border-inline-start: 1px solid var(--line-2); }
-.scale .num { display: block; font-family: var(--display); font-stretch: 125%; font-weight: 800; font-size: clamp(64px, 9vw, 140px); line-height: .85; letter-spacing: -0.05em; margin: 18px 0 20px; direction: ltr; unicode-bidi: isolate; }
-.scale .num small { font-size: .32em; letter-spacing: -0.02em; margin-inline-start: .15em; }
-.scale > div + div .num { color: var(--sig); }
+.scale > div { padding: 28px 24px 32px 0; }
+.scale > div + div { padding-inline-start: 24px; border-inline-start: 1px solid var(--line-2); }
+.scale .num { display: block; font-family: var(--display); font-stretch: 125%; font-weight: 800; font-size: clamp(48px, 6.4vw, 104px); line-height: .85; letter-spacing: -0.05em; margin: 18px 0 20px; direction: ltr; unicode-bidi: isolate; white-space: nowrap; }
+.scale .num small { display: block; margin: 14px 0 0; font: 500 12px/1.4 var(--mono); letter-spacing: .07em; text-transform: uppercase; color: var(--dim); }
+:lang(he) .scale .num small { direction: rtl; text-align: right; }
+.scale > div:nth-child(2) .num { color: var(--sig); }
 :lang(he) .scale .num { text-align: right; }
 .scale p { margin: 0; color: var(--fg-2); max-width: 30rem; }
 .scale p strong { color: var(--fg); font-weight: 600; }
