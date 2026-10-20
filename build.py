@@ -13,9 +13,11 @@ import html
 import json
 import re
 from datetime import date
+from hashlib import sha256
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
+SCRIPT_VERSION = sha256((ROOT / "assets" / "site.js").read_bytes()).hexdigest()[:12]
 SITE = "https://defendingaiagents.com"
 EMAIL = "shimon@defendingaiagents.com"
 # The waitlist Worker (private repo, backend/waitlist). Set after `wrangler deploy`.
@@ -435,7 +437,7 @@ def footer(t, prefix, other=None):
     <a href="{prefix}{other}" lang="{t['other_lang']}" hreflang="{t['other_lang']}">{E(t['other_label'])}</a>
   </nav>
 </footer>
-<script src="{prefix}assets/site.js" defer></script>
+<script src="{prefix}assets/site.js?v={SCRIPT_VERSION}" defer></script>
 </body>
 </html>
 """
@@ -590,7 +592,7 @@ HE_WS = {
     "readout": [("משך", "4 שעות", ""), ("משתתפים", "עד 15", ""), ("רקע באבטחה", "לא נדרש", "s"), ("התקנות", "אין", "")],
     "cta": "לתיאום סדנה", "cta2": "מה עושים בסדנה",
 
-    "outcomes": ("01", "עם מה יוצאים", "כלים להחלטות שתצטרכו לקבל כבר בפיתוח הבא.",
+    "outcomes": ("02", "עם מה יוצאים", "כלים להחלטות שתצטרכו לקבל כבר בפיתוח הבא.",
                  "יוצאים עם הקוד מהמעבדה, בדיקות שאפשר להריץ שוב ורשימת בדיקה לסוכן שלכם. ובעיקר, עם דרך מעשית לבדוק הגנה לפני שסומכים עליה."),
     "outs": [
         ("01", "לזהות איפה הסיכון", "ממפים איזה מידע הסוכן קורא, אילו כלים עומדים לרשותו ולאן הוא יכול לשלוח נתונים.",
@@ -604,7 +606,7 @@ HE_WS = {
     ],
     "value_label": "בעבודה שלכם",
 
-    "problem": ("02", "למה זה חשוב", "הסוכן קיבל גישה. גם לתוקף יש דרך להשפיע עליו.",
+    "problem": ("03", "למה זה חשוב", "הסוכן קיבל גישה. גם לתוקף יש דרך להשפיע עליו.",
                 "סוכן שקורא מסמך, מייל או אתר עלול להתייחס לטקסט שבתוכם כאל הוראה. זו הזרקת פרומפט: התוקף משפיע על הסוכן דרך המידע שהוא קורא. כשיש לסוכן גישה לכלים ולמידע רגיש, התוצאה עלולה להיות פעולה שהמשתמש כלל לא ביקש."),
     "flow": [
         ("1", "המשתמש מבקש סיכום", "משימה שגרתית: לקרוא מסמך של ספק ולסכם אותו.", "״סכם לי את מסמך הספק.״"),
@@ -613,9 +615,12 @@ HE_WS = {
     ],
     "flow_note": "בסדנה משחזרים את התקיפה, ואז מגבילים את פעולת הכלי כדי לבלום אותה.",
 
-    "lab": ("03", "המעבדה", "לא מספיק לעצור מתקפות. הסוכן צריך גם להמשיך לעבוד.",
+    "lab": ("04", "המעבדה", "לא מספיק לעצור מתקפות. הסוכן צריך גם להמשיך לעבוד.",
             "מריצים שבע מתקפות וחמש משימות תקינות על כל אחת מארבע התצורות. כך רואים איזו הגנה עוצרת את הדליפה, ואיזו פשוט מפריעה לסוכן לעבוד."),
     "meter_attack": "מתקפות שהצליחו", "meter_ok": "משימות שהצליחו",
+    "lab_choose": "בחרו הגנה ובדקו את התוצאות",
+    "lab_hint": "החליפו בין ההגנות כדי לראות את תוצאות הבדיקות במעבדת הלימוד.",
+    "lab_compare": "השוואה בין כל ארבע התצורות",
     "bars": [
         ("בלי הגנה", "כל המשימות מצליחות, וגם כל המתקפות.", 7, 5),
         ("סינון מילים", "חוסם חלק מהמשימות התקינות. חמש מתקפות עדיין מצליחות.", 5, 3),
@@ -624,7 +629,7 @@ HE_WS = {
     ],
     "lab_note": "אלה תוצאות של מעבדת לימוד עם מודל מדומה שמחזיר תוצאות קבועות, כדי שאפשר יהיה לבודד את השפעת ההגנה. הן אינן מדד לביצועים מול מודל אמיתי. גם חסימה של כל שבע המתקפות אינה הוכחה שהמערכת בטוחה. נלמד מה אפשר להסיק מהבדיקות, מה עדיין לא ידוע ואיך להרחיב אותן.",
 
-    "plan": ("04", "מהלך הסדנה", "ארבע שעות. יותר ממחציתן בתרגול בקוד.", None),
+    "plan": ("05", "מהלך הסדנה", "ארבע שעות. יותר ממחציתן בתרגול בקוד.", None),
     "agenda": [
         ("0:00", "מבינים איפה הסוכן חשוף", "מכירים את סביבת המעבדה ומזהים איך טקסט ממקור חיצוני יכול להשפיע על שימוש בכלים."),
         ("0:30", "משחזרים תקיפה", "מוסיפים הוראה למסמך ספק וגורמים לסוכן להדליף קובץ סודי. הופכים את התרחיש לבדיקה שאפשר להריץ שוב."),
@@ -634,7 +639,7 @@ HE_WS = {
         ("3:30", "מחברים לעבודה שלכם", "עוברים על רשימת בדיקה לסוכן שלכם ומסכמים מה כדאי למפות, לבדוק ולהגביל בהמשך."),
     ],
 
-    "who": ("05", "למי הסדנה מתאימה", "לצוותים שמחברים מודלים למוצרים אמיתיים.", None),
+    "who": ("01", "למי הסדנה מתאימה", "לצוותים שמחברים מודלים למוצרים אמיתיים.", None),
     "cert": [
         ("למי", "", "למי שבונה עם AI", ["מהנדסי ML ו־AI יישומי", "מפתחים שמשלבים סוכנים במוצר", "מדעני נתונים ואנליסטים שמחברים מודלים למסמכים ולכלים", "צוותים שרוצים לשלב בדיקות אבטחה בתהליך הפיתוח"]),
         ("מה צריך", "", "בסיס בפיתוח, בלי ניסיון באבטחה", ["יכולת לקרוא ולשנות קוד ב־Python", "היכרות בסיסית עם חיבור מודל לכלים", "אין צורך בהתקנות לקראת הסדנה", "כל מושג באבטחה מוסבר במהלך העבודה"]),
@@ -648,7 +653,7 @@ HE_WS = {
          ["ארבעה מפגשים של שעתיים", "אותה מעבדה, עם יותר זמן לתרגול ומשוב על הקוד", "הפתיחה מותנית במספר הנרשמים", "להצטרפות לרשימת ההמתנה, כתבו לשמעון"]),
     ],
 
-    "about": ("07", "מנחה הסדנה", "שמעון ר. מלכה.", "מחבר הקורס הפתוח ״הגנה על סוכני AI״, שנמצא בהכנה וכולל 22 מודולים. הסדנה מביאה לצוות שלכם את הגישה שבבסיס הקורס: בונים, תוקפים, מודדים ומשפרים. עובדים יחד על הקוד ומבררים למה ההגנה עובדת, איפה היא נכשלת ומה עוד צריך לבדוק."),
+    "about": ("07", "מנחה הסדנה", "שמעון ר. מלכה.", "מכהן כיום כ־CTO בסטארטאפ בתחום הסייבר, כיהן כ־Head of AI ובעל רקע במחקר אקדמי בלמידת מכונה. מחבר הקורס הפתוח ״הגנה על סוכני AI״, שנמצא בהכנה וכולל 22 מודולים. הסדנה מביאה לצוות שלכם את הגישה שבבסיס הקורס: בונים, תוקפים, מודדים ומשפרים. עובדים יחד על הקוד ומבררים למה ההגנה עובדת, איפה היא נכשלת ומה עוד צריך לבדוק."),
 
     "faq_h": ("08", "לפני שקובעים", "שאלות נפוצות.", None),
     "faq": [
@@ -677,7 +682,7 @@ EN_WS = {
     "readout": [("Duration", "4 hours", ""), ("Team size", "up to 15", ""), ("Security skills", "none needed", "s"), ("Installs", "none", "")],
     "cta": "Book a workshop", "cta2": "Explore the session",
 
-    "outcomes": ("01", "What you take back", "Better decisions for the next agent you build.",
+    "outcomes": ("02", "What you take back", "Better decisions for the next agent you build.",
                  "Leave with the lab code, tests you can rerun and a checklist for your own agent. Above all, leave with a practical way to test a defence before you trust it."),
     "outs": [
         ("01", "Find the risky actions", "Map what your agent reads, which tools it can use and where it can send data.",
@@ -691,7 +696,7 @@ EN_WS = {
     ],
     "value_label": "Back at work",
 
-    "problem": ("02", "Why this matters", "Your agent has access. An attacker has a way in.",
+    "problem": ("03", "Why this matters", "Your agent has access. An attacker has a way in.",
                 "An agent reading a document, email or web page can mistake its contents for instructions. This is prompt injection: an attacker steers the agent through the information it reads. With tools and sensitive data in reach, the result can be an action the user never asked for."),
     "flow": [
         ("1", "The user asks for a summary", "A routine task: read a vendor document and summarise it.", "“Summarise the vendor document for me.”"),
@@ -700,9 +705,12 @@ EN_WS = {
     ],
     "flow_note": "Reproduce the attack, then restrict the tool action that makes it possible.",
 
-    "lab": ("03", "Inside the lab", "Stop the attack. Keep the agent useful.",
+    "lab": ("04", "Inside the lab", "Stop the attack. Keep the agent useful.",
             "Run seven attacks and five legitimate tasks against each of four configurations. See which defence stops the leak and which simply gets in the agent’s way."),
     "meter_attack": "Attacks succeeded", "meter_ok": "Tasks succeeded",
+    "lab_choose": "Choose a defence to inspect",
+    "lab_hint": "Switch defences to explore the recorded training results.",
+    "lab_compare": "Compare all four configurations",
     "bars": [
         ("No defence", "Every task succeeds. So does every attack.", 7, 5),
         ("Word filter", "Blocks some legitimate tasks. Five attacks still succeed.", 5, 3),
@@ -711,7 +719,7 @@ EN_WS = {
     ],
     "lab_note": "These are training results from a simulated model with fixed behaviour, designed to isolate the effect of each defence. They are not performance figures for a real model. Blocking all seven attacks does not prove a system is safe. You will learn what the tests tell you, what remains unknown and how to extend them.",
 
-    "plan": ("04", "The session", "Four hours. More than half spent working in code.", None),
+    "plan": ("05", "The session", "Four hours. More than half spent working in code.", None),
     "agenda": [
         ("0:00", "Map the exposure", "Get to know the lab environment and trace how outside text can influence tool use."),
         ("0:30", "Reproduce an attack", "Add an instruction to a vendor document and make the agent leak a confidential file. Turn the scenario into a repeatable test."),
@@ -721,7 +729,7 @@ EN_WS = {
         ("3:30", "Apply it to your work", "Work through a checklist for your own agent and identify what to map, test and restrict next."),
     ],
 
-    "who": ("05", "Who it is for", "For teams connecting models to real products.", None),
+    "who": ("01", "Who it is for", "For teams connecting models to real products.", None),
     "cert": [
         ("Who", "", "People building with AI", ["ML and applied AI engineers", "Developers adding agents to a product", "Data scientists and analysts connecting models to documents and tools", "Teams that want security tests in their development workflow"]),
         ("Skills", "", "A coding foundation. No security experience needed.", ["Read and modify Python code", "Understand the basics of connecting a model to tools", "No installations needed before the workshop", "Security concepts explained as you use them"]),
@@ -735,7 +743,7 @@ EN_WS = {
          ["Four sessions of two hours", "The same lab, with more time to practise and get feedback on your code", "Dates confirmed when enough people sign up", "Email Shimon to join the waiting list"]),
     ],
 
-    "about": ("07", "Your instructor", "Shimon R. Malka.", "Author of the open course “Defending AI Agents”, a 22-module course currently in preparation. The workshop brings its approach to your team: build, attack, measure and improve. Work through the code together and understand why a defence works, where it fails and what to test next."),
+    "about": ("07", "Your instructor", "Shimon R. Malka.", "Currently CTO of a cybersecurity start-up, previously Head of AI, with a background in academic machine learning research. Author of the open course “Defending AI Agents”, a 22-module course currently in preparation. The workshop brings its approach to your team: build, attack, measure and improve. Work through the code together and understand why a defence works, where it fails and what to test next."),
 
     "faq_h": ("08", "Before you book", "Frequently asked questions.", None),
     "faq": [
@@ -766,8 +774,12 @@ def workshop_page(t, w, prefix, url, mail, other):
         f'<article class="outcome reveal"><div class="label">{n}</div><h3>{E(h)}</h3><p>{E(p)}</p>'
         f'<div class="value"><span class="label">{E(w["value_label"])}</span>{E(v)}</div></article>' for n, h, p, v in w["outs"])
     bars = ""
-    for name, note, attacks, jobs in w["bars"]:
-        bars += (f'<div class="bar-row reveal"><div><h3>{E(name)}</h3><small>{E(note)}</small></div><div>'
+    choices = ""
+    for i, (name, note, attacks, jobs) in enumerate(w["bars"]):
+        checked = ' checked' if i == 0 else ''
+        choices += (f'<label class="lab-choice"><input type="radio" name="lab-defence" value="{i}"'
+                    f' aria-controls="lab-result-{i}"{checked}><span>{E(name)}</span></label>')
+        bars += (f'<div class="bar-row lab-result" id="lab-result-{i}"><div><h3>{E(name)}</h3><small>{E(note)}</small></div><div>'
                  f'<div class="meter"><span>{E(w["meter_attack"])}</span><i><b style="--w:{round(attacks / 7 * 100)}%"></b></i><em>{attacks}/7</em></div>'
                  f'<div class="meter ok"><span>{E(w["meter_ok"])}</span><i><b style="--w:{round(jobs / 5 * 100)}%"></b></i><em>{jobs}/5</em></div>'
                  f'</div></div>')
@@ -779,12 +791,13 @@ def workshop_page(t, w, prefix, url, mail, other):
         ul = "".join(f"<li>{E(x)}</li>" for x in lis)
         who += f'<div class="reveal"><span class="price">{E(h)}</span><h3>{E(sub)}</h3><ul>{ul}</ul></div>'
     fmt = ""
-    for h, price, sub, lis in w["formats"]:
-        ul = "".join(f"<li>{E(x)}</li>" for x in lis)
+    for i, (h, price, sub, lis) in enumerate(w["formats"]):
+        ul = "".join(f'<li><a href="{mail}">{E(x)}</a></li>' if i == 1 and j == len(lis) - 1
+                     else f"<li>{E(x)}</li>" for j, x in enumerate(lis))
         fmt += f'<div class="reveal"><span class="price">{E(price)}</span><h3>{E(h)}<small>{E(sub)}</small></h3><ul>{ul}</ul></div>'
     faq = "".join(f"<details><summary>{E(q)}</summary><p>{E(a)}</p></details>" for q, a in w["faq"])
     body = f"""
-<main id="main">
+<main id="main" class="workshop">
   <section class="hero" aria-label="{E(w['title'])}">
     <canvas data-field role="img" aria-label="{E(t['field_aria'])}"></canvas>
     <p class="kicker label"><i></i>{E(w['kicker'])}</p>
@@ -794,31 +807,40 @@ def workshop_page(t, w, prefix, url, mail, other):
     </div>
   </section>
 
+  <section id="audience">
+    {head_('who')}
+    <div class="cert indent">{who}</div>
+  </section>
+
   <section>
     {head_('outcomes')}
     <div class="outcomes">{outs}</div>
   </section>
 
-  <section>
+  <section class="workshop-problem" id="problem">
+    <canvas data-field aria-hidden="true"></canvas>
     {head_('problem')}
     <div class="flow indent">{flow}</div>
     <p class="label indent flow-note">{E(w['flow_note'])}</p>
   </section>
 
-  <section>
+  <section id="lab">
     {head_('lab')}
-    <div class="bars indent">{bars}</div>
+    <div class="lab-explorer indent" data-lab>
+      <fieldset class="lab-controls" hidden>
+        <legend class="label">{E(w['lab_choose'])}</legend>
+        <p class="lab-hint">{E(w['lab_hint'])}</p>
+        <div class="lab-choices">{choices}</div>
+        <label class="lab-compare"><input type="checkbox" data-lab-compare> {E(w['lab_compare'])}</label>
+      </fieldset>
+      <div class="bars" aria-live="polite" aria-atomic="true">{bars}</div>
+    </div>
     <p class="indent fineprint">{E(w['lab_note'])}</p>
   </section>
 
   <section id="plan">
     {head_('plan')}
     <ol class="build indent agenda" style="grid-template-columns:1fr">{agenda}</ol>
-  </section>
-
-  <section>
-    {head_('who')}
-    <div class="cert indent">{who}</div>
   </section>
 
   <section>

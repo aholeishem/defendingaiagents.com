@@ -22,6 +22,24 @@
     reveals.forEach(function (el) { el.classList.add("in"); });
   }
 
+  // Explore recorded workshop results. All comparisons remain visible without JS.
+  document.querySelectorAll("[data-lab]").forEach(function (lab) {
+    var controls = lab.querySelector(".lab-controls");
+    var choices = lab.querySelectorAll('input[name="lab-defence"]');
+    var compare = lab.querySelector("[data-lab-compare]");
+    var results = lab.querySelectorAll(".lab-result");
+    function showResults() {
+      var selected = lab.querySelector('input[name="lab-defence"]:checked');
+      results.forEach(function (result, i) {
+        result.hidden = !compare.checked && String(i) !== selected.value;
+      });
+    }
+    choices.forEach(function (choice) { choice.addEventListener("change", showResults); });
+    compare.addEventListener("change", showResults);
+    showResults();
+    controls.hidden = false;
+  });
+
   // The waitlist form. Without this script the form still posts, and the
   // server sends the visitor back here with ?waitlist=<outcome>.
   var form = document.querySelector("form.wl");
@@ -90,10 +108,10 @@
   function field(canvas) {
     var ctx = canvas.getContext("2d");
     var W, H, step, cols, rows, falseAlarms, attack, running = false, visible = true;
-    var styles = getComputedStyle(root);
+    var styles = getComputedStyle(canvas);
     // The pointer is a detector sweeping the field: dots under it swell and turn to alerts; a click raises one.
     var ptr = { x: 0, y: 0, tx: 0, ty: 0, power: 0, on: false }, pulses = [];
-    function colours() { styles = getComputedStyle(root); }
+    function colours() { styles = getComputedStyle(canvas); }
     function rng(seed) { return function () { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }; }
     function size() {
       var dpr = Math.min(2, window.devicePixelRatio || 1);
