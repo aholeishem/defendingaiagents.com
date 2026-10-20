@@ -60,6 +60,8 @@ EN = {
     "home_kicker": "Workshop and course · ML, data and AI practitioners",
     "home_p": "You build ML and AI systems. Now learn to defend them, without a security background. Two ways in: a live workshop for your team, or the free online course.",
     "nav_cta": "Join waitlist",
+    "ws_cta": "Book a workshop", "ws_path": "workshop/",
+    "home_note": "A detector that catches 99% of attacks and flags 1% of harmless calls: about 1 alert in 100 is real.", "home_note_link": "Try the numbers",
     "kicker": "Free course · ML, data and AI practitioners · in preparation",
     "h1": ["Defending", "AI agents"],
     "hero_p": "You build ML and AI systems. Now learn to defend them. No security background needed: build every defence yourself on a laptop, then learn what it becomes at fifty million calls a day.",
@@ -71,7 +73,7 @@ EN = {
         ("live-label", "Live · Hebrew or English", "Workshop", "A half-day for your team. Attack an AI assistant in the morning, defend it, and measure whether it worked.",
          ["4 hours · up to 15 people", "Hands-on lab, no installs", "At your office or on Zoom"], "See the workshop", "workshop/"),
         ("course-label", "Online · free", "Course", "Build every defence yourself on a laptop, from the first attack to incident response. At your own pace.",
-         ["22 modules · five parts", "Free · paid exam optional", "English now, Hebrew to follow"], "See the course", "course/"),
+         ["22 modules · about 248 hours", "Free · paid exam optional", "English and Hebrew · in preparation"], "See the course", "course/"),
     ],
     "s1": "The problem", "s1_h": "You already know the hard part.",
     "s1_p": "Whether you train models, ship AI features or analyse data, the central problems of securing AI agents have statistical twins in your own toolbox. The course supplies the security half.",
@@ -188,6 +190,8 @@ HE = {
     "home_kicker": "סדנה וקורס · לאנשי ML, דאטה ו־AI",
     "home_p": "אתם בונים מערכות ML ו־AI. הגיע הזמן ללמוד להגן עליהן, בלי רקע באבטחה. שתי דרכים להתחיל: סדנה חיה לצוות שלכם, או הקורס החינמי באינטרנט.",
     "nav_cta": "לרשימת ההמתנה",
+    "ws_cta": "להזמנת סדנה", "ws_path": "he/workshop/",
+    "home_note": "קלאסיפייר שתופס 99% מהמתקפות ומתריע בטעות על 1% מהקריאות התמימות: רק כאחת מכל 100 התרעות היא אמיתית.", "home_note_link": "נסו את המספרים",
     "kicker": "קורס חינמי · לאנשי ML, דאטה ו־AI · בהכנה",
     "h1": ["הגנה על", "סוכני AI"],
     "hero_p": "אתם בונים מערכות ML ו־AI. הגיע הזמן ללמוד להגן עליהן. לא נדרש רקע באבטחה: בונים כל הגנה בעצמכם על המחשב הנייד, ולומדים מה היא הופכת להיות בחמישים מיליון קריאות ביום.",
@@ -199,7 +203,7 @@ HE = {
         ("live-label", "חי · בעברית", "סדנה", "חצי יום לצוות שלכם. תוקפים עוזר AI בבוקר, מגינים עליו, וממדדים אם זה עבד.",
          ["4 שעות · עד 15 משתתפים", "מעבדה מעשית, בלי התקנות", "אצלכם או בזום"], "לפרטי הסדנה", "he/workshop/"),
         ("course-label", "אונליין · חינם", "קורס", "בונים כל הגנה בעצמכם על המחשב הנייד, מהמתקפה הראשונה ועד טיפול באירוע. בקצב שלכם.",
-         ["22 מודולים · חמישה חלקים", "חינם · מבחן בתשלום, לבחירה", "באנגלית עכשיו, בעברית בהמשך"], "לפרטי הקורס", "he/course/"),
+         ["22 מודולים · כ־248 שעות", "חינם · מבחן בתשלום, לבחירה", "עברית ואנגלית · בהכנה"], "לפרטי הקורס", "he/course/"),
     ],
     "s1": "הבעיה", "s1_h": "את החלק הקשה אתם כבר יודעים.",
     "s1_p": "בין שאתם מאמנים מודלים, מעלים לאוויר יכולות AI או מנתחים דאטה: לכל בעיה מרכזית באבטחת סוכני AI יש תאומה סטטיסטית שאתם כבר מכירים. הקורס מוסיף את החצי של אבטחת המידע.",
@@ -339,8 +343,12 @@ def head(t, prefix, title, canonical, noindex=False, description=None, og_type="
 <body>"""
 
 
+def ws_cta(t, prefix):
+    return (t["ws_cta"], f"{prefix}{t['ws_path']}#contact", False)
+
+
 def topbar(t, prefix, home, cta=None, other=None):
-    """cta: (label, href, is_waitlist). other: root-relative path of this page in the other language."""
+    """cta: (label, href, is_waitlist); defaults to the course waitlist. other: root-relative path of this page in the other language."""
     nav = "".join(f'<a class="label" href="{prefix}{h}">{E(l)}</a>' for h, l in t["nav"])
     other = t["other_path"] if other is None else other
     label, href, waitlist = cta or (t["nav_cta"], f"{prefix}{t['course_path']}#waitlist", True)
@@ -502,7 +510,7 @@ def home_page(t, prefix):
     <p class="kicker label"><i></i>{E(t['home_kicker'])}</p>
     <div class="word">
       <h1><span>{E(t['h1'][0])}</span><span>{E(t['h1'][1])}</span></h1>
-      <div class="side"><p>{E(t['home_p'])}</p><div class="readout">{readout}</div></div>
+      <div class="side"><p>{E(t['home_p'])}</p><div class="readout">{readout}</div><p class="readout-note">{E(t['home_note'])} <a class="label" href="{prefix}{t['course_path']}#try">{E(t['home_note_link'])} {ARROW}</a></p></div>
     </div>
   </section>
 
@@ -510,7 +518,7 @@ def home_page(t, prefix):
 </main>
 """
     return (head(t, prefix, t["home_title"], t["path"], description=t["home_description"])
-            + topbar(t, prefix, "./") + body + footer(t, prefix))
+            + topbar(t, prefix, "./", cta=ws_cta(t, prefix)) + body + footer(t, prefix))
 
 
 WORKSHOP_MAIL = f"mailto:{EMAIL}?subject=" + "%D7%A1%D7%93%D7%A0%D7%AA%20%D7%90%D7%91%D7%98%D7%97%D7%AA%20%D7%A1%D7%95%D7%9B%D7%A0%D7%99%20AI"
@@ -789,7 +797,7 @@ def not_found(t):
   </section>
 </main>
 """
-    return head(t, "/", t["nf_title"], "/404.html", noindex=True) + topbar(t, "/", "/") + body + footer(t, "/")
+    return head(t, "/", t["nf_title"], "/404.html", noindex=True) + topbar(t, "/", "/", cta=ws_cta(t, "/")) + body + footer(t, "/")
 
 
 def fmt_date(iso):
@@ -831,7 +839,7 @@ def blog_index(t):
 </main>
 """
     return (head(t, prefix, t["blog_title"], "/blog/", description=t["blog_p"], alternates=False, extra=FEED_LINK.format("feed.xml"))
-            + topbar(t, prefix, prefix) + body + footer(t, prefix))
+            + topbar(t, prefix, prefix, cta=ws_cta(t, prefix)) + body + footer(t, prefix))
 
 
 def post_page(t, p):
@@ -868,7 +876,7 @@ def post_page(t, p):
 </main>
 """
     return (head(t, prefix, f"{p['title']} · {t['brand']}", url, description=p["dek"], og_type="article", alternates=False, extra=extra)
-            + topbar(t, prefix, prefix) + body + footer(t, prefix))
+            + topbar(t, prefix, prefix, cta=ws_cta(t, prefix)) + body + footer(t, prefix))
 
 
 def feed(t):

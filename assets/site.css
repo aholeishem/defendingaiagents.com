@@ -227,7 +227,20 @@ main > section.split { padding: 0; display: grid; grid-template-columns: repeat(
   main > section.split { position: relative; z-index: 3; margin-top: calc(-1 * var(--split-h)); min-height: var(--split-h); background: color-mix(in srgb, var(--bg) 46%, transparent); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); border-top: 1px solid var(--line-2); }
   .half:hover, .half:focus-visible { background: color-mix(in srgb, var(--fg) 92%, transparent); }
 }
-@media (max-width: 760px) { main > section.split { grid-template-columns: 1fr; } .half + .half { border-inline-start: 0; border-top: 1px solid var(--line-2); } }
+@media (max-width: 760px) {
+  main > section.split { grid-template-columns: 1fr; }
+  .half + .half { border-inline-start: 0; border-top: 1px solid var(--line-2); }
+  /* On a phone the hero sizes to its text, so the two ways in start on the first screen */
+  .hero.hero-over { height: auto; min-height: 0; padding: 72px var(--pad) 28px; }
+  .hero.hero-over .kicker, .hero.hero-over .word { position: relative; inset: auto; top: auto; }
+  .hero.hero-over .kicker { margin: 0 0 120px; }
+  .hero.hero-over .word { gap: 18px; }
+  .hero.hero-over .readout { grid-template-columns: repeat(4, auto); justify-content: space-between; column-gap: 12px; }
+}
+.readout-note { margin: 12px 0 0 !important; font-size: 13px !important; line-height: 1.5; }
+.readout-note a { color: var(--sig); text-decoration: none; white-space: nowrap; }
+.readout-note a:hover { text-decoration: underline; }
+:lang(he) .arrow { display: inline-block; transform: scaleX(-1); }
 
 /* Workshop page */
 .hero .side .ctas { display: flex; align-items: center; gap: 18px; margin: 18px 0 0; }
