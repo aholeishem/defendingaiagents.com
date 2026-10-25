@@ -60,9 +60,9 @@ EN = {
     "nav": [("workshop/", "Workshops"), ("building/", "Building agents"), ("course/", "Defending agents"), ("blog/", "Blog")],
     "course_path": "course/", "home_path": "", "course_other": "he/course/",
     "home_title": "Defending AI Agents: workshops and courses on building and securing AI agents",
-    "home_description": "Live workshops for your team, in Hebrew or English, on building AI agents, securing them, or both. Plus two online courses: Building AI Agents and Defending AI Agents. For ML engineers, applied AI engineers, data scientists and analysts.",
+    "home_description": "Hands-on workshops for your team, in Hebrew or English, on building AI agents, securing them, or both. Two online courses are in preparation: Building AI Agents and Defending AI Agents. For ML engineers, applied AI engineers, data scientists and analysts.",
     "home_kicker": "Workshops and courses · ML, data and AI practitioners",
-    "home_p": "You build ML and AI systems. Learn to build agents you can measure, and to defend them, without a security background. Live workshops for your team, and two online courses.",
+    "home_p": "You build ML and AI systems. Learn to build AI agents, evaluate their performance and secure them. Choose a hands-on workshop for your team or explore the two online courses, both in preparation. No security background needed.",
     "nav_cta": "Join waitlist",
     "ws_cta": "Book a workshop", "ws_path": "workshop/",
     "home_note": "A detector that catches 99% of attacks and flags 1% of harmless calls: about 1 alert in 100 is real.", "home_note_link": "Try the numbers",
@@ -81,11 +81,11 @@ EN = {
 
     "split_aria": "Workshops and courses",
     "split": [
-        ("live-label", "Workshop · live · for your team", "Workshops",
-         "Shaped to what your team needs: building agents, securing them, or both. The building formats end where the security workshop begins, so the two run as a pair.",
-         ["Build, secure, or both", "Half day, one day or two days", "At your office or on Zoom"], "See the formats", "workshop/"),
+        ("live-label", "Hands-on · for your team", "Workshops",
+         "Choose what your team needs: building agents, securing them, or both. Start with a building workshop and continue to the security workshop, or take either on its own.",
+         ["Build, secure, or both", "Half day, one day or two days", "At your office or on Zoom"], "Explore the workshops", "workshop/"),
         ("course-label", "Course · online · in preparation", "Building AI agents",
-         "From how an LLM works to an agent you can measure: the agent loop from scratch, retrieval, MCP, orchestration, evaluation and deployment. Every module ends with a measurement on your laptop, with local models.",
+         "Understand how an LLM works, then build and evaluate an agent: the agent loop from scratch, retrieval, MCP, orchestration, evaluation and deployment. Each module ends with practical measurements using local models on your laptop.",
          ["13 modules · about 81 hours", "From the basics to current research", "In preparation · one module written"], "See the course", "building/"),
         ("course-label", "Course · online · free", "Defending AI agents", "Build every defence yourself on a laptop, from the first attack to incident response. At your own pace.",
          ["22 modules · about 248 hours", "Free · paid exam optional", "English and Hebrew · in preparation"], "See the course", "course/"),
@@ -222,10 +222,10 @@ HE = {
     "og_image": "og-he.png", "brand": "הגנה על סוכני AI", "skip": "דילוג לתוכן",
     "nav": [("he/workshop/", "סדנאות"), ("he/building/", "בניית סוכנים"), ("he/course/", "הגנה על סוכנים"), ("blog/", "בלוג")],
     "course_path": "he/course/", "home_path": "he/", "course_other": "course/",
-    "home_title": "הגנה על סוכני AI: סדנאות וקורסים לבנייה ואבטחה של סוכני AI",
-    "home_description": "סדנאות חיות לצוות שלכם, בעברית או באנגלית, על בניית סוכני AI, אבטחה שלהם, או שניהם. ושני קורסים אונליין: בניית סוכני AI והגנה על סוכני AI. למהנדסי ML ו־AI יישומי, מדעני דאטה ואנליסטים.",
+    "home_title": "הגנה על סוכני AI: סדנאות וקורסים לבניית סוכנים ולאבטחתם",
+    "home_description": "סדנאות מעשיות לצוות שלכם, בעברית או באנגלית: בניית סוכני AI, אבטחת סוכנים או שילוב של השניים. לצד הסדנאות, שני קורסים מקוונים בהכנה: בניית סוכני AI והגנה על סוכני AI. למהנדסי ML ו־AI יישומי, מדעני נתונים ואנליסטים.",
     "home_kicker": "סדנאות וקורסים · לאנשי ML, דאטה ו־AI",
-    "home_p": "אתם בונים מערכות ML ו־AI. למדו לבנות סוכנים שאפשר למדוד, ולהגן עליהם, בלי רקע באבטחה. סדנאות חיות לצוות שלכם, ושני קורסים אונליין.",
+    "home_p": "אתם בונים מערכות ML ו־AI. למדו לבנות סוכני AI, להעריך את הביצועים שלהם ולהגן עליהם. אפשר להתחיל בסדנה מעשית לצוות שלכם או להכיר את שני הקורסים המקוונים שבדרך. לא נדרש רקע באבטחת מידע.",
     "nav_cta": "לרשימת ההמתנה",
     "ws_cta": "להזמנת סדנה", "ws_path": "he/workshop/",
     "home_note": "קלאסיפייר שתופס 99% מהמתקפות ומתריע בטעות על 1% מהקריאות התמימות: רק כאחת מכל 100 התרעות היא אמיתית.", "home_note_link": "נסו את המספרים",
@@ -244,13 +244,13 @@ HE = {
 
     "split_aria": "סדנאות וקורסים",
     "split": [
-        ("live-label", "סדנה · חיה · לצוות שלכם", "סדנאות",
-         "בהתאמה למה שהצוות צריך: בניית סוכנים, אבטחה שלהם, או שניהם. סדנאות הבנייה מסתיימות בדיוק איפה שסדנת האבטחה מתחילה, כך שאפשר לקיים אותן ברצף.",
-         ["בנייה, אבטחה או שניהם", "חצי יום, יום או יומיים", "אצלכם או בזום"], "לפורמטים", "he/workshop/"),
-        ("course-label", "קורס · אונליין · בהכנה", "בניית סוכני AI",
-         "מאיך LLM עובד ועד סוכן שאפשר למדוד: לולאת הסוכן מאפס, אחזור מידע, MCP, תזמור, הערכת איכות ופריסה. כל מודול מסתיים במדידה על המחשב הנייד שלכם, עם מודלים מקומיים.",
+        ("live-label", "תרגול מעשי · לצוות שלכם", "סדנאות",
+         "בוחרים לפי מה שהצוות צריך: בניית סוכנים, אבטחת סוכנים או שילוב של השניים. אפשר להשתתף בכל סדנה בנפרד, או להתחיל בבנייה ולהמשיך לאבטחה.",
+         ["בנייה, אבטחה או שילוב ביניהן", "חצי יום, יום או יומיים", "אצלכם או בזום"], "לפרטי הסדנאות", "he/workshop/"),
+        ("course-label", "קורס · מקוון · בהכנה", "בניית סוכני AI",
+         "מבינים איך LLM עובד, ואז בונים סוכן ובודקים את הביצועים שלו: לולאת הסוכן מאפס, אחזור מידע, MCP, תזמור, הערכת איכות ופריסה. בכל מודול מתרגלים ומודדים עם מודלים מקומיים על המחשב הנייד שלכם.",
          ["13 מודולים · כ־81 שעות", "מהיסודות ועד המחקר העדכני", "בהכנה · מודול אחד כבר כתוב"], "לפרטי הקורס", "he/building/"),
-        ("course-label", "קורס · אונליין · חינם", "הגנה על סוכני AI", "בונים כל הגנה בעצמכם על המחשב הנייד, מהמתקפה הראשונה ועד טיפול באירוע. בקצב שלכם.",
+        ("course-label", "קורס · מקוון · חינם", "הגנה על סוכני AI", "בונים כל הגנה בעצמכם על המחשב הנייד, מהמתקפה הראשונה ועד טיפול באירוע. בקצב שלכם.",
          ["22 מודולים · כ־248 שעות", "חינם · מבחן בתשלום, לבחירה", "עברית ואנגלית · בהכנה"], "לפרטי הקורס", "he/course/"),
     ],
     "s1": "מה תלמדו", "s1_h": "מהיכרות עם מודלים להגנה על המערכת.",
@@ -594,22 +594,22 @@ def home_page(t, prefix):
 WORKSHOP_MAIL = f"mailto:{EMAIL}?subject=" + quote("סדנה לצוות: סוכני AI")
 
 HE_WS = {
-    "title": "סדנאות לבנייה ואבטחה של סוכני AI, לצוותי פיתוח, AI ודאטה",
-    "description": "סדנאות מעשיות לצוותי פיתוח, AI ודאטה: בונים סוכן AI, מאבטחים אותו, או שניהם ברצף. מחצי יום ועד יומיים, אצלכם או בזום. לא נדרש רקע באבטחה.",
+    "title": "סדנאות לבניית סוכני AI ולאבטחתם לצוותי פיתוח, AI ודאטה",
+    "description": "סדנאות מעשיות לצוותי פיתוח, AI ודאטה: בונים סוכן AI, לומדים לאבטח אותו או משלבים בין השניים. סדנאות של חצי יום עד יומיים, אצלכם או בזום. לא נדרש רקע באבטחת מידע.",
     "kicker": "סדנאות מעשיות לצוותים · מחצי יום ועד יומיים",
     "h1": ["בונים סוכנים", "בטוחים יותר"],
-    "hero_p": "בוחרים את הדגש לפי מה שהצוות צריך: לבנות סוכן שאפשר למדוד את ההצלחה שלו, לאבטח סוכן שכבר מחובר לכלים ולמידע של הארגון, או את שניהם ברצף. בכל הפורמטים עובדים על קוד, אצלכם או בזום.",
+    "hero_p": "בוחרים לפי מה שהצוות צריך: לבנות סוכן ולבדוק את הביצועים שלו, להגן על סוכן שכבר מחובר לכלים ולמידע של הארגון, או לשלב בין השניים. בכל הסדנאות כותבים קוד ומתרגלים, אצלכם או בזום.",
     "readout": [("משך", "חצי יום עד יומיים", ""), ("דגש", "בנייה · אבטחה", ""), ("רקע באבטחה", "לא נדרש", "s"), ("שפה", "עברית · אנגלית", "")],
-    "cta": "לתיאום סדנה", "cta2": "לפורמטים",
+    "cta": "לתיאום סדנה", "cta2": "לאפשרויות הסדנה",
 
-    "emph": ("01", "בוחרים דגש", "בונים סוכן, מאבטחים אותו, או שניהם.",
-             "סדנאות הבנייה עוברות מחצי יום ועד יומיים, ויש להן המשך לצוות. סדנת האבטחה נמשכת חצי יום. כל סדנת בנייה מסתיימת בדיוק איפה שסדנת האבטחה מתחילה, כך שאפשר לקיים אותן ברצף."),
+    "emph": ("01", "בוחרים סדנה", "בונים סוכן, לומדים להגן עליו או משלבים בין השניים.",
+             "סדנאות הבנייה נמשכות חצי יום, יום או יומיים, ואפשר להמשיך מהן לעבודה עם הצוות. סדנת האבטחה נמשכת חצי יום. כל אחת מסדנאות הבנייה מכינה אתכם להמשך בסדנת האבטחה, ואפשר גם להשתתף בכל סדנה בנפרד."),
     "emph_cards": [
-        ("בנייה", "בניית סוכנים", "מסוכן ראשון ועד סוכן שעובד על המסמכים שלכם", [
-            ("חצי יום", "כל משתתף בונה על המחשב שלו סוכן עם תקציבים וניסיונות חוזרים"),
-            ("יום", "כמו חצי היום, ובנוסף שרת MCP משלכם"),
-            ("יומיים", "סוכן שעובד על המסמכים של הצוות, עם שיעור הצלחה מדוד"),
-            ("המשך לצוות", "תזמור, טרייסינג ופריסה על הסטאק של הצוות"),
+        ("בנייה", "בניית סוכנים", "מהסוכן הראשון ועד לעבודה עם מסמכי הצוות", [
+            ("חצי יום", "כל משתתף בונה על המחשב שלו סוכן עם מגבלות על צריכת משאבים ומנגנון לניסיונות חוזרים"),
+            ("יום", "כל מה שבסדנת חצי היום, ובנוסף בניית שרת MCP משלכם"),
+            ("יומיים", "בונים סוכן שעובד עם מסמכי הצוות ומודדים בכמה מהמשימות הוא מצליח"),
+            ("המשך עם הצוות", "תזמור, טרייסינג ופריסה בסביבת הפיתוח של הצוות"),
         ]),
         ("אבטחה", "אבטחת סוכנים", "חצי יום, עד 15 משתתפים, בלי התקנות", [
             ("4 שעות", "תוקפים עוזר AI, בונים הגנות ובודקים מה באמת עובד"),
@@ -617,7 +617,7 @@ HE_WS = {
             ("פרטים", "מהלך הסדנה, תוצאות המעבדה ושאלות נפוצות בהמשך העמוד"),
         ]),
     ],
-    "emph_both": "שניהם: מתחילים בסדנת בנייה וממשיכים לסדנת האבטחה.",
+    "emph_both": "לשילוב שני התחומים, מתחילים בסדנת בנייה וממשיכים לסדנת האבטחה.",
     "emph_link": "לתיאום סדנה",
     "outcomes": ("03", "סדנת האבטחה", "כלים להחלטות שתצטרכו לקבל כבר בפיתוח הבא.",
                  "יוצאים עם הקוד מהמעבדה, בדיקות שאפשר להריץ שוב ורשימת בדיקה לסוכן שלכם. ובעיקר, עם דרך מעשית לבדוק הגנה לפני שסומכים עליה."),
@@ -680,7 +680,7 @@ HE_WS = {
          ["ארבעה מפגשים של שעתיים", "אותה מעבדה, עם יותר זמן לתרגול ומשוב על הקוד", "הפתיחה מותנית במספר הנרשמים", "להצטרפות לרשימת ההמתנה, כתבו לשמעון"]),
     ],
 
-    "about": ("08", "מנחה הסדנאות", "שמעון ר. מלכה.", "מכהן כיום כ־CTO בסטארטאפ בתחום הסייבר, כיהן כ־Head of AI ובעל רקע במחקר אקדמי בלמידת מכונה. מחבר הקורסים ״בניית סוכני AI״ ו״הגנה על סוכני AI״, ששניהם בהכנה. הסדנאות מביאות לצוות שלכם את הגישה שבבסיס הקורס: בונים, תוקפים, מודדים ומשפרים. עובדים יחד על הקוד ומבררים למה ההגנה עובדת, איפה היא נכשלת ומה עוד צריך לבדוק."),
+    "about": ("08", "מנחה הסדנאות", "שמעון ר. מלכה.", "מכהן כיום כ־CTO בסטארטאפ בתחום הסייבר, כיהן כ־Head of AI ובעל רקע במחקר אקדמי בלמידת מכונה. מחבר הקורסים ״בניית סוכני AI״ ו״הגנה על סוכני AI״, ששניהם בהכנה. בסדנאות עובדים יחד על הקוד, מודדים תוצאות ומשפרים את הסוכן. בסדנת האבטחה גם תוקפים אותו ובודקים למה ההגנה עובדת, איפה היא נכשלת ומה עוד צריך לבדוק."),
 
     "faq_h": ("09", "לפני שקובעים", "שאלות נפוצות.", None),
     "faq": [
@@ -689,13 +689,13 @@ HE_WS = {
         ("עובדים עם מודל אמיתי?", "בסדנת האבטחה, המעבדה מתחילה במודל מדומה שמחזיר תוצאות קבועות. כך אפשר לראות בדיוק מה כל הגנה משנה, בלי שהתנהגות המודל תשתנה בין הרצות. אפשר להחליף אותו במודל שלכם; במקרה כזה צריך להריץ שוב ולמדוד את התוצאות."),
         ("אפשר להתאים את הסדנה למערכת שלנו?", "כן. בסדנה לצוות אפשר להתאים את סוגי הכלים והמסמכים לתרחישים שלכם. הסדנה מקנה שיטת עבודה וכלים לבדיקה; היא אינה ביקורת אבטחה או אישור שהמערכת בטוחה. אם אתם צריכים ביקורת למערכת קיימת, ציינו זאת בפנייה."),
         ("כמה עולה סדנה לצוות?", "המחיר תלוי בגודל הצוות ובהתאמות הנדרשות. לסדנאות הראשונות מוצע מחיר היכרות. שלחו את מספר המשתתפים ותיאור קצר של המערכת, ונחזור עם הצעה."),
-        ("איזה דגש לבחור?", "צוות שמתחיל לבנות סוכנים יתחיל בסדנת בנייה. צוות שהסוכן שלו כבר מחובר לכלים ולמידע יתחיל בסדנת האבטחה. אפשר גם את שתיהן ברצף: כל סדנת בנייה מסתיימת בדיוק איפה שסדנת האבטחה מתחילה."),
+        ("איזו סדנה מתאימה לצוות שלנו?", "אם אתם מתחילים לבנות סוכנים, כדאי להתחיל בסדנת בנייה. אם כבר יש לכם סוכן שמחובר לכלים ולמידע, אפשר להתחיל בסדנת האבטחה. אפשר גם לשלב: כל אחת מסדנאות הבנייה מכינה אתכם להמשך בסדנת האבטחה."),
         ("צריך לחכות לקורסים?", "לא. הסדנאות עומדות בפני עצמן, ואפשר להשתתף בלי ללמוד בקורס. שני הקורסים עדיין בהכנה, וכשייפתחו הם יאפשרו להעמיק בנושאים נוספים."),
         ("אפשר לקבל חשבונית?", "כן. נתאם את הפרטים במסגרת ההזמנה."),
     ],
 
     "cta_link": ["בואו נקבע סדנה", "לצוות שלכם"],
-    "cta_fine": "כתבו לשמעון כמה משתתפים צפויים, איזה דגש מעניין אתכם (בנייה, אבטחה או שניהם), מה אתם בונים ולאילו כלים הסוכן מחובר. נחזור תוך יום עסקים עם הצעה להמשך. כתובת המייל שלכם תשמש רק לשיחה הזאת.",
+    "cta_fine": "כתבו לשמעון כמה משתתפים צפויים, מה תרצו ללמוד (בנייה, אבטחה או שילוב ביניהן), מה אתם בונים ולאילו כלים הסוכן מחובר. נחזור תוך יום עסקים עם הצעה להמשך. כתובת המייל שלכם תשמש רק לשיחה הזאת.",
 }
 
 
@@ -706,18 +706,18 @@ EN_WS = {
     "description": "Hands-on workshops for engineering, AI and data teams: build an AI agent, secure one, or both in sequence. From a half day to two days, at your office or on Zoom. No security background needed.",
     "kicker": "Hands-on team workshops · half a day to two days",
     "h1": ["Build safer", "AI agents"],
-    "hero_p": "Choose the emphasis your team needs: build an agent whose success you can measure, secure an agent already connected to company tools and data, or do both in sequence. Every format is hands-on code, at your office or on Zoom.",
+    "hero_p": "Build an agent and evaluate how well it handles its tasks, secure an agent already connected to company tools and data, or do both in sequence. Every workshop includes coding and practical exercises, at your office or on Zoom.",
     "readout": [("Duration", "half day to 2 days", ""), ("Emphasis", "build · secure", ""), ("Security skills", "none needed", "s"), ("Language", "Hebrew · English", "")],
-    "cta": "Book a workshop", "cta2": "See the formats",
+    "cta": "Book a workshop", "cta2": "Explore the workshops",
 
-    "emph": ("01", "Choose your emphasis", "Build an agent, secure one, or both.",
-             "The building formats run from a half day to two days, with a follow-on for your team. The security workshop is a half day. Each building format ends where the security workshop begins, so the two run as a pair."),
+    "emph": ("01", "Choose a workshop", "Build an agent, secure one, or both.",
+             "Building workshops last half a day, one day or two days, with further sessions available for your team. The security workshop lasts half a day. Each building workshop prepares you to continue with the security workshop. You can also take either on its own."),
     "emph_cards": [
-        ("Build", "Building agents", "From a first agent to one that works over your documents", [
-            ("Half day", "Each participant builds an agent with budgets and retries on their own laptop"),
-            ("One day", "The half day, plus your own MCP server"),
-            ("Two days", "An agent over your team’s documents, with a measured success rate"),
-            ("Team follow-on", "Orchestration, tracing and deployment on your team’s stack"),
+        ("Build", "Building agents", "From your first agent to one that works with your documents", [
+            ("Half day", "Each participant builds an agent with resource limits and retry logic on their own laptop"),
+            ("One day", "Everything in the half-day workshop, plus building your own MCP server"),
+            ("Two days", "Build an agent that works with your team’s documents and measure its task success rate"),
+            ("Further team sessions", "Orchestration, tracing and deployment on your team’s stack"),
         ]),
         ("Secure", "Securing agents", "A half day, up to 15 people, no installs", [
             ("4 hours", "Attack an AI assistant, build defences and measure what works"),
@@ -725,7 +725,7 @@ EN_WS = {
             ("Details", "The session plan, lab results and questions are further down this page"),
         ]),
     ],
-    "emph_both": "Both: start with a building format, then continue to the security workshop.",
+    "emph_both": "To cover both, start with a building workshop and continue to the security workshop.",
     "emph_link": "Book a workshop",
     "outcomes": ("03", "The security workshop", "Better decisions for the next agent you build.",
                  "Leave with the lab code, tests you can rerun and a checklist for your own agent. Above all, leave with a practical way to test a defence before you trust it."),
@@ -788,7 +788,7 @@ EN_WS = {
          ["Four sessions of two hours", "The same lab, with more time to practise and get feedback on your code", "Dates confirmed when enough people sign up", "Email Shimon to join the waiting list"]),
     ],
 
-    "about": ("08", "Your instructor", "Shimon R. Malka.", "Currently CTO of a cybersecurity start-up, previously Head of AI, with a background in academic machine learning research. Author of the courses “Building AI Agents” and “Defending AI Agents”, both in preparation. The workshops bring their approach to your team: build, attack, measure and improve. Work through the code together and understand why a defence works, where it fails and what to test next."),
+    "about": ("08", "Your instructor", "Shimon R. Malka.", "Currently CTO of a cybersecurity start-up, previously Head of AI, with a background in academic machine learning research. Author of the courses “Building AI Agents” and “Defending AI Agents”, both in preparation. In the workshops, work through the code together, measure results and improve your agent. In the security workshop, attack it too: find out why a defence works, where it fails and what to test next."),
 
     "faq_h": ("09", "Before you book", "Frequently asked questions.", None),
     "faq": [
@@ -797,13 +797,13 @@ EN_WS = {
         ("Do we work with a real model?", "In the security workshop, the lab starts with a simulated model with fixed behaviour. This lets you see exactly what each defence changes without the model behaving differently between runs. You can swap in your own model; you will then need to rerun the tests and measure the results."),
         ("Can you tailor it to our system?", "Yes. Team workshops can use tool and document types that reflect your scenarios. The workshop gives you a method and tools for testing; it is not a security review or certification of your system. If you need a review of an existing system, mention that when you get in touch."),
         ("What does a team workshop cost?", "Pricing depends on team size and the tailoring needed. Introductory pricing is available for the first workshops. Send the number of participants and a short description of your system, and we will send a quote."),
-        ("Which emphasis should we choose?", "A team starting to build agents begins with a building format. A team whose agent is already connected to tools and data begins with the security workshop. You can also run both in sequence: each building format ends where the security workshop begins."),
+        ("Which workshop suits our team?", "If you are starting to build agents, start with a building workshop. If your agent is already connected to tools and data, you can start with the security workshop. To cover both, take them in sequence: each building workshop prepares you for the security workshop."),
         ("Do we need to wait for the courses?", "No. The workshops stand on their own, with no course prerequisite. Both courses are still in preparation and will offer a way to explore more topics when they open."),
         ("Can we get an invoice?", "Yes. We will arrange the details when you book."),
     ],
 
     "cta_link": ["Book a workshop", "for your team"],
-    "cta_fine": "Email Shimon with your expected team size, the emphasis you want (building, security or both), what you are building and which tools your agent uses. We will reply within one business day with a proposed next step. Your email address is used only for this conversation.",
+    "cta_fine": "Email Shimon with your expected team size, what you want to learn (building, security or both), what you are building and which tools your agent uses. We will reply within one business day with a proposed next step. Your email address is used only for this conversation.",
 }
 
 
@@ -928,10 +928,10 @@ def workshop_page(t, w, prefix, url, mail, other):
 # the course lives in a private repo until launch.
 EN_BC = {
     "title": "Building AI Agents: a course for data scientists and engineers who build with AI",
-    "description": "From how an LLM works to an agent you can measure: the agent loop from scratch, retrieval, MCP, orchestration, evaluation, serving and deployment. 13 modules, about 81 hours, each ending in a measurement on your laptop with local models. In preparation.",
+    "description": "Learn how an LLM works, then build and evaluate an agent: the agent loop from scratch, retrieval, MCP, orchestration, evaluation, serving and deployment. 13 modules, about 81 hours, with practical measurements using local models on your laptop. In preparation.",
     "kicker": "Course · online · in preparation",
     "h1": ["Building", "AI agents"],
-    "hero_p": "For data scientists and engineers who build with AI. Learn how each part of an agent works, from the model to production, and how to tell whether yours works. From the basics to current research, before agent security or alongside it.",
+    "hero_p": "For data scientists and engineers building with AI. Understand each part of an agent, from the model to production, and learn to evaluate its performance. Start with the basics and work through to current research. Study before or alongside Defending AI Agents.",
     "readout": [("Modules", "13", ""), ("Hours", "about 81", ""), ("Models", "local", "s"), ("Status", "in preparation", "")],
     "cta": "Hear when it opens", "cta2": "What it covers",
     "topics_h": ("01", "What it covers", "Thirteen modules, from the model to production.",
@@ -940,41 +940,41 @@ EN_BC = {
                "Retrieval and memory", "MCP and A2A", "Orchestration", "Harnesses: coding, browser and computer-use agents",
                "Evaluating agent quality", "Serving and inference", "LLMOps and observability", "Deployment",
                "Fine-tuning versus retrieval"],
-    "measure_h": ("02", "How it works", "Every module ends at a measurement.",
-                  "Each module ends with a measurement on your own laptop, with local models. You see what a change does to your agent instead of taking it on trust."),
+    "measure_h": ("02", "How it works", "Build it. Measure how it performs.",
+                  "Each module ends with practical measurements using local models on your own laptop. Make a change, measure the results and see how it affects your agent’s performance."),
     "pair_h": ("03", "With Defending AI Agents", "Build first. Then defend.",
-               "Building AI Agents covers what a data scientist needs before agent security, or alongside it. Defending AI Agents continues from there: attacks, defences, evaluation and incident response."),
+               "Building AI Agents lays the engineering foundations. Defending AI Agents adds attacks, defences, evaluation and incident response. You can study them in sequence or alongside each other."),
     "pair_link": "See Defending AI Agents",
     "status_h": ("04", "Status", "In preparation.",
-                 "One module, the agent loop from scratch, is written. The rest are in preparation, and there is no launch date to announce yet. Teams that want to start now can book a building workshop."),
-    "status_link": "See the workshop formats",
+                 "The module on building the agent loop from scratch is written. The rest are in preparation, and a launch date has not been set. Teams that want to start now can book a workshop on building agents."),
+    "status_link": "Explore the workshops",
     "cta_link": ["Hear when", "it opens"],
     "cta_fine": "Email Shimon to hear when the first modules are published. Your address is used only for this course and is never shared.",
 }
 
 HE_BC = {
-    "title": "בניית סוכני AI: קורס למדעני נתונים ולמהנדסים שבונים עם AI",
-    "description": "מאיך LLM עובד ועד סוכן שאפשר למדוד: לולאת הסוכן מאפס, אחזור מידע, MCP, תזמור, הערכת איכות, הגשת מודלים ופריסה. 13 מודולים, כ־81 שעות, וכל מודול מסתיים במדידה על המחשב הנייד שלכם עם מודלים מקומיים. הקורס בהכנה.",
-    "kicker": "קורס · אונליין · בהכנה",
+    "title": "בניית סוכני AI: קורס למדעני נתונים ולמהנדסים שעובדים עם AI",
+    "description": "מבינים איך LLM עובד, בונים סוכן ובודקים את הביצועים שלו: לולאת הסוכן מאפס, אחזור מידע, MCP, תזמור, הערכת איכות, הגשת מודלים ופריסה. 13 מודולים, כ־81 שעות, עם תרגול ומדידה באמצעות מודלים מקומיים על המחשב הנייד שלכם. הקורס בהכנה.",
+    "kicker": "קורס · מקוון · בהכנה",
     "h1": ["בניית", "סוכני AI"],
-    "hero_p": "למדעני נתונים ולמהנדסים שבונים עם AI. לומדים איך עובד כל חלק בסוכן, מהמודל ועד הפרודקשן, ואיך יודעים אם הסוכן שלכם באמת עובד. מהיסודות ועד המחקר העדכני, לפני אבטחת סוכנים או לצידה.",
+    "hero_p": "למדעני נתונים ולמהנדסים שעובדים עם AI. לומדים איך כל חלק בסוכן עובד, מהמודל ועד הפרודקשן, ואיך לבדוק את הביצועים שלו. מתחילים ביסודות ומתקדמים עד למחקר העדכני. אפשר ללמוד לפני הקורס ״הגנה על סוכני AI״ או במקביל אליו.",
     "readout": [("מודולים", "13", ""), ("שעות", "כ־81", ""), ("מודלים", "מקומיים", "s"), ("סטטוס", "בהכנה", "")],
-    "cta": "לעדכון על הפתיחה", "cta2": "מה לומדים",
+    "cta": "קבלו עדכון כשהקורס ייפתח", "cta2": "מה לומדים",
     "topics_h": ("01", "מה לומדים", "שלושה־עשר מודולים, מהמודל ועד הפרודקשן.",
                  "כ־81 שעות בסך הכול, מהיסודות ועד המחקר העדכני."),
     "topics": ["איך LLM עובד", "פרומפטים וניהול קונטקסט", "לולאת הסוכן, מאפס", "פריימוורקים לסוכנים",
                "אחזור מידע וזיכרון", "MCP ו־A2A", "תזמור סוכנים", "סביבות הרצה: סוכני קוד, סוכני דפדפן וסוכנים שמפעילים מחשב",
                "הערכת איכות של סוכנים", "הגשת מודלים ואינפרנס", "LLMOps וניטור", "פריסה לפרודקשן",
                "פיין־טיונינג מול אחזור מידע"],
-    "measure_h": ("02", "איך לומדים", "כל מודול מסתיים במדידה.",
-                  "כל מודול מסתיים במדידה על המחשב הנייד שלכם, עם מודלים מקומיים. רואים מה שינוי עושה לסוכן, במקום לסמוך על התחושה."),
-    "pair_h": ("03", "יחד עם הגנה על סוכני AI", "קודם בונים. אחר כך מגינים.",
-               "״בניית סוכני AI״ מכסה את מה שמדעני נתונים צריכים לפני אבטחת סוכנים, או לצידה. ״הגנה על סוכני AI״ ממשיך משם: מתקפות, הגנות, מדידה וטיפול באירועים."),
+    "measure_h": ("02", "איך לומדים", "בונים, משנים ומודדים את התוצאות.",
+                  "בסוף כל מודול מריצים מודלים מקומיים על המחשב הנייד שלכם ומודדים את התוצאות. משנים את הקוד ובודקים איך השינוי משפיע על ביצועי הסוכן."),
+    "pair_h": ("03", "הקורס המשלים", "קודם בונים. אחר כך מגינים.",
+               "הקורס ״בניית סוכני AI״ מקנה את הבסיס ההנדסי. הקורס ״הגנה על סוכני AI״ מוסיף מתקפות, הגנות, מדידה וטיפול באירועים. אפשר ללמוד אותם בזה אחר זה או במקביל."),
     "pair_link": "לקורס הגנה על סוכני AI",
     "status_h": ("04", "סטטוס", "בהכנה.",
-                 "מודול אחד, לולאת הסוכן מאפס, כבר כתוב. השאר בהכנה, ועדיין אין תאריך פתיחה לפרסום. צוותים שרוצים להתחיל עכשיו יכולים להזמין סדנת בנייה."),
-    "status_link": "לפורמטים של הסדנאות",
-    "cta_link": ["קבלו עדכון", "כשהקורס נפתח"],
+                 "המודול על בניית לולאת הסוכן מאפס כבר כתוב. שאר המודולים בהכנה, וטרם נקבע מועד לפתיחת הקורס. צוותים שרוצים להתחיל כבר עכשיו יכולים להזמין סדנה לבניית סוכנים."),
+    "status_link": "לפרטי הסדנאות",
+    "cta_link": ["קבלו עדכון", "כשהקורס ייפתח"],
     "cta_fine": "כתבו לשמעון כדי לקבל עדכון כשהמודולים הראשונים יתפרסמו. הכתובת תשמש רק לקורס ולא תועבר לאיש.",
 }
 
