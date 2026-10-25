@@ -57,15 +57,11 @@ EN = {
     "title": "Learn to secure AI agents: a free practical course · Defending AI Agents",
     "description": "Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.",
     "og_image": "og.png", "brand": "Defending AI Agents", "skip": "Skip to content",
-    "nav": [("workshop/", "Workshops"), ("building/", "Building agents"), ("course/", "Defending agents"), ("blog/", "Blog")],
+    "nav": [("workshop/", "Team workshops"), ("courses/", "Online courses"), ("blog/", "Blog")],
     "course_path": "course/", "home_path": "", "course_other": "he/course/",
-    "home_title": "Defending AI Agents: workshops and courses on building and securing AI agents",
     "home_description": "Hands-on workshops for your team, in Hebrew or English, on building AI agents, securing them, or both. Two online courses are in preparation: Building AI Agents and Defending AI Agents. For ML engineers, applied AI engineers, data scientists and analysts.",
-    "home_kicker": "Workshops and courses · ML, data and AI practitioners",
-    "home_p": "You build ML and AI systems. Learn to build AI agents, evaluate their performance and secure them. Choose a hands-on workshop for your team or explore the two online courses, both in preparation. No security background needed.",
     "nav_cta": "Join waitlist",
     "ws_cta": "Book a workshop", "ws_path": "workshop/",
-    "home_note": "A detector that catches 99% of attacks and flags 1% of harmless calls: about 1 alert in 100 is real.", "home_note_link": "Try the numbers",
     "kicker": "Free practical course · self-paced · in preparation",
     "course_readout": [
         ("Format", "self-paced", ""),
@@ -79,17 +75,7 @@ EN = {
     "readout": [("Calls", "10,000", ""), ("Alerts", "101", ""), ("Attacks", "1", "s"), ("Real", "0.98%", "")],
     "field_aria": "Animation: ten thousand tool calls drawn as dots. About one in a hundred is flagged as an alert; one is a real attack.",
 
-    "split_aria": "Workshops and courses",
-    "split": [
-        ("live-label", "Hands-on · for your team", "Workshops",
-         "Choose what your team needs: building agents, securing them, or both. Start with a building workshop and continue to the security workshop, or take either on its own.",
-         ["Build, secure, or both", "Half day, one day or two days", "At your office or on Zoom"], "Explore the workshops", "workshop/"),
-        ("course-label", "Course · online · in preparation", "Building AI agents",
-         "Understand how an LLM works, then build and evaluate an agent: the agent loop from scratch, retrieval, MCP, orchestration, evaluation and deployment. Each module ends with practical measurements using local models on your laptop.",
-         ["13 modules · about 81 hours", "From the basics to current research", "In preparation · one module written"], "See the course", "building/"),
-        ("course-label", "Course · online · free", "Defending AI agents", "Build every defence yourself on a laptop, from the first attack to incident response. At your own pace.",
-         ["22 modules · about 248 hours", "Free · paid exam optional", "English and Hebrew · in preparation"], "See the course", "course/"),
-    ],
+    "category_aria": "Workshops and courses",
     "s1": "What you will learn", "s1_h": "Turn your ML skills into security decisions.",
     "s1_p": "You already work with models, data and uncertainty. Learn to apply that experience to a new set of questions: which actions need protection, which alerts deserve attention and what evidence is enough to trust a defence.",
     "twins": [
@@ -220,15 +206,11 @@ HE = {
     "title": "לומדים לאבטח סוכני AI: קורס מעשי וחינמי · הגנה על סוכני AI",
     "description": "בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.",
     "og_image": "og-he.png", "brand": "הגנה על סוכני AI", "skip": "דילוג לתוכן",
-    "nav": [("he/workshop/", "סדנאות"), ("he/building/", "בניית סוכנים"), ("he/course/", "הגנה על סוכנים"), ("blog/", "בלוג")],
+    "nav": [("he/workshop/", "סדנאות לצוותים"), ("he/courses/", "קורסים מקוונים"), ("blog/", "בלוג")],
     "course_path": "he/course/", "home_path": "he/", "course_other": "course/",
-    "home_title": "הגנה על סוכני AI: סדנאות וקורסים לבניית סוכנים ולאבטחתם",
     "home_description": "סדנאות מעשיות לצוות שלכם, בעברית או באנגלית: בניית סוכני AI, אבטחת סוכנים או שילוב של השניים. לצד הסדנאות, שני קורסים מקוונים בהכנה: בניית סוכני AI והגנה על סוכני AI. למהנדסי ML ו־AI יישומי, מדעני נתונים ואנליסטים.",
-    "home_kicker": "סדנאות וקורסים · לאנשי ML, דאטה ו־AI",
-    "home_p": "אתם בונים מערכות ML ו־AI. למדו לבנות סוכני AI, להעריך את הביצועים שלהם ולהגן עליהם. אפשר להתחיל בסדנה מעשית לצוות שלכם או להכיר את שני הקורסים המקוונים שבדרך. לא נדרש רקע באבטחת מידע.",
     "nav_cta": "לרשימת ההמתנה",
     "ws_cta": "להזמנת סדנה", "ws_path": "he/workshop/",
-    "home_note": "קלאסיפייר שתופס 99% מהמתקפות ומתריע בטעות על 1% מהקריאות התמימות: רק כאחת מכל 100 התרעות היא אמיתית.", "home_note_link": "נסו את המספרים",
     "kicker": "קורס מעשי וחינמי · בקצב שלכם · בהכנה",
     "course_readout": [
         ("לימוד", "בקצב שלכם", ""),
@@ -242,17 +224,7 @@ HE = {
     "readout": [("קריאות", "10,000", ""), ("התרעות", "101", ""), ("מתקפות", "1", "s"), ("אמיתיות", "0.98%", "")],
     "field_aria": "הנפשה: עשרת אלפים קריאות לכלים מצוירות כנקודות. בערך אחת ממאה מסומנת כהתרעה; אחת היא מתקפה אמיתית.",
 
-    "split_aria": "סדנאות וקורסים",
-    "split": [
-        ("live-label", "תרגול מעשי · לצוות שלכם", "סדנאות",
-         "בוחרים לפי מה שהצוות צריך: בניית סוכנים, אבטחת סוכנים או שילוב של השניים. אפשר להשתתף בכל סדנה בנפרד, או להתחיל בבנייה ולהמשיך לאבטחה.",
-         ["בנייה, אבטחה או שילוב ביניהן", "חצי יום, יום או יומיים", "אצלכם או בזום"], "לפרטי הסדנאות", "he/workshop/"),
-        ("course-label", "קורס · מקוון · בהכנה", "בניית סוכני AI",
-         "מבינים איך LLM עובד, ואז בונים סוכן ובודקים את הביצועים שלו: לולאת הסוכן מאפס, אחזור מידע, MCP, תזמור, הערכת איכות ופריסה. בכל מודול מתרגלים ומודדים עם מודלים מקומיים על המחשב הנייד שלכם.",
-         ["13 מודולים · כ־81 שעות", "מהיסודות ועד המחקר העדכני", "בהכנה · מודול אחד כבר כתוב"], "לפרטי הקורס", "he/building/"),
-        ("course-label", "קורס · מקוון · חינם", "הגנה על סוכני AI", "בונים כל הגנה בעצמכם על המחשב הנייד, מהמתקפה הראשונה ועד טיפול באירוע. בקצב שלכם.",
-         ["22 מודולים · כ־248 שעות", "חינם · מבחן בתשלום, לבחירה", "עברית ואנגלית · בהכנה"], "לפרטי הקורס", "he/course/"),
-    ],
+    "category_aria": "סדנאות וקורסים",
     "s1": "מה תלמדו", "s1_h": "מהיכרות עם מודלים להגנה על המערכת.",
     "s1_p": "אתם כבר עובדים עם מודלים, נתונים ואי־ודאות. בקורס תלמדו להשתמש בניסיון הזה כדי להחליט אילו פעולות דורשות הגנה, אילו התרעות מצדיקות בדיקה ומתי יש מספיק ראיות כדי לסמוך על ההגנה שבניתם.",
     "twins": [
@@ -417,9 +389,12 @@ def ws_cta(t, prefix):
     return (t["ws_cta"], f"{prefix}{t['ws_path']}#contact", False)
 
 
-def topbar(t, prefix, home, cta=None, other=None):
+def topbar(t, prefix, home, cta=None, other=None, active=None):
     """cta: (label, href, is_waitlist); defaults to the course waitlist. other: root-relative path of this page in the other language."""
-    nav = "".join(f'<a class="label" href="{prefix}{h}">{E(l)}</a>' for h, l in t["nav"])
+    nav = "".join(f'<a class="label" href="{prefix}{h}"'
+                  + (' aria-current="location"' if h == active else '')
+                  + f'>{E(l)}</a>' for h, l in t["nav"])
+    menu = "תפריט" if t["lang"] == "he" else "Menu"
     other = t["other_path"] if other is None else other
     label, href, waitlist = cta or (t["nav_cta"], f"{prefix}{t['course_path']}#waitlist", True)
     attrs = " data-waitlist" if waitlist else ""
@@ -428,10 +403,11 @@ def topbar(t, prefix, home, cta=None, other=None):
 <a class="skip" href="#main">{E(t['skip'])}</a>
 <header class="top">
   <a class="brand" href="{home}">{MARK}<span class="label">{E(t['brand'])}</span></a>
-  <nav aria-label="Main">{nav}</nav>
+  <nav class="desktop-nav" aria-label="Main">{nav}</nav>
   <div class="end">
     <a class="lang label" href="{prefix}{other}" lang="{t['other_lang']}" hreflang="{t['other_lang']}">{E(t['other_label'])}</a>
     <a class="btn" href="{href}"{attrs}>{E(label)}{kbd}</a>
+    <details class="mobile-nav"><summary class="label">{menu}</summary><nav aria-label="{menu}">{nav}</nav></details>
   </div>
 </header>"""
 
@@ -442,6 +418,8 @@ def footer(t, prefix, other=None):
 <footer class="foot label">
   <span>{E(t['foot_copy'])}</span>
   <nav aria-label="Footer">
+    <a href="{prefix}{t['ws_path']}">{E(t['nav'][0][1])}</a>
+    <a href="{prefix}{t['home_path']}courses/">{E(t['nav'][1][1])}</a>
     <a href="mailto:{EMAIL}">{E(t['foot_contact'])}</a>
     <a href="{prefix}.well-known/security.txt">{E(t['foot_security'])}</a>
     <a href="{prefix}{other}" lang="{t['other_lang']}" hreflang="{t['other_lang']}">{E(t['other_label'])}</a>
@@ -480,7 +458,8 @@ def course_page(t, prefix):
                 f'<input type="range" id="{name}" name="{name}" min="0" max="{max_i}" step="1" value="{val}"></div>')
 
     body = f"""
-<main id="main">
+<main id="main" class="product-page defending-course">
+  {product_crumb(t, prefix, 'courses', CATALOG[t['lang']]['course_cards'][1][2])}
   <section class="hero" aria-label="{E(t['brand'])}">
     <canvas data-field role="img" aria-label="{E(t['field_aria'])}"></canvas>
     <p class="kicker label"><i></i>{E(t['kicker'])}</p>
@@ -562,33 +541,175 @@ def course_page(t, prefix):
     course_url = "/" + t["course_path"]
     alt = ("/course/", "/he/course/")
     return (head(t, prefix, t["title"], course_url, alternates=alt)
-            + topbar(t, prefix, prefix + t["home_path"] or "./", other=t["course_other"]) + body + footer(t, prefix, other=t["course_other"]))
+            + topbar(t, prefix, prefix + t["home_path"] or "./", other=t["course_other"], active=t["home_path"] + "courses/") + body + footer(t, prefix, other=t["course_other"]))
+
+
+CATALOG = {
+    "en": {
+        "home_title": "AI agent workshops and courses · Shimon R. Malka",
+        "eyebrow": "AI engineering & security · with Shimon R. Malka",
+        "heading": ["Learn to build.", "Learn to defend."],
+        "intro": "Practical learning for people who work with AI. Bring your team to a live workshop, or explore the two online courses in preparation.",
+        "workshops": "Team workshops", "courses": "Online courses",
+        "workshop_format": "Live · hands-on · tailored to your team",
+        "workshop_h": "Learn together. Put it into practice.",
+        "workshop_p": "Build your first agent or test the security of one that already uses tools and data. Choose a building workshop, a security workshop, or take both in sequence.",
+        "workshop_status": "Available to book", "workshop_cta": "Explore the workshops",
+        "workshop_facts": ["Half day, one day or two days", "At your office or on Zoom", "Hebrew or English"],
+        "build_track": "Building workshop", "secure_track": "Security workshop",
+        "course_format": "Self-paced · individual learning",
+        "course_h": "Two courses. Two different goals.",
+        "course_p": "Choose the engineering foundations or focus on security. Both courses are in preparation; neither is open for study yet.",
+        "course_status": "In preparation", "course_cta": "View course details",
+        "catalog_cta": "Compare the courses", "catalog_title": "Online courses on AI agents · Defending AI Agents",
+        "catalog_h": "Online courses",
+        "catalog_intro": "Two separate courses: one on building agents, one on securing them. Explore their goals and syllabuses, and sign up for release updates.",
+        "team_note": "Want to learn with your team now?", "team_p": "The workshops are available to book and do not require either course.",
+        "course_cards": [
+            ("building", "Engineering", "Building AI Agents", "Understand the model, build the agent loop and evaluate how well your agent performs. From the foundations to deployment.", ["13 modules · about 81 hours", "Local models · practical measurements"], "building/"),
+            ("defending", "Security", "Defending AI Agents", "Find the attacks, build the defences and check that legitimate work still succeeds. From the first attack to incident response.", ["22 modules · about 248 hours", "Free · optional paid assessment", "English and Hebrew"], "course/"),
+        ],
+        "home": "Home",
+        "security_detail": "Security workshop · detailed programme",
+        "security_note": "The outcomes, lab and four-hour plan below belong to the security workshop.",
+    },
+    "he": {
+        "home_title": "סדנאות וקורסים על סוכני AI · שמעון ר. מלכה",
+        "eyebrow": "פיתוח ואבטחה של סוכני AI · עם שמעון ר. מלכה",
+        "heading": ["לומדים לבנות.", "לומדים להגן."],
+        "intro": "לימוד מעשי למי שעובדים עם AI. סדנאות בהנחיה לצוותים, לצד שני קורסים מקוונים ללימוד עצמאי. הקורסים עדיין בהכנה.",
+        "workshops": "סדנאות לצוותים", "courses": "קורסים מקוונים",
+        "workshop_format": "בהנחיה חיה · תרגול בקוד · בהתאמה לצוות",
+        "workshop_h": "לומדים יחד. מיישמים בקוד.",
+        "workshop_p": "בונים סוכן ראשון או בודקים איך להגן על סוכן שכבר מחובר לכלים ולמידע. בוחרים סדנת בנייה, סדנת אבטחה או שילוב של השתיים.",
+        "workshop_status": "אפשר לתאם סדנה", "workshop_cta": "לפרטי הסדנאות",
+        "workshop_facts": ["חצי יום, יום או יומיים", "אצלכם במשרד או בזום", "בעברית או באנגלית"],
+        "build_track": "סדנת בנייה", "secure_track": "סדנת אבטחה",
+        "course_format": "לימוד עצמאי · בקצב שלכם",
+        "course_h": "שני קורסים. שתי מטרות.",
+        "course_p": "בוחרים בין הבסיס ההנדסי לבניית סוכנים לבין אבטחת סוכנים. שני הקורסים בהכנה ועדיין אינם פתוחים ללימוד.",
+        "course_status": "בהכנה", "course_cta": "לפרטי הקורס",
+        "catalog_cta": "להשוואה בין הקורסים", "catalog_title": "קורסים מקוונים על סוכני AI · הגנה על סוכני AI",
+        "catalog_h": "קורסים מקוונים",
+        "catalog_intro": "שני קורסים נפרדים: אחד לבניית סוכנים ואחד לאבטחתם. כאן אפשר להכיר את המטרות ואת תוכניות הלימודים ולהירשם לעדכון כשהם ייפתחו.",
+        "team_note": "רוצים ללמוד עם הצוות כבר עכשיו?", "team_p": "אפשר לתאם סדנה בלי להמתין לקורסים ובלי ללמוד בהם קודם.",
+        "course_cards": [
+            ("building", "פיתוח סוכנים", "בניית סוכני AI", "מבינים איך המודל עובד, בונים את לולאת הסוכן ובודקים את הביצועים שלו. מהיסודות ועד לפריסה לפרודקשן.", ["13 מודולים · כ־81 שעות", "מודלים מקומיים · תרגול ומדידה"], "building/"),
+            ("defending", "אבטחת סוכנים", "הגנה על סוכני AI", "מזהים מתקפות, בונים הגנות ובודקים שהסוכן ממשיך לבצע משימות תקינות. מהמתקפה הראשונה ועד לטיפול באירוע.", ["22 מודולים · כ־248 שעות", "חינם · הערכה בתשלום לבחירה", "בעברית ובאנגלית"], "course/"),
+        ],
+        "home": "דף הבית",
+        "security_detail": "סדנת האבטחה · התוכנית המפורטת",
+        "security_note": "התוצרים, המעבדה ותוכנית ארבע השעות שבהמשך שייכים לסדנת האבטחה.",
+    },
+}
+
+
+def course_symbol(kind):
+    """Technical line drawings: a measured agent loop and an enforced boundary."""
+    grid = ('<g opacity=".12"><path d="M0 40H360M0 80H360M0 120H360'
+            'M40 0V160M110 0V160M180 0V160M250 0V160M320 0V160"/></g>')
+    if kind == "building":
+        drawing = ('<path d="M60 80H132L162 40H280V80H308M280 80V120H162L132 80"/>'
+                   '<path d="M308 96V145H40V96" stroke-dasharray="3 6" opacity=".5"/>'
+                   '<path d="m115 75 6 5-6 5m133-50 6 5-6 5m-53 85-6-5 6-5"/>'
+                   '<rect x="24" y="64" width="36" height="32"/>'
+                   '<rect x="162" y="24" width="36" height="32"/>'
+                   '<rect x="162" y="104" width="36" height="32"/>'
+                   '<rect x="308" y="64" width="28" height="32"/>'
+                   '<path class="signal" d="M172 40H188M180 32V48M172 120H188"/>'
+                   '<rect class="signal-fill" x="35" y="75" width="10" height="10" stroke="none"/>'
+                   '<circle cx="280" cy="80" r="5" class="signal-fill" stroke="none"/>')
+    else:
+        drawing = ('<path d="M116 24H304V136H116Z"/>'
+                   '<path d="M128 36H292V124H128Z" opacity=".3" stroke-dasharray="2 5"/>'
+                   '<rect x="190" y="60" width="44" height="40"/>'
+                   '<path d="M12 80H102M136 80H190M234 80H348M212 60V10M212 100V150"/>'
+                   '<path class="signal" d="m70 34 38 38m-38 54 38-38M108 64V96"/>'
+                   '<path d="m168 75 6 5-6 5m150-5 6 5-6 5"/>'
+                   '<path class="signal" d="m202 79 7 7 14-15"/>'
+                   '<rect class="signal-fill" x="8" y="76" width="8" height="8" stroke="none"/>'
+                   '<circle cx="212" cy="10" r="4" fill="currentColor" stroke="none"/>'
+                   '<circle cx="212" cy="150" r="4" fill="currentColor" stroke="none"/>')
+    return f'<svg class="course-symbol" viewBox="0 0 360 160" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">{grid}{drawing}</svg>'
+
+
+def course_cards(t, prefix, heading_level=3):
+    c = CATALOG[t["lang"]]
+    cards = ""
+    for kind, subject, title, desc, facts, path in c["course_cards"]:
+        items = "".join(f"<li>{E(f)}</li>" for f in facts)
+        cards += f"""<article class="course-card {kind}">
+  <div class="card-top"><span class="label">{E(subject)}</span><span class="status">{E(c['course_status'])}</span></div>
+  {course_symbol(kind)}
+  <h{heading_level}>{E(title)}</h{heading_level}><p>{E(desc)}</p><ul>{items}</ul>
+  <a class="text-link" href="{prefix}{t['home_path']}{path}">{E(c['course_cta'])} {ARROW}<span class="sr-only"> — {E(title)}</span></a>
+</article>"""
+    return f'<div class="course-grid">{cards}</div>'
+
+
+def product_crumb(t, prefix, category, name):
+    c = CATALOG[t["lang"]]
+    path = t["home_path"] + ("courses/" if category == "courses" else "workshop/")
+    return (f'<nav class="product-crumb label" aria-label="{"מיקום באתר" if t["lang"] == "he" else "Breadcrumb"}">'
+            f'<a href="{prefix}{t["home_path"] or "./"}">{E(c["home"])}</a><span aria-hidden="true">/</span>'
+            f'<a href="{prefix}{path}">{E(c[category])}</a><span aria-hidden="true">/</span><span>{E(name)}</span></nav>')
 
 
 def home_page(t, prefix):
-    readout = "".join(f'<span class="label">{E(l)}<b class="{c}">{E(v)}</b></span>' for l, v, c in t["readout"])
-    halves = ""
-    for i, (_, kicker, h, p, facts, cta, href) in enumerate(t["split"], 1):
-        link = href if href.startswith("#") else prefix + href
-        lis = "".join(f"<li>{E(f)}</li>" for f in facts)
-        halves += (f'<a class="half reveal" href="{link}"><span class="label"><em>{i:02d}</em>{E(kicker)}</span>'
-                   f'<h2>{E(h)}</h2><p>{E(p)}</p><ul>{lis}</ul><span class="go">{E(cta)} {ARROW}</span></a>')
+    c = CATALOG[t["lang"]]
+    facts = "".join(f"<li>{E(f)}</li>" for f in c["workshop_facts"])
     body = f"""
-<main id="main">
-  <section class="hero hero-over" aria-label="{E(t['brand'])}">
-    <canvas data-field role="img" aria-label="{E(t['field_aria'])}"></canvas>
-    <p class="kicker label"><i></i>{E(t['home_kicker'])}</p>
-    <div class="word">
-      <h1><span>{E(t['h1'][0])}</span><span>{E(t['h1'][1])}</span></h1>
-      <div class="side"><p>{E(t['home_p'])}</p><div class="readout">{readout}</div><p class="readout-note">{E(t['home_note'])} <a class="label" href="{prefix}{t['course_path']}#try">{E(t['home_note_link'])} {ARROW}</a></p></div>
+<main id="main" class="home-catalog">
+  <section class="catalog-intro">
+    <canvas class="catalog-field" data-field aria-hidden="true"></canvas>
+    <p class="label">{E(c['eyebrow'])}</p>
+    <h1>{E(c['heading'][0])}<br><span>{E(c['heading'][1])}</span></h1>
+    <div class="intro-bottom"><p>{E(c['intro'])}</p>
+      <nav class="category-jump" aria-label="{E(t['category_aria'])}">
+        <a href="#workshops"><span>01</span>{E(c['workshops'])} {ARROW}</a>
+        <a href="#courses"><span>02</span>{E(c['courses'])} {ARROW}</a>
+      </nav>
     </div>
   </section>
-
-  <section class="split n{len(t['split'])}" aria-label="{E(t['split_aria'])}">{halves}</section>
+  <section class="workshop-feature" id="workshops">
+    <div class="feature-category"><span class="label">01 / {E(c['workshops'])}</span><span class="status available">{E(c['workshop_status'])}</span></div>
+    <div class="feature-body"><div><p class="label">{E(c['workshop_format'])}</p><h2>{E(c['workshop_h'])}</h2></div>
+      <div><p>{E(c['workshop_p'])}</p><ul class="feature-facts">{facts}</ul>
+        <a class="btn" href="{prefix}{t['ws_path']}">{E(c['workshop_cta'])} {ARROW}</a></div>
+    </div>
+    <div class="workshop-tracks"><a href="{prefix}{t['ws_path']}#building">{E(c['build_track'])} {ARROW}</a><a href="{prefix}{t['ws_path']}#security">{E(c['secure_track'])} {ARROW}</a></div>
+  </section>
+  <section class="course-collection" id="courses">
+    <div class="collection-head"><div><p class="label">02 / {E(c['courses'])} · {E(c['course_format'])}</p><h2>{E(c['course_h'])}</h2></div><p>{E(c['course_p'])}</p></div>
+    {course_cards(t, prefix)}
+    <p class="collection-more"><a class="text-link" href="{prefix}{t['home_path']}courses/">{E(c['catalog_cta'])} {ARROW}</a></p>
+  </section>
 </main>
 """
-    return (head(t, prefix, t["home_title"], t["path"], description=t["home_description"])
-            + topbar(t, prefix, "./", cta=ws_cta(t, prefix)) + body + footer(t, prefix))
+    return (head(t, prefix, c["home_title"], t["path"], description=t["home_description"])
+            + topbar(t, prefix, prefix + t["home_path"] or "./", cta=ws_cta(t, prefix)) + body + footer(t, prefix))
+
+
+def courses_page(t, prefix):
+    c = CATALOG[t["lang"]]
+    body = f"""
+<main id="main" class="courses-catalog">
+  <section class="catalog-intro">
+    <p class="label">{E(c['courses'])} · {E(c['course_format'])}</p>
+    <h1>{E(c['catalog_h'])}</h1>
+    <p class="catalog-description">{E(c['catalog_intro'])}</p>
+  </section>
+  <section class="course-collection" id="courses" aria-label="{E(c['courses'])}">
+    <p class="availability-note"><span class="status">{E(c['course_status'])}</span>{E(c['course_p'])}</p>
+    {course_cards(t, prefix, heading_level=2)}
+  </section>
+  <aside class="team-alternative"><div><h2>{E(c['team_note'])}</h2><p>{E(c['team_p'])}</p></div><a class="text-link" href="{prefix}{t['ws_path']}">{E(c['workshop_cta'])} {ARROW}</a></aside>
+</main>
+"""
+    return (head(t, prefix, c["catalog_title"], "/" + t["home_path"] + "courses/", description=c["catalog_intro"], alternates=("/courses/", "/he/courses/"))
+            + topbar(t, prefix, prefix + t["home_path"] or "./", cta=(c["catalog_cta"], "#courses", False),
+                     other="courses/" if t["lang"] == "he" else "he/courses/", active=t["home_path"] + "courses/")
+            + body + footer(t, prefix, other="courses/" if t["lang"] == "he" else "he/courses/"))
 
 
 WORKSHOP_MAIL = f"mailto:{EMAIL}?subject=" + quote("סדנה לצוות: סוכני AI")
@@ -597,7 +718,7 @@ HE_WS = {
     "title": "סדנאות לבניית סוכני AI ולאבטחתם לצוותי פיתוח, AI ודאטה",
     "description": "סדנאות מעשיות לצוותי פיתוח, AI ודאטה: בונים סוכן AI, לומדים לאבטח אותו או משלבים בין השניים. סדנאות של חצי יום עד יומיים, אצלכם או בזום. לא נדרש רקע באבטחת מידע.",
     "kicker": "סדנאות מעשיות לצוותים · מחצי יום ועד יומיים",
-    "h1": ["בונים סוכנים", "בטוחים יותר"],
+    "h1": ["סדנאות מעשיות", "לצוות שלכם"],
     "hero_p": "בוחרים לפי מה שהצוות צריך: לבנות סוכן ולבדוק את הביצועים שלו, להגן על סוכן שכבר מחובר לכלים ולמידע של הארגון, או לשלב בין השניים. בכל הסדנאות כותבים קוד ומתרגלים, אצלכם או בזום.",
     "readout": [("משך", "חצי יום עד יומיים", ""), ("דגש", "בנייה · אבטחה", ""), ("רקע באבטחה", "לא נדרש", "s"), ("שפה", "עברית · אנגלית", "")],
     "cta": "לתיאום סדנה", "cta2": "לאפשרויות הסדנה",
@@ -705,7 +826,7 @@ EN_WS = {
     "title": "Workshops on building and securing AI agents, for engineering, AI and data teams",
     "description": "Hands-on workshops for engineering, AI and data teams: build an AI agent, secure one, or both in sequence. From a half day to two days, at your office or on Zoom. No security background needed.",
     "kicker": "Hands-on team workshops · half a day to two days",
-    "h1": ["Build safer", "AI agents"],
+    "h1": ["Hands-on", "team workshops"],
     "hero_p": "Build an agent and evaluate how well it handles its tasks, secure an agent already connected to company tools and data, or do both in sequence. Every workshop includes coding and practical exercises, at your office or on Zoom.",
     "readout": [("Duration", "half day to 2 days", ""), ("Emphasis", "build · secure", ""), ("Security skills", "none needed", "s"), ("Language", "Hebrew · English", "")],
     "cta": "Book a workshop", "cta2": "Explore the workshops",
@@ -843,13 +964,13 @@ def workshop_page(t, w, prefix, url, mail, other):
         fmt += f'<div class="reveal"><span class="price">{E(price)}</span><h3>{E(h)}<small>{E(sub)}</small></h3><ul>{ul}</ul></div>'
     faq = "".join(f"<details><summary>{E(q)}</summary><p>{E(a)}</p></details>" for q, a in w["faq"])
     emph = ""
-    for word, h, sub, items in w["emph_cards"]:
+    for index, (word, h, sub, items) in enumerate(w["emph_cards"]):
         ul = "".join(f'<li><span><strong>{E(k)}</strong> {E(v)}</span></li>' for k, v in items)
-        emph += f'<div class="reveal"><span class="price">{E(word)}</span><h3>{E(h)}<small>{E(sub)}</small></h3><ul>{ul}</ul></div>'
+        emph += f'<div class="workshop-track {"building-track" if index == 0 else "security-track"}" id="{"building" if index == 0 else "security-options"}"><span class="price">{E(word)}</span><h3>{E(h)}<small>{E(sub)}</small></h3><ul>{ul}</ul></div>'
     body = f"""
-<main id="main" class="workshop">
+<main id="main" class="workshop product-page">
+  {product_crumb(t, prefix, 'workshops', CATALOG[t['lang']]['workshop_status'])}
   <section class="hero" aria-label="{E(w['title'])}">
-    <canvas data-field role="img" aria-label="{E(t['field_aria'])}"></canvas>
     <p class="kicker label"><i></i>{E(w['kicker'])}</p>
     <div class="word">
       <h1><span>{E(w['h1'][0])}</span><span>{E(w['h1'][1])}</span></h1>
@@ -869,6 +990,7 @@ def workshop_page(t, w, prefix, url, mail, other):
   </section>
 
   <section id="security">
+    <div class="programme-note"><strong>{E(CATALOG[t['lang']]['security_detail'])}</strong><p>{E(CATALOG[t['lang']]['security_note'])}</p></div>
     {head_('outcomes')}
     <div class="outcomes">{outs}</div>
   </section>
@@ -921,7 +1043,7 @@ def workshop_page(t, w, prefix, url, mail, other):
 """
     cta = (w["cta"], mail, False)
     return (head(t, prefix, f"{w['title']} · {t['brand']}", url, description=w["description"], alternates=("/workshop/", "/he/workshop/"))
-            + topbar(t, prefix, prefix + t["home_path"] or "./", cta=cta, other=other) + body + footer(t, prefix, other=other))
+            + topbar(t, prefix, prefix + t["home_path"] or "./", cta=cta, other=other, active=t["ws_path"]) + body + footer(t, prefix, other=other))
 
 
 # The engineering course: a short page while it is in preparation. No lesson text here;
@@ -991,12 +1113,12 @@ def building_page(t, b, prefix, url, mail, other):
         return sec_head(int(n), label, h, p)
 
     body = f"""
-<main id="main">
+<main id="main" class="product-page building-course">
+  {product_crumb(t, prefix, 'courses', CATALOG[t['lang']]['course_cards'][0][2])}
   <section class="hero" aria-label="{E(b['title'])}">
-    <canvas data-field role="img" aria-label="{E(t['field_aria'])}"></canvas>
     <p class="kicker label"><i></i>{E(b['kicker'])}</p>
     <div class="word">
-      <h1><span>{E(b['h1'][0])}</span><span>{E(b['h1'][1])}</span></h1>
+      <div class="course-title"><h1><span>{E(b['h1'][0])}</span><span>{E(b['h1'][1])}</span></h1>{course_symbol('building')}</div>
       <div class="side"><p>{E(b['hero_p'])}</p><div class="readout">{readout}</div><p class="ctas"><a class="btn" href="{mail}">{E(b['cta'])}</a> <a class="label" href="#topics">{E(b['cta2'])} {ARROW}</a></p></div>
     </div>
   </section>
@@ -1027,7 +1149,7 @@ def building_page(t, b, prefix, url, mail, other):
 </main>
 """
     return (head(t, prefix, f"{b['title']} · {t['brand']}", url, description=b["description"], alternates=("/building/", "/he/building/"))
-            + topbar(t, prefix, prefix + t["home_path"] or "./", cta=ws_cta(t, prefix), other=other) + body + footer(t, prefix, other=other))
+            + topbar(t, prefix, prefix + t["home_path"] or "./", cta=(b["cta"], mail, False), other=other, active=t["home_path"] + "courses/") + body + footer(t, prefix, other=other))
 
 
 def not_found(t):
@@ -1150,6 +1272,10 @@ def main():
     (ROOT / "index.html").write_text(home_page(EN, ""), encoding="utf-8")
     (ROOT / "he").mkdir(exist_ok=True)
     (ROOT / "he" / "index.html").write_text(home_page(HE, "../"), encoding="utf-8")
+    (ROOT / "courses").mkdir(exist_ok=True)
+    (ROOT / "courses" / "index.html").write_text(courses_page(EN, "../"), encoding="utf-8")
+    (ROOT / "he" / "courses").mkdir(exist_ok=True)
+    (ROOT / "he" / "courses" / "index.html").write_text(courses_page(HE, "../../"), encoding="utf-8")
     (ROOT / "course").mkdir(exist_ok=True)
     (ROOT / "course" / "index.html").write_text(course_page(EN, "../"), encoding="utf-8")
     (ROOT / "he" / "course").mkdir(exist_ok=True)
@@ -1174,7 +1300,7 @@ def main():
     for p in POSTS:
         (blog / p["slug"]).mkdir(exist_ok=True)
         (blog / p["slug"] / "index.html").write_text(post_page(EN, p), encoding="utf-8")
-    print(f"built index.html, he/index.html, course/, building/, workshop/ (EN and HE), 404.html, blog/ ({len(POSTS)} posts)")
+    print(f"built index.html, he/index.html, courses/, course/, building/, workshop/ (EN and HE), 404.html, blog/ ({len(POSTS)} posts)")
 
 
 if __name__ == "__main__":

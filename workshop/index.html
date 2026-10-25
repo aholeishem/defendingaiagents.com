@@ -24,25 +24,26 @@
 <a class="skip" href="#main">Skip to content</a>
 <header class="top">
   <a class="brand" href="../"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">Defending AI Agents</span></a>
-  <nav aria-label="Main"><a class="label" href="../workshop/">Workshops</a><a class="label" href="../building/">Building agents</a><a class="label" href="../course/">Defending agents</a><a class="label" href="../blog/">Blog</a></nav>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../workshop/" aria-current="location">Team workshops</a><a class="label" href="../courses/">Online courses</a><a class="label" href="../blog/">Blog</a></nav>
   <div class="end">
     <a class="lang label" href="../he/workshop/" lang="he" hreflang="he">עברית</a>
     <a class="btn" href="mailto:shimon@defendingaiagents.com?subject=AI%20agent%20workshop%20for%20our%20team">Book a workshop</a>
+    <details class="mobile-nav"><summary class="label">Menu</summary><nav aria-label="Menu"><a class="label" href="../workshop/" aria-current="location">Team workshops</a><a class="label" href="../courses/">Online courses</a><a class="label" href="../blog/">Blog</a></nav></details>
   </div>
 </header>
-<main id="main" class="workshop">
+<main id="main" class="workshop product-page">
+  <nav class="product-crumb label" aria-label="Breadcrumb"><a href=".././">Home</a><span aria-hidden="true">/</span><a href="../workshop/">Team workshops</a><span aria-hidden="true">/</span><span>Available to book</span></nav>
   <section class="hero" aria-label="Workshops on building and securing AI agents, for engineering, AI and data teams">
-    <canvas data-field role="img" aria-label="Animation: ten thousand tool calls drawn as dots. About one in a hundred is flagged as an alert; one is a real attack."></canvas>
     <p class="kicker label"><i></i>Hands-on team workshops · half a day to two days</p>
     <div class="word">
-      <h1><span>Build safer</span><span>AI agents</span></h1>
+      <h1><span>Hands-on</span><span>team workshops</span></h1>
       <div class="side"><p>Build an agent and evaluate how well it handles its tasks, secure an agent already connected to company tools and data, or do both in sequence. Every workshop includes coding and practical exercises, at your office or on Zoom.</p><div class="readout"><span class="label">Duration<b class="">half day to 2 days</b></span><span class="label">Emphasis<b class="">build · secure</b></span><span class="label">Security skills<b class="s">none needed</b></span><span class="label">Language<b class="">Hebrew · English</b></span></div><p class="ctas"><a class="btn" href="mailto:shimon@defendingaiagents.com?subject=AI%20agent%20workshop%20for%20our%20team">Book a workshop</a> <a class="label" href="#formats">Explore the workshops <span class="arrow" aria-hidden="true">→</span></a></p></div>
     </div>
   </section>
 
   <section id="formats">
     <div class="sec-head reveal"><div class="label"><em>01</em>Choose a workshop</div><div><h2>Build an agent, secure one, or both.</h2><p>Building workshops last half a day, one day or two days, with further sessions available for your team. The security workshop lasts half a day. Each building workshop prepares you to continue with the security workshop. You can also take either on its own.</p></div></div>
-    <div class="cert indent emph"><div class="reveal"><span class="price">Build</span><h3>Building agents<small>From your first agent to one that works with your documents</small></h3><ul><li><span><strong>Half day</strong> Each participant builds an agent with resource limits and retry logic on their own laptop</span></li><li><span><strong>One day</strong> Everything in the half-day workshop, plus building your own MCP server</span></li><li><span><strong>Two days</strong> Build an agent that works with your team’s documents and measure its task success rate</span></li><li><span><strong>Further team sessions</strong> Orchestration, tracing and deployment on your team’s stack</span></li></ul></div><div class="reveal"><span class="price">Secure</span><h3>Securing agents<small>A half day, up to 15 people, no installs</small></h3><ul><li><span><strong>4 hours</strong> Attack an AI assistant, build defences and measure what works</span></li><li><span><strong>The lab</strong> Seven attacks and five legitimate tasks against four defence configurations</span></li><li><span><strong>Details</strong> The session plan, lab results and questions are further down this page</span></li></ul></div></div>
+    <div class="cert indent emph"><div class="workshop-track building-track" id="building"><span class="price">Build</span><h3>Building agents<small>From your first agent to one that works with your documents</small></h3><ul><li><span><strong>Half day</strong> Each participant builds an agent with resource limits and retry logic on their own laptop</span></li><li><span><strong>One day</strong> Everything in the half-day workshop, plus building your own MCP server</span></li><li><span><strong>Two days</strong> Build an agent that works with your team’s documents and measure its task success rate</span></li><li><span><strong>Further team sessions</strong> Orchestration, tracing and deployment on your team’s stack</span></li></ul></div><div class="workshop-track security-track" id="security-options"><span class="price">Secure</span><h3>Securing agents<small>A half day, up to 15 people, no installs</small></h3><ul><li><span><strong>4 hours</strong> Attack an AI assistant, build defences and measure what works</span></li><li><span><strong>The lab</strong> Seven attacks and five legitimate tasks against four defence configurations</span></li><li><span><strong>Details</strong> The session plan, lab results and questions are further down this page</span></li></ul></div></div>
     <p class="label indent flow-note">To cover both, start with a building workshop and continue to the security workshop. <a href="#contact">Book a workshop <span class="arrow" aria-hidden="true">→</span></a></p>
   </section>
 
@@ -52,6 +53,7 @@
   </section>
 
   <section id="security">
+    <div class="programme-note"><strong>Security workshop · detailed programme</strong><p>The outcomes, lab and four-hour plan below belong to the security workshop.</p></div>
     <div class="sec-head reveal"><div class="label"><em>03</em>The security workshop</div><div><h2>Better decisions for the next agent you build.</h2><p>Leave with the lab code, tests you can rerun and a checklist for your own agent. Above all, leave with a practical way to test a defence before you trust it.</p></div></div>
     <div class="outcomes"><article class="outcome reveal"><div class="label">01</div><h3>Find the risky actions</h3><p>Map what your agent reads, which tools it can use and where it can send data.</p><div class="value"><span class="label">Back at work</span>Identify the actions that need protection and decide where to start.</div></article><article class="outcome reveal"><div class="label">02</div><h3>Turn an attack into a test</h3><p>Plant an instruction in a vendor document and reproduce a confidential file leak. Change the instruction and run it again.</p><div class="value"><span class="label">Back at work</span>Check how your agent handles an attack, including after a code change.</div></article><article class="outcome reveal"><div class="label">03</div><h3>Build a defence you can evaluate</h3><p>Compare word filtering with restrictions enforced by the tool itself. Check both the attacks blocked and the legitimate tasks that still succeed.</p><div class="value"><span class="label">Back at work</span>Choose a defence based on results and explain what it actually stops.</div></article><article class="outcome reveal"><div class="label">04</div><h3>Plan for production</h3><p>Calculate how a small false-alarm rate becomes an operational burden as call volumes grow.</p><div class="value"><span class="label">Back at work</span>Estimate the load on your team before you roll out a defence at scale.</div></article></div>
   </section>
@@ -105,6 +107,8 @@
 <footer class="foot label">
   <span>© 2026 Defending AI Agents</span>
   <nav aria-label="Footer">
+    <a href="../workshop/">Team workshops</a>
+    <a href="../courses/">Online courses</a>
     <a href="mailto:shimon@defendingaiagents.com">Contact</a>
     <a href="../.well-known/security.txt">Security</a>
     <a href="../he/workshop/" lang="he" hreflang="he">עברית</a>
