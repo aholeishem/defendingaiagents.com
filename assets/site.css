@@ -78,12 +78,12 @@ a { color: inherit; }
 .top nav { display: flex; gap: 28px; }
 .top nav a { text-decoration: none; }
 .top nav a:hover, .top .lang:hover { color: var(--fg); }
-.top .end { justify-self: end; display: flex; align-items: center; gap: 18px; }
+.top .end { justify-self: end; display: flex; align-items: center; gap: 18px; white-space: nowrap; }
 .top .lang { text-decoration: none; }
 .btn { display: inline-flex; align-items: center; gap: 4px; background: var(--fg); color: var(--bg); text-decoration: none; padding: 9px 10px 9px 14px; border-radius: 6px; font: 500 11.5px/1 var(--mono); letter-spacing: .07em; text-transform: uppercase; transition: background-color .15s ease, color .15s ease; }
 :lang(he) .btn { padding: 9px 14px 9px 10px; letter-spacing: 0; font-size: 13.5px; }
 .btn:hover { background: var(--sig); color: var(--on-sig); }
-@media (max-width: 860px) { .top nav { display: none; } .top { grid-template-columns: 1fr auto; } }
+@media (max-width: 1000px) { .top nav { display: none; } .top { grid-template-columns: 1fr auto; } }
 @media (max-width: 520px) { .top .lang { display: none; } }
 
 /* Hero */
@@ -205,6 +205,7 @@ input[type="range"]::-moz-range-thumb { width: 14px; height: 14px; background: v
 .cert li { padding: 11px 0; border-top: 1px solid var(--line); color: var(--fg-2); display: grid; grid-template-columns: 22px minmax(0, 1fr); }
 .cert li::before { content: ""; width: 7px; height: 7px; background: var(--fg); margin-top: 9px; }
 .cert > div + div li::before { background: var(--sig); }
+.emph .price { font-size: clamp(40px, 4.8vw, 96px); }
 @media (max-width: 760px) { .cert { grid-template-columns: 1fr; } .cert > div { padding-inline: 0; } .cert > div + div { padding-inline-start: 0; border-inline-start: 0; border-top: 1px solid var(--line-2); } }
 
 /* Two ways in: live workshop / online course */
@@ -236,6 +237,18 @@ main > section.split { padding: 0; display: grid; grid-template-columns: repeat(
   .hero.hero-over .kicker { margin: 0 0 120px; }
   .hero.hero-over .word { gap: 18px; }
   .hero.hero-over .readout { grid-template-columns: repeat(4, auto); justify-content: space-between; column-gap: 12px; }
+}
+/* Three or four ways in: narrower columns, smaller titles; four fold to a 2x2 grid on tablets */
+@media (min-width: 761px) {
+  main > section.split.n3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  main > section.split.n4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .split.n3 .half h2, .split.n4 .half h2 { font-size: clamp(26px, 2.5vw, 40px); max-width: 14ch; }
+  .split.n4 .half { padding-inline: calc(var(--pad) * .8); }
+}
+@media (min-width: 761px) and (max-width: 1100px) {
+  main > section.split.n4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .split.n4 .half:nth-child(3) { border-inline-start: 0; }
+  .split.n4 .half:nth-child(n+3) { border-top: 1px solid var(--line-2); }
 }
 .readout-note { margin: 12px 0 0 !important; font-size: 13px !important; line-height: 1.5; }
 .readout-note a { color: var(--sig); text-decoration: none; white-space: nowrap; }
