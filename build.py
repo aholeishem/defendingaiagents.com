@@ -126,7 +126,7 @@ EN = {
     ],
 
     "s5": "The curriculum", "s5_h": "From your first attack to incident response.",
-    "s5_p": "22 modules and a capstone, about 248 hours in total. Study at your own pace in English or Hebrew. Each module includes practical work and measurements you can explain. The course is in preparation; join the waitlist for the first releases.",
+    "s5_p": "22 modules and a capstone, about 266 hours in total. Study at your own pace in English or Hebrew. Each module includes practical work and measurements you can explain. The course is in preparation; join the waitlist for the first releases.",
     "parts": [
         ("I", "Foundations", [
         ("00", "Orientation: security decisions under uncertainty"),
@@ -275,7 +275,7 @@ HE = {
     ],
 
     "s5": "תוכנית הלימודים", "s5_h": "מהמתקפה הראשונה ועד טיפול באירוע.",
-    "s5_p": "22 מודולים ופרויקט גמר, כ־248 שעות בסך הכול. לומדים בקצב שלכם, בעברית או באנגלית. בכל מודול מתרגלים בקוד ומפיקים מדידות שתדעו להסביר. הקורס בהכנה; אפשר להצטרף לרשימת ההמתנה לעדכון על פרסום השיעורים הראשונים.",
+    "s5_p": "22 מודולים ופרויקט גמר, כ־266 שעות בסך הכול. לומדים בקצב שלכם, בעברית או באנגלית. בכל מודול מתרגלים בקוד ומפיקים מדידות שתדעו להסביר. הקורס בהכנה; אפשר להצטרף לרשימת ההמתנה לעדכון על פרסום השיעורים הראשונים.",
     "parts": [
         ("I", "יסודות", [
         ("00", "מבוא: החלטות אבטחה בתנאי אי־ודאות"),
@@ -570,7 +570,7 @@ CATALOG = {
         "team_note": "Want to learn with your team now?", "team_p": "The workshops are available to book and do not require either course.",
         "course_cards": [
             ("building", "Engineering", "Building AI Agents", "Understand the model, build the agent loop and evaluate how well your agent performs. From the foundations to deployment.", ["13 modules · about 101 hours", "Local models · practical measurements"], "building/"),
-            ("defending", "Security", "Defending AI Agents", "Find the attacks, build the defences and check that legitimate work still succeeds. From the first attack to incident response.", ["22 modules · about 248 hours", "Free · optional paid assessment", "English and Hebrew"], "course/"),
+            ("defending", "Security", "Defending AI Agents", "Find the attacks, build the defences and check that legitimate work still succeeds. From the first attack to incident response.", ["22 modules · about 266 hours", "Free · optional paid assessment", "English and Hebrew"], "course/"),
         ],
         "home": "Home",
         "security_detail": "Security workshop · detailed programme",
@@ -598,7 +598,7 @@ CATALOG = {
         "team_note": "רוצים ללמוד עם הצוות כבר עכשיו?", "team_p": "אפשר לתאם סדנה בלי להמתין לקורסים ובלי ללמוד בהם קודם.",
         "course_cards": [
             ("building", "פיתוח סוכנים", "בניית סוכני AI", "מבינים איך המודל עובד, בונים את לולאת הסוכן ובודקים את הביצועים שלו. מהיסודות ועד לפריסה לפרודקשן.", ["13 מודולים · כ־101 שעות", "מודלים מקומיים · תרגול ומדידה"], "building/"),
-            ("defending", "אבטחת סוכנים", "הגנה על סוכני AI", "מזהים מתקפות, בונים הגנות ובודקים שהסוכן ממשיך לבצע משימות תקינות. מהמתקפה הראשונה ועד לטיפול באירוע.", ["22 מודולים · כ־248 שעות", "חינם · הערכה בתשלום לבחירה", "בעברית ובאנגלית"], "course/"),
+            ("defending", "אבטחת סוכנים", "הגנה על סוכני AI", "מזהים מתקפות, בונים הגנות ובודקים שהסוכן ממשיך לבצע משימות תקינות. מהמתקפה הראשונה ועד לטיפול באירוע.", ["22 מודולים · כ־266 שעות", "חינם · הערכה בתשלום לבחירה", "בעברית ובאנגלית"], "course/"),
         ],
         "home": "דף הבית",
         "security_detail": "סדנת האבטחה · התוכנית המפורטת",
