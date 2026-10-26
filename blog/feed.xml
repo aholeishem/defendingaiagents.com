@@ -4,8 +4,16 @@
   <link href="https://defendingaiagents.com/blog/"/>
   <link rel="self" href="https://defendingaiagents.com/blog/feed.xml"/>
   <id>https://defendingaiagents.com/blog/</id>
-  <updated>2026-10-13T00:00:00Z</updated>
+  <updated>2026-10-27T00:00:00Z</updated>
   <author><name>Shimon R. Malka</name><uri>https://www.linkedin.com/in/srmalka/</uri></author>
+  <entry>
+    <title>Seven attacks, four defences: what each one buys</title>
+    <link href="https://defendingaiagents.com/blog/four-defences/"/>
+    <id>https://defendingaiagents.com/blog/four-defences/</id>
+    <published>2026-10-27T00:00:00Z</published>
+    <updated>2026-10-27T00:00:00Z</updated>
+    <summary>One agent, one poisoned supplier document, seven ways of asking for the secret. A word filter stops two attacks and breaks two jobs. A rule on the e-mail tool stops six. Changing one operator stops the seventh, and proves less than it seems.</summary>
+  </entry>
   <entry>
     <title>Payload splitting: when the detector and the model read different pages</title>
     <link href="https://defendingaiagents.com/blog/payload-splitting/"/>

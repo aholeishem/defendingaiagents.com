@@ -34,6 +34,23 @@ E = html.escape
 # Blog posts, newest first. Every reference carries a link that was checked by hand.
 POSTS = [
     {
+        "slug": "four-defences",
+        "date": "2026-10-27",
+        "title": "Seven attacks, four defences: what each one buys",
+        "dek": "One agent, one poisoned supplier document, seven ways of asking for the secret. A word filter stops two attacks and breaks two jobs. A rule on the e-mail tool stops six. Changing one operator stops the seventh, and proves less than it seems.",
+        "tags": ["Prompt injection", "Defences", "Evaluation"],
+        "refs": [
+            ("Willison (2025). The lethal trifecta for AI agents: private data, untrusted content, and external communication.", "https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/"),
+            ("Greshake, Abdelnabi, Mishra, Endres, Holz, Fritz (2023). Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection.", "https://arxiv.org/abs/2302.12173"),
+            ("OWASP Gen AI Security Project (2025). LLM01:2025 Prompt Injection.", "https://genai.owasp.org/llmrisk/llm01-prompt-injection/"),
+            ("Hines, Lopez, Hall, Zarfati, Zunger, Kiciman (2024). Defending Against Indirect Prompt Injection Attacks With Spotlighting.", "https://arxiv.org/abs/2403.14720"),
+            ("Beurer-Kellner et al. (2025). Design Patterns for Securing LLM Agents against Prompt Injections.", "https://arxiv.org/abs/2506.08837"),
+            ("Debenedetti et al. (2025). Defeating Prompt Injections by Design (CaMeL).", "https://arxiv.org/abs/2503.18813"),
+            ("Debenedetti et al. (2024). AgentDojo: A Dynamic Environment to Evaluate Prompt Injection Attacks and Defenses for LLM Agents.", "https://arxiv.org/abs/2406.13352"),
+            ("Rule of three (statistics). Wikipedia.", "https://en.wikipedia.org/wiki/Rule_of_three_(statistics)"),
+        ],
+    },
+    {
         "slug": "payload-splitting",
         "date": "2026-10-13",
         "title": "Payload splitting: when the detector and the model read different pages",
