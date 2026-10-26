@@ -612,3 +612,9 @@ input[type="range"]::-moz-range-thumb { width: 14px; height: 14px; background: v
 .lab-get { margin: 18px 0 0; }
 .lab-get .fineprint { display: inline-block; margin-top: 10px; }
 .wl-note a { color: inherit; text-decoration: underline; }
+.course-compare { padding-block: 40px; }
+.course-compare h2 { margin: 0 0 8px; }
+.course-compare > p { margin: 0 0 20px; max-width: 65ch; }
+.course-compare table { min-width: 640px; }
+.course-compare td, .course-compare tbody th { vertical-align: top; }
+.course-compare tbody th { text-align: start; font-weight: 500; white-space: nowrap; }

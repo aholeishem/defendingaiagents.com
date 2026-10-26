@@ -572,6 +572,17 @@ CATALOG = {
             ("building", "Engineering", "Building AI Agents", "Understand the model, build the agent loop and evaluate how well your agent performs. From the foundations to deployment.", ["13 modules · about 101 hours", "Local models · practical measurements"], "building/"),
             ("defending", "Security", "Defending AI Agents", "Find the attacks, build the defences and check that legitimate work still succeeds. From the first attack to incident response.", ["22 modules · about 266 hours", "Free · optional paid assessment", "English and Hebrew"], "course/"),
         ],
+        "compare_h": "The two courses side by side",
+        "compare_p": "One agent runs through both: you build it in the first course, then attack and defend it in the second.",
+        "compare_cols": ("", "Building AI Agents", "Defending AI Agents", "Both, in order"),
+        "compare_rows": [
+            ("For", "Data scientists and engineers who build with AI; no experience of building LLM applications needed", "Developers, ML engineers and data practitioners responsible for an agent; no security background needed", "Anyone who will build an agent and answer for it"),
+            ("Before you start", "Working Python and some machine learning", "The same, plus the agent basics: the first course, or the free four-hour on-ramp", "Working Python and some machine learning"),
+            ("Length", "13 modules, about 101 hours", "22 modules and a capstone, about 266 hours", "About 367 hours"),
+            ("You build", "One agent, grown from a loop to a traced, versioned service: tools, retrieval, MCP, orchestration, evaluation", "A security layer around an agent: detection, enforcement, evaluation, evidence and incident response", "The agent, and then the controls around it"),
+            ("At the end you can show", "An agent with a measured success rate and an interval, gated in CI", "A gateway tested against attacks you have not seen, with a reviewed report", "Both"),
+            ("Cost", "Free; an optional paid review of your project", "Free; an optional paid exam with review and certificate", "Free; both reviews together cost less"),
+        ],
         "home": "Home",
         "security_detail": "Security workshop · detailed programme",
         "security_note": "The outcomes, lab and four-hour plan below belong to the security workshop.",
@@ -599,6 +610,17 @@ CATALOG = {
         "course_cards": [
             ("building", "פיתוח סוכנים", "בניית סוכני AI", "מבינים איך המודל עובד, בונים את לולאת הסוכן ובודקים את הביצועים שלו. מהיסודות ועד לפריסה לפרודקשן.", ["13 מודולים · כ־101 שעות", "מודלים מקומיים · תרגול ומדידה"], "building/"),
             ("defending", "אבטחת סוכנים", "הגנה על סוכני AI", "מזהים מתקפות, בונים הגנות ובודקים שהסוכן ממשיך לבצע משימות תקינות. מהמתקפה הראשונה ועד לטיפול באירוע.", ["22 מודולים · כ־266 שעות", "חינם · הערכה בתשלום לבחירה", "בעברית ובאנגלית"], "course/"),
+        ],
+        "compare_h": "שני הקורסים זה לצד זה",
+        "compare_p": "סוכן אחד עובר בשני הקורסים: בונים אותו בראשון, ותוקפים ומגינים עליו בשני.",
+        "compare_cols": ("", "בניית סוכני AI", "הגנה על סוכני AI", "שניהם, לפי הסדר"),
+        "compare_rows": [
+            ("למי", "מדעני נתונים ומהנדסים שבונים עם AI; לא נדרש ניסיון בבניית אפליקציות LLM", "מפתחים, מהנדסי ML ואנשי דאטה שאחראים על סוכן; לא נדרש רקע באבטחה", "מי שיבנה סוכן ויהיה אחראי עליו"),
+            ("לפני שמתחילים", "Python ברמת עבודה וקצת למידת מכונה", "אותו דבר, ועוד יסודות הסוכנים: הקורס הראשון, או מבוא חינמי של ארבע שעות", "Python ברמת עבודה וקצת למידת מכונה"),
+            ("היקף", "13 מודולים, כ־101 שעות", "22 מודולים ופרויקט גמר, כ־266 שעות", "כ־367 שעות"),
+            ("מה בונים", "סוכן אחד, מלולאה ועד שירות עם tracing וגרסאות: כלים, אחזור, MCP, תזמור, הערכה", "שכבת אבטחה סביב סוכן: זיהוי, אכיפה, הערכה, ראיות ותגובה לאירועים", "את הסוכן, ואז את ההגנות סביבו"),
+            ("מה מראים בסוף", "סוכן עם שיעור הצלחה מדוד ורווח סמך, עם שער בדיקה ב־CI", "Gateway שנבדק מול מתקפות שלא ראיתם, עם דוח שנבדק", "את שניהם"),
+            ("עלות", "חינם; בדיקה בתשלום של הפרויקט, למי שרוצה", "חינם; מבחן בתשלום עם בדיקה ותעודה, למי שרוצה", "חינם; שתי הבדיקות יחד זולות יותר"),
         ],
         "home": "דף הבית",
         "security_detail": "סדנת האבטחה · התוכנית המפורטת",
@@ -685,7 +707,7 @@ def home_page(t, prefix):
   <section class="course-collection" id="courses">
     <div class="collection-head"><div><p class="label">02 / {E(c['courses'])} · {E(c['course_format'])}</p><h2>{E(c['course_h'])}</h2></div><p>{E(c['course_p'])}</p></div>
     {course_cards(t, prefix)}
-    <p class="collection-more"><a class="text-link" href="{prefix}{t['home_path']}courses/">{E(c['catalog_cta'])} {ARROW}</a></p>
+    <p class="collection-more"><a class="text-link" href="{prefix}{t['home_path']}courses/#compare">{E(c['catalog_cta'])} {ARROW}</a></p>
   </section>
 </main>
 """
@@ -706,11 +728,19 @@ def courses_page(t, prefix):
     <p class="availability-note"><span class="status">{E(c['course_status'])}</span>{E(c['course_p'])}</p>
     {course_cards(t, prefix, heading_level=2)}
   </section>
+  <section class="course-compare" id="compare" aria-label="{E(c['compare_h'])}">
+    <h2>{E(c['compare_h'])}</h2>
+    <p>{E(c['compare_p'])}</p>
+    <div class="lab-table" style="overflow-x:auto">
+      <table><thead><tr>{"".join(f'<th scope="col">{E(h)}</th>' for h in c['compare_cols'])}</tr></thead>
+      <tbody>{"".join('<tr><th scope="row">' + E(r[0]) + '</th>' + "".join(f'<td>{E(x)}</td>' for x in r[1:]) + '</tr>' for r in c['compare_rows'])}</tbody></table>
+    </div>
+  </section>
   <aside class="team-alternative"><div><h2>{E(c['team_note'])}</h2><p>{E(c['team_p'])}</p></div><a class="text-link" href="{prefix}{t['ws_path']}">{E(c['workshop_cta'])} {ARROW}</a></aside>
 </main>
 """
     return (head(t, prefix, c["catalog_title"], "/" + t["home_path"] + "courses/", description=c["catalog_intro"], alternates=("/courses/", "/he/courses/"))
-            + topbar(t, prefix, prefix + t["home_path"] or "./", cta=(c["catalog_cta"], "#courses", False),
+            + topbar(t, prefix, prefix + t["home_path"] or "./", cta=(c["catalog_cta"], "#compare", False),
                      other="courses/" if t["lang"] == "he" else "he/courses/", active=t["home_path"] + "courses/")
             + body + footer(t, prefix, other="courses/" if t["lang"] == "he" else "he/courses/"))
 
