@@ -618,3 +618,31 @@ input[type="range"]::-moz-range-thumb { width: 14px; height: 14px; background: v
 .course-compare table { min-width: 640px; }
 .course-compare td, .course-compare tbody th { vertical-align: top; }
 .course-compare tbody th { text-align: start; font-weight: 500; white-space: nowrap; }
+
+/* The learning map (map/): a static SVG, both courses. */
+.map { padding-block: 8px 48px; }
+.map-key { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-bottom: 6px; }
+.map-key .label { display: inline-flex; align-items: center; gap: 8px; }
+.map-key svg { width: 34px; height: 8px; overflow: visible; }
+.map-wrap { overflow-x: auto; margin: 12px 0 18px; border-block: 1px solid var(--line); padding-block: 12px; }
+.map-svg { display: block; max-width: none; height: auto; font-family: var(--sans); }
+@media (min-width: 1200px) { .map-svg { width: 100%; } }
+.map-svg .edge, .map-key .edge { fill: none; stroke: var(--line-2); stroke-width: 1.4; transition: opacity .15s, stroke .15s; }
+.map-svg .edge.soft, .map-key .edge.soft { stroke-dasharray: 5 4; }
+.map-svg .edge.cross, .map-key .edge.cross { stroke: var(--sig); stroke-dasharray: 2 4; opacity: .35; }
+.map-key .edge.cross { opacity: .8; }
+.map-svg marker path { fill: var(--dim); }
+.map-svg:has(.node:hover, .node:focus-visible) .edge { opacity: .08; }
+.map-svg .node rect { fill: var(--bg-2); stroke: var(--line-2); stroke-width: 1; transition: stroke .15s; }
+.map-svg .node.b rect { fill: var(--bg); }
+.map-svg .node:hover rect, .map-svg .node:focus-visible rect { stroke-width: 2; }
+.map-svg .node:focus { outline: none; }
+.map-svg .node text { text-anchor: middle; fill: var(--fg); }
+.map-svg .t1 { font: 500 10px var(--mono); fill: var(--dim); letter-spacing: .04em; }
+.map-svg .t2 { font: 500 13px var(--sans); }
+.map-svg .band { font: 500 11px var(--mono); fill: var(--dim); letter-spacing: .06em; text-transform: uppercase; }
+.map-list { margin-block: 8px 24px; }
+.map-list summary { cursor: pointer; }
+.map-list table { min-width: 640px; margin-top: 12px; }
+.map-list tbody th { text-align: start; font-weight: 500; white-space: nowrap; }
+.map-next { display: flex; flex-wrap: wrap; gap: 10px 28px; }

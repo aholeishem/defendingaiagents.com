@@ -511,6 +511,7 @@ def course_page(t, prefix):
     {sec_head(5, t['s5'], t['s5_h'], t['s5_p'])}
     <div class="parts">{parts}</div>
     <div class="capstone reveal"><span class="label">{E(t['cap_label'])}</span><strong>{E(t['cap_h'])}</strong><span class="d">{E(t['cap_p'])}</span></div>
+    <p class="label indent"><a href="{prefix}{t['home_path']}map/">{E(CATALOG[t['lang']]['map_link'])} {ARROW}</a></p>
   </section>
 
   <section id="certificate">
@@ -574,6 +575,7 @@ CATALOG = {
         ],
         "compare_h": "The two courses side by side",
         "compare_p": "One agent runs through both: you build it in the first course, then attack and defend it in the second.",
+        "map_link": "Every module of both courses on one map",
         "compare_cols": ("", "Building AI Agents", "Defending AI Agents", "Both, in order"),
         "compare_rows": [
             ("For", "Data scientists and engineers who build with AI; no experience of building LLM applications needed", "Developers, ML engineers and data practitioners responsible for an agent; no security background needed", "Anyone who will build an agent and answer for it"),
@@ -613,6 +615,7 @@ CATALOG = {
         ],
         "compare_h": "שני הקורסים זה לצד זה",
         "compare_p": "סוכן אחד עובר בשני הקורסים: בונים אותו בראשון, ותוקפים ומגינים עליו בשני.",
+        "map_link": "כל המודולים של שני הקורסים על מפה אחת",
         "compare_cols": ("", "בניית סוכני AI", "הגנה על סוכני AI", "שניהם, לפי הסדר"),
         "compare_rows": [
             ("למי", "מדעני נתונים ומהנדסים שבונים עם AI; לא נדרש ניסיון בבניית אפליקציות LLM", "מפתחים, מהנדסי ML ואנשי דאטה שאחראים על סוכן; לא נדרש רקע באבטחה", "מי שיבנה סוכן ויהיה אחראי עליו"),
@@ -735,6 +738,7 @@ def courses_page(t, prefix):
       <table><thead><tr>{"".join(f'<th scope="col">{E(h)}</th>' for h in c['compare_cols'])}</tr></thead>
       <tbody>{"".join('<tr><th scope="row">' + E(r[0]) + '</th>' + "".join(f'<td>{E(x)}</td>' for x in r[1:]) + '</tr>' for r in c['compare_rows'])}</tbody></table>
     </div>
+    <p class="label"><a href="{prefix}{t['home_path']}map/">{E(c['map_link'])} {ARROW}</a></p>
   </section>
   <aside class="team-alternative"><div><h2>{E(c['team_note'])}</h2><p>{E(c['team_p'])}</p></div><a class="text-link" href="{prefix}{t['ws_path']}">{E(c['workshop_cta'])} {ARROW}</a></aside>
 </main>
@@ -1245,6 +1249,7 @@ def building_page(t, b, prefix, url, mail, other):
   <section id="topics">
     {head_('topics_h')}
     <ol class="build indent">{topics}</ol>
+    <p class="label indent"><a href="{prefix}{t['home_path']}map/">{E(CATALOG[t['lang']]['map_link'])} {ARROW}</a></p>
   </section>
 
   <section>
@@ -1407,6 +1412,208 @@ def lab_page(t, L, w, prefix, url, other):
             + topbar(t, prefix, prefix + t["home_path"] or "./", cta=(L["cta"], "#get", False), other=other, active=t["home_path"] + "workshop/") + body + footer(t, prefix, other=other))
 
 
+# The learning map: both courses on one page, from the course repo's course/en/map.md (the security course's
+# dependency graph) and curriculum/engineering.md (the building course's order and its "Assumed by" column).
+# Keep the three lists below in step with those two files.
+MAP_BUILD = [  # id, hours, English short name, Hebrew short name
+    ("E1", 6, "LLM mechanics", "איך LLM עובד"), ("E2", 7, "Prompting, context", "פרומפט וקונטקסט"),
+    ("E3", 7, "Agent loop", "לולאת הסוכן"), ("E4", 7, "Frameworks", "פריימוורקים"),
+    ("E5", 7, "Retrieval, memory", "אחזור וזיכרון"), ("E6", 7, "Protocols, MCP", "פרוטוקולים, MCP"),
+    ("E7", 8, "Orchestration", "תזמור"), ("E8", 8, "Harnesses", "סביבות הרצה"),
+    ("E9", 10, "Evaluation", "הערכת איכות"), ("E10", 7, "Serving", "הגשת מודלים"),
+    ("E11", 8, "LLMOps", "LLMOps וניטור"), ("E12", 9, "Deployment", "פריסה"), ("E13", 10, "Adapting models", "התאמת מודלים"),
+]
+MAP_DEFEND = [  # id, hours, English, Hebrew, column (0 on-ramp, 1-5 parts I-V, 6 capstone)
+    ("P", 4, "On-ramp", "מסלול הכנה", 0),
+    ("M0", 5, "Orientation", "מבוא", 1), ("M1", 12, "Lab", "מעבדה", 1), ("M2", 7, "Fundamentals", "יסודות", 1),
+    ("M3", 17, "Attack surface", "משטח תקיפה", 1),
+    ("M4", 16, "Injection", "הזרקת פרומפט", 2), ("M5", 14, "Poisoning", "הרעלה", 2), ("M6", 11, "Privacy", "פרטיות", 2),
+    ("M7", 10, "Detectors", "גלאים", 3), ("M8", 10, "Evaluation", "הערכה", 3), ("M9", 8, "Red-teaming", "Red teaming", 3),
+    ("M10", 11, "Anomaly", "חריגות", 3),
+    ("M11", 13, "Design", "תכנון גבולות", 4), ("M12", 12, "Identity", "זהות והרשאות", 4), ("M13", 14, "Policy", "מדיניות", 4),
+    ("M14", 12, "Supply chain", "שרשרת אספקה", 4), ("M15", 12, "Data protection", "מידע אישי", 4),
+    ("M16", 11, "Evidence", "ראיות ויומנים", 5), ("M17", 6, "Learning policy", "למידת מדיניות", 5), ("M18", 11, "Incidents", "אירועים", 5),
+    ("M19", 12, "Governance", "רגולציה", 5), ("M20", 8, "Finding agents", "גילוי סוכנים", 5), ("M21", 8, "In-path control", "בקרה בנתיב", 5),
+    ("C", 26, "Capstone", "פרויקט גמר", 6),
+]
+# (from, to, firm): firm edges are "take this first", the others "helps".
+MAP_EDGES = [(a, b, True) for a, b in [
+    ("E1", "E2"), ("E2", "E3"), ("E3", "E4"), ("E3", "E5"), ("E3", "E6"), ("E3", "E7"), ("E3", "E8"), ("E3", "E9"),
+    ("E6", "E7"), ("E9", "E11"), ("E3", "E10"), ("E10", "E12"), ("E11", "E12"), ("E5", "E13"), ("E9", "E13"),
+    ("M0", "M1"), ("M0", "M2"), ("M1", "M3"), ("M2", "M3"), ("M3", "M4"), ("M4", "M5"), ("M2", "M6"), ("M4", "M7"),
+    ("M7", "M8"), ("M8", "M9"), ("M5", "M10"), ("M7", "M10"), ("M9", "M11"), ("M3", "M11"), ("M11", "M12"),
+    ("M7", "M12"), ("M7", "M13"), ("M11", "M13"), ("M12", "M13"), ("M3", "M14"), ("M13", "M15"), ("M13", "M16"),
+    ("M16", "M17"), ("M12", "M18"), ("M16", "M18"), ("M18", "M19"), ("M19", "M20"), ("M12", "M20"), ("M10", "M21"),
+    ("M16", "M21"), ("M18", "M21"), ("M19", "C"), ("M9", "C"), ("M13", "C"), ("M16", "C")]] + [
+    (a, b, False) for a, b in [("M5", "M17"), ("M20", "C"), ("P", "M3"), ("P", "M12")]]
+MAP_ASSUMED = {  # building module -> security modules that assume it
+    "E1": ["M1", "M4", "M21"], "E2": ["M4", "M11"], "E3": ["M1", "M3", "M11"], "E4": ["M3", "M14"], "E5": ["M5", "M15"],
+    "E6": ["M3", "M12"], "E7": ["M3", "M13"], "E8": ["M3", "M12"], "E9": ["M8", "M9"], "E10": ["M21"],
+    "E11": ["M16", "M18"], "E12": ["M12", "M14", "M21"], "E13": ["M5", "M14"],
+}
+
+EN_MAP = {
+    "title": "The learning map", "label": "Both courses on one map",
+    "h1": "One agent, built then defended.",
+    "p": "Thirteen building modules on top, twenty-two security modules and the capstone below. Arrows point from what you take first to what needs it. The dashed lines that cross between the two courses are the building modules each security module assumes.",
+    "description": "The two online courses, Building AI Agents and Defending AI Agents, on one map: every module, its hours, what it needs first, and which building modules each security module assumes.",
+    "build": "Building AI Agents", "defend": "Defending AI Agents", "h": "h",
+    "build_sum": "13 modules, about 101 hours", "defend_sum": "on-ramp, 22 modules and the capstone, about 270 hours",
+    "hint": "Point at a module, or tab to it, to light up what it needs and what needs it.",
+    "key": [("firm", "take first"), ("soft", "helps"), ("cross", "assumed by a security module")],
+    "list_h": "The map as a list", "needs": "Needs", "needed": "Needed by", "uses": "Assumes", "none": "nothing",
+    "next": [("courses/#compare", "Compare the two courses"), ("building/", "Building AI Agents"), ("course/", "Defending AI Agents")],
+    "aria": "Learning map of both courses",
+}
+HE_MAP = {
+    "title": "מפת הלימוד", "label": "שני הקורסים על מפה אחת",
+    "h1": "סוכן אחד: בונים, ואז מגינים.",
+    "p": "למעלה שלושה־עשר מודולים של בניית סוכנים, למטה עשרים ושניים מודולים של אבטחה ופרויקט הגמר. החצים יוצאים ממה שלומדים קודם אל מה שנשען עליו. הקווים המקווקווים שחוצים בין הקורסים מסמנים את מודולי הבנייה שכל מודול אבטחה מניח שכבר למדתם.",
+    "description": "שני הקורסים המקוונים, בניית סוכני AI והגנה על סוכני AI, על מפה אחת: כל מודול, השעות שלו, מה צריך ללמוד לפניו, ואילו מודולי בנייה כל מודול אבטחה מניח.",
+    "build": "בניית סוכני AI", "defend": "הגנה על סוכני AI", "h": "ש׳",
+    "build_sum": "13 מודולים, כ־101 שעות", "defend_sum": "מסלול הכנה, 22 מודולים ופרויקט גמר, כ־270 שעות",
+    "hint": "הצביעו על מודול, או הגיעו אליו במקש Tab, כדי לראות מה הוא צריך ומה נשען עליו.",
+    "key": [("firm", "לומדים קודם"), ("soft", "עוזר"), ("cross", "מודול אבטחה מניח אותו")],
+    "list_h": "המפה כרשימה", "needs": "צריך", "needed": "נשען עליו", "uses": "מניח", "none": "כלום",
+    "next": [("he/courses/#compare", "השוואה בין שני הקורסים"), ("he/building/", "בניית סוכני AI"), ("he/course/", "הגנה על סוכני AI")],
+    "aria": "מפת הלימוד של שני הקורסים",
+}
+
+
+def map_layout():
+    """Columns and rows for every node. Building modules sit in columns by longest prerequisite chain; security
+    modules by part. Returns {id: (band, col, row)} and the number of rows in each band."""
+    firm = [(a, b) for a, b, f in MAP_EDGES if f]
+    depth = {n[0]: 0 for n in MAP_BUILD}
+    for _ in MAP_BUILD:
+        for a, b in firm:
+            if a in depth and b in depth:
+                depth[b] = max(depth[b], depth[a] + 1)
+    cols = {}
+    for n in MAP_BUILD:
+        cols.setdefault(("b", depth[n[0]]), []).append(n[0])
+    for n in MAP_DEFEND:
+        cols.setdefault(("d", n[4]), []).append(n[0])
+    rows = {"b": max(len(v) for k, v in cols.items() if k[0] == "b"), "d": max(len(v) for k, v in cols.items() if k[0] == "d")}
+    pos = {}
+    for (band, col), ids in cols.items():
+        top = (rows[band] - len(ids)) / 2
+        for i, nid in enumerate(ids):
+            pos[nid] = (band, col, top + i)
+    return pos, rows
+
+
+def map_svg(t, M, prefix):
+    he = t["lang"] == "he"
+    NW, NH, CW, RH, PAD, GAP, HEAD = 150, 42, 178, 54, 24, 64, 34
+    pos, rows = map_layout()
+    W = PAD * 2 + CW * 6 + NW
+    band_y = {"b": HEAD, "d": HEAD + rows["b"] * RH + GAP + HEAD}
+    H = band_y["d"] + rows["d"] * RH + PAD
+    xy = {}
+    for nid, (band, col, row) in pos.items():
+        x = PAD + col * CW
+        xy[nid] = (W - x - NW if he else x, band_y[band] + row * RH)
+    names = {n[0]: (n[1], n[3] if he else n[2]) for n in MAP_BUILD}
+    names.update({n[0]: (n[1], n[3] if he else n[2]) for n in MAP_DEFEND})
+    cross = [(e, m) for e, ms in MAP_ASSUMED.items() for m in ms]
+    fwd = -1 if he else 1
+
+    def curve(a, b, kind):
+        (x1, y1), (x2, y2) = xy[a], xy[b]
+        if kind == "cross":
+            sx, sy, ex, ey = x1 + NW / 2, y1 + NH, x2 + NW / 2, y2
+            d = f"M{sx:.0f},{sy:.0f} C{sx:.0f},{sy + 90:.0f} {ex:.0f},{ey - 90:.0f} {ex:.0f},{ey:.0f}"
+        elif pos[a][1] == pos[b][1]:  # same column: bow out on the back side
+            bx = x1 if fwd == 1 else x1 + NW
+            d = (f"M{bx:.0f},{y1 + NH / 2:.0f} C{bx - 26 * fwd:.0f},{y1 + NH / 2:.0f} {bx - 26 * fwd:.0f},{y2 + NH / 2:.0f} "
+                 f"{bx:.0f},{y2 + NH / 2:.0f}")
+        else:
+            sx = x1 + NW if fwd == 1 else x1
+            ex = x2 if fwd == 1 else x2 + NW
+            h = (ex - sx) * 0.5
+            d = f"M{sx:.0f},{y1 + NH / 2:.0f} C{sx + h:.0f},{y1 + NH / 2:.0f} {ex - h:.0f},{y2 + NH / 2:.0f} {ex:.0f},{y2 + NH / 2:.0f}"
+        return f'<path class="edge {kind} x-{a} x-{b}" d="{d}" marker-end="url(#map-arrow)"/>'
+
+    edges = "".join(curve(a, b, "firm" if f else "soft") for a, b, f in MAP_EDGES)
+    edges += "".join(curve(a, b, "cross") for a, b in cross)
+    nbrs = {}
+    for a, b, _ in MAP_EDGES:
+        nbrs.setdefault(a, set()).add(b); nbrs.setdefault(b, set()).add(a)
+    for a, b in cross:
+        nbrs.setdefault(a, set()).add(b); nbrs.setdefault(b, set()).add(a)
+    nodes = ""
+    for nid, (x, y) in xy.items():
+        hours, name = names[nid]
+        band = pos[nid][0]
+        href = prefix + (("he/" if he else "") + ("building/" if band == "b" else "course/#curriculum"))
+        tag = {"P": "", "C": ""}.get(nid, nid)
+        top = f"{tag} · {hours} {M['h']}" if tag else f"{hours} {M['h']}"
+        k = " ".join(f"k-{n}" for n in sorted(nbrs.get(nid, ())))
+        nodes += (f'<a class="node {band} {k}" id="n-{nid}" href="{href}"><title>{E(name)}, {E(top)}</title>'
+                  f'<rect x="{x}" y="{y}" width="{NW}" height="{NH}" rx="3"/>'
+                  f'<text class="t1" x="{x + NW / 2:.0f}" y="{y + 15}">{E(top)}</text>'
+                  f'<text class="t2" x="{x + NW / 2:.0f}" y="{y + 32}">{E(name)}</text></a>')
+    hx = W - PAD if he else PAD
+    heads = (f'<text class="band" x="{hx}" y="{band_y["b"] - 12}">{E(M["build"])} · {E(M["build_sum"])}</text>'
+             f'<text class="band" x="{hx}" y="{band_y["d"] - 12}">{E(M["defend"])} · {E(M["defend_sum"])}</text>')
+    hover = "".join(f'.map-svg:has(#n-{n}:hover,#n-{n}:focus-visible) :is(.x-{n}){{opacity:1;stroke:var(--sig)}}'
+                    f'.map-svg:has(#n-{n}:hover,#n-{n}:focus-visible) :is(.k-{n},#n-{n}) rect{{stroke:var(--sig)}}'
+                    for n in xy)
+    rtl = ' direction="rtl"' if he else ""
+    return (f'<style>{hover}</style>'
+            f'<svg class="map-svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="group" aria-label="{E(M["aria"])}"'
+            f'{rtl}>'
+            f'<defs><marker id="map-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">'
+            f'<path d="M0,0 L8,4 L0,8 z"/></marker></defs>'
+            f'<g class="edges">{edges}</g>{heads}<g class="nodes">{nodes}</g></svg>')
+
+
+def map_list(t, M):
+    he = t["lang"] == "he"
+    name = {n[0]: n[3] if he else n[2] for n in MAP_BUILD + [d[:4] for d in MAP_DEFEND]}
+    full = {"P": name["P"], "C": name["C"]}
+
+    def show(ids):
+        return ", ".join(full.get(i, f"{i} {name[i]}") for i in ids) or M["none"]
+    rows = ""
+    for nid in [n[0] for n in MAP_BUILD] + [n[0] for n in MAP_DEFEND]:
+        needs = [a for a, b, _ in MAP_EDGES if b == nid]
+        needed = [b for a, b, _ in MAP_EDGES if a == nid]
+        uses = MAP_ASSUMED.get(nid, []) if nid.startswith("E") else [e for e, ms in MAP_ASSUMED.items() if nid in ms]
+        third = M["needed"] + " (" + M["defend"] + ")" if nid.startswith("E") else M["uses"]
+        rows += (f'<tr><th scope="row">{E(full.get(nid, nid + " " + name[nid]))}</th><td>{E(show(needs))}</td>'
+                 f'<td>{E(show(needed))}</td><td>{E(show(uses))}</td></tr>')
+    cols = ("", M["needs"], M["needed"], M["uses"])
+    return (f'<details class="map-list"><summary class="label">{E(M["list_h"])}</summary><div class="lab-table" style="overflow-x:auto">'
+            f'<table><thead><tr>{"".join(f"<th scope=col>{E(c)}</th>" for c in cols)}</tr></thead><tbody>{rows}</tbody></table></div></details>')
+
+
+def map_page(t, M, prefix, url, other):
+    key = "".join(f'<span class="label"><svg viewBox="0 0 34 8" aria-hidden="true"><path class="edge {k}" d="M1,4 H33"/></svg>{E(v)}</span>'
+                  for k, v in M["key"])
+    nxt = " ".join(f'<a class="label" href="{prefix}{h}">{E(l)} {ARROW}</a>' for h, l in M["next"])
+    body = f"""
+<main id="main" class="courses-catalog map-page">
+  <section class="catalog-intro">
+    <p class="label">{E(M['label'])}</p>
+    <h1>{E(M['h1'])}</h1>
+    <p class="catalog-description">{E(M['p'])}</p>
+  </section>
+  <section class="map" aria-label="{E(M['aria'])}">
+    <div class="map-key">{key}</div>
+    <p class="fineprint">{E(M['hint'])}</p>
+    <div class="map-wrap">{map_svg(t, M, prefix)}</div>
+    {map_list(t, M)}
+    <p class="map-next">{nxt}</p>
+  </section>
+</main>
+"""
+    return (head(t, prefix, f"{M['title']} · {t['brand']}", url, description=M["description"], alternates=("/map/", "/he/map/"))
+            + topbar(t, prefix, prefix + t["home_path"] or "./", other=other, active=t["home_path"] + "courses/")
+            + body + footer(t, prefix, other=other))
+
+
 def not_found(t):
     body = f"""
 <main id="main">
@@ -1551,6 +1758,10 @@ def main():
     (ROOT / "lab" / "index.html").write_text(lab_page(EN, EN_LAB, EN_WS, "../", "/lab/", "he/lab/"), encoding="utf-8")
     (ROOT / "he" / "lab").mkdir(exist_ok=True)
     (ROOT / "he" / "lab" / "index.html").write_text(lab_page(HE, HE_LAB, HE_WS, "../../", "/he/lab/", "lab/"), encoding="utf-8")
+    (ROOT / "map").mkdir(exist_ok=True)
+    (ROOT / "map" / "index.html").write_text(map_page(EN, EN_MAP, "../", "/map/", "he/map/"), encoding="utf-8")
+    (ROOT / "he" / "map").mkdir(exist_ok=True)
+    (ROOT / "he" / "map" / "index.html").write_text(map_page(HE, HE_MAP, "../../", "/he/map/", "map/"), encoding="utf-8")
     (ROOT / "404.html").write_text(not_found(EN), encoding="utf-8")
     blog = ROOT / "blog"
     blog.mkdir(exist_ok=True)
@@ -1559,7 +1770,7 @@ def main():
     for p in POSTS:
         (blog / p["slug"]).mkdir(exist_ok=True)
         (blog / p["slug"] / "index.html").write_text(post_page(EN, p), encoding="utf-8")
-    print(f"built index.html, he/index.html, courses/, course/, building/, workshop/, lab/ (EN and HE), 404.html, blog/ ({len(POSTS)} posts)")
+    print(f"built index.html, he/index.html, courses/, course/, building/, workshop/, lab/, map/ (EN and HE), 404.html, blog/ ({len(POSTS)} posts)")
 
 
 if __name__ == "__main__":
