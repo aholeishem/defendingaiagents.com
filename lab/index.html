@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Free lab: the assistant that gave the secret away · Defending AI Agents</title>
+<meta name="description" content="A free 60-minute hands-on lab: attack an AI assistant through a supplier&#x27;s document, write two defences, and measure attacks stopped and legitimate work kept. Python only, no installs. English and Hebrew.">
+<link rel="canonical" href="https://defendingaiagents.com/lab/"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/lab/"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/lab/"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/lab/">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Defending AI Agents">
+<meta property="og:title" content="Free lab: the assistant that gave the secret away · Defending AI Agents"><meta property="og:description" content="A free 60-minute hands-on lab: attack an AI assistant through a supplier&#x27;s document, write two defences, and measure attacks stopped and legitimate work kept. Python only, no installs. English and Hebrew.">
+<meta property="og:url" content="https://defendingaiagents.com/lab/"><meta property="og:image" content="https://defendingaiagents.com/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml"><link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preload" href="../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="../"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">Defending AI Agents</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../workshop/" aria-current="location">Team workshops</a><a class="label" href="../courses/">Online courses</a><a class="label" href="../blog/">Blog</a></nav>
+  <div class="end">
+    <a class="lang label" href="../he/lab/" lang="he" hreflang="he">עברית</a>
+    <a class="btn" href="#get">Get the lab</a>
+    <details class="mobile-nav"><summary class="label">Menu</summary><nav aria-label="Menu"><a class="label" href="../workshop/" aria-current="location">Team workshops</a><a class="label" href="../courses/">Online courses</a><a class="label" href="../blog/">Blog</a></nav></details>
+  </div>
+</header>
+<main id="main" class="product-page lab-page">
+  <section class="hero" aria-label="Free lab: the assistant that gave the secret away">
+    <p class="kicker label"><i></i>Free lab · 60 minutes · no installs</p>
+    <div class="word">
+      <div class="course-title"><h1><span>The assistant that</span><span>gave the secret away</span></h1></div>
+      <div class="side"><p>An AI assistant reads documents and sends e-mail. One document comes from a supplier&#x27;s portal, and the attacker controls the portal. Make the assistant leak a confidential file, write two defences, and measure what each one stops and what it breaks.</p><div class="readout"><span class="label">Time<b class="">60 min</b></span><span class="label">Needs<b class="">Python 3.10+</b></span><span class="label">Installs<b class="">none</b></span><span class="label">Language<b class="">EN · HE</b></span></div><p class="ctas"><a class="btn" href="#get">Get the lab</a> <a class="label" href="#do">What you will do <span class="arrow" aria-hidden="true">→</span></a></p></div>
+    </div>
+  </section>
+
+  <section id="do">
+    <div class="sec-head reveal"><div class="label"><em>01</em>What you will do</div><div><h2>Four parts, one hour.</h2></div></div>
+    <ol class="build indent"><li class="reveal"><span class="label">01</span><span><b>Attack.</b> Write a supplier document that makes the assistant send a confidential file to an outside address. Try other wordings until it works.</span></li><li class="reveal"><span class="label">02</span><span><b>A first defence.</b> Write the defence most people write first, a word filter, and run the checks: attacks that still get through, legitimate jobs that break.</span></li><li class="reveal"><span class="label">03</span><span><b>A structural defence.</b> Ask where the destination address came from, and enforce the answer in the e-mail tool itself.</span></li><li class="reveal"><span class="label">04</span><span><b>What you measured.</b> Zero leaks in seven tries is not proof. Work out what the result does and does not tell you, and what it means at 100,000 e-mails a day.</span></li></ol>
+  </section>
+
+  <section id="results">
+    <div class="sec-head reveal"><div class="label"><em>02</em>Compare your results</div><div><h2>What the four configurations score.</h2><p>Seven attacks and five legitimate jobs, on a simulated model with fixed behaviour, so that every difference comes from the defence. Run the lab and see whether yours matches.</p></div></div>
+    <div class="indent lab-table" style="overflow-x:auto">
+      <table><thead><tr><th>Configuration</th><th>Attacks that succeeded</th><th>Jobs that still work</th></tr></thead><tbody><tr><td>No defence</td><td class="num">7/7</td><td class="num">5/5</td></tr><tr><td>Word filter</td><td class="num">5/7</td><td class="num">3/5</td></tr><tr><td>Domain substring check</td><td class="num">1/7</td><td class="num">5/5</td></tr><tr><td>Email tool restriction</td><td class="num">0/7</td><td class="num">5/5</td></tr></tbody></table>
+    </div>
+    <p class="indent fineprint">Training results from a simulated model; not performance figures for a real model.</p>
+  </section>
+
+  <section class="cta" id="get">
+    <h2 class="big-link reveal">Leave your e-mail address and download the lab.</h2>
+    <form class="wl reveal" action="https://waitlist.defendingaiagents.workers.dev/join" method="post" novalidate>
+      <label class="label" for="wl-email">Your e-mail address</label>
+      <div class="wl-row">
+        <input id="wl-email" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" required maxlength="254" dir="ltr" placeholder="you@example.com">
+        <button type="submit">Get the lab <span class="arrow" aria-hidden="true">→</span></button>
+      </div>
+      <input type="hidden" name="lang" value="en">
+      <input type="hidden" name="source" value="lab1">
+      <div class="wl-hp" aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off"></label></div>
+      <p class="wl-status" role="status" aria-live="polite"></p>
+      <p class="wl-note" id="wl-ok" data-state="ok">Thank you. Your download is below. <a href="../assets/labs/securing-agents-lab1.zip" download>Download the lab (zip, 12 KB)</a></p><p class="wl-note" id="wl-invalid" data-state="invalid">That does not look like an e-mail address. Check it and try again.</p><p class="wl-note" id="wl-busy" data-state="busy">Too many attempts from your network. Please try again in an hour.</p><p class="wl-note" id="wl-error" data-state="error">The list could not be reached. Please try again, or write to shimon@defendingaiagents.com.</p>
+      <script type="application/json" id="wl-strings">{"sending": "One moment…", "ok": "Thank you. Your download is below.", "invalid": "That does not look like an e-mail address. Check it and try again.", "busy": "Too many attempts from your network. Please try again in an hour.", "error": "The list could not be reached. Please try again, or write to shimon@defendingaiagents.com."}</script>
+    </form>
+    <p class="lab-get reveal" id="lab-get" hidden><a class="btn" href="../assets/labs/securing-agents-lab1.zip" download>Download the lab (zip, 12 KB)</a><br><span class="fineprint" dir="auto">Unzip it, open README.md (or README.he.md in Hebrew), and run python3 check.py --verbose.</span></p>
+    <div class="fine reveal"><span class="label"><em style="font-style:normal;color:var(--sig)">03</em>&nbsp; Get the lab</span><p>We use your address to send occasional news of the workshops and courses, never more than one e-mail a month. It is never shared. To leave the list, write to shimon@defendingaiagents.com.</p></div>
+  </section>
+
+  <section>
+    <div class="sec-head reveal"><div class="label"><em>04</em>With your team</div><div><h2>The lab is the first hour of the security workshop.</h2><p>The workshop adds the reasoning behind each result, a checklist for your own agent and time to apply it with your team, at your office or on Zoom.</p></div></div>
+    <p class="label indent"><a href="../workshop/">About the workshop <span class="arrow" aria-hidden="true">→</span></a></p>
+  </section>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 Defending AI Agents</span>
+  <nav aria-label="Footer">
+    <a href="../workshop/">Team workshops</a>
+    <a href="../courses/">Online courses</a>
+    <a href="mailto:shimon@defendingaiagents.com">Contact</a>
+    <a href="../.well-known/security.txt">Security</a>
+    <a href="../he/lab/" lang="he" hreflang="he">עברית</a>
+  </nav>
+</footer>
+<script src="../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>

@@ -58,6 +58,8 @@
       status.textContent = M[state] || M.error;
       status.setAttribute("data-state", state);
       form.classList.toggle("done", state === "ok");
+      var get = document.getElementById("lab-get");   // the free lab's page: the download appears on success
+      if (get && state === "ok") get.hidden = false;
     };
     var VALID = /^[^\s@<>"(),;:\\]{1,64}@[^\s@<>"(),;:\\]+\.[^\s@<>"(),;:\\.]{2,}$/;
     form.addEventListener("submit", function (e) {
@@ -66,6 +68,7 @@
       var value = email.value.trim();
       if (!VALID.test(value) || value.length > 254) { show("invalid"); email.focus(); return; }
       var data = { email: value, lang: form.lang.value, website: form.website.value };
+      if (form.source) data.source = form.source.value;
       form.setAttribute("aria-busy", "true"); button.disabled = true; show("sending");
       fetch(form.action, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) })
         .then(function (r) { return r.json().catch(function () { return { outcome: "error" }; }); })

@@ -603,3 +603,12 @@ input[type="range"]::-moz-range-thumb { width: 14px; height: 14px; background: v
   .home-catalog .intro-bottom { margin-top: 28px; }
   .catalog-field { opacity: .5; }
 }
+
+/* The free lab's page */
+.lab-table table { width: 100%; border-collapse: collapse; font: 400 15px/1.4 var(--sans); }
+.lab-table th, .lab-table td { text-align: start; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line, rgba(127,127,127,.25)); }
+.lab-table th { font-weight: 500; color: var(--muted, inherit); }
+.lab-table td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.lab-get { margin: 18px 0 0; }
+.lab-get .fineprint { display: inline-block; margin-top: 10px; }
+.wl-note a { color: inherit; text-decoration: underline; }

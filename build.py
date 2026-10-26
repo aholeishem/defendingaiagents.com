@@ -772,6 +772,7 @@ HE_WS = {
     "lab_choose": "בחרו הגנה ובדקו את התוצאות",
     "lab_hint": "החליפו בין ההגנות כדי לראות את תוצאות הבדיקות במעבדת הלימוד.",
     "lab_compare": "השוואה בין כל ארבע התצורות",
+    "lab_try": "להרצת המעבדה בעצמכם, בחינם",
     "bars": [
         ("בלי הגנה", "כל המשימות מצליחות, וגם כל המתקפות.", 7, 5),
         ("סינון מילים", "חוסם חלק מהמשימות התקינות. חמש מתקפות עדיין מצליחות.", 5, 3),
@@ -904,6 +905,7 @@ EN_WS = {
     "lab_choose": "Choose a defence to inspect",
     "lab_hint": "Switch defences to explore the recorded training results.",
     "lab_compare": "Compare all four configurations",
+    "lab_try": "Run the lab yourself, free",
     "bars": [
         ("No defence", "Every task succeeds. So does every attack.", 7, 5),
         ("Word filter", "Blocks some legitimate tasks. Five attacks still succeed.", 5, 3),
@@ -1097,6 +1099,7 @@ def workshop_page(t, w, prefix, url, mail, other):
       <div class="bars" aria-live="polite" aria-atomic="true">{bars}</div>
     </div>
     <p class="indent fineprint">{E(w['lab_note'])}</p>
+    <p class="label indent"><a href="{prefix}{'he/' if t['lang'] == 'he' else ''}lab/">{E(w['lab_try'])} {ARROW}</a></p>
   </section>
 
   <section id="plan">
@@ -1236,6 +1239,142 @@ def building_page(t, b, prefix, url, mail, other):
 """
     return (head(t, prefix, f"{b['title']} · {t['brand']}", url, description=b["description"], alternates=("/building/", "/he/building/"))
             + topbar(t, prefix, prefix + t["home_path"] or "./", cta=(b["cta"], mail, False), other=other, active=t["home_path"] + "courses/") + body + footer(t, prefix, other=other))
+
+
+LAB_ZIP = "assets/labs/securing-agents-lab1.zip"
+
+EN_LAB = {
+    "title": "Free lab: the assistant that gave the secret away",
+    "description": "A free 60-minute hands-on lab: attack an AI assistant through a supplier's document, write two defences, and measure attacks stopped and legitimate work kept. Python only, no installs. English and Hebrew.",
+    "kicker": "Free lab · 60 minutes · no installs",
+    "h1": ["The assistant that", "gave the secret away"],
+    "hero_p": "An AI assistant reads documents and sends e-mail. One document comes from a supplier's portal, and the attacker controls the portal. Make the assistant leak a confidential file, write two defences, and measure what each one stops and what it breaks.",
+    "readout": [("Time", "60 min", ""), ("Needs", "Python 3.10+", ""), ("Installs", "none", ""), ("Language", "EN · HE", "")],
+    "cta": "Get the lab", "cta2": "What you will do",
+    "do_h": ("01", "What you will do", "Four parts, one hour.", None),
+    "parts": [
+        ("Attack", "Write a supplier document that makes the assistant send a confidential file to an outside address. Try other wordings until it works."),
+        ("A first defence", "Write the defence most people write first, a word filter, and run the checks: attacks that still get through, legitimate jobs that break."),
+        ("A structural defence", "Ask where the destination address came from, and enforce the answer in the e-mail tool itself."),
+        ("What you measured", "Zero leaks in seven tries is not proof. Work out what the result does and does not tell you, and what it means at 100,000 e-mails a day."),
+    ],
+    "res_h": ("02", "Compare your results", "What the four configurations score.", "Seven attacks and five legitimate jobs, on a simulated model with fixed behaviour, so that every difference comes from the defence. Run the lab and see whether yours matches."),
+    "res_cols": ("Configuration", "Attacks that succeeded", "Jobs that still work"),
+    "res_note": "Training results from a simulated model; not performance figures for a real model.",
+    "get_h": ("03", "Get the lab", "Leave your e-mail address and download the lab.", None),
+    "get_fine": "We use your address to send occasional news of the workshops and courses, never more than one e-mail a month. It is never shared. To leave the list, write to shimon@defendingaiagents.com.",
+    "get_link": "Download the lab (zip, 12 KB)",
+    "get_after": "Unzip it, open README.md (or README.he.md in Hebrew), and run python3 check.py --verbose.",
+    "wl_button": "Get the lab",
+    "wl_msgs": {
+        "sending": "One moment…",
+        "ok": "Thank you. Your download is below.",
+        "invalid": "That does not look like an e-mail address. Check it and try again.",
+        "busy": "Too many attempts from your network. Please try again in an hour.",
+        "error": "The list could not be reached. Please try again, or write to " + EMAIL + ".",
+    },
+    "next_h": ("04", "With your team", "The lab is the first hour of the security workshop.", "The workshop adds the reasoning behind each result, a checklist for your own agent and time to apply it with your team, at your office or on Zoom."),
+    "next_link": "About the workshop",
+}
+
+HE_LAB = {
+    "title": "מעבדה חינמית: העוזר שמסר את הסוד",
+    "description": "מעבדה מעשית וחינמית של שעה: תוקפים עוזר AI דרך מסמך של ספק, כותבים שתי הגנות ומודדים כמה מתקפות נעצרו וכמה עבודה לגיטימית נשמרה. רק Python, בלי התקנות. בעברית ובאנגלית.",
+    "kicker": "מעבדה חינמית · 60 דקות · בלי התקנות",
+    "h1": ["העוזר", "שמסר את הסוד"],
+    "hero_p": "עוזר AI קורא מסמכים ושולח מיילים. אחד המסמכים מגיע מפורטל של ספק, והתוקף שולט בפורטל. גרמו לעוזר להדליף קובץ סודי, כתבו שתי הגנות, ומדדו מה כל אחת עוצרת ומה היא שוברת.",
+    "readout": [("זמן", "60 דק׳", ""), ("דרוש", "Python 3.10+", ""), ("התקנות", "אין", ""), ("שפה", "עב · EN", "")],
+    "cta": "לקבלת המעבדה", "cta2": "מה עושים",
+    "do_h": ("01", "מה עושים", "ארבעה חלקים, שעה אחת.", None),
+    "parts": [
+        ("תוקפים", "כותבים מסמך ספק שגורם לעוזר לשלוח קובץ סודי לכתובת חיצונית. מנסים ניסוחים אחרים עד שזה עובד."),
+        ("הגנה ראשונה", "כותבים את ההגנה שרוב האנשים כותבים קודם, סינון מילים, ומריצים את הבדיקות: אילו מתקפות עדיין עוברות, ואילו משימות לגיטימיות נשברות."),
+        ("הגנה מבנית", "שואלים מאיפה הגיעה כתובת היעד, ואוכפים את התשובה בכלי המייל עצמו."),
+        ("מה מדדתם", "אפס דליפות בשבעה ניסיונות זו לא הוכחה. מבררים מה התוצאה אומרת ומה לא, ומה המשמעות ב־100,000 מיילים ביום."),
+    ],
+    "res_h": ("02", "השוו את התוצאות", "הציון של ארבע התצורות.", "שבע מתקפות וחמש משימות לגיטימיות, על מודל מדומה עם התנהגות קבועה, כך שכל הבדל נובע מההגנה. הריצו את המעבדה ובדקו אם התוצאות שלכם זהות."),
+    "res_cols": ("תצורה", "מתקפות שהצליחו", "משימות שעדיין עובדות"),
+    "res_note": "תוצאות לימוד ממודל מדומה; לא נתוני ביצועים של מודל אמיתי.",
+    "get_h": ("03", "לקבלת המעבדה", "השאירו כתובת מייל והורידו את המעבדה.", None),
+    "get_fine": "נשתמש בכתובת כדי לשלוח מדי פעם עדכונים על הסדנאות והקורסים, לא יותר ממייל אחד בחודש. היא לא תועבר לאף אחד. להסרה, כתבו ל־shimon@defendingaiagents.com.",
+    "get_link": "להורדת המעבדה (zip, 12KB)",
+    "get_after": "פתחו את הקובץ, קראו את README.he.md, והריצו python3 check.py --verbose.",
+    "wl_button": "לקבלת המעבדה",
+    "wl_msgs": {
+        "sending": "רגע…",
+        "ok": "תודה. קישור ההורדה מופיע למטה.",
+        "invalid": "הכתובת לא נראית תקינה. בדקו ונסו שוב.",
+        "busy": "יותר מדי ניסיונות מהרשת שלכם. נסו שוב בעוד שעה.",
+        "error": "לא הצלחנו להגיע לרשימה. נסו שוב, או כתבו ל־" + EMAIL + ".",
+    },
+    "next_h": ("04", "עם הצוות", "המעבדה היא השעה הראשונה של סדנת האבטחה.", "בסדנה מוסיפים את ההסבר מאחורי כל תוצאה, רשימת בדיקה לסוכן שלכם וזמן ליישם אותה עם הצוות, אצלכם במשרד או בזום."),
+    "next_link": "על הסדנה",
+}
+
+
+def lab_page(t, L, w, prefix, url, other):
+    readout = "".join(f'<span class="label">{E(l)}<b class="{c}">{E(v)}</b></span>' for l, v, c in L["readout"])
+    parts = "".join(f'<li class="reveal"><span class="label">{i:02d}</span><span><b>{E(h)}.</b> {E(x)}</span></li>' for i, (h, x) in enumerate(L["parts"], 1))
+    rows = "".join(f'<tr><td>{E(name)}</td><td class="num">{a}/7</td><td class="num">{ok}/5</td></tr>' for name, _, a, ok in w["bars"])
+    zip_href = prefix + LAB_ZIP
+    msgs = "".join(
+        f'<p class="wl-note" id="wl-{k}" data-state="{k}">{E(v)}' + (f' <a href="{zip_href}" download>{E(L["get_link"])}</a>' if k == "ok" else "") + "</p>"
+        for k, v in L["wl_msgs"].items() if k != "sending")
+
+    def head_(key):
+        n, label, h, p_ = L[key]
+        return sec_head(int(n), label, h, p_)
+
+    body = f"""
+<main id="main" class="product-page lab-page">
+  <section class="hero" aria-label="{E(L['title'])}">
+    <p class="kicker label"><i></i>{E(L['kicker'])}</p>
+    <div class="word">
+      <div class="course-title"><h1><span>{E(L['h1'][0])}</span><span>{E(L['h1'][1])}</span></h1></div>
+      <div class="side"><p>{E(L['hero_p'])}</p><div class="readout">{readout}</div><p class="ctas"><a class="btn" href="#get">{E(L['cta'])}</a> <a class="label" href="#do">{E(L['cta2'])} {ARROW}</a></p></div>
+    </div>
+  </section>
+
+  <section id="do">
+    {head_('do_h')}
+    <ol class="build indent">{parts}</ol>
+  </section>
+
+  <section id="results">
+    {head_('res_h')}
+    <div class="indent lab-table" style="overflow-x:auto">
+      <table><thead><tr><th>{E(L['res_cols'][0])}</th><th>{E(L['res_cols'][1])}</th><th>{E(L['res_cols'][2])}</th></tr></thead><tbody>{rows}</tbody></table>
+    </div>
+    <p class="indent fineprint">{E(L['res_note'])}</p>
+  </section>
+
+  <section class="cta" id="get">
+    <h2 class="big-link reveal">{E(L['get_h'][2])}</h2>
+    <form class="wl reveal" action="{WAITLIST_URL}/join" method="post" novalidate>
+      <label class="label" for="wl-email">{E(t['wl_label'])}</label>
+      <div class="wl-row">
+        <input id="wl-email" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" required maxlength="254" dir="ltr" placeholder="{E(t['wl_placeholder'])}">
+        <button type="submit">{E(L['wl_button'])} {ARROW}</button>
+      </div>
+      <input type="hidden" name="lang" value="{t['lang']}">
+      <input type="hidden" name="source" value="lab1">
+      <div class="wl-hp" aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off"></label></div>
+      <p class="wl-status" role="status" aria-live="polite"></p>
+      {msgs}
+      <script type="application/json" id="wl-strings">{json.dumps(L['wl_msgs'], ensure_ascii=False)}</script>
+    </form>
+    <p class="lab-get reveal" id="lab-get" hidden><a class="btn" href="{zip_href}" download>{E(L['get_link'])}</a><br><span class="fineprint" dir="auto">{E(L['get_after'])}</span></p>
+    <div class="fine reveal"><span class="label"><em style="font-style:normal;color:var(--sig)">03</em>&nbsp; {E(L['get_h'][1])}</span><p>{E(L['get_fine'])}</p></div>
+  </section>
+
+  <section>
+    {head_('next_h')}
+    <p class="label indent"><a href="{prefix}{t['ws_path']}">{E(L['next_link'])} {ARROW}</a></p>
+  </section>
+</main>
+"""
+    return (head(t, prefix, f"{L['title']} · {t['brand']}", url, description=L["description"], alternates=("/lab/", "/he/lab/"))
+            + topbar(t, prefix, prefix + t["home_path"] or "./", cta=(L["cta"], "#get", False), other=other, active=t["home_path"] + "workshop/") + body + footer(t, prefix, other=other))
 
 
 def not_found(t):
@@ -1378,6 +1517,10 @@ def main():
     (ROOT / "he" / "building").mkdir(exist_ok=True)
     (ROOT / "he" / "building" / "index.html").write_text(
         building_page(HE, HE_BC, "../../", "/he/building/", BUILDING_MAIL, "building/"), encoding="utf-8")
+    (ROOT / "lab").mkdir(exist_ok=True)
+    (ROOT / "lab" / "index.html").write_text(lab_page(EN, EN_LAB, EN_WS, "../", "/lab/", "he/lab/"), encoding="utf-8")
+    (ROOT / "he" / "lab").mkdir(exist_ok=True)
+    (ROOT / "he" / "lab" / "index.html").write_text(lab_page(HE, HE_LAB, HE_WS, "../../", "/he/lab/", "lab/"), encoding="utf-8")
     (ROOT / "404.html").write_text(not_found(EN), encoding="utf-8")
     blog = ROOT / "blog"
     blog.mkdir(exist_ok=True)
@@ -1386,7 +1529,7 @@ def main():
     for p in POSTS:
         (blog / p["slug"]).mkdir(exist_ok=True)
         (blog / p["slug"] / "index.html").write_text(post_page(EN, p), encoding="utf-8")
-    print(f"built index.html, he/index.html, courses/, course/, building/, workshop/ (EN and HE), 404.html, blog/ ({len(POSTS)} posts)")
+    print(f"built index.html, he/index.html, courses/, course/, building/, workshop/, lab/ (EN and HE), 404.html, blog/ ({len(POSTS)} posts)")
 
 
 if __name__ == "__main__":
