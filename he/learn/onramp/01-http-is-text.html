@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="he" dir="rtl" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>קריאת HTTP היא טקסט נכנס, טקסט יוצא · הגנה על סוכני AI</title>
+<meta name="description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<link rel="canonical" href="https://defendingaiagents.com/he/learn/onramp/01-http-is-text.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/onramp/01-http-is-text.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/onramp/01-http-is-text.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/onramp/01-http-is-text.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="הגנה על סוכני AI">
+<meta property="og:title" content="קריאת HTTP היא טקסט נכנס, טקסט יוצא · הגנה על סוכני AI"><meta property="og:description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<meta property="og:url" content="https://defendingaiagents.com/he/learn/onramp/01-http-is-text.html"><meta property="og:image" content="https://defendingaiagents.com/og-he.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="he_IL"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+<link rel="preload" href="../../../assets/fonts/rubik-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../../assets/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../../assets/course.css"><script src="../../../assets/progress.js" defer></script><script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs";const v=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();const th=document.documentElement.dataset.theme;const dark=th?th==="dark":matchMedia("(prefers-color-scheme: dark)").matches;mermaid.initialize({startOnLoad:true,theme:"base",fontFamily:"Inter, sans-serif",themeVariables:{darkMode:dark,background:v("--bg"),primaryColor:v("--bg-2"),primaryTextColor:v("--fg"),primaryBorderColor:v("--line-2"),lineColor:v("--dim"),secondaryColor:v("--bg"),tertiaryColor:v("--bg-2"),noteBkgColor:v("--bg-2"),noteTextColor:v("--fg"),noteBorderColor:v("--sig"),actorBkg:v("--bg-2"),actorBorder:v("--line-2"),actorTextColor:v("--fg"),signalColor:v("--fg"),signalTextColor:v("--fg"),clusterBkg:v("--bg"),clusterBorder:v("--line-2"),edgeLabelBackground:v("--bg"),fontSize:"14px"}});</script>
+</head>
+<body>
+<a class="skip" href="#main">דילוג לתוכן</a>
+<header class="top">
+  <a class="brand" href="../../../learn/onramp/01-http-is-text.html"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">הגנה על סוכני AI</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="החלפת ערכת צבע"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>ערכת צבע</span></button>
+    <a class="lang label" href="../../../learn/onramp/01-http-is-text.html" lang="en" hreflang="en">English</a>
+    <a class="btn" href="../../../he/course/#waitlist" data-waitlist>לרשימת ההמתנה<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">תפריט</summary><nav aria-label="תפריט"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="onramp/01-http-is-text" data-module="onramp">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">תצוגה מקדימה חינמית</a><span>/</span><a href="./">מסלול הכנה</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="מסלול הכנה">
+      <p class="label"><em>מסלול הכנה</em> תיאורטי</p>
+      <p class="side-title">מסלול הכנה (on-ramp): צנרת הווב שהקורס מניח שאתם מכירים</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="onramp/index"><span class="label">·</span><span>סקירה</span></a></li><li data-stem="01-http-is-text" aria-current="page"><a href="01-http-is-text.html" data-page-link="onramp/01-http-is-text"><span class="label">01</span><span>קריאת HTTP היא טקסט נכנס, טקסט יוצא</span></a></li><li data-stem="02-json-edges"><a href="02-json-edges.html" data-page-link="onramp/02-json-edges"><span class="label">02</span><span>JSON פשוט, והמפענחים שלו עדיין חלוקים</span></a></li><li data-stem="03-yaml-traps"><a href="03-yaml-traps.html" data-page-link="onramp/03-yaml-traps"><span class="label">03</span><span>YAML הוא JSON עם הזחה וארבע מלכודות</span></a></li><li data-stem="04-api-token"><a href="04-api-token.html" data-page-link="onramp/04-api-token"><span class="label">04</span><span>טוקן API הוא סיסמה עם תווית</span></a></li><li data-stem="05-dns"><a href="05-dns.html" data-page-link="onramp/05-dns"><span class="label">05</span><span>שם הוא לא כתובת, והתשובה יכולה להשתנות</span></a></li><li data-stem="06-proxy"><a href="06-proxy.html" data-page-link="onramp/06-proxy"><span class="label">06</span><span>פרוקסי הוא שרת שהוא גם לקוח</span></a></li><li data-stem="07-tls"><a href="07-tls.html" data-page-link="onramp/07-tls"><span class="label">07</span><span>TLS מוכיח שהגעתם לשם, לא שהשם הגון</span></a></li><li data-stem="08-jwt"><a href="08-jwt.html" data-page-link="onramp/08-jwt"><span class="label">08</span><span>JWT הוא טענות חתומות, ולבדיקה יש סדר</span></a></li><li data-stem="09-oauth-roles"><a href="09-oauth-roles.html" data-page-link="onramp/09-oauth-roles"><span class="label">09</span><span>OAuth נותן לטוקן ייעוד: תפקידים, scope, קהל יעד</span></a></li><li data-stem="10-parser-differentials"><a href="10-parser-differentials.html" data-page-link="onramp/10-parser-differentials"><span class="label">10</span><span>שני מפענחים, הודעה אחת: בדיקה תקינה רק אם היא קוראת את מה שהיעד קורא</span></a></li><li data-stem="11-oauth-threat-model"><a href="11-oauth-threat-model.html" data-page-link="onramp/11-oauth-threat-model"><span class="label">11</span><span>מודל האיום של OAuth עצמו: מה RFC 9700 דורש, ולמה סוכן צריך את כולו</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="onramp/problems"><span class="label">P</span><span>תרגילים</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="onramp" data-total="13" data-problems="14" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">מסלול הכנה · שיעור 01</p>
+        <h1>קריאת HTTP היא טקסט נכנס, טקסט יוצא</h1>
+      </header>
+      <p>ה«קרא את הקובץ» של סוכן הוא, על החוט, בערך תריסר שורות טקסט ותשובה באורך דומה. שער הבקרה (gateway) במודול 3 מחליט על סמך השורות האלה. מי שראה רק <code>requests.get(...)</code> מעולם לא ראה אותן, ולכן לא יכול לדעת איזו מהן נשלטת בידי התוקף.</p>
+<h2 id="a-request-has-four-parts">לבקשה יש ארבעה חלקים</h2>
+<p>שמרו את זה כ־<code>s.py</code> והריצו <code>python3 s.py</code>. הוא עונה ל־POST של JSON בפורט 8099 ולא מדפיס כלום.</p>
+<pre><code class="language-python">import http.server, json
+
+class H(http.server.BaseHTTPRequestHandler):
+    def do_POST(self):
+        body = self.rfile.read(int(self.headers.get(&quot;content-length&quot;, 0)))
+        out = json.dumps({&quot;ok&quot;: True, &quot;got&quot;: json.loads(body),
+                          &quot;auth&quot;: self.headers.get(&quot;authorization&quot;)}).encode()
+        self.send_response(200)
+        self.send_header(&quot;Content-Type&quot;, &quot;application/json&quot;)
+        self.send_header(&quot;Content-Length&quot;, str(len(out)))
+        self.end_headers()
+        self.wfile.write(out)
+    def log_message(self, *a): pass
+
+http.server.HTTPServer((&quot;127.0.0.1&quot;, 8099), H).serve_forever()
+</code></pre>
+<p>בטרמינל שני, <code>-v</code> גורם ל־curl להדפיס את הבקשה ששלח (השורות שמתחילות ב־<code>&gt;</code>) ואת התשובה (<code>&lt;</code>):</p>
+<pre><code class="language-bash">curl -v -X POST http://127.0.0.1:8099/call -H 'Content-Type: application/json' \
+  -H 'Authorization: Bearer s3cret' -d '{&quot;tool&quot;:&quot;read_file&quot;,&quot;args&quot;:{&quot;path&quot;:&quot;notes/q3.txt&quot;}}'
+</code></pre>
+<p>זו הבקשה ש־curl שולח (השורות <code>User-Agent</code> ו־<code>Accept</code> הן של curl):</p>
+<pre><code class="language-text">POST /call HTTP/1.1
+Host: 127.0.0.1:8099
+User-Agent: curl/8.7.1
+Accept: */*
+Content-Type: application/json
+Authorization: Bearer s3cret
+Content-Length: 51
+
+{&quot;tool&quot;:&quot;read_file&quot;,&quot;args&quot;:{&quot;path&quot;:&quot;notes/q3.txt&quot;}}
+</code></pre>
+<div class="table"><table>
+<thead>
+<tr>
+<th>חלק</th>
+<th>כאן</th>
+<th>בשביל מה</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>שורת הבקשה (request line)</strong></td>
+<td><code>POST /call HTTP/1.1</code></td>
+<td>המתודה, הנתיב וה־query, גרסת הפרוטוקול</td>
+</tr>
+<tr>
+<td><strong>כותרות (headers)</strong></td>
+<td><code>Host</code>, <code>Content-Type</code>, <code>Authorization</code></td>
+<td>מטא־דאטה, <code>Name: value</code> אחד בכל שורה, השמות לא רגישים לאותיות גדולות וקטנות</td>
+</tr>
+<tr>
+<td><strong>שורה ריקה</strong></td>
+<td></td>
+<td>מסיימת את הכותרות</td>
+</tr>
+<tr>
+<td><strong>גוף (body)</strong></td>
+<td>ה־JSON</td>
+<td>המטען, באורך <code>Content-Length</code> בתים</td>
+</tr>
+</tbody>
+</table></div>
+<p>לתשובה יש אותו מבנה, עם <strong>שורת סטטוס (status line)</strong> (<code>HTTP/1.1 200 OK</code>) במקום שורת הבקשה. הקוד הוא הבטחה לגבי התוצאה (RFC 9110, 2022): 2xx הצליח, 3xx חפשו במקום אחר, 4xx הבקשה אשמה, 5xx השרת אשם. אלה שהקורס פוגש שוב ושוב: 200, 400, 401 (אין פרטי גישה (credentials) תקפים), 403 (פרטי גישה תקפים שלא מספיקים), 404, 429 (יותר מדי בקשות) ו־502 (שרת ביניים, gateway במובן של HTTP, קיבל תשובה פגומה מהשרת שמאחוריו).</p>
+<figure class="diagram"><pre class="mermaid">flowchart TD
+  C[&quot;לקוח: מתודה, יעד, כותרות, גוף&quot;] --&gt;|&quot;חיבור TCP אחד&quot;| S[&quot;שרת&quot;]
+  S --&gt;|&quot;סטטוס, כותרות, גוף&quot;| C
+</pre></figure>
+<h2 id="who-controls-which-line">מי שולט באיזו שורה</h2>
+<p>כותרת ה־<code>Host</code>, הנתיב, כל כותרת והגוף מגיעים ממי שכתב את הבקשה. הדבר היחיד שהלקוח לא כותב הוא הכתובת שאליה התחבר: מערכת ההפעלה של השרת יודעת את ה־IP של הצד השני, הוא לא נטען בכותרת. שער בקרה שרושם ביומן את <code>X-Forwarded-For</code> בתור «הקורא» רשם טקסט שהקורא הקליד (שיעור 6).</p>
+<p><strong>URL</strong> הוא הדרך שבה לקוח מציין לאן לשלוח: ל־<code>https://crm.acme.example:8443/mcp?x=1</code> יש scheme (<code>https</code>), <strong>authority</strong> (<code>crm.acme.example:8443</code>, ה־host ופורט אופציונלי; מותר גם <code>user@</code> בהתחלה, ולעיתים רחוקות זה רעיון טוב), נתיב (path) ו־query (RFC 3986, 2005). הלקוח מפצל אותו לחיבור (אל ה־host) ולשורת הבקשה ועוד כותרת <code>Host</code> (כל השאר). שני URL שנראים דומים יכולים להיות בעלי authority שונה: <code>https://crm.acme.example@evil.example/</code> מתחבר ל־<code>evil.example</code>.</p>
+<h2 id="methods-say-what-is-meant-not-what-happens">מתודות אומרות מה הכוונה, לא מה קורה</h2>
+<p><code>GET</code> אמור רק לקרוא ו־<code>POST</code> רשאי לעשות כל דבר, אבל השרת הוא שמחליט מה מתודה עושה. API של כלי שמוחק על <code>GET /delete?id=7</code> יופעל על ידי תצוגה מקדימה של קישור. שער בקרה שמאפשר «קריאות» לפי המתודה בלבד סמך על התיאור שהשולח נתן לקריאה.</p>
+<h2 id="expert-one-connection-many-messages">מומחה: חיבור אחד, הודעות רבות</h2>
+<p>HTTP/1.1 שולח הודעות על זרם TCP בלי שום מפריד מלבד ה־<code>Content-Length</code> או ה־<code>Transfer-Encoding</code> שבכותרות עצמן (RFC 9112, 2022). שני מפענחים שלא מסכימים איפה הודעה אחת נגמרת והבאה מתחילה הם שורש ה־request smuggling; לכן שער בקרה והשרת שמאחוריו חייבים לפעול לפי הכללים של מפענח אחד, ולכן שער בקרה צריך לדחות הודעה עם שתי הכותרות (RFC 9112, סעיף 6.3, אומר שהודעה כזו צריכה להיות מטופלת כשגיאה). הקורס פוגש את אותה אי־הסכמה ב־JSON במודול 3 שיעור 6; השיעור הבא הוא בן הדוד הקטן שלה.</p>
+<h2 id="check-yourself">בדקו את עצמכם</h2>
+<ol>
+<li>סוכן שעבר הזרקת פרומפט (prompt injection) כותב את הבקשה שלמעלה. אילו מחלקיה הוא יכול לקבוע לכל ערך שירצה, ואיזו עובדה אחת על הבקשה מגיעה לשרת בלי לעבור דרך הידיים של הסוכן?</li>
+<li>שירות כלים עונה <code>200</code> עם <code>{&quot;error&quot;: &quot;no such file&quot;}</code>. מה תעשה לולאת ניסיונות חוזרים שמסתכלת רק על קוד הסטטוס, ומה ידווח מונה «קריאות מוצלחות» שבנוי על קודי סטטוס?</li>
+<li><code>https://acme.example:443@evil.example/</code> ו־<code>https://acme.example/@evil.example</code> נראים דומים. לאיזה host כל אחד מהם מתחבר?</li>
+</ol>
+<details class="answers"><summary>תשובות</summary>
+<ol>
+<li>כל מה שהוא כותב: המתודה, הנתיב וה־query, כל כותרת (כולל <code>Host</code> ו־<code>Authorization</code>), הגוף, ובעזרת <code>Content-Length</code> גם המסגור. העובדה האחת שהסוכן לא כותב היא הכתובת של הצד השני בחיבור ה־TCP, שמערכת ההפעלה של השרת יודעת מהחיבור עצמו.</li>
+<li>הלולאה רואה <code>200</code>, סופרת את הקריאה כגמורה ואף פעם לא מנסה שוב, ומונה «הקריאות המוצלחות» כולל כל כשל שדווח בגוף, כך שהוא מנפח את ההצלחה. קוד הסטטוס הוא ההבטחה של השרת לגבי התוצאה; השרת הזה הפר אותה, ולכן כל דבר שחשוב חייב לקרוא גם את הגוף.</li>
+<li>הראשון מתחבר ל־<code>evil.example</code>: כל מה שלפני ה־<code>@</code> ב־authority הוא userinfo, כך ש־<code>acme.example</code> הוא שם משתמש ו־<code>443</code> סיסמה. השני מתחבר ל־<code>acme.example</code>: ה־authority נגמר ב־<code>/</code> הראשון, ו־<code>/@evil.example</code> הוא סתם הנתיב שלו.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>סימון כהושלם</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="./"><span class="label">הקודם</span>סקירה</a><a class="pn next" href="02-json-edges.html"><span class="label">הבא</span>JSON פשוט, והמפענחים שלו עדיין חלוקים</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 הגנה על סוכני AI</span>
+  <nav aria-label="Footer">
+    <a href="../../../he/workshop/">סדנאות לצוותים</a>
+    <a href="../../../he/courses/">קורסים מקוונים</a>
+    <a href="mailto:shimon@defendingaiagents.com">יצירת קשר</a>
+    <a href="../../../.well-known/security.txt">אבטחה</a>
+    <a href="../../../learn/onramp/01-http-is-text.html" lang="en" hreflang="en">English</a>
+  </nav>
+</footer>
+<script src="../../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"כהה":"בהיר";
+b.setAttribute("aria-label","מעבר למצב "+(n==="dark"?"כהה":"בהיר"))};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

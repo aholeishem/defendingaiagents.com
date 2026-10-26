@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>An HTTP call is text in, text out · Defending AI Agents</title>
+<meta name="description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<link rel="canonical" href="https://defendingaiagents.com/learn/onramp/01-http-is-text.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/onramp/01-http-is-text.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/onramp/01-http-is-text.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/onramp/01-http-is-text.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Defending AI Agents">
+<meta property="og:title" content="An HTTP call is text in, text out · Defending AI Agents"><meta property="og:description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<meta property="og:url" content="https://defendingaiagents.com/learn/onramp/01-http-is-text.html"><meta property="og:image" content="https://defendingaiagents.com/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preload" href="../../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../assets/course.css"><script src="../../assets/progress.js" defer></script><script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs";const v=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();const th=document.documentElement.dataset.theme;const dark=th?th==="dark":matchMedia("(prefers-color-scheme: dark)").matches;mermaid.initialize({startOnLoad:true,theme:"base",fontFamily:"Inter, sans-serif",themeVariables:{darkMode:dark,background:v("--bg"),primaryColor:v("--bg-2"),primaryTextColor:v("--fg"),primaryBorderColor:v("--line-2"),lineColor:v("--dim"),secondaryColor:v("--bg"),tertiaryColor:v("--bg-2"),noteBkgColor:v("--bg-2"),noteTextColor:v("--fg"),noteBorderColor:v("--sig"),actorBkg:v("--bg-2"),actorBorder:v("--line-2"),actorTextColor:v("--fg"),signalColor:v("--fg"),signalTextColor:v("--fg"),clusterBkg:v("--bg"),clusterBorder:v("--line-2"),edgeLabelBackground:v("--bg"),fontSize:"14px"}});</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="../../"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">Defending AI Agents</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="Switch colour theme"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>Theme</span></button>
+    <a class="lang label" href="../../he/learn/onramp/01-http-is-text.html" lang="he" hreflang="he">עברית</a>
+    <a class="btn" href="../../course/#waitlist" data-waitlist>Join waitlist<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">Menu</summary><nav aria-label="Menu"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="onramp/01-http-is-text" data-module="onramp">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">Free preview</a><span>/</span><a href="./">On-ramp</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="On-ramp">
+      <p class="label"><em>On-ramp</em> Theoretical</p>
+      <p class="side-title">On-ramp: the web plumbing the course assumes</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="onramp/index"><span class="label">·</span><span>Overview</span></a></li><li data-stem="01-http-is-text" aria-current="page"><a href="01-http-is-text.html" data-page-link="onramp/01-http-is-text"><span class="label">01</span><span>An HTTP call is text in, text out</span></a></li><li data-stem="02-json-edges"><a href="02-json-edges.html" data-page-link="onramp/02-json-edges"><span class="label">02</span><span>JSON is simple, and its parsers still disagree</span></a></li><li data-stem="03-yaml-traps"><a href="03-yaml-traps.html" data-page-link="onramp/03-yaml-traps"><span class="label">03</span><span>YAML is JSON with indentation and four traps</span></a></li><li data-stem="04-api-token"><a href="04-api-token.html" data-page-link="onramp/04-api-token"><span class="label">04</span><span>An API token is a password with a label</span></a></li><li data-stem="05-dns"><a href="05-dns.html" data-page-link="onramp/05-dns"><span class="label">05</span><span>A name is not an address, and the answer can change</span></a></li><li data-stem="06-proxy"><a href="06-proxy.html" data-page-link="onramp/06-proxy"><span class="label">06</span><span>A proxy is a server that is also a client</span></a></li><li data-stem="07-tls"><a href="07-tls.html" data-page-link="onramp/07-tls"><span class="label">07</span><span>TLS proves you reached a name, not that the name is honest</span></a></li><li data-stem="08-jwt"><a href="08-jwt.html" data-page-link="onramp/08-jwt"><span class="label">08</span><span>A JWT is signed claims, and a check has an order</span></a></li><li data-stem="09-oauth-roles"><a href="09-oauth-roles.html" data-page-link="onramp/09-oauth-roles"><span class="label">09</span><span>OAuth gives a token a purpose: roles, scope, audience</span></a></li><li data-stem="10-parser-differentials"><a href="10-parser-differentials.html" data-page-link="onramp/10-parser-differentials"><span class="label">10</span><span>Two parsers, one message: a check is sound only if it reads what the target reads</span></a></li><li data-stem="11-oauth-threat-model"><a href="11-oauth-threat-model.html" data-page-link="onramp/11-oauth-threat-model"><span class="label">11</span><span>OAuth&#x27;s own threat model: what RFC 9700 requires, and why an agent needs all of it</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="onramp/problems"><span class="label">P</span><span>Problems</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="onramp" data-total="13" data-problems="14" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">On-ramp · Lesson 01</p>
+        <h1>An HTTP call is text in, text out</h1>
+      </header>
+      <p>An agent's &quot;read the file&quot; is, on the wire, about a dozen lines of text and a reply of about as many. The gateway in Module 3 decides on those lines. A learner who has only seen <code>requests.get(...)</code> has never seen them, and then cannot tell which of the lines an attacker controls.</p>
+<h2 id="a-request-has-four-parts">A request has four parts</h2>
+<p>Save this as <code>s.py</code> and run <code>python3 s.py</code>. It answers a JSON POST on port 8099 and prints nothing.</p>
+<pre><code class="language-python">import http.server, json
+
+class H(http.server.BaseHTTPRequestHandler):
+    def do_POST(self):
+        body = self.rfile.read(int(self.headers.get(&quot;content-length&quot;, 0)))
+        out = json.dumps({&quot;ok&quot;: True, &quot;got&quot;: json.loads(body),
+                          &quot;auth&quot;: self.headers.get(&quot;authorization&quot;)}).encode()
+        self.send_response(200)
+        self.send_header(&quot;Content-Type&quot;, &quot;application/json&quot;)
+        self.send_header(&quot;Content-Length&quot;, str(len(out)))
+        self.end_headers()
+        self.wfile.write(out)
+    def log_message(self, *a): pass
+
+http.server.HTTPServer((&quot;127.0.0.1&quot;, 8099), H).serve_forever()
+</code></pre>
+<p>In a second terminal, <code>-v</code> makes curl print the request it sent (lines starting <code>&gt;</code>) and the reply (<code>&lt;</code>):</p>
+<pre><code class="language-bash">curl -v -X POST http://127.0.0.1:8099/call -H 'Content-Type: application/json' \
+  -H 'Authorization: Bearer s3cret' -d '{&quot;tool&quot;:&quot;read_file&quot;,&quot;args&quot;:{&quot;path&quot;:&quot;notes/q3.txt&quot;}}'
+</code></pre>
+<p>The request curl sends is this (the <code>User-Agent</code> and <code>Accept</code> lines are curl's):</p>
+<pre><code class="language-text">POST /call HTTP/1.1
+Host: 127.0.0.1:8099
+User-Agent: curl/8.7.1
+Accept: */*
+Content-Type: application/json
+Authorization: Bearer s3cret
+Content-Length: 51
+
+{&quot;tool&quot;:&quot;read_file&quot;,&quot;args&quot;:{&quot;path&quot;:&quot;notes/q3.txt&quot;}}
+</code></pre>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Here</th>
+<th>What it is for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Request line</strong></td>
+<td><code>POST /call HTTP/1.1</code></td>
+<td>the method, the path and query, the protocol version</td>
+</tr>
+<tr>
+<td><strong>Headers</strong></td>
+<td><code>Host</code>, <code>Content-Type</code>, <code>Authorization</code></td>
+<td>metadata, one <code>Name: value</code> per line, names case-insensitive</td>
+</tr>
+<tr>
+<td><strong>Blank line</strong></td>
+<td></td>
+<td>ends the headers</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td>the JSON</td>
+<td>the payload, <code>Content-Length</code> bytes of it</td>
+</tr>
+</tbody>
+</table></div>
+<p>The reply has the same shape, with a <strong>status line</strong> (<code>HTTP/1.1 200 OK</code>) in place of the request line. The code is a promise about the outcome (RFC 9110, 2022): 2xx succeeded, 3xx look elsewhere, 4xx the request is at fault, 5xx the server is. The ones the course keeps meeting are 200, 400, 401 (no valid credential), 403 (a valid credential that is not enough), 404, 429 (too many) and 502 (a gateway got a bad reply upstream).</p>
+<figure class="diagram"><pre class="mermaid">flowchart TD
+  C[&quot;Client: method, target, headers, body&quot;] --&gt;|&quot;one TCP connection&quot;| S[&quot;Server&quot;]
+  S --&gt;|&quot;status, headers, body&quot;| C
+</pre></figure>
+<h2 id="who-controls-which-line">Who controls which line</h2>
+<p>The <code>Host</code> header, the path, every header and the body come from whoever wrote the request. The one thing the client does not write is the address it connected to: the peer's IP is known to the server's operating system, not claimed in a header. A gateway that logs <code>X-Forwarded-For</code> as &quot;the caller&quot; has logged text the caller typed (lesson 6).</p>
+<p>A <strong>URL</strong> is how a client names where to send this: <code>https://crm.acme.example:8443/mcp?x=1</code> has a scheme (<code>https</code>), an <strong>authority</strong> (<code>crm.acme.example:8443</code>, the host and optional port; a leading <code>user@</code> is allowed and rarely wise), a path and a query (RFC 3986, 2005). The client splits it into the connection (to the host) and the request line plus <code>Host</code> header (the rest). Two URLs that look alike can have different authorities: <code>https://crm.acme.example@evil.example/</code> connects to <code>evil.example</code>.</p>
+<h2 id="methods-say-what-is-meant-not-what-happens">Methods say what is meant, not what happens</h2>
+<p><code>GET</code> should only read and <code>POST</code> may do anything, but the server decides what a method does. A tool API that deletes on <code>GET /delete?id=7</code> will be fired by a link preview. A gateway that allows &quot;reads&quot; by method alone has trusted the sender's description of the call.</p>
+<h2 id="expert-one-connection-many-messages">Expert: one connection, many messages</h2>
+<p>HTTP/1.1 sends messages on a TCP stream with no delimiters but the headers' own <code>Content-Length</code> or <code>Transfer-Encoding</code> (RFC 9112, 2022). Two parsers that disagree on where one message ends and the next begins are the root of request smuggling; this is why a gateway and the server behind it must use one parser's rules, and why a gateway should reject a message with both headers (RFC 9112, section 6.3, says such a message ought to be handled as an error). The course meets the same disagreement for JSON in Module 3 lesson 6; the next lesson is its smaller cousin.</p>
+<h2 id="check-yourself">Check yourself</h2>
+<ol>
+<li>A prompt-injected agent writes the request above. Which of its parts can it set to any value it likes, and which single fact about the request reaches the server without passing through the agent's hands?</li>
+<li>A tool service answers <code>200</code> with <code>{&quot;error&quot;: &quot;no such file&quot;}</code>. What will a retry loop that looks only at the status code do, and what will a count of &quot;successful calls&quot; built on status codes report?</li>
+<li><code>https://acme.example:443@evil.example/</code> and <code>https://acme.example/@evil.example</code> look similar. Which host does each connect to?</li>
+</ol>
+<details class="answers"><summary>Answers</summary>
+<ol>
+<li>Everything it writes: the method, the path and query, every header (<code>Host</code> and <code>Authorization</code> included), the body, and with <code>Content-Length</code> the framing too. The one fact the agent does not write is the address of the TCP peer, which the server's operating system knows from the connection itself.</li>
+<li>The loop sees <code>200</code>, counts the call as done and never retries, and the &quot;successful calls&quot; count includes every failure reported in the body, so it overstates success. The status code is the server's promise about the outcome; this server broke it, so anything that matters must read the body too.</li>
+<li>The first connects to <code>evil.example</code>: everything before the <code>@</code> in the authority is userinfo, so <code>acme.example</code> is a username and <code>443</code> a password. The second connects to <code>acme.example</code>: the authority ends at the first <code>/</code>, and <code>/@evil.example</code> is merely its path.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>Mark complete</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="./"><span class="label">Previous</span>Overview</a><a class="pn next" href="02-json-edges.html"><span class="label">Next</span>JSON is simple, and its parsers still disagree</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 Defending AI Agents</span>
+  <nav aria-label="Footer">
+    <a href="../../workshop/">Team workshops</a>
+    <a href="../../courses/">Online courses</a>
+    <a href="mailto:shimon@defendingaiagents.com">Contact</a>
+    <a href="../../.well-known/security.txt">Security</a>
+    <a href="../../he/learn/onramp/01-http-is-text.html" lang="he" hreflang="he">עברית</a>
+  </nav>
+</footer>
+<script src="../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"Dark":"Light";
+b.setAttribute("aria-label","Switch to "+n+" mode")};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

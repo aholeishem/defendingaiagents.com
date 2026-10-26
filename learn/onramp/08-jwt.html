@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A JWT is signed claims, and a check has an order · Defending AI Agents</title>
+<meta name="description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<link rel="canonical" href="https://defendingaiagents.com/learn/onramp/08-jwt.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/onramp/08-jwt.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/onramp/08-jwt.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/onramp/08-jwt.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Defending AI Agents">
+<meta property="og:title" content="A JWT is signed claims, and a check has an order · Defending AI Agents"><meta property="og:description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<meta property="og:url" content="https://defendingaiagents.com/learn/onramp/08-jwt.html"><meta property="og:image" content="https://defendingaiagents.com/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preload" href="../../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../assets/course.css"><script src="../../assets/progress.js" defer></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script><script>addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".math").forEach(function(e){katex.render(e.textContent,e,{displayMode:e.dataset.display==="1",throwOnError:false})})})</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="../../"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">Defending AI Agents</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="Switch colour theme"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>Theme</span></button>
+    <a class="lang label" href="../../he/learn/onramp/08-jwt.html" lang="he" hreflang="he">עברית</a>
+    <a class="btn" href="../../course/#waitlist" data-waitlist>Join waitlist<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">Menu</summary><nav aria-label="Menu"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="onramp/08-jwt" data-module="onramp">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">Free preview</a><span>/</span><a href="./">On-ramp</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="On-ramp">
+      <p class="label"><em>On-ramp</em> Theoretical</p>
+      <p class="side-title">On-ramp: the web plumbing the course assumes</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="onramp/index"><span class="label">·</span><span>Overview</span></a></li><li data-stem="01-http-is-text"><a href="01-http-is-text.html" data-page-link="onramp/01-http-is-text"><span class="label">01</span><span>An HTTP call is text in, text out</span></a></li><li data-stem="02-json-edges"><a href="02-json-edges.html" data-page-link="onramp/02-json-edges"><span class="label">02</span><span>JSON is simple, and its parsers still disagree</span></a></li><li data-stem="03-yaml-traps"><a href="03-yaml-traps.html" data-page-link="onramp/03-yaml-traps"><span class="label">03</span><span>YAML is JSON with indentation and four traps</span></a></li><li data-stem="04-api-token"><a href="04-api-token.html" data-page-link="onramp/04-api-token"><span class="label">04</span><span>An API token is a password with a label</span></a></li><li data-stem="05-dns"><a href="05-dns.html" data-page-link="onramp/05-dns"><span class="label">05</span><span>A name is not an address, and the answer can change</span></a></li><li data-stem="06-proxy"><a href="06-proxy.html" data-page-link="onramp/06-proxy"><span class="label">06</span><span>A proxy is a server that is also a client</span></a></li><li data-stem="07-tls"><a href="07-tls.html" data-page-link="onramp/07-tls"><span class="label">07</span><span>TLS proves you reached a name, not that the name is honest</span></a></li><li data-stem="08-jwt" aria-current="page"><a href="08-jwt.html" data-page-link="onramp/08-jwt"><span class="label">08</span><span>A JWT is signed claims, and a check has an order</span></a></li><li data-stem="09-oauth-roles"><a href="09-oauth-roles.html" data-page-link="onramp/09-oauth-roles"><span class="label">09</span><span>OAuth gives a token a purpose: roles, scope, audience</span></a></li><li data-stem="10-parser-differentials"><a href="10-parser-differentials.html" data-page-link="onramp/10-parser-differentials"><span class="label">10</span><span>Two parsers, one message: a check is sound only if it reads what the target reads</span></a></li><li data-stem="11-oauth-threat-model"><a href="11-oauth-threat-model.html" data-page-link="onramp/11-oauth-threat-model"><span class="label">11</span><span>OAuth&#x27;s own threat model: what RFC 9700 requires, and why an agent needs all of it</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="onramp/problems"><span class="label">P</span><span>Problems</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="onramp" data-total="13" data-problems="14" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">On-ramp · Lesson 08</p>
+        <h1>A JWT is signed claims, and a check has an order</h1>
+      </header>
+      <p>A server receives <code>Authorization: Bearer eyJhbGciOi…</code>. It splits on dots, base64-decodes the middle, reads <code>&quot;role&quot;: &quot;admin&quot;</code> and lets the call through. It never checked the third part. The token was written by the caller, a minute ago, with a text editor.</p>
+<h2 id="three-parts-two-of-them-just-json">Three parts, two of them just JSON</h2>
+<p>A JSON Web Token has three base64url-encoded parts joined by dots: <strong>header</strong>, <strong>payload</strong> (the claims) and <strong>signature</strong> (RFC 7519, 2015; RFC 7515, 2015). Decoding is not secret: base64url is an encoding, not encryption. This is a real token minted with a throwaway key, and the standard library reads it:</p>
+<pre><code class="language-python">import base64, json
+tok = (&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.&quot;
+       &quot;eyJpc3MiOiJodHRwczovL2F1dGguYWNtZS5leGFtcGxlIiwic3ViIjoiYWdlbnQtNyIsImF1ZCI6Imh0dHBzOi8vY3JtLmFjbWUuZXhhbXBsZS9tY3AiLCJzY29wZSI6ImNybTpyZWFkIiwiaWF0IjoxMDAwLCJleHAiOjEzMDB9.&quot;
+       &quot;2Vc6vcSxz-JiNHCGQqh18ZrUCUKVOqZghKK27YDicRo&quot;)
+part = lambda s: json.loads(base64.urlsafe_b64decode(s + &quot;=&quot; * (-len(s) % 4)))
+print(part(tok.split(&quot;.&quot;)[0]))   # {'alg': 'HS256', 'typ': 'JWT'}
+print(part(tok.split(&quot;.&quot;)[1]))
+# {'iss': 'https://auth.acme.example', 'sub': 'agent-7', 'aud': 'https://crm.acme.example/mcp',
+#  'scope': 'crm:read', 'iat': 1000, 'exp': 1300}
+</code></pre>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Name</th>
+<th>Means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>iss</code></td>
+<td>issuer</td>
+<td>who minted and signed it</td>
+</tr>
+<tr>
+<td><code>sub</code></td>
+<td>subject</td>
+<td>whom it is about (here, an agent, not a person)</td>
+</tr>
+<tr>
+<td><code>aud</code></td>
+<td>audience</td>
+<td>which server may accept it</td>
+</tr>
+<tr>
+<td><code>exp</code>, <code>iat</code>, <code>nbf</code></td>
+<td>expiry, issued, not-before</td>
+<td>the time window, in seconds since 1970</td>
+</tr>
+<tr>
+<td><code>scope</code></td>
+<td>scope</td>
+<td>what it permits (RFC 9068 carries it for OAuth access tokens)</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="the-signature-binds-the-first-two-parts">The signature binds the first two parts</h2>
+<p>The signature is computed over <code>header.payload</code> with a key. <strong>HS256</strong> uses one shared secret (HMAC-SHA-256): anyone who can verify can also forge. <strong>RS256</strong> and <strong>ES256</strong> use a private key to sign and a public key to verify, so a resource server can check tokens without being able to mint them. Change one character of the payload and the signature stops matching.</p>
+<h2 id="the-check-in-order">The check, in order</h2>
+<p>The verifier below is the shortest honest one (HS256 only). Its order is the lesson:</p>
+<pre><code class="language-python">import hashlib, hmac
+
+def verify(tok, key, aud, now):
+    h, p, s = tok.split(&quot;.&quot;)
+    if part(h)[&quot;alg&quot;] != &quot;HS256&quot;:                       # 1. the algorithm we configured
+        raise ValueError(&quot;algorithm&quot;)
+    good = base64.urlsafe_b64encode(
+        hmac.new(key, f&quot;{h}.{p}&quot;.encode(), hashlib.sha256).digest()).rstrip(b&quot;=&quot;).decode()
+    if not hmac.compare_digest(good, s):                # 2. the signature
+        raise ValueError(&quot;signature&quot;)
+    c = part(p)
+    if c[&quot;iss&quot;] != &quot;https://auth.acme.example&quot;:         # 3. the issuer
+        raise ValueError(&quot;issuer&quot;)
+    if aud not in ([c[&quot;aud&quot;]] if isinstance(c[&quot;aud&quot;], str) else c[&quot;aud&quot;]):   # 4. the audience
+        raise ValueError(&quot;audience&quot;)
+    if c[&quot;exp&quot;] &lt;= now:                                 # 5. the time
+        raise ValueError(&quot;expired&quot;)
+    return c                                            # 6. only now read sub and scope
+</code></pre>
+<p>The numbers below are its steps:</p>
+<ol>
+<li><strong>Algorithm</strong>: the one <em>you</em> configured, never the one the token's header asks for.</li>
+<li><strong>Signature</strong>: recompute and compare in constant time.</li>
+<li><strong>Issuer</strong>: the issuer you trust.</li>
+<li><strong>Audience</strong>: you are in it (Module 3, lesson 10).</li>
+<li><strong>Time</strong>: <code>exp</code> is in the future; allow seconds, not minutes, of clock skew.</li>
+<li><strong>Then</strong> read <code>sub</code> and <code>scope</code>.</li>
+</ol>
+<p>Run with the key <code>b&quot;demo-key-not-a-secret&quot;</code>, it accepts the token above at <span class="math" data-display="0">t</span> = 1100 for audience <code>https://crm.acme.example/mcp</code>, and refuses these four, for these reasons:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Presented</th>
+<th>Refused because</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>to <code>https://cal.acme.example/mcp</code></td>
+<td>audience</td>
+</tr>
+<tr>
+<td>at <span class="math" data-display="0">t</span> = 1300</td>
+<td>expired (<code>exp</code> is exclusive)</td>
+</tr>
+<tr>
+<td>payload edited to <code>crm:write</code>, original signature</td>
+<td>signature</td>
+</tr>
+<tr>
+<td>header <code>{&quot;alg&quot;: &quot;none&quot;}</code>, no signature</td>
+<td>algorithm</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="expert-the-attacks-all-live-in-step-1">Expert: the attacks all live in step 1</h2>
+<p><code>alg: none</code> is a valid algorithm in the RFC, meaning &quot;unsecured&quot;. A library that honours it accepts a token no one signed. The second is <strong>key confusion</strong>: a server expects RS256 and verifies with its public key; an attacker sets <code>alg: HS256</code>, signs with the <em>public key as the HMAC secret</em>, and a library that picks the algorithm from the header verifies it. JWT Best Current Practices (RFC 8725, 2020) lists both and the cure: pin the algorithm per key, and refuse anything else. Two header parameters invite the same mistake: <code>kid</code> (which key to use) and <code>jku</code> (a URL to fetch a key set from). A verifier that follows either as the <em>token</em> says has let the token choose its own judge.</p>
+<h2 id="check-yourself">Check yourself</h2>
+<ol>
+<li>A server holds keys for two issuers and accepts a signature made with either. Why is a token with <code>&quot;role&quot;: &quot;admin&quot;</code> signed by the other issuer more dangerous to it than a token with no signature, and which step stops it?</li>
+<li>A server verifies the signature and <code>exp</code> but not <code>aud</code>, and one authorization server issues tokens for 20 resource servers that all skip the check. At how many servers can a token stolen from one of them be replayed, before and after they add step 4?</li>
+<li>A verifier reads <code>alg</code> from the token and picks a library function for it. Describe, in one sentence each, <code>none</code> and key confusion against it.</li>
+</ol>
+<details class="answers"><summary>Answers</summary>
+<ol>
+<li>A token with no signature fails at step 1 or 2 on any sound verifier. One signed by the other issuer passes step 2, because the server holds that key, so <code>&quot;role&quot;: &quot;admin&quot;</code> arrives looking authentic. Step 3 stops it, provided the issuer is checked against the key that verified the signature: a token signed with B's key but claiming <code>iss</code> A must fail.</li>
+<li>Before: at all 20, since every one verifies the same authorization server's signature and none checks the audience. After step 4: at one, the server named in its <code>aud</code>; if it was stolen from that server, nowhere else.</li>
+<li><code>none</code>: the attacker sets <code>&quot;alg&quot;: &quot;none&quot;</code>, sends an empty signature, and the verifier calls its &quot;unsecured&quot; function, which accepts claims nobody signed. Key confusion: the server holds an RS256 public key; the attacker sets <code>&quot;alg&quot;: &quot;HS256&quot;</code> and signs with that public key as the HMAC secret, and the verifier, running HMAC with the key it holds, finds the signature valid.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>Mark complete</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="07-tls.html"><span class="label">Previous</span>TLS proves you reached a name, not that the name is honest</a><a class="pn next" href="09-oauth-roles.html"><span class="label">Next</span>OAuth gives a token a purpose: roles, scope, audience</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 Defending AI Agents</span>
+  <nav aria-label="Footer">
+    <a href="../../workshop/">Team workshops</a>
+    <a href="../../courses/">Online courses</a>
+    <a href="mailto:shimon@defendingaiagents.com">Contact</a>
+    <a href="../../.well-known/security.txt">Security</a>
+    <a href="../../he/learn/onramp/08-jwt.html" lang="he" hreflang="he">עברית</a>
+  </nav>
+</footer>
+<script src="../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"Dark":"Light";
+b.setAttribute("aria-label","Switch to "+n+" mode")};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

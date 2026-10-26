@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>YAML is JSON with indentation and four traps · Defending AI Agents</title>
+<meta name="description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<link rel="canonical" href="https://defendingaiagents.com/learn/onramp/03-yaml-traps.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/onramp/03-yaml-traps.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/onramp/03-yaml-traps.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/onramp/03-yaml-traps.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Defending AI Agents">
+<meta property="og:title" content="YAML is JSON with indentation and four traps · Defending AI Agents"><meta property="og:description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<meta property="og:url" content="https://defendingaiagents.com/learn/onramp/03-yaml-traps.html"><meta property="og:image" content="https://defendingaiagents.com/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preload" href="../../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../assets/course.css"><script src="../../assets/progress.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="../../"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">Defending AI Agents</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="Switch colour theme"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>Theme</span></button>
+    <a class="lang label" href="../../he/learn/onramp/03-yaml-traps.html" lang="he" hreflang="he">עברית</a>
+    <a class="btn" href="../../course/#waitlist" data-waitlist>Join waitlist<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">Menu</summary><nav aria-label="Menu"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="onramp/03-yaml-traps" data-module="onramp">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">Free preview</a><span>/</span><a href="./">On-ramp</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="On-ramp">
+      <p class="label"><em>On-ramp</em> Theoretical</p>
+      <p class="side-title">On-ramp: the web plumbing the course assumes</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="onramp/index"><span class="label">·</span><span>Overview</span></a></li><li data-stem="01-http-is-text"><a href="01-http-is-text.html" data-page-link="onramp/01-http-is-text"><span class="label">01</span><span>An HTTP call is text in, text out</span></a></li><li data-stem="02-json-edges"><a href="02-json-edges.html" data-page-link="onramp/02-json-edges"><span class="label">02</span><span>JSON is simple, and its parsers still disagree</span></a></li><li data-stem="03-yaml-traps" aria-current="page"><a href="03-yaml-traps.html" data-page-link="onramp/03-yaml-traps"><span class="label">03</span><span>YAML is JSON with indentation and four traps</span></a></li><li data-stem="04-api-token"><a href="04-api-token.html" data-page-link="onramp/04-api-token"><span class="label">04</span><span>An API token is a password with a label</span></a></li><li data-stem="05-dns"><a href="05-dns.html" data-page-link="onramp/05-dns"><span class="label">05</span><span>A name is not an address, and the answer can change</span></a></li><li data-stem="06-proxy"><a href="06-proxy.html" data-page-link="onramp/06-proxy"><span class="label">06</span><span>A proxy is a server that is also a client</span></a></li><li data-stem="07-tls"><a href="07-tls.html" data-page-link="onramp/07-tls"><span class="label">07</span><span>TLS proves you reached a name, not that the name is honest</span></a></li><li data-stem="08-jwt"><a href="08-jwt.html" data-page-link="onramp/08-jwt"><span class="label">08</span><span>A JWT is signed claims, and a check has an order</span></a></li><li data-stem="09-oauth-roles"><a href="09-oauth-roles.html" data-page-link="onramp/09-oauth-roles"><span class="label">09</span><span>OAuth gives a token a purpose: roles, scope, audience</span></a></li><li data-stem="10-parser-differentials"><a href="10-parser-differentials.html" data-page-link="onramp/10-parser-differentials"><span class="label">10</span><span>Two parsers, one message: a check is sound only if it reads what the target reads</span></a></li><li data-stem="11-oauth-threat-model"><a href="11-oauth-threat-model.html" data-page-link="onramp/11-oauth-threat-model"><span class="label">11</span><span>OAuth&#x27;s own threat model: what RFC 9700 requires, and why an agent needs all of it</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="onramp/problems"><span class="label">P</span><span>Problems</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="onramp" data-total="13" data-problems="14" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">On-ramp · Lesson 03</p>
+        <h1>YAML is JSON with indentation and four traps</h1>
+      </header>
+      <p>A team lists its allowed countries in a config file: <code>- GB</code>, <code>- DE</code>, <code>- NO</code>. The service starts, and Norwegian users are denied. The YAML loader read <code>NO</code> as the boolean false. The same file, loaded by the same code, is a different policy from the one its author read.</p>
+<h2 id="the-reading-skill">The reading skill</h2>
+<p>YAML is a superset of JSON (since version 1.2) written with indentation instead of braces (YAML, 2021). You will meet it in every configuration file of the course: the lab, policies, CI. Three forms cover nearly everything:</p>
+<pre><code class="language-yaml">name: acme-gateway          # a mapping: key, colon, space, value
+allow:                      # a list is dashes at one indentation
+  - crm.acme.example
+  - cal.acme.example
+limits: {rate: 10, burst: 20}   # JSON-style on one line is legal
+</code></pre>
+<p>Indentation is structure and uses spaces, never tabs. A <code>#</code> starts a comment. Two spaces of indentation fewer is a different file.</p>
+<h2 id="trap-1-bare-words-become-types">Trap 1: bare words become types</h2>
+<p>Run it, as the course's tools do, with the pure-data loader:</p>
+<pre><code class="language-python">import yaml
+print(yaml.safe_load(&quot;country: no\nversion: 1.10\nports: [80, 0o17, 010]\nmode: 0755\non: yes&quot;))
+# {'country': False, 'version': 1.1, 'ports': [80, '0o17', 8], 'mode': 493, True: True}
+</code></pre>
+<p><code>no</code> is False, <code>1.10</code> is the float 1.1 (a version number that has lost its zero), <code>010</code> is octal 8, <code>0755</code> is the permission bits 493, and the key <code>on</code> is the boolean True. These are YAML 1.1's implicit types (the YAML 1.1 boolean type lists <code>y</code>, <code>yes</code>, <code>on</code> and their negatives; <em>Boolean Language-Independent Type for YAML version 1.1</em>, 2005). Version 1.2 trims the list, but PyYAML, which most Python tooling uses, still resolves the 1.1 words (though not the single letters), as the run above shows. <strong>Quote strings that must stay strings:</strong> <code>&quot;NO&quot;</code>, <code>&quot;1.10&quot;</code>.</p>
+<h2 id="trap-2-duplicate-keys-again">Trap 2: duplicate keys, again</h2>
+<pre><code class="language-python">yaml.safe_load(&quot;a: 1\na: 2&quot;)      # {'a': 2}
+</code></pre>
+<p>The later one silently wins, and a copy-pasted block can shadow the key above it. The same differential as lesson 2, in a file a person edits.</p>
+<h2 id="trap-3-load-can-run-code">Trap 3: <code>load</code> can run code</h2>
+<p>Some loaders build arbitrary objects from tags such as <code>!!python/object/apply:os.system</code>. PyYAML's documentation says <code>yaml.load</code> &quot;is as powerful as <code>pickle.load</code> and so may call any Python function&quot; (PyYAML documentation); <code>safe_load</code> refuses such a tag with a <code>ConstructorError</code>. <strong>Use the safe loader for every file you did not write</strong>, and for those you did, because someone else may be able to edit them.</p>
+<h2 id="trap-4-anchors-and-merge-keys">Trap 4: anchors and merge keys</h2>
+<p><code>&amp;base</code> names a block and <code>*base</code> or <code>&lt;&lt;: *base</code> reuses it. A policy file that merges a base block into twenty rules reads shorter and is audited wrongly: a reader sees a rule, not its inherited fields. Expand before reviewing (load it and print the result).</p>
+<h2 id="expert-why-a-control-reads-data-not-text">Expert: why a control reads data, not text</h2>
+<p>A gateway config that is reloaded on change is a control plane. Loading it with a strict, typed schema (a field <code>country</code> is a <em>string</em>, anything else fails to load) turns trap 1 into a startup error, not a silent policy change. Fail the load, not the request.</p>
+<h2 id="check-yourself">Check yourself</h2>
+<ol>
+<li>Which of these load as a string: <code>id: 0x1F</code>, <code>id: &quot;0x1F&quot;</code>, <code>id: 1_000</code>, <code>id: ~</code>? Run it.</li>
+<li>A reviewer reads a rule saying <code>allow: [crm]</code>. Which two YAML features can make the effective rule wider than what they read?</li>
+<li>Why is &quot;we only load files from our own repo&quot; not an answer to trap 3? And which of the four traps does switching to <code>safe_load</code> leave open?</li>
+</ol>
+<details class="answers"><summary>Answers</summary>
+<ol>
+<li>Only <code>id: &quot;0x1F&quot;</code>. PyYAML's <code>safe_load</code> reads <code>0x1F</code> as the integer 31, <code>1_000</code> as 1000 (YAML 1.1 allows underscores in integers) and <code>~</code> as <code>None</code>.</li>
+<li>Duplicate keys (trap 2): a second <code>allow:</code> further down the same mapping silently replaces the one they read. Anchors and merge keys (trap 4): a <code>&lt;&lt;: *base</code> in the rule brings in fields they never see on the page. Loading the file and printing the result shows the rule that actually applies.</li>
+<li>Because &quot;our own repo&quot; is a set of writers, not one: any contributor, compromised account, CI step or tool with write access can plant a <code>!!python/object/apply</code> tag, and <code>load</code> will run it. <code>safe_load</code> closes trap 3 only; implicit types, duplicate keys and merge keys all behave the same under it, as the lesson's own runs show.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>Mark complete</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="02-json-edges.html"><span class="label">Previous</span>JSON is simple, and its parsers still disagree</a><a class="pn next" href="04-api-token.html"><span class="label">Next</span>An API token is a password with a label</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 Defending AI Agents</span>
+  <nav aria-label="Footer">
+    <a href="../../workshop/">Team workshops</a>
+    <a href="../../courses/">Online courses</a>
+    <a href="mailto:shimon@defendingaiagents.com">Contact</a>
+    <a href="../../.well-known/security.txt">Security</a>
+    <a href="../../he/learn/onramp/03-yaml-traps.html" lang="he" hreflang="he">עברית</a>
+  </nav>
+</footer>
+<script src="../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"Dark":"Light";
+b.setAttribute("aria-label","Switch to "+n+" mode")};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

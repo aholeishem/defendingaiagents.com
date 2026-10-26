@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="he" dir="rtl" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>מודל האיום של OAuth עצמו: מה RFC 9700 דורש, ולמה סוכן צריך את כולו · הגנה על סוכני AI</title>
+<meta name="description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<link rel="canonical" href="https://defendingaiagents.com/he/learn/onramp/11-oauth-threat-model.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/onramp/11-oauth-threat-model.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/onramp/11-oauth-threat-model.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/onramp/11-oauth-threat-model.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="הגנה על סוכני AI">
+<meta property="og:title" content="מודל האיום של OAuth עצמו: מה RFC 9700 דורש, ולמה סוכן צריך את כולו · הגנה על סוכני AI"><meta property="og:description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<meta property="og:url" content="https://defendingaiagents.com/he/learn/onramp/11-oauth-threat-model.html"><meta property="og:image" content="https://defendingaiagents.com/og-he.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="he_IL"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+<link rel="preload" href="../../../assets/fonts/rubik-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../../assets/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../../assets/course.css"><script src="../../../assets/progress.js" defer></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script><script>addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".math").forEach(function(e){katex.render(e.textContent,e,{displayMode:e.dataset.display==="1",throwOnError:false})})})</script>
+</head>
+<body>
+<a class="skip" href="#main">דילוג לתוכן</a>
+<header class="top">
+  <a class="brand" href="../../../learn/onramp/11-oauth-threat-model.html"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">הגנה על סוכני AI</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="החלפת ערכת צבע"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>ערכת צבע</span></button>
+    <a class="lang label" href="../../../learn/onramp/11-oauth-threat-model.html" lang="en" hreflang="en">English</a>
+    <a class="btn" href="../../../he/course/#waitlist" data-waitlist>לרשימת ההמתנה<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">תפריט</summary><nav aria-label="תפריט"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="onramp/11-oauth-threat-model" data-module="onramp">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">תצוגה מקדימה חינמית</a><span>/</span><a href="./">מסלול הכנה</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="מסלול הכנה">
+      <p class="label"><em>מסלול הכנה</em> תיאורטי</p>
+      <p class="side-title">מסלול הכנה (on-ramp): צנרת הווב שהקורס מניח שאתם מכירים</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="onramp/index"><span class="label">·</span><span>סקירה</span></a></li><li data-stem="01-http-is-text"><a href="01-http-is-text.html" data-page-link="onramp/01-http-is-text"><span class="label">01</span><span>קריאת HTTP היא טקסט נכנס, טקסט יוצא</span></a></li><li data-stem="02-json-edges"><a href="02-json-edges.html" data-page-link="onramp/02-json-edges"><span class="label">02</span><span>JSON פשוט, והמפענחים שלו עדיין חלוקים</span></a></li><li data-stem="03-yaml-traps"><a href="03-yaml-traps.html" data-page-link="onramp/03-yaml-traps"><span class="label">03</span><span>YAML הוא JSON עם הזחה וארבע מלכודות</span></a></li><li data-stem="04-api-token"><a href="04-api-token.html" data-page-link="onramp/04-api-token"><span class="label">04</span><span>טוקן API הוא סיסמה עם תווית</span></a></li><li data-stem="05-dns"><a href="05-dns.html" data-page-link="onramp/05-dns"><span class="label">05</span><span>שם הוא לא כתובת, והתשובה יכולה להשתנות</span></a></li><li data-stem="06-proxy"><a href="06-proxy.html" data-page-link="onramp/06-proxy"><span class="label">06</span><span>פרוקסי הוא שרת שהוא גם לקוח</span></a></li><li data-stem="07-tls"><a href="07-tls.html" data-page-link="onramp/07-tls"><span class="label">07</span><span>TLS מוכיח שהגעתם לשם, לא שהשם הגון</span></a></li><li data-stem="08-jwt"><a href="08-jwt.html" data-page-link="onramp/08-jwt"><span class="label">08</span><span>JWT הוא טענות חתומות, ולבדיקה יש סדר</span></a></li><li data-stem="09-oauth-roles"><a href="09-oauth-roles.html" data-page-link="onramp/09-oauth-roles"><span class="label">09</span><span>OAuth נותן לטוקן ייעוד: תפקידים, scope, קהל יעד</span></a></li><li data-stem="10-parser-differentials"><a href="10-parser-differentials.html" data-page-link="onramp/10-parser-differentials"><span class="label">10</span><span>שני מפענחים, הודעה אחת: בדיקה תקינה רק אם היא קוראת את מה שהיעד קורא</span></a></li><li data-stem="11-oauth-threat-model" aria-current="page"><a href="11-oauth-threat-model.html" data-page-link="onramp/11-oauth-threat-model"><span class="label">11</span><span>מודל האיום של OAuth עצמו: מה RFC 9700 דורש, ולמה סוכן צריך את כולו</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="onramp/problems"><span class="label">P</span><span>תרגילים</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="onramp" data-total="13" data-problems="14" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">מסלול הכנה · שיעור 11</p>
+        <h1>מודל האיום של OAuth עצמו: מה RFC 9700 דורש, ולמה סוכן צריך את כולו</h1>
+      </header>
+      <p>סוכן מתחבר לכל שרת MCP שהמשתמש שלו מציין, וכל שרת מפנה את הסוכן לשרת ההרשאות (authorization server) שלו (מודול 3, שיעור 10). כלומר הסוכן הוא לקוח OAuth שמדבר עם הרבה שרתי הרשאות, ותוקף יכול להפעיל אחד מהם פשוט על ידי פרסום שרת. זו בדיוק הסביבה שבה המתקפות הידועות ביותר על הפרוטוקול של OAuth עובדות. RFC 9700 (Lodderstedt et al., 2025), מסמך ה־best current practice של ה־IETF לאבטחת OAuth 2.0, כותב את התוקף במפורש וגוזר ממנו את הדרישות. השיעור הזה קורא אותו כמודל איום (threat model), ואז מוסיף את שתי הפעולות שהטוקנים של סוכן תלויים בהן: החלפה ורוטציית מפתחות (key rotation).</p>
+<h2 id="the-attackers-made-explicit">התוקפים, במפורש</h2>
+<p>RFC 9700, סעיף 3, מגדיר חמישה תוקפים. השניים הראשונים באים מהניתוח הפורמלי של Fett, Küsters ו־Schmitz (2016). שלושת האחרים נמצאים שם כי מתקפות אמיתיות השתמשו בהם.</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>תוקף</th>
+<th>יכול</th>
+<th>בפריסה של סוכן</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A1, תוקף ווב</strong></td>
+<td>להפעיל כל מספר של endpoints, כולל לקוח, שרת הרשאות ושרת משאבים משלו; לשלוח את הדפדפן של המשתמש לכל URL</td>
+<td>כל מי שמפרסם שרת MCP או עמוד שהסוכן יפתח</td>
+</tr>
+<tr>
+<td><strong>A2, תוקף רשת</strong></td>
+<td>לקרוא, לשנות ולחסום תעבורה שהקריפטוגרפיה לא מגינה עליה</td>
+<td>רשת לא מהימנה; TLS (שיעור 7) עונה עליו</td>
+</tr>
+<tr>
+<td><strong>A3</strong></td>
+<td>לקרוא את <em>התגובה</em> להרשאה</td>
+<td>קודים ב־URLs של הפניה (redirect) שמגיעים ליומנים, להיסטוריה או ל־open redirector</td>
+</tr>
+<tr>
+<td><strong>A4</strong></td>
+<td>לקרוא את <em>הבקשה</em> להרשאה</td>
+<td>אותם ערוצים, צעד אחד קודם</td>
+</tr>
+<tr>
+<td><strong>A5</strong></td>
+<td>להשיג טוקן גישה שהונפק למישהו אחר</td>
+<td><strong>כל שרת משאבים שהסוכן קורא לו</strong>: שרת זדוני או פרוץ מקבל את הטוקן מעצם התכנון</td>
+</tr>
+</tbody>
+</table></div>
+<p>A5 היא השורה שהכי חשובה לסוכנים. משתמש בדפדפן מדבר עם קומץ שרתי משאבים מוכרים. סוכן מוסר טוקן לכל שרת שהוא קורא לו, וחלק מהשרתים האלה כתבו זרים. כל דרישה שמגינה מפני A5 היא דרישה שפריסה של סוכן לא יכולה לוותר עליה.</p>
+<h2 id="each-requirement-against-its-attacker">כל דרישה, מול התוקף שלה</h2>
+<div class="table"><table>
+<thead>
+<tr>
+<th>דרישה (RFC 9700)</th>
+<th>מגינה מפני</th>
+<th>מנגנון</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>השוואת redirect URIs ב<strong>התאמה מדויקת של מחרוזת</strong> (סעיף 4.1.3; פורט יכול להשתנות רק עבור <code>localhost</code> של אפליקציה מקומית)</td>
+<td>A3, דרך הפניה שגם התוקף יכול לספק</td>
+<td>תבנית כמו <code>https://*.client.example/*</code> היא מפענח של URLs, ושיעור 10 אומר מה זה עולה; לשוויון אין קבוצת הבדלים</td>
+</tr>
+<tr>
+<td><strong>PKCE</strong> לכל לקוח ציבורי (סעיף 2.1.1)</td>
+<td>A3 ו־A4 שמממשים קוד גנוב; הזרקת קוד</td>
+<td>אפשר לממש את הקוד רק עם verifier שמעולם לא יצא מהלקוח (RFC 7636)</td>
+</tr>
+<tr>
+<td><strong>המנפיק בתגובה להרשאה</strong> (RFC 9207), או redirect URI נפרד לכל מנפיק (סעיף 4.4.2)</td>
+<td>mix-up, בהמשך</td>
+<td>הלקוח לומד איזה שרת ענה בפועל</td>
+</tr>
+<tr>
+<td>טוקני גישה <strong>מוגבלי קהל יעד (audience)</strong> (סעיפים 2.3 ו־4.10.2)</td>
+<td>A5 שעושה replay לטוקן מול שרת משאבים אחר</td>
+<td>קהל היעד חייב להיות ה־URL שאליו הלקוח שולח בפועל בקשות, אחרת טוקן של שרת מזויף עובד בשרת האמיתי</td>
+</tr>
+<tr>
+<td>טוקני גישה <strong>מוגבלים לשולח (sender-constrained)</strong> (סעיפים 2.2.1 ו־4.10.1; mutual TLS או DPoP)</td>
+<td>A5 וכל דליפה אחרת</td>
+<td>הטוקן חסר תועלת בלי המפתח הפרטי של הלקוח (שיעור 4)</td>
+</tr>
+<tr>
+<td>refresh tokens של לקוחות ציבוריים <strong>מוגבלים לשולח או מתחלפים ברוטציה</strong> (סעיפים 2.2.2 ו־4.14)</td>
+<td>refresh token ארוך־חיים שנגנב</td>
+<td>ראו בהמשך</td>
+</tr>
+<tr>
+<td>בלי implicit grant (SHOULD NOT); בלי password grant (MUST NOT) (סעיפים 2.1.2 ו־2.4)</td>
+<td>טוקנים ב־URLs; לקוח שרואה את הסיסמה של המשתמש</td>
+<td>טוקנים עוברים רק בתגובות בערוץ האחורי (back-channel), והסיסמה רק לשרת ההרשאות</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>רוטציה ככלי גילוי.</strong> עם רוטציה, כל רענון מחזיר refresh token חדש ומבטל את הישן, והשרת זוכר איזה טוקן החליף את איזה. אם משתמשים ב־refresh token גנוב, או הגנב או הלקוח הלגיטימי יציג בהמשך טוקן שכבר הוחלף. השרת לא יכול לדעת מי מהשניים לגיטימי, ולכן הוא מבטל את כל השרשרת (סעיף 4.14.2). הלקוח הלגיטימי משלם בהרשאה מחדש. בתמורה, הגניבה נחשפת בפעם הראשונה ששני הצדדים מרעננים, במקום להימשך כל עוד הטוקן חי. זה גלאי עם מחיר ידוע של התרעות שווא, ולכן זו החלטה של עלות צפויה, מהסוג שבמודול 2, שיעור 6.</p>
+<h2 id="mix-up-as-a-mechanism">Mix-up, כמנגנון</h2>
+<p>התנאי המקדים הוא לקוח שמשתמש ב־redirect URI אחד לכמה שרתי הרשאות, וזוכר, לכל סשן דפדפן, באיזה מהם המשתמש בחר. אם המשתמש בוחר בשרת של התוקף, השרת הזה יכול להעביר את הדפדפן הלאה לשרת ההגון, והקוד של השרת ההגון מגיע ל־redirect URI המשותף. הלקוח עדיין חושב שהוא מדבר עם השרת של התוקף, ולכן הוא שולח את הקוד ל־token endpoint של התוקף. אף חתימה לא נכשלת ואף בדיקת TLS לא נכשלת. הלקוח ייחס תגובה למקור הלא נכון, וזו אותה שגיאה כמו להאמין לכותרת שהועברה הלאה (שיעור 6). ההגנה נותנת לתגובה את המקור שלה: שרת ההרשאות שם את מזהה המנפיק שלו בתגובה (RFC 9207), והלקוח משווה אותו למנפיק שאיתו התחיל, לפני שהוא עושה כל דבר אחר. סוכן שמגלה שרתי הרשאות בזמן ריצה מתוך metadata של המשאב עומד בתנאי המקדים כברירת מחדל. לכן בשבילו בדיקת המנפיק אינה אופציונלית.</p>
+<h2 id="token-exchange-narrowing-as-an-invariant">החלפת טוקנים: צמצום כאינווריאנט</h2>
+<p>כששער הבקרה (gateway) ממיר את הטוקן של הסוכן בטוקן שמיועד ל־CRM (RFC 8693; שיעור 9), כל החלפה צריכה לקיים</p>
+<div class="math" data-display="1">\text{scope}_{\text{out}} \subseteq \text{scope}_{\text{in}} \cap \text{policy}, \quad
+\text{aud}_{\text{out}} = \text{one resource server}, \quad
+\text{exp}_{\text{out}} \le \text{exp}_{\text{in}}, \quad
+\text{act}_{\text{out}} = \text{act}_{\text{in}} \text{ extended by one hop.}</div>
+<p>ה־RFC מגדיר את הבקשה ואת התגובה. השאלה אם הפלט צר מהקלט נשארת למדיניות של שרת ההרשאות. החלפה שיכולה להרחיב אחד מהארבעה הופכת את שער הבקרה ל־confused deputy של Hardy (מודול 2, שיעור 3), עם חתימה תקפה על התוצאה. מאחר שהתכונה היא אינווריאנט עם כמת כולל על זוגות (קלט, פלט), אפשר לבדוק אותה בכל החלפה שהשרת מבצע. מודול 12 בונה את הבדיקה הזו ובודק אותה.</p>
+<h2 id="keys-change-rotation-without-an-outage">מפתחות מתחלפים: רוטציה בלי השבתה</h2>
+<p>שרת משאבים מאמת חתימות עם המפתחות הציבוריים של המנפיק. הוא מוצא אותם כ־JSON Web Key Set (RFC 7517) ב־<code>jwks_uri</code> שמופיע ב־metadata של המנפיק (RFC 8414), ובוחר אחד לפי ה־<code>kid</code> של הטוקן. משיעור 8 נובעים שני כללים. קבוצת המפתחות באה מה־metadata של המנפיק שהוגדר, אף פעם לא מ־URL שבטוקן: RFC 8725, סעיף 3.10, מזהיר שמי שהולך אחרי <code>jku</code> או <code>x5u</code> מזמין זיוף בקשות מצד השרת (server-side request forgery, SSRF). והאלגוריתם בא מהמפתח (השדה <code>alg</code> של ה־JWK), לא מה־header של הטוקן.</p>
+<p>מכאן הרוטציה היא חשבון. נניח שהמאמתים שומרים את קבוצת המפתחות במטמון עד <span class="math" data-display="0">C</span>, שטוקנים חיים עד <span class="math" data-display="0">L</span>, ושהשעונים שונים זה מזה עד <span class="math" data-display="0">s</span>:</p>
+<ul>
+<li>לפרסם את המפתח החדש לפחות <span class="math" data-display="0">C</span> לפני שהטוקן הראשון נחתם בו, כדי שכל מטמון יחזיק אותו בזמן;</li>
+<li>להשאיר את המפתח הישן מפורסם לפחות <span class="math" data-display="0">L + s</span> אחרי שהטוקן האחרון נחתם בו.</li>
+</ul>
+<p>עם <span class="math" data-display="0">C</span> = שעה, <span class="math" data-display="0">L</span> = 5 דקות ו־<span class="math" data-display="0">s</span> = 30 שניות, המפתח החדש מופיע לפחות שעה מראש, והישן יורד 5.5 דקות אחרי המעבר. טעות בכלל הראשון, וטוקנים תקפים נכשלים לאורך עד <span class="math" data-display="0">C</span>; זו השבתה, לא פריצה.</p>
+<p>רוטציה אחרי פריצה הולכת בכיוון ההפוך. המפתח נמשך מיד, וטוקנים שנחתמו בו נכשלים. מאמתים חייבים למשוך מחדש את קבוצת המפתחות כשהם רואים <code>kid</code> לא מוכר, אחרת הם ממשיכים לסמוך על המטמון שלהם עד שהוא פג. אבל משיכות מחדש חייבות להיות מוגבלות בקצב, אחרת טוקנים עם ערכי <code>kid</code> אקראיים הופכים כל בקשה למשיכה מהמנפיק: מניעת שירות שלא צריכה אף מפתח תקף. את שני מצבי הכשל מפריד תקציב משיכות מחדש, שהוא בחירה בין כשל פתוח לכשל סגור (fail-open, fail-closed) (מודול 2, שיעור 6).</p>
+<h2 id="what-is-open">מה פתוח</h2>
+<p>RFC 9700 מניח אדם, דפדפן וכמה שרתים. סוכן משנה את שלושתם. הסכמה אחת עשויה לכסות משימה ארוכה, טוקנים הולכים לשרתים רבים, חלקם לא ידועים מראש, וסמכות עוברת לאורך שרשראות של סוכנים. אף RFC עדיין לא אומר איך הסכמה של אדם צריכה להתמפות ל־scopes של משימה שמתוכננת אחרי שההסכמה ניתנה. וגם לא כמה ארוכה מותר לשרשרת <code>act</code> להיות, או אם שרת משאבים צריך לקבל טוקן שהוחלף דרך <span class="math" data-display="0">n</span> מתווכים, ולפי המדיניות של מי. מודול 3, שיעור 10, ומודול 12 בונים את החלקים שאפשר לבנות היום. השאר הוא עבודת תקינה שעוד בעיצומה.</p>
+<h2 id="check-yourself">בדקו את עצמכם</h2>
+<ol>
+<li>לאיזה מבין A1 עד A5 שייך שרת MCP זדוני שהסוכן שלכם קורא לו עם טוקן תקף? אילו שתי דרישות בטבלה מגבילות מה הוא יכול לעשות עם הטוקן, ואיזו מהן עדיין מגינה עליכם אם הוא שכנע את הלקוח לשים את ה־URL של ה־CRM האמיתי בקהל היעד של הטוקן?</li>
+<li>שרת הרשאות מתיר את תבנית ההפניה <code>https://agent.example/callback*</code>. במונחים של שיעור 10, מה הבדיקה, מה היעד, ולמה התאמה מדויקת היא התכנון היחיד שבו קבוצת ההבדלים ריקה?</li>
+<li>בצעו רוטציה למפתח עם <span class="math" data-display="0">C</span> = 24 שעות, <span class="math" data-display="0">L</span> = שעה ו־<span class="math" data-display="0">s</span> = 2 דקות. מתי חייבים לפרסם את המפתח החדש, מתי מותר להוריד את הישן, ומה משתנה אם המפתח הישן דלף?</li>
+</ol>
+<details class="answers"><summary>תשובות</summary>
+<ol>
+<li>A5: הוא משיג טוקן גישה מעצם התכנון (ובתור מי שפרסם אותו הוא גם A1). הגבלת קהל יעד וטוקנים מוגבלים לשולח מגבילות מה הוא יכול לעשות עם הטוקן. אם הוא הכניס את ה־URL של ה־CRM האמיתי לקהל היעד, הגבלת קהל היעד כבר לא עוזרת, ורק ההגבלה לשולח (DPoP או mutual TLS) עדיין מגינה עליכם: בלי המפתח הפרטי של הלקוח, הטוקן חסר תועלת ב־CRM.</li>
+<li>הבדיקה היא התאמת התבנית של שרת ההרשאות, <span class="math" data-display="0">P_C</span>, מפענח של URLs; היעד, <span class="math" data-display="0">P_T</span>, הוא הדפדפן והלקוח, שמפענחים את ההפניה ומחליטים לאן הקוד הולך. תבנית מקבלת מחרוזות כמו <code>https://agent.example/callback/../open-redirect?to=...</code> ש־<span class="math" data-display="0">P_T</span> מנרמל ליעד אחר. התאמה מדויקת לא מפענחת כלום: <span class="math" data-display="0">\varphi</span> היא שוויון בייטים עם מחרוזת רשומה, ולכן הבדיקה והיעד קוראים את אותו דבר ו־<span class="math" data-display="0">D</span> ריקה.</li>
+<li>לפרסם את המפתח החדש לפחות 24 שעות לפני הטוקן הראשון שנחתם בו; להשאיר את המפתח הישן מפורסם לפחות <span class="math" data-display="0">L + s</span> = 62 דקות אחרי הטוקן האחרון שנחתם בו. אם המפתח הישן דלף, למשוך אותו מיד ולקבל שטוקנים שנחתמו בשעה האחרונה נכשלים; והמטמונים ממשיכים לסמוך על המפתח שדלף עד 24 שעות, אלא אם אומרים למאמתים למשוך מחדש, כך שאורך החיים של המטמון, ולא <span class="math" data-display="0">L</span>, הופך לחלון החשיפה.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>סימון כהושלם</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="10-parser-differentials.html"><span class="label">הקודם</span>שני מפענחים, הודעה אחת: בדיקה תקינה רק אם היא קוראת את מה שהיעד קורא</a><a class="pn next" href="problems.html"><span class="label">הבא</span>תרגילים</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 הגנה על סוכני AI</span>
+  <nav aria-label="Footer">
+    <a href="../../../he/workshop/">סדנאות לצוותים</a>
+    <a href="../../../he/courses/">קורסים מקוונים</a>
+    <a href="mailto:shimon@defendingaiagents.com">יצירת קשר</a>
+    <a href="../../../.well-known/security.txt">אבטחה</a>
+    <a href="../../../learn/onramp/11-oauth-threat-model.html" lang="en" hreflang="en">English</a>
+  </nav>
+</footer>
+<script src="../../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"כהה":"בהיר";
+b.setAttribute("aria-label","מעבר למצב "+(n==="dark"?"כהה":"בהיר"))};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="he" dir="rtl" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TLS מוכיח שהגעתם לשם, לא שהשם הגון · הגנה על סוכני AI</title>
+<meta name="description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<link rel="canonical" href="https://defendingaiagents.com/he/learn/onramp/07-tls.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/onramp/07-tls.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/onramp/07-tls.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/onramp/07-tls.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="הגנה על סוכני AI">
+<meta property="og:title" content="TLS מוכיח שהגעתם לשם, לא שהשם הגון · הגנה על סוכני AI"><meta property="og:description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<meta property="og:url" content="https://defendingaiagents.com/he/learn/onramp/07-tls.html"><meta property="og:image" content="https://defendingaiagents.com/og-he.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="he_IL"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+<link rel="preload" href="../../../assets/fonts/rubik-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../../assets/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../../assets/course.css"><script src="../../../assets/progress.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">דילוג לתוכן</a>
+<header class="top">
+  <a class="brand" href="../../../learn/onramp/07-tls.html"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">הגנה על סוכני AI</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="החלפת ערכת צבע"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>ערכת צבע</span></button>
+    <a class="lang label" href="../../../learn/onramp/07-tls.html" lang="en" hreflang="en">English</a>
+    <a class="btn" href="../../../he/course/#waitlist" data-waitlist>לרשימת ההמתנה<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">תפריט</summary><nav aria-label="תפריט"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="onramp/07-tls" data-module="onramp">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">תצוגה מקדימה חינמית</a><span>/</span><a href="./">מסלול הכנה</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="מסלול הכנה">
+      <p class="label"><em>מסלול הכנה</em> תיאורטי</p>
+      <p class="side-title">מסלול הכנה (on-ramp): צנרת הווב שהקורס מניח שאתם מכירים</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="onramp/index"><span class="label">·</span><span>סקירה</span></a></li><li data-stem="01-http-is-text"><a href="01-http-is-text.html" data-page-link="onramp/01-http-is-text"><span class="label">01</span><span>קריאת HTTP היא טקסט נכנס, טקסט יוצא</span></a></li><li data-stem="02-json-edges"><a href="02-json-edges.html" data-page-link="onramp/02-json-edges"><span class="label">02</span><span>JSON פשוט, והמפענחים שלו עדיין חלוקים</span></a></li><li data-stem="03-yaml-traps"><a href="03-yaml-traps.html" data-page-link="onramp/03-yaml-traps"><span class="label">03</span><span>YAML הוא JSON עם הזחה וארבע מלכודות</span></a></li><li data-stem="04-api-token"><a href="04-api-token.html" data-page-link="onramp/04-api-token"><span class="label">04</span><span>טוקן API הוא סיסמה עם תווית</span></a></li><li data-stem="05-dns"><a href="05-dns.html" data-page-link="onramp/05-dns"><span class="label">05</span><span>שם הוא לא כתובת, והתשובה יכולה להשתנות</span></a></li><li data-stem="06-proxy"><a href="06-proxy.html" data-page-link="onramp/06-proxy"><span class="label">06</span><span>פרוקסי הוא שרת שהוא גם לקוח</span></a></li><li data-stem="07-tls" aria-current="page"><a href="07-tls.html" data-page-link="onramp/07-tls"><span class="label">07</span><span>TLS מוכיח שהגעתם לשם, לא שהשם הגון</span></a></li><li data-stem="08-jwt"><a href="08-jwt.html" data-page-link="onramp/08-jwt"><span class="label">08</span><span>JWT הוא טענות חתומות, ולבדיקה יש סדר</span></a></li><li data-stem="09-oauth-roles"><a href="09-oauth-roles.html" data-page-link="onramp/09-oauth-roles"><span class="label">09</span><span>OAuth נותן לטוקן ייעוד: תפקידים, scope, קהל יעד</span></a></li><li data-stem="10-parser-differentials"><a href="10-parser-differentials.html" data-page-link="onramp/10-parser-differentials"><span class="label">10</span><span>שני מפענחים, הודעה אחת: בדיקה תקינה רק אם היא קוראת את מה שהיעד קורא</span></a></li><li data-stem="11-oauth-threat-model"><a href="11-oauth-threat-model.html" data-page-link="onramp/11-oauth-threat-model"><span class="label">11</span><span>מודל האיום של OAuth עצמו: מה RFC 9700 דורש, ולמה סוכן צריך את כולו</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="onramp/problems"><span class="label">P</span><span>תרגילים</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="onramp" data-total="13" data-problems="14" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">מסלול הכנה · שיעור 07</p>
+        <h1>TLS מוכיח שהגעתם לשם, לא שהשם הגון</h1>
+      </header>
+      <p>הסוכן מתחבר ל־<code>https://crm.acme.example</code>. המנעול מופיע, הקריאה מוצפנת. שרת אחר, <code>crm-acme.example.net</code>, מחזיק תעודה תקפה בדיוק באותה מידה. TLS עשה את העבודה בשני המקרים: הוא אמר ללקוח שהשרת מחזיק מפתח שרשות אישורים (certificate authority) ערבה לו תחת ה<em>שם</em> הזה.</p>
+<h2 id="what-the-handshake-gives">מה לחיצת היד נותנת</h2>
+<p>TLS (RFC 8446, 2018) מוסיף לחיבור TCP שלוש תכונות:</p>
+<ol>
+<li><strong>סודיות (confidentiality)</strong>: מי שמאזין לרשת רואה כתובות וגדלים, לא את הבייטים.</li>
+<li><strong>שלמות (integrity)</strong>: אי אפשר לשנות בייטים בדרך בלי שיתגלה.</li>
+<li><strong>אימות שרת (server authentication)</strong>: השרת מוכיח שהוא מחזיק את המפתח הפרטי של <strong>תעודה (certificate)</strong> שנושאת את שמו, ושהתעודה משתרשרת לשורש שהלקוח סומך עליו (RFC 5280, 2008).</li>
+</ol>
+<p>הלקוח בודק שהשם שאליו התכוון להגיע מופיע בתעודה (RFC 9525, 2023). הנה זה על סוקט מקומי, עם תעודה ל־<code>crm.acme.example</code> ולקוח שסומך רק על התעודה הזו.</p>
+<p>צרו תעודה חד־פעמית, ושמרו את <code>t.py</code> לידה:</p>
+<pre><code class="language-bash">openssl req -x509 -newkey rsa:2048 -nodes -keyout k.pem -out c.pem -days 1 \
+  -subj &quot;/CN=crm.acme.example&quot; -addext &quot;subjectAltName=DNS:crm.acme.example&quot;
+</code></pre>
+<pre><code class="language-python">import socket, ssl, threading
+
+ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+ctx.load_cert_chain(&quot;c.pem&quot;, &quot;k.pem&quot;)
+srv = socket.socket(); srv.bind((&quot;127.0.0.1&quot;, 8443)); srv.listen()
+
+def serve():
+    while True:
+        conn, _ = srv.accept()
+        try:
+            ctx.wrap_socket(conn, server_side=True).sendall(b&quot;hello&quot;)
+        except Exception:
+            pass
+threading.Thread(target=serve, daemon=True).start()
+
+client = ssl.create_default_context(cafile=&quot;c.pem&quot;)      # trusts only this certificate
+for name in (&quot;crm.acme.example&quot;, &quot;cal.acme.example&quot;):
+    try:
+        with socket.create_connection((&quot;127.0.0.1&quot;, 8443)) as raw, \
+             client.wrap_socket(raw, server_hostname=name) as s:
+            print(name, &quot;-&gt;&quot;, s.version(), s.recv(5))
+    except ssl.SSLCertVerificationError as e:
+        print(name, &quot;-&gt;&quot;, e.verify_message)
+</code></pre>
+<p>הפלט:</p>
+<pre><code class="language-text">crm.acme.example -&gt; TLSv1.3 b'hello'
+cal.acme.example -&gt; Hostname mismatch, certificate is not valid for 'cal.acme.example'.
+</code></pre>
+<p>אותו שרת, אותה כתובת, אותם בייטים: ההכרעה תלויה ב<strong>שם שהלקוח ביקש</strong>. לקוח שמתחבר לפי כתובת IP, או שמכבה את בדיקת שם השרת (<code>verify=False</code>, <code>-k</code>), הצפין שיחה עם אף אחד מסוים.</p>
+<h2 id="what-it-does-not-give">מה היא לא נותנת</h2>
+<div class="table"><table>
+<thead>
+<tr>
+<th>נראה ש־TLS אומר</th>
+<th>מה הוא אומר בפועל</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>«השרת אמין»</td>
+<td>רשות אישורים ערבה לכך שמחזיק המפתח שולט בשם</td>
+</tr>
+<tr>
+<td>«התוכן בטוח»</td>
+<td>כלום על התוכן: הזרקת פרומפט (prompt injection) מגיעה מוצפנת ושלמה</td>
+</tr>
+<tr>
+<td>«הלקוח הוא מי שהוא טוען»</td>
+<td>כברירת מחדל, כלום: רק השרת הוכיח את עצמו (mutual TLS מוסיף את הלקוח, RFC 8705)</td>
+</tr>
+<tr>
+<td>«אף אחד לא רואה את התעבורה»</td>
+<td>הקצוות, וכל פרוקסי שמסיים את החיבור, רואים אותה</td>
+</tr>
+</tbody>
+</table></div>
+<p>שער בקרה (gateway) שמסיים TLS ומצפין מחדש אל השרת שמאחוריו הוא <strong>אדם בתווך (man in the middle) מתוכנן</strong>: הוא מחזיק תעודה שהלקוחות שלו סומכים עליה, ולכן הוא יכול לקרוא כל בייט. זה מה שמאפשר לו לבדוק קריאה לכלי, וזו גם הסיבה שהמפתחות של שער הבקרה הזה הם מהיקרים ביותר בכל הפריסה.</p>
+<h2 id="sni-the-name-travels-before-the-encryption">SNI: השם עובר לפני ההצפנה</h2>
+<p>ההודעה הראשונה של הלקוח נושאת את <strong>ציון שם השרת (server name indication, SNI)</strong> (RFC 6066), כדי שכתובת אחת תוכל להגיש תעודות רבות. בלחיצת היד הקלאסית הוא עובר בטקסט גלוי. כך בקרת רשת יכולה לאפשר את <code>crm.acme.example</code> ולחסום שם אחר בלי לשבור את ההצפנה, וכך גם לקוח יכול לשקר בו ובמקביל לשלוח בפנים כותרת <code>Host</code> אחרת. שער בקרה שמנתב לפי SNI ומחליט לפי <code>Host</code> מכיל הבדל מפענחים (parser differential) מהסוג של שיעור 1, בין שתי שכבות.</p>
+<h2 id="expert-pinning-and-the-cost-of-a-check">מומחה: נעיצה ומחירה של בדיקה</h2>
+<p>לקוח יכול לנעוץ (pinning) את המפתח או התעודה שהוא מצפה להם, כך שתעודה שהונפקה בטעות על ידי רשות אישורים מהימנה תיכשל. נעיצה מעבירה את הסיכון לרוטציה (rotation): מפתח נעוץ שמוחלף בלי התראה מפיל את כל הלקוחות. בדיקות ביטול (revocation) של תעודות (CRLs, RFC 5280; OCSP) נכשלות ברכות (fail soft) אצל לקוחות רבים, כי כשל קשה הופך רשות אישורים שאינה זמינה להשבתה של כל אתר שמשתמש בה. תעודות קצרות־חיים מצמצמות את הבעיה להמתנה עד שהן פגות.</p>
+<h2 id="check-yourself">בדקו את עצמכם</h2>
+<ol>
+<li>בספריית ה־HTTP של סוכן מוגדר <code>verify=False</code> «בשביל המעבדה». איזו משלוש התכונות זה מסיר, והאם התעבורה עדיין מוצפנת?</li>
+<li>הזרקת פרומפט מגיעה למודל דרך שליפת עמוד שמוגנת ב־TLS. אילו משלוש התכונות התקיימו לגבי הטקסט המוזרק, ואיזה רכיב משיעורים 6 ו־7 ממוקם כך שיוכל לבדוק אותו?</li>
+<li>שער הבקרה שלכם מסיים TLS. מה חייב להיות נכון באופן שבו הוא מגיע ל־CRM, כדי ש«ביומן של ה־CRM רואים את שער הבקרה» תהיה תכונה שאפשר לסמוך עליה?</li>
+</ol>
+<details class="answers"><summary>תשובות</summary>
+<ol>
+<li>אימות השרת: אין בדיקת שרשרת ואין בדיקת שם. התעבורה עדיין מוצפנת ומוגנת בשלמות, אבל מול מי שענה, כך שכל מי שנמצא בדרך יכול לסיים אותה, לקרוא ולשנות הכול, ולהצפין מחדש: «שיחה עם אף אחד מסוים».</li>
+<li>שלושתן: הטקסט הגיע חסוי, לא משונה, ומהשרת שהלקוח ציין. TLS לא אומר כלום על תוכן. הרכיב שממוקם לבדוק אותו הוא פרוקסי שמסיים TLS, למשל שער הבקרה בתפקיד פרוקסי הפוך (reverse proxy) (שיעור 6), אדם בתווך מתוכנן שקורא את הטקסט הגלוי.</li>
+<li>החיבור משער הבקרה ל־CRM חייב לאמת את שער הבקרה, ולהיות הדרך היחידה פנימה. כברירת מחדל TLS מוכיח רק את השרת, ולכן ה־CRM צריך mutual TLS עם תעודת הלקוח של שער הבקרה (RFC 8705), או רשת שבה שום דבר אחר לא יכול להגיע אליו; ושער הבקרה, מצדו, חייב לאמת את התעודה של ה־CRM. אחרת «שער הבקרה» ביומן הוא פשוט מי שהתחבר.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>סימון כהושלם</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="06-proxy.html"><span class="label">הקודם</span>פרוקסי הוא שרת שהוא גם לקוח</a><a class="pn next" href="08-jwt.html"><span class="label">הבא</span>JWT הוא טענות חתומות, ולבדיקה יש סדר</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 הגנה על סוכני AI</span>
+  <nav aria-label="Footer">
+    <a href="../../../he/workshop/">סדנאות לצוותים</a>
+    <a href="../../../he/courses/">קורסים מקוונים</a>
+    <a href="mailto:shimon@defendingaiagents.com">יצירת קשר</a>
+    <a href="../../../.well-known/security.txt">אבטחה</a>
+    <a href="../../../learn/onramp/07-tls.html" lang="en" hreflang="en">English</a>
+  </nav>
+</footer>
+<script src="../../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"כהה":"בהיר";
+b.setAttribute("aria-label","מעבר למצב "+(n==="dark"?"כהה":"בהיר"))};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

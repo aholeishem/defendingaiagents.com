@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="he" dir="rtl" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>כמה רחוק לולאה יכולה להגיע? שגיאה מצטברת, פעולות קוד ואופק הזמן · הגנה על סוכני AI</title>
+<meta name="description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<link rel="canonical" href="https://defendingaiagents.com/he/learn/e03-agent-loop/09-long-horizons.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/e03-agent-loop/09-long-horizons.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/e03-agent-loop/09-long-horizons.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/e03-agent-loop/09-long-horizons.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="הגנה על סוכני AI">
+<meta property="og:title" content="כמה רחוק לולאה יכולה להגיע? שגיאה מצטברת, פעולות קוד ואופק הזמן · הגנה על סוכני AI"><meta property="og:description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<meta property="og:url" content="https://defendingaiagents.com/he/learn/e03-agent-loop/09-long-horizons.html"><meta property="og:image" content="https://defendingaiagents.com/og-he.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="he_IL"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+<link rel="preload" href="../../../assets/fonts/rubik-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../../assets/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../../assets/course.css"><script src="../../../assets/progress.js" defer></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script><script>addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".math").forEach(function(e){katex.render(e.textContent,e,{displayMode:e.dataset.display==="1",throwOnError:false})})})</script>
+</head>
+<body>
+<a class="skip" href="#main">דילוג לתוכן</a>
+<header class="top">
+  <a class="brand" href="../../../learn/e03-agent-loop/09-long-horizons.html"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">הגנה על סוכני AI</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="החלפת ערכת צבע"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>ערכת צבע</span></button>
+    <a class="lang label" href="../../../learn/e03-agent-loop/09-long-horizons.html" lang="en" hreflang="en">English</a>
+    <a class="btn" href="../../../he/course/#waitlist" data-waitlist>לרשימת ההמתנה<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">תפריט</summary><nav aria-label="תפריט"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="e03-agent-loop/09-long-horizons" data-module="e03-agent-loop">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">תצוגה מקדימה חינמית</a><span>/</span><a href="./">E3</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="E3">
+      <p class="label"><em>E3</em> מעשי</p>
+      <p class="side-title">לולאת הסוכן מאפס</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="e03-agent-loop/index"><span class="label">·</span><span>סקירה</span></a></li><li data-stem="01-workflow-or-agent"><a href="01-workflow-or-agent.html" data-page-link="e03-agent-loop/01-workflow-or-agent"><span class="label">01</span><span>מי מחליט על הצעד הבא? תהליכים קבועים וסוכנים</span></a></li><li data-stem="02-a-tool-is-three-texts"><a href="02-a-tool-is-three-texts.html" data-page-link="e03-agent-loop/02-a-tool-is-three-texts"><span class="label">02</span><span>כלי הוא סכמה, פונקציה והודעת שגיאה, והמודל קורא שניים מהם</span></a></li><li data-stem="03-three-wire-formats"><a href="03-three-wire-formats.html" data-page-link="e03-agent-loop/03-three-wire-formats"><span class="label">03</span><span>קריאה אחת לכלי, שלושה פורמטים על הקו</span></a></li><li data-stem="04-parallel-calls"><a href="04-parallel-calls.html" data-page-link="e03-agent-loop/04-parallel-calls"><span class="label">04</span><span>קריאות מקבילות לכלים: פעולות קריאה מתחלפות, פעולות כתיבה לא</span></a></li><li data-stem="05-retries"><a href="05-retries.html" data-page-link="e03-agent-loop/05-retries"><span class="label">05</span><span>לנסות שוב את השרת, לא את המודל: שגיאות, backoff ו־jitter</span></a></li><li data-stem="06-budgets"><a href="06-budgets.html" data-page-link="e03-agent-loop/06-budgets"><span class="label">06</span><span>צעד הוא לא יחידת עלות: ארבעה תקציבים וסיבת עצירה אחת</span></a></li><li data-stem="07-structured-answers"><a href="07-structured-answers.html" data-page-link="e03-agent-loop/07-structured-answers"><span class="label">07</span><span>תשובה שתוכנה יכולה לקרוא: סכמות ותיקון אחד</span></a></li><li data-stem="08-streaming"><a href="08-streaming.html" data-page-link="e03-agent-loop/08-streaming"><span class="label">08</span><span>קריאה לכלי בסטרימינג היא חצי אובייקט JSON</span></a></li><li data-stem="09-long-horizons" aria-current="page"><a href="09-long-horizons.html" data-page-link="e03-agent-loop/09-long-horizons"><span class="label">09</span><span>כמה רחוק לולאה יכולה להגיע? שגיאה מצטברת, פעולות קוד ואופק הזמן</span></a></li><li data-stem="build"><a href="build.html" data-page-link="e03-agent-loop/build"><span class="label">B</span><span>הבנייה: הלולאה של מודול 1, שהופכת לכזו שרצה בלי השגחה, ונמדדת</span></a></li><li data-stem="at-scale"><a href="at-scale.html" data-page-link="e03-agent-loop/at-scale"><span class="label">S</span><span>בקנה מידה: אותה לולאה, עשרת אלפים פעמים בבת אחת</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="e03-agent-loop/problems"><span class="label">P</span><span>בעיות</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="e03-agent-loop" data-total="13" data-problems="15" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">E3 · שיעור 09</p>
+        <h1>כמה רחוק לולאה יכולה להגיע? שגיאה מצטברת, פעולות קוד ואופק הזמן</h1>
+      </header>
+      <p>כל מה שעשינו עד עכשיו הופך ריצה אחת לחסינה יותר. השאלה ברמת המומחה היא על אורך: כמה צעדים סוכן יכול לעשות לפני שמשהו משתבש, למה המספר הזה זז מהר, ואילו החלטות תכנון מזיזות אותו. שלושה קווי מחקר נפגשים כאן, והם לא מסכימים בכל דבר.</p>
+<h2 id="compounding-and-why-a-small-gain-is-a-large-one">הצטברות, ולמה שיפור קטן הוא שיפור גדול</h2>
+<p>אם כל צעד מצליח באופן בלתי תלוי בהסתברות <span class="math" data-display="0">s</span>, משימה של <span class="math" data-display="0">n</span> צעדים מצליחה בהסתברות <span class="math" data-display="0">s^n</span>. האורך שבו ההצלחה יורדת לחצי, <strong>אופק</strong> (horizon) ה־50%, הוא</p>
+<div class="math" data-display="1">H_{50} = \frac{\ln 0.5}{\ln s} \approx \frac{0.69}{1 - s} \quad \text{for } s \text{ near } 1.</div>
+<p>האופק הפוך ביחס לשיעור השגיאה לצעד. מעבר מ־99% ל־99.5% לצעד נראה כמו שגיאת עיגול בבנצ'מרק קצר, ומכפיל את האופק, מ־69 צעדים ל־138. Sinha et al. ‏(2025) מעלים את הטיעון הזה נגד הטענות על תשואה פוחתת: בנצ'מרקים של משימות קצרות מסתירים שיפורים שנעשים גדולים במשימות ארוכות. אחר כך הם מודדים משהו שהנוסחה משאירה בחוץ. הדיוק לצעד <em>יורד</em> ככל שהריצה מתקדמת, ולא רק כי ההקשר ארוך: מודלים נוטים יותר לטעות כשההקשר מכיל את הטעויות הקודמות שלהם. הם קוראים לזה <strong>התניה עצמית</strong> (self-conditioning). היא שוברת את הנחת אי־התלות בכיוון הפסימי, כך שהאופק האמיתי קצר מ־<span class="math" data-display="0">0.69/(1-s)</span>. בניסויים שלהם, חשיבה ממתנת את התופעה, וגודל לבדו לא.</p>
+<p>זה התאום הסטטיסטי של שרשרת מרקוב עם מצב כשל בולע, שהסתברות המעבר אליו תלויה בהיסטוריה של השרשרת עצמה. זו הסיבה שהודעות השגיאה של שיעור 2 חשובות יותר ממה שהן נראות: בהקשר של ריצה שמתאוששת נקי מקריאה שנדחתה יש שגיאה אחת שהיא כבר טיפלה בה, ובהקשר של ריצה שמתבוססת יש כמה שהיא לא טיפלה בהן.</p>
+<h2 id="the-time-horizon-measured">אופק הזמן, במדידה</h2>
+<p>Kwa et al. ‏(2025) הופכים את האופק לסטטיסטיקה של בנצ'מרק. הם מודדים את הזמן של אנשים מיומנים על משימות תוכנה, מתאימים לכל מודל עקומה לוגיסטית של הסתברות ההצלחה מול הזמן האנושי, ומדווחים את הזמן האנושי שבו המודל מצליח בחצי מהמקרים. למודלי החזית בתחילת 2025 זה היה כ־50 דקות, והמספר הוכפל בערך כל שבעה חודשים מאז 2019. בקצב הזה, 50 דקות הופכות לכתשע שעות בתוך שנתיים (<span class="math" data-display="0">50 \times 2^{24/7} \approx 540</span> דקות).</p>
+<p>קראו את זה עם ההסתייגויות שהכותבים עצמם נותנים. המשימות הן משימות תוכנה עם ציון אוטומטי. ההתאמה היא עקומה לוגיסטית אחת לכל מודל, כך שהאופק יורש את אי־הוודאות של ההתאמה הזו. ולהמשיך זמן הכפלה זה להמשיך מגמה שהותאמה על כמה שנים של תחום שמחליף שיטות כל שנה. התוקף החיצוני הוא השאלה הפתוחה: האם «משימה שלוקחת לאדם שעה» אומרת אותו דבר בתחום שלכם, והאם הצלחה של 50% היא נקודת העבודה (operating point) שחשובה לכם. לסוכן ששולח מיילים חשוב משהו קרוב יותר ל־99%, והאופק ב־99% קצר בהרבה מאשר ב־50%.</p>
+<h2 id="reliability-across-tries-pass-k">אמינות לאורך ניסיונות: pass^k</h2>
+<p>שיעור שנמדד פעם אחת לכל משימה מסתיר חוסר עקביות. τ-bench ‏(Yao et al., 2024) מדווח pass^k, ההסתברות ש<em>כל</em> <span class="math" data-display="0">k</span> ניסיונות בלתי תלויים של אותה משימה מצליחים. סוכני ה־function calling המתקדמים ביותר של אמצע 2024 פתרו פחות ממחצית מהמשימות שלו, ו־pass^8 בתחום הקמעונאות היה מתחת ל־25%. מודול 1, שיעור 9, גוזר את האומד. על עשרים משימות המעבדה, ללולאה של E3 היו pass^1 = 0.550 ו־pass^3 = 0.450 (הבנייה), בעוד ש־<span class="math" data-display="0">(\text{pass}^1)^3</span> היה יוצא 0.166. שיעורי ההצלחה של המשימות שונים זה מזה, ולכן לפי אי־שוויון ינסן הממוצע של <span class="math" data-display="0">p_i^3</span> גדול מ־<span class="math" data-display="0">(\bar p)^3</span>. כאן המשימות מתחלקות לכאלה שהמודל כמעט תמיד פותר ולכאלה שהוא כמעט אף פעם לא פותר. האמינות של צי סוכנים תלויה בפיזור של קושי המשימות, לא רק בממוצע שלו.</p>
+<h2 id="code-as-action-and-what-it-costs">קוד כפעולה, ומה זה עולה</h2>
+<p>שיעורים 2 עד 4 מניחים שהמודל פועל דרך קריאות JSON לכלים בעלי שם. CodeAct ‏(Wang et al., 2024) נותן לו לכתוב Python במקום, שרץ במפרש: לולאה על קבצים, סינון, שלושה כלים שמורכבים בפעולה אחת. על פני 17 מודלים הוא דיווח על הצלחה גבוהה בעד 20% לעומת פעולות JSON או טקסט. SWE-agent ‏(Yang et al., 2024) הראה את הצד השני של שאלת הממשק: <em>ממשק סוכן־מחשב</em> (agent-computer interface) שנבנה במיוחד (מציג קבצים, עורך ופקודות חיפוש שתוכננו למודל ולא לאדם) הביא את SWE-bench ל־12.5% ב־pass@1, אז הרבה לפני הגישות הלא־אינטראקטיביות. האופן שבו המודל פועל הוא משתנה תכנון עם השפעה מדודה.</p>
+<p>המחיר של פעולות קוד הוא הנושא של קורס האבטחה. קריאת JSON ל־<code>send_email</code> אפשר לבדוק שדה אחר שדה בשער הבקרה (gateway; מודולים 3 ו־13). פעולת קוד היא תוכנית, ולבדוק תוכנית לפני שהיא רצה זו בעיית ה־shell (מודול 3, שיעור 5, «הדלת הקשה מכולן»). פעולות קוד צריכות ארגז חול (sandbox) (E8, מודול 12), והרווח ביכולת נקנה במחיר של יכולת הבדיקה. צוותים מתווכחים על הטרייד־אוף הזה, ובצדק: הרווח המדוד בא מבנצ'מרקים בלי יריב, והמחיר מופיע רק כשיש יריב.</p>
+<h2 id="open-problems">בעיות פתוחות</h2>
+<ul>
+<li><strong>מה מגביל את האופק?</strong> Sinha et al. ממקמים אותו בביצוע, לא בהסקה. מגמת אופק הזמן מייחסת את השיפור לאמינות ולהתאוששות משגיאות. אף אחד מהם לא מכריע אם הקשרים ארוכים יותר, פרומפטים טובים יותר להתאוששות או אימון הם המנוף הזול ביותר למודל נתון.</li>
+<li><strong>האם המגמה היא חוק?</strong> הכפלה כל שבעה חודשים הותאמה על משפחת משימות אחת. אם היא מחזיקה גם למיילים, לספרי חשבונות ולזנב הארוך של כלים ארגוניים, זה לא נמדד.</li>
+<li><strong>אפשר להפוך פעולות קוד לניתנות לבדיקה?</strong> שפות מוגבלות, ממשקי כלים מוקלדים שנקראים מתוך קוד, ומעקב אחר זרימת מידע במפרש (CaMeL של מודול 11) הם ניסיונות. אף אחד מהם עוד לא נותן גם את הגמישות של CodeAct וגם את יכולת הבדיקה של קריאת JSON.</li>
+</ul>
+<h2 id="check-yourself">בדקו את עצמכם</h2>
+<ol>
+<li>ההצלחה לצעד עולה מ־98% ל־99%. פי כמה גדל אופק ה־50%, בהנחת אי־תלות?</li>
+<li>התניה עצמית פירושה ש־<span class="math" data-display="0">P(\text{error at } t \mid \text{an earlier error})</span> גדול מ־<span class="math" data-display="0">P(\text{error at } t \mid \text{none})</span>. האם זה הופך את האופק האמיתי לארוך או לקצר מ־<span class="math" data-display="0">0.69/(1-s)</span>, כש־<span class="math" data-display="0">s</span> נמדד על צעדים ראשונים?</li>
+<li>למה אופק הזמן של 50% הוא נקודת העבודה הלא נכונה לסוכן ששולח מיילים בשמכם, ולאיזה כיוון הנקודה הנכונה מזיזה את האופק?</li>
+</ol>
+<details class="answers"><summary>תשובות</summary>
+<ol>
+<li>הוא מוכפל: <span class="math" data-display="0">0.69/0.02 \approx 34</span> צעדים הופכים ל־<span class="math" data-display="0">0.69/0.01 \approx 69</span>. במדויק, <span class="math" data-display="0">\ln 0.5 / \ln 0.98 = 34.3</span> ו־<span class="math" data-display="0">\ln 0.5 / \ln 0.99 = 69.0</span>.</li>
+<li>לקצר. שיעור השגיאה לצעד עולה אחרי השגיאה הראשונה, כך שכשלים מתקבצים, וההצלחה דועכת מהר יותר מ־<span class="math" data-display="0">s^n</span> ברגע שריצה השתבשה. הנוסחה, כשמזינים לה <span class="math" data-display="0">s</span> של צעד ראשון, מגזימה באופק.</li>
+<li>שיעור הצלחה של 50% פירושו שחצי מהמיילים שגויים או חסרים. אתם רוצים את האורך שבו ההצלחה היא, נגיד, 99%: <span class="math" data-display="0">\ln 0.99 / \ln s</span>, בערך <span class="math" data-display="0">0.01/(1-s)</span>, קצר בערך פי 69 מאופק ה־50% עבור אותו <span class="math" data-display="0">s</span>.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>סימון כהושלם</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="08-streaming.html"><span class="label">הקודם</span>קריאה לכלי בסטרימינג היא חצי אובייקט JSON</a><a class="pn next" href="build.html"><span class="label">הבא</span>הבנייה: הלולאה של מודול 1, שהופכת לכזו שרצה בלי השגחה, ונמדדת</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 הגנה על סוכני AI</span>
+  <nav aria-label="Footer">
+    <a href="../../../he/workshop/">סדנאות לצוותים</a>
+    <a href="../../../he/courses/">קורסים מקוונים</a>
+    <a href="mailto:shimon@defendingaiagents.com">יצירת קשר</a>
+    <a href="../../../.well-known/security.txt">אבטחה</a>
+    <a href="../../../learn/e03-agent-loop/09-long-horizons.html" lang="en" hreflang="en">English</a>
+  </nav>
+</footer>
+<script src="../../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"כהה":"בהיר";
+b.setAttribute("aria-label","מעבר למצב "+(n==="dark"?"כהה":"בהיר"))};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

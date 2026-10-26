@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="he" dir="rtl" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>לולאת הסוכן מאפס · הגנה על סוכני AI</title>
+<meta name="description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<link rel="canonical" href="https://defendingaiagents.com/he/learn/e03-agent-loop/"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/e03-agent-loop/"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/e03-agent-loop/"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/e03-agent-loop/">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="הגנה על סוכני AI">
+<meta property="og:title" content="לולאת הסוכן מאפס · הגנה על סוכני AI"><meta property="og:description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<meta property="og:url" content="https://defendingaiagents.com/he/learn/e03-agent-loop/"><meta property="og:image" content="https://defendingaiagents.com/og-he.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="he_IL"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+<link rel="preload" href="../../../assets/fonts/rubik-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../../assets/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../../assets/course.css"><script src="../../../assets/progress.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">דילוג לתוכן</a>
+<header class="top">
+  <a class="brand" href="../../../learn/e03-agent-loop/"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">הגנה על סוכני AI</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="החלפת ערכת צבע"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>ערכת צבע</span></button>
+    <a class="lang label" href="../../../learn/e03-agent-loop/" lang="en" hreflang="en">English</a>
+    <a class="btn" href="../../../he/course/#waitlist" data-waitlist>לרשימת ההמתנה<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">תפריט</summary><nav aria-label="תפריט"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="e03-agent-loop/index" data-module="e03-agent-loop">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">תצוגה מקדימה חינמית</a><span>/</span><a href="./">E3</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="E3">
+      <p class="label"><em>E3</em> מעשי</p>
+      <p class="side-title">לולאת הסוכן מאפס</p>
+      <ol><li data-stem="index" aria-current="page"><a href="./" data-page-link="e03-agent-loop/index"><span class="label">·</span><span>סקירה</span></a></li><li data-stem="01-workflow-or-agent"><a href="01-workflow-or-agent.html" data-page-link="e03-agent-loop/01-workflow-or-agent"><span class="label">01</span><span>מי מחליט על הצעד הבא? תהליכים קבועים וסוכנים</span></a></li><li data-stem="02-a-tool-is-three-texts"><a href="02-a-tool-is-three-texts.html" data-page-link="e03-agent-loop/02-a-tool-is-three-texts"><span class="label">02</span><span>כלי הוא סכמה, פונקציה והודעת שגיאה, והמודל קורא שניים מהם</span></a></li><li data-stem="03-three-wire-formats"><a href="03-three-wire-formats.html" data-page-link="e03-agent-loop/03-three-wire-formats"><span class="label">03</span><span>קריאה אחת לכלי, שלושה פורמטים על הקו</span></a></li><li data-stem="04-parallel-calls"><a href="04-parallel-calls.html" data-page-link="e03-agent-loop/04-parallel-calls"><span class="label">04</span><span>קריאות מקבילות לכלים: פעולות קריאה מתחלפות, פעולות כתיבה לא</span></a></li><li data-stem="05-retries"><a href="05-retries.html" data-page-link="e03-agent-loop/05-retries"><span class="label">05</span><span>לנסות שוב את השרת, לא את המודל: שגיאות, backoff ו־jitter</span></a></li><li data-stem="06-budgets"><a href="06-budgets.html" data-page-link="e03-agent-loop/06-budgets"><span class="label">06</span><span>צעד הוא לא יחידת עלות: ארבעה תקציבים וסיבת עצירה אחת</span></a></li><li data-stem="07-structured-answers"><a href="07-structured-answers.html" data-page-link="e03-agent-loop/07-structured-answers"><span class="label">07</span><span>תשובה שתוכנה יכולה לקרוא: סכמות ותיקון אחד</span></a></li><li data-stem="08-streaming"><a href="08-streaming.html" data-page-link="e03-agent-loop/08-streaming"><span class="label">08</span><span>קריאה לכלי בסטרימינג היא חצי אובייקט JSON</span></a></li><li data-stem="09-long-horizons"><a href="09-long-horizons.html" data-page-link="e03-agent-loop/09-long-horizons"><span class="label">09</span><span>כמה רחוק לולאה יכולה להגיע? שגיאה מצטברת, פעולות קוד ואופק הזמן</span></a></li><li data-stem="build"><a href="build.html" data-page-link="e03-agent-loop/build"><span class="label">B</span><span>הבנייה: הלולאה של מודול 1, שהופכת לכזו שרצה בלי השגחה, ונמדדת</span></a></li><li data-stem="at-scale"><a href="at-scale.html" data-page-link="e03-agent-loop/at-scale"><span class="label">S</span><span>בקנה מידה: אותה לולאה, עשרת אלפים פעמים בבת אחת</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="e03-agent-loop/problems"><span class="label">P</span><span>בעיות</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="e03-agent-loop" data-total="13" data-problems="15" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">E3 · מעשי · 7 ש׳ · בניית סוכני AI</p>
+        <h1>לולאת הסוכן מאפס</h1><p class="twin-line"><span class="label">התאום הסטטיסטי</span> תהליך החלטה מרקובי שהמדיניות שלו היא מודל שפה שדוגמים ממנו, והאופק שלו הוא תקציב; הצלחה של ריצה היא מכפלה של אמינויות לכל צעד, ונמדדת כפרופורציה בינומית עם רווח סמך מקובץ לפי משימה.</p>
+      </header>
+      <p>מודול 1 נתן לכם סוכן בפחות מ־100 שורות, ואז הקדיש את כל הקורס לתקוף אותו. המודול הזה שואל מה צריך כדי שאותה לולאה תוכל לרוץ בלי השגחה. אסור לה לקרוס על קריאה פגומה, למות על ה־503 הראשון, לרוץ עד שהכסף נגמר, או להחזיר «בערך חצי מיליון» לתוכנה שציפתה למספר שלם. שום דבר מזה אינו אבטחה, וכל זה הוא מה ששער הבקרה (gateway) של מודול 3 יושב לצדו. תבנו כל חלק ביד, תבדקו אותו מול מודל מתוסרט, ואז תמדדו, על עשרים משימות מעבדה ועל המודל המקומי שלכם, מה החלקים נותנים יחד לעומת הלולאה של מודול 1.</p>
+<p>המודול מעשי: הערך הוא הלולאה ב־<code>loop/</code>, שמודולי ההנדסה הבאים מרחיבים (E5 מוסיף לה אחזור, E6 MCP, E7 עובדים, E9 חבילת הערכה, E11 טרייסים). אין כאן framework. E4 בונה את אותו סוכן מחדש בשלושה מהם ומשווה את מה שכל אחד שולח.</p>
+<h2 id="you-will-be-able-to">מה תדעו לעשות</h2>
+<p><em>כל שורה מסתיימת בתגיות: הרמה, תוצר הלמידה של מסלול ההנדסה שהיא בונה (EO1 עד EO8, מתוכנית המסלול), והיכן היא נבדקת (קבוצת <code>check</code>, בעיה P, הבנייה או תשובה כתובה).</em></p>
+<ul>
+<li>לקבוע לעבודה נתונה אם תהליך קבוע (workflow) או סוכן (agent) צריך להחליט על הצעד הבא, ומה כל בחירה עושה לעלות, לזמן התגובה (latency) ולבדיקות. &lt;span class=&quot;label tier&quot;&gt;יסודות&lt;/span&gt;</li>
+<li>לפענח ולבדוק את הארגומנטים של קריאה לכלי (tool call) מול הסכמה (schema) שלו, ולהחזיר שגיאות שמציינות את השדה ואת התיקון. &lt;span class=&quot;label tier&quot;&gt;יסודות&lt;/span&gt;</li>
+<li>להמיר היסטוריה של קריאות לכלים ותשובה בין Chat Completions ל־Anthropic Messages, לשני הכיוונים. &lt;span class=&quot;label tier&quot;&gt;יסודות&lt;/span&gt;</li>
+<li>להריץ את הקריאות לכלים של תור אחד כך שפעולות קריאה רצות במקביל, פעולות כתיבה הן מחסום (barrier) והתוצאות חוזרות בסדר שבו התבקשו, ולהסביר למה «בטוח לשנות סדר» אינו «בטוח». &lt;span class=&quot;label tier&quot;&gt;מתקדם&lt;/span&gt;</li>
+<li>לנסות שוב (retry) את הכשלים ששווה לנסות שוב, עם השהיה מתגברת (backoff) עם jitter מלא ו־Retry-After, לחזות את ההצלחה של משימה משיעור הכשל לכל קריאה, ולבדוק את התחזית בסימולציה. &lt;span class=&quot;label tier&quot;&gt;מתקדם&lt;/span&gt;</li>
+<li>להגביל ריצה בצעדים, בטוקנים, בעלות ובזמן שעון, לגזור איך טוקני הפרומפט גדלים עם מספר הצעדים, ולדווח למה ריצה נעצרה. &lt;span class=&quot;label tier&quot;&gt;מתקדם&lt;/span&gt;</li>
+<li>להפוך תשובה סופית לערך שנבדק מול סכמה, עם תיקון אחד, ולדווח על התאמה לסכמה ועל נכונות בנפרד. &lt;span class=&quot;label tier&quot;&gt;מתקדם&lt;/span&gt;</li>
+<li>להרכיב מחדש תשובה בסטרימינג, כולל קטעים של קריאות לכלים, ולפעול על קריאה רק כשהיא שלמה. &lt;span class=&quot;label tier&quot;&gt;מתקדם&lt;/span&gt;</li>
+<li>למדוד את הלולאה שלכם מול זו של מודול 1 על עשרים משימות, בהשוואה מזווגת ומקובצת לפי משימה, וב־pass^k. &lt;span class=&quot;label tier&quot;&gt;מתקדם&lt;/span&gt;</li>
+<li>לנמק עד כמה רחוק לולאה יכולה להגיע: הצטברות שגיאות והתניה עצמית (self-conditioning), מגמת אופק הזמן ותקפותה, ומה פעולות בקוד מרוויחות ומה הן עולות. &lt;span class=&quot;label tier&quot;&gt;מומחה&lt;/span&gt;</li>
+</ul>
+<h2 id="lessons">שיעורים</h2>
+<p><strong>יסודות</strong></p>
+<ol>
+<li><a href="01-workflow-or-agent.html">מי מחליט על הצעד הבא? תהליכים קבועים וסוכנים</a></li>
+<li><a href="02-a-tool-is-three-texts.html">כלי הוא סכמה, פונקציה והודעת שגיאה, והמודל קורא שניים מהם</a></li>
+<li><a href="03-three-wire-formats.html">קריאה אחת לכלי, שלושה פורמטים על הקו</a></li>
+</ol>
+<p><strong>מתקדם</strong></p>
+<ol start="4">
+<li><a href="04-parallel-calls.html">קריאות מקבילות לכלים: פעולות קריאה מתחלפות, פעולות כתיבה לא</a></li>
+<li><a href="05-retries.html">לנסות שוב את השרת, לא את המודל: שגיאות, backoff ו־jitter</a></li>
+<li><a href="06-budgets.html">צעד אינו יחידת עלות: ארבעה תקציבים וסיבת עצירה</a></li>
+<li><a href="07-structured-answers.html">תשובה שתוכנה יכולה לקרוא: סכמות ותיקון אחד</a></li>
+<li><a href="08-streaming.html">קריאה לכלי בסטרימינג היא חצי אובייקט JSON</a></li>
+</ol>
+<p><strong>מומחה</strong></p>
+<ol start="9">
+<li><a href="09-long-horizons.html">כמה רחוק לולאה יכולה להגיע? הצטברות שגיאות, פעולות בקוד ואופק הזמן</a></li>
+</ol>
+<p>ואחר כך: <a href="build.html">הבנייה</a>, <a href="at-scale.html">בקנה מידה</a> ו<a href="problems.html">בעיות</a>.</p>
+<p>מניח את מודול 1 (המעבדה, המודל המקומי ורווחי הסמך (confidence intervals) של שיעור 9). לא משתמש בשום דבר ממודולים 2 עד 21. E1 ו־E2 עוזרים אבל אינם חובה. מודול 3 שיעור 1 (הקריאה לכלי כרשומה) ושיעור 5 (ה־shell) הם הקריאה האבטחתית של שיעורים 2 ו־9.</p>
+<h2 id="check">בדיקה</h2>
+<pre><code class="language-bash">make check-E3                         # about two minutes, most of it the live test
+CHECK_E3_OFFLINE=1 make check-E3      # under a second: everything but the live test
+make loop-study PARTS=&quot;faults herd growth&quot;   # the model-free numbers, about a minute
+make loop-study PARTS=&quot;tasks reps=3&quot;         # the twenty tasks, both loops: about an hour on qwen3:4b
+</code></pre>
+<div class="table"><table>
+<thead>
+<tr>
+<th>קבוצה</th>
+<th>עוברת כאשר</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>formats</td>
+<td>סכמות של כלים והיסטוריה עם קריאות מקבילות, קריאה בלי ארגומנטים ופרומפט מערכת מומרות ל־Anthropic Messages, וכל התוצאות בהודעת משתמש אחת; תשובה מומרת בחזרה, עם שדות השימוש (usage) בשמות החדשים</td>
+</tr>
+<tr>
+<td>schema</td>
+<td>ארגומנטים פגומים, ריקים ושאינם אובייקט מובחנים זה מזה; שדות חסרים, מטיפוס שגוי, לא צפויים ומחוץ ל־enum מצוינים בשמם; <code>true</code> אינו integer ו־<code>3.0</code> כן</td>
+</tr>
+<tr>
+<td>retry</td>
+<td>פסק זמן (timeout), חיבור שנדחה, 429 ו־5xx מקבלים ניסיון חוזר, 4xx ובאגים לא; ה־backoff אחיד מתחת לתקרה שלו; Retry-After מכובד; הניסיונות נעצרים במגבלה</td>
+</tr>
+<tr>
+<td>budget</td>
+<td>כל אחד מהצעדים, הטוקנים, העלות והשניות עוצר ריצה במגבלה שלו, והפעלה שנייה שומרת על הראשונה</td>
+</tr>
+<tr>
+<td>parallel</td>
+<td>שלוש פעולות קריאה איטיות חופפות וחוזרות בסדר הקריאות; פעולת כתיבה היא מחסום; קריאות שנדחו או שנכשלו הופכות לטקסט; כלים לא מוכרים וארגומנטים שגויים נדחים לפני הרצה</td>
+</tr>
+<tr>
+<td>structured</td>
+<td>JSON נמצא בתוך פרוזה ובתוך גדרות קוד; תשובה נבדקת מול סכמה</td>
+</tr>
+<tr>
+<td>stream</td>
+<td>טקסט וקריאות לכלים שהגיעו בקטעים מורכבים מחדש לפי אינדקס; גם קריאות שלמות, כפי ש־Ollama שולח אותן, עוברות</td>
+</tr>
+<tr>
+<td>loop</td>
+<td>הלולאה עונה ורושמת קריאות ושימוש; ארגומנטים פגומים חוזרים למודל והכלי לא רץ אף פעם; כל תקציב עוצר אותה; כשלי מודל מקבלים ניסיון חוזר, וכשל קבוע מדווח; תיקון סכמה אחד, ואז <code>schema</code>; תשובה בסטרימינג רצה</td>
+</tr>
+<tr>
+<td>live</td>
+<td>על המודל המקומי שלכם, הלולאה שלכם משלימה את המשימה של מודול 1 (סיכום נשלח במייל למנהל) לפחות באחד משלושה ניסיונות</td>
+</tr>
+</tbody>
+</table></div>
+<p>בכתב: טבלת המחקר שלכם (שתי הלולאות, שיעורי הצלחה עם רווחי סמך, ההפרש המזווג, טוקנים ושניות לריצה), ופסקה אחת על ההפרש הגדול ביותר שמצאתם והאם אתם מאמינים לו.</p>
+<h2 id="readings">קריאה נוספת</h2>
+<ul>
+<li>Anthropic. &quot;<a href="https://www.anthropic.com/engineering/building-effective-agents">Building effective agents</a>.&quot; 2024. תהליכים קבועים לפני סוכנים.</li>
+<li>Xia, C. S., Deng, Y., Dunn, S. and Zhang, L. &quot;<a href="https://arxiv.org/abs/2407.01489">Agentless: demystifying LLM-based software engineering agents</a>.&quot; 2024.</li>
+<li>Kapoor, S., Stroebl, B., Siegel, Z. S., Nadgir, N. and Narayanan, A. &quot;<a href="https://arxiv.org/abs/2407.01502">AI agents that matter</a>.&quot; 2024. עלות לצד דיוק.</li>
+<li>Yao, S. et al. &quot;<a href="https://arxiv.org/abs/2210.03629">ReAct: synergizing reasoning and acting in language models</a>.&quot; ICLR 2023. האב הקדמון של הלולאה.</li>
+<li>Schick, T. et al. &quot;<a href="https://arxiv.org/abs/2302.04761">Toolformer: language models can teach themselves to use tools</a>.&quot; NeurIPS 2023.</li>
+<li>Patil, S. G., Zhang, T., Wang, X. and Gonzalez, J. E. &quot;<a href="https://arxiv.org/abs/2305.15334">Gorilla: large language model connected with massive APIs</a>.&quot; 2023. ארגומנטים שגויים ו־API מומצאים, במדידה.</li>
+<li>OpenAI. &quot;<a href="https://developers.openai.com/api/docs/guides/function-calling">Function calling</a>.&quot; מדריך API, נקרא באוקטובר 2026: פורמט Responses, <code>parallel_tool_calls</code>, דלתאות של ארגומנטים בסטרימינג.</li>
+<li>Anthropic. &quot;<a href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview">Tool use with Claude</a>&quot; and &quot;<a href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use">Parallel tool use</a>.&quot; תיעוד, נקרא באוקטובר 2026: בלוקים של <code>tool_use</code> ו־<code>tool_result</code>, הודעת משתמש אחת לכל התוצאות.</li>
+<li>Ollama. &quot;<a href="https://docs.ollama.com/api/openai-compatibility">OpenAI compatibility</a>.&quot; תיעוד, נקרא באוקטובר 2026.</li>
+<li>Wright, A., Andrews, H. and Hutton, B. (eds.) &quot;<a href="https://json-schema.org/draft/2020-12/json-schema-validation">JSON Schema Validation</a>.&quot; Draft 2020-12.</li>
+<li>Brooker, M. &quot;<a href="https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/">Exponential backoff and jitter</a>.&quot; AWS Architecture Blog, 2015.</li>
+<li>Beyer, B., Jones, C., Petoff, J. and Murphy, N. R. (eds.) <em>Site Reliability Engineering</em>. O'Reilly, 2016; chapter 21, &quot;<a href="https://sre.google/sre-book/handling-overload/">Handling Overload</a>&quot;: תקציבי ניסיונות חוזרים לכל לקוח וריסון אדפטיבי (adaptive throttling).</li>
+<li>Fielding, R., Nottingham, M. and Reschke, J. (eds.) &quot;<a href="https://www.rfc-editor.org/rfc/rfc9110#field.retry-after">HTTP Semantics</a>.&quot; RFC 9110, 2022. סעיף 10.2.3, Retry-After.</li>
+<li>WHATWG. &quot;<a href="https://html.spec.whatwg.org/multipage/server-sent-events.html">Server-sent events</a>.&quot; <em>HTML Standard</em>, section 9.2.</li>
+<li>Tam, Z. R. et al. &quot;<a href="https://arxiv.org/abs/2408.02442">Let me speak freely? A study on the impact of format restrictions on performance of large language models</a>.&quot; 2024.</li>
+<li>Willard, B. T. and Louf, R. &quot;<a href="https://arxiv.org/abs/2307.09702">Efficient guided generation for large language models</a>.&quot; 2023. פענוח מוגבל (constrained decoding).</li>
+<li>Yao, S., Shinn, N., Razavi, P. and Narasimhan, K. &quot;<a href="https://arxiv.org/abs/2406.12045">τ-bench: a benchmark for tool-agent-user interaction in real-world domains</a>.&quot; 2024. pass^k.</li>
+<li>Sinha, A., Arun, A., Goel, S., Staab, S. and Geiping, J. &quot;<a href="https://arxiv.org/abs/2509.09677">The illusion of diminishing returns: measuring long horizon execution in LLMs</a>.&quot; 2025. התניה עצמית.</li>
+<li>Kwa, T. et al. &quot;<a href="https://arxiv.org/abs/2503.14499">Measuring AI ability to complete long software tasks</a>.&quot; 2025. אופק הזמן של 50%.</li>
+<li>Wang, X. et al. &quot;<a href="https://arxiv.org/abs/2402.01030">Executable code actions elicit better LLM agents</a>.&quot; ICML 2024. CodeAct.</li>
+<li>Yang, J. et al. &quot;<a href="https://arxiv.org/abs/2405.15793">SWE-agent: agent-computer interfaces enable automated software engineering</a>.&quot; NeurIPS 2024.</li>
+<li>בפועל: כל framework לסוכנים מממש את הלולאה הזו (E4 משווה שלושה); לקוחות HTTP עם מדיניות ניסיונות חוזרים (<a href="https://www.python-httpx.org/advanced/transports/">httpx transports</a>, <a href="https://urllib3.readthedocs.io/en/stable/reference/urllib3.util.html#urllib3.util.Retry">urllib3 Retry</a>, <a href="https://tenacity.readthedocs.io/">tenacity</a>); מאמתי JSON Schema (<a href="https://python-jsonschema.readthedocs.io/">jsonschema</a>). השוו מה כל אחד מהם עושה בקצוות עם מה שבשיעורים, לפני שאתם סומכים על ברירות המחדל שלו.</li>
+</ul>
+
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>סימון כהושלם</button></p>
+      <nav class="pager" aria-label="Pages"><span></span><a class="pn next" href="01-workflow-or-agent.html"><span class="label">הבא</span>מי מחליט על הצעד הבא? תהליכים קבועים וסוכנים</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 הגנה על סוכני AI</span>
+  <nav aria-label="Footer">
+    <a href="../../../he/workshop/">סדנאות לצוותים</a>
+    <a href="../../../he/courses/">קורסים מקוונים</a>
+    <a href="mailto:shimon@defendingaiagents.com">יצירת קשר</a>
+    <a href="../../../.well-known/security.txt">אבטחה</a>
+    <a href="../../../learn/e03-agent-loop/" lang="en" hreflang="en">English</a>
+  </nav>
+</footer>
+<script src="../../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"כהה":"בהיר";
+b.setAttribute("aria-label","מעבר למצב "+(n==="dark"?"כהה":"בהיר"))};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

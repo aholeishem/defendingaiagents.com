@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A streamed tool call is half a JSON object · Defending AI Agents</title>
+<meta name="description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<link rel="canonical" href="https://defendingaiagents.com/learn/e03-agent-loop/08-streaming.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/e03-agent-loop/08-streaming.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/e03-agent-loop/08-streaming.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/e03-agent-loop/08-streaming.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Defending AI Agents">
+<meta property="og:title" content="A streamed tool call is half a JSON object · Defending AI Agents"><meta property="og:description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<meta property="og:url" content="https://defendingaiagents.com/learn/e03-agent-loop/08-streaming.html"><meta property="og:image" content="https://defendingaiagents.com/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preload" href="../../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../assets/course.css"><script src="../../assets/progress.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="../../"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">Defending AI Agents</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="Switch colour theme"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>Theme</span></button>
+    <a class="lang label" href="../../he/learn/e03-agent-loop/08-streaming.html" lang="he" hreflang="he">עברית</a>
+    <a class="btn" href="../../course/#waitlist" data-waitlist>Join waitlist<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">Menu</summary><nav aria-label="Menu"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="e03-agent-loop/08-streaming" data-module="e03-agent-loop">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">Free preview</a><span>/</span><a href="./">E3</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="E3">
+      <p class="label"><em>E3</em> Applied</p>
+      <p class="side-title">The agent loop from scratch</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="e03-agent-loop/index"><span class="label">·</span><span>Overview</span></a></li><li data-stem="01-workflow-or-agent"><a href="01-workflow-or-agent.html" data-page-link="e03-agent-loop/01-workflow-or-agent"><span class="label">01</span><span>Who decides the next step? Workflows and agents</span></a></li><li data-stem="02-a-tool-is-three-texts"><a href="02-a-tool-is-three-texts.html" data-page-link="e03-agent-loop/02-a-tool-is-three-texts"><span class="label">02</span><span>A tool is a schema, a function and an error message, and the model reads two of them</span></a></li><li data-stem="03-three-wire-formats"><a href="03-three-wire-formats.html" data-page-link="e03-agent-loop/03-three-wire-formats"><span class="label">03</span><span>One tool call, three wire formats</span></a></li><li data-stem="04-parallel-calls"><a href="04-parallel-calls.html" data-page-link="e03-agent-loop/04-parallel-calls"><span class="label">04</span><span>Parallel tool calls: reads commute, writes do not</span></a></li><li data-stem="05-retries"><a href="05-retries.html" data-page-link="e03-agent-loop/05-retries"><span class="label">05</span><span>Retry the server, not the model: errors, backoff and jitter</span></a></li><li data-stem="06-budgets"><a href="06-budgets.html" data-page-link="e03-agent-loop/06-budgets"><span class="label">06</span><span>A step is not a unit of cost: four budgets and a stop reason</span></a></li><li data-stem="07-structured-answers"><a href="07-structured-answers.html" data-page-link="e03-agent-loop/07-structured-answers"><span class="label">07</span><span>An answer a program can read: schemas and one repair</span></a></li><li data-stem="08-streaming" aria-current="page"><a href="08-streaming.html" data-page-link="e03-agent-loop/08-streaming"><span class="label">08</span><span>A streamed tool call is half a JSON object</span></a></li><li data-stem="09-long-horizons"><a href="09-long-horizons.html" data-page-link="e03-agent-loop/09-long-horizons"><span class="label">09</span><span>How far can a loop go? Compounding error, code actions and the time horizon</span></a></li><li data-stem="build"><a href="build.html" data-page-link="e03-agent-loop/build"><span class="label">B</span><span>Build: Module 1&#x27;s loop, made to run unattended, and measured</span></a></li><li data-stem="at-scale"><a href="at-scale.html" data-page-link="e03-agent-loop/at-scale"><span class="label">S</span><span>At scale: the same loop, ten thousand times at once</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="e03-agent-loop/problems"><span class="label">P</span><span>Problems</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="e03-agent-loop" data-total="13" data-problems="15" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">E3 · Lesson 08</p>
+        <h1>A streamed tool call is half a JSON object</h1>
+      </header>
+      <p>Streaming sends the reply as it is generated, so a person sees the first words in a fraction of the time the whole reply takes. For text that is pure gain: every prefix of a sentence can be shown. For a tool call it is a trap. No prefix of a JSON object is a JSON object, and acting on a prefix is acting on a call the model has not finished writing.</p>
+<h2 id="what-arrives">What arrives</h2>
+<p>With <code>&quot;stream&quot;: true</code>, an OpenAI-compatible server sends server-sent events (WHATWG, <em>HTML Standard</em>, section 9.2): one <code>data:</code> line per chunk, ending with <code>data: [DONE]</code>. A tool call can arrive in fragments, keyed by <code>index</code>:</p>
+<pre><code class="language-text">data: {&quot;choices&quot;:[{&quot;delta&quot;:{&quot;tool_calls&quot;:[{&quot;index&quot;:0,&quot;id&quot;:&quot;call_1&quot;,&quot;type&quot;:&quot;function&quot;,
+                                           &quot;function&quot;:{&quot;name&quot;:&quot;read_file&quot;,&quot;arguments&quot;:&quot;&quot;}}]}}]}
+data: {&quot;choices&quot;:[{&quot;delta&quot;:{&quot;tool_calls&quot;:[{&quot;index&quot;:0,&quot;function&quot;:{&quot;arguments&quot;:&quot;{\&quot;pa&quot;}}]}}]}
+data: {&quot;choices&quot;:[{&quot;delta&quot;:{&quot;tool_calls&quot;:[{&quot;index&quot;:0,&quot;function&quot;:{&quot;arguments&quot;:&quot;th\&quot;: \&quot;a.txt\&quot;}&quot;}}]}}]}
+data: {&quot;choices&quot;:[{&quot;delta&quot;:{},&quot;finish_reason&quot;:&quot;tool_calls&quot;}]}
+data: {&quot;choices&quot;:[],&quot;usage&quot;:{&quot;prompt_tokens&quot;:140,&quot;completion_tokens&quot;:31}}
+data: [DONE]
+</code></pre>
+<p>The call's id and name come in its first fragment, and its arguments are every fragment's <code>arguments</code> joined in arrival order. Usage arrives last, in a chunk with no choices, and only if you asked for it (<code>stream_options: {&quot;include_usage&quot;: true}</code>). A loop that streams without asking has no token counts, and its token budget never fires (lesson 6).</p>
+<h2 id="servers-differ-so-write-for-the-hardest-one">Servers differ, so write for the hardest one</h2>
+<p>OpenAI's API sends arguments in fragments, as above (its function-calling guide shows <code>response.function_call_arguments.delta</code> events for the Responses API). Ollama sends each tool call whole, in one chunk:</p>
+<pre><code class="language-text">data: {&quot;choices&quot;:[{&quot;index&quot;:0,&quot;delta&quot;:{&quot;content&quot;:&quot;&quot;,&quot;tool_calls&quot;:[{&quot;id&quot;:&quot;call_6n2ulo9l&quot;,&quot;index&quot;:1,
+       &quot;type&quot;:&quot;function&quot;,&quot;function&quot;:{&quot;name&quot;:&quot;read_file&quot;,&quot;arguments&quot;:&quot;{\&quot;path\&quot;:\&quot;notes/b.txt\&quot;}&quot;}}]}, ...}]}
+</code></pre>
+<p>(measured on <code>qwen3:4b</code>, 25 October 2026). An assembler written against Ollama, one chunk per call, passes every local test and breaks on the first hosted model. <code>loop/stream.py</code>'s <code>assemble</code> is written for fragments and handles whole calls as the special case of one fragment. The check feeds it both.</p>
+<h2 id="when-to-act">When to act</h2>
+<p>Show text as it arrives if a person is watching. Act on a tool call only after three things have happened: the stream has ended (<code>[DONE]</code>, or <code>finish_reason</code> set), the call's arguments have been joined, and they have passed lesson 2's checks. A UI that displays &quot;Sending e-mail to …&quot; from the first fragment may display a recipient that the finished call does not contain. A partial string is not a promise of its own continuation.</p>
+<h2 id="what-streaming-buys-measured">What streaming buys, measured</h2>
+<p>The study sends the same prompt ten times each way, streamed and not, and records the time to the first content or tool-call byte and to the last byte. The numbers are in the build. Two effects are worth predicting before you look.</p>
+<ul>
+<li>For a <strong>tool call</strong>, the first useful byte is the call itself, and with Ollama it arrives whole, near the end. Streaming buys almost nothing.</li>
+<li>For a <strong>thinking model</strong>, the first content byte comes after the thinking. Ollama streams thinking in a separate <code>reasoning</code> field that <code>assemble</code> ignores, so time to first <em>answer</em> byte is close to total time. Streaming the reasoning to the user is a product decision. Putting it into the history is a context decision (E2).</li>
+</ul>
+<p>Streaming does not make the model faster. It changes when the waiting happens, and for a loop that cannot act until the call is complete, mostly it does not change that either.</p>
+<h2 id="check-yourself">Check yourself</h2>
+<ol>
+<li>Fragments for index 1 arrive before any for index 0. What order do the assembled tool calls come in, and why?</li>
+<li>A stream ends after <code>{&quot;pa</code> because the connection dropped. What should the loop do?</li>
+<li>Why must the assembler take a call's id from its <em>first</em> fragment, and not overwrite it with later ones?</li>
+</ol>
+<details class="answers"><summary>Answers</summary>
+<ol>
+<li>Index order, 0 then 1. The <code>index</code> is the model's order of calls, and arrival order is an accident of the network. Lesson 4's rule (results in the order asked) needs that order.</li>
+<li>Treat it as a failed model call. <code>ChatClient</code> raises <code>RemoteProtocolError</code> when a stream ends without a <code>finish_reason</code>, whether the connection dropped or closed cleanly, and <code>classify</code> retries the whole call (lesson 5). Never parse or repair the fragment: <code>{&quot;pa</code> could have become any call.</li>
+<li>Later fragments normally omit the id. A server that repeats it is fine, but a fragment carrying a different id would otherwise silently re-key the call, and the tool result would answer an id the model never issued. The first id is the one the model announced.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>Mark complete</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="07-structured-answers.html"><span class="label">Previous</span>An answer a program can read: schemas and one repair</a><a class="pn next" href="09-long-horizons.html"><span class="label">Next</span>How far can a loop go? Compounding error, code actions and the time horizon</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 Defending AI Agents</span>
+  <nav aria-label="Footer">
+    <a href="../../workshop/">Team workshops</a>
+    <a href="../../courses/">Online courses</a>
+    <a href="mailto:shimon@defendingaiagents.com">Contact</a>
+    <a href="../../.well-known/security.txt">Security</a>
+    <a href="../../he/learn/e03-agent-loop/08-streaming.html" lang="he" hreflang="he">עברית</a>
+  </nav>
+</footer>
+<script src="../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"Dark":"Light";
+b.setAttribute("aria-label","Switch to "+n+" mode")};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

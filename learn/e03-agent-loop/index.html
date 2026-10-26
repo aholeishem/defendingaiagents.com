@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The agent loop from scratch · Defending AI Agents</title>
+<meta name="description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<link rel="canonical" href="https://defendingaiagents.com/learn/e03-agent-loop/"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/e03-agent-loop/"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/e03-agent-loop/"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/e03-agent-loop/">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Defending AI Agents">
+<meta property="og:title" content="The agent loop from scratch · Defending AI Agents"><meta property="og:description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<meta property="og:url" content="https://defendingaiagents.com/learn/e03-agent-loop/"><meta property="og:image" content="https://defendingaiagents.com/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preload" href="../../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../assets/course.css"><script src="../../assets/progress.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="../../"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">Defending AI Agents</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="Switch colour theme"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>Theme</span></button>
+    <a class="lang label" href="../../he/learn/e03-agent-loop/" lang="he" hreflang="he">עברית</a>
+    <a class="btn" href="../../course/#waitlist" data-waitlist>Join waitlist<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">Menu</summary><nav aria-label="Menu"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="e03-agent-loop/index" data-module="e03-agent-loop">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">Free preview</a><span>/</span><a href="./">E3</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="E3">
+      <p class="label"><em>E3</em> Applied</p>
+      <p class="side-title">The agent loop from scratch</p>
+      <ol><li data-stem="index" aria-current="page"><a href="./" data-page-link="e03-agent-loop/index"><span class="label">·</span><span>Overview</span></a></li><li data-stem="01-workflow-or-agent"><a href="01-workflow-or-agent.html" data-page-link="e03-agent-loop/01-workflow-or-agent"><span class="label">01</span><span>Who decides the next step? Workflows and agents</span></a></li><li data-stem="02-a-tool-is-three-texts"><a href="02-a-tool-is-three-texts.html" data-page-link="e03-agent-loop/02-a-tool-is-three-texts"><span class="label">02</span><span>A tool is a schema, a function and an error message, and the model reads two of them</span></a></li><li data-stem="03-three-wire-formats"><a href="03-three-wire-formats.html" data-page-link="e03-agent-loop/03-three-wire-formats"><span class="label">03</span><span>One tool call, three wire formats</span></a></li><li data-stem="04-parallel-calls"><a href="04-parallel-calls.html" data-page-link="e03-agent-loop/04-parallel-calls"><span class="label">04</span><span>Parallel tool calls: reads commute, writes do not</span></a></li><li data-stem="05-retries"><a href="05-retries.html" data-page-link="e03-agent-loop/05-retries"><span class="label">05</span><span>Retry the server, not the model: errors, backoff and jitter</span></a></li><li data-stem="06-budgets"><a href="06-budgets.html" data-page-link="e03-agent-loop/06-budgets"><span class="label">06</span><span>A step is not a unit of cost: four budgets and a stop reason</span></a></li><li data-stem="07-structured-answers"><a href="07-structured-answers.html" data-page-link="e03-agent-loop/07-structured-answers"><span class="label">07</span><span>An answer a program can read: schemas and one repair</span></a></li><li data-stem="08-streaming"><a href="08-streaming.html" data-page-link="e03-agent-loop/08-streaming"><span class="label">08</span><span>A streamed tool call is half a JSON object</span></a></li><li data-stem="09-long-horizons"><a href="09-long-horizons.html" data-page-link="e03-agent-loop/09-long-horizons"><span class="label">09</span><span>How far can a loop go? Compounding error, code actions and the time horizon</span></a></li><li data-stem="build"><a href="build.html" data-page-link="e03-agent-loop/build"><span class="label">B</span><span>Build: Module 1&#x27;s loop, made to run unattended, and measured</span></a></li><li data-stem="at-scale"><a href="at-scale.html" data-page-link="e03-agent-loop/at-scale"><span class="label">S</span><span>At scale: the same loop, ten thousand times at once</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="e03-agent-loop/problems"><span class="label">P</span><span>Problems</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="e03-agent-loop" data-total="13" data-problems="15" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">E3 · Applied · 7 h · Building AI Agents</p>
+        <h1>The agent loop from scratch</h1><p class="twin-line"><span class="label">Statistical twin</span> A Markov decision process whose policy is a sampled language model and whose horizon is a budget; a run&#x27;s success is a product of per-step reliabilities, measured as a binomial proportion with a task-clustered interval.</p>
+      </header>
+      <p>Module 1 gave you an agent in under 100 lines and then spent the course attacking it. This module asks what it takes to make that loop one you could run unattended. It must not crash on a malformed call, die on the first 503, run until the money is gone, or return &quot;about half a million&quot; to a program that wanted an integer. None of that is security, and all of it is what the gateway in Module 3 sits beside. You build each piece by hand, test it against a scripted model, and then measure, on twenty lab tasks and your local model, what the pieces buy together over Module 1's loop.</p>
+<p>The module is applied: the value is the loop in <code>loop/</code>, which the later engineering modules extend (E5 gives it retrieval, E6 MCP, E7 workers, E9 an evaluation suite, E11 traces). No framework is used. E4 rebuilds the same agent in three of them and diffs what they send.</p>
+<h2 id="you-will-be-able-to">You will be able to</h2>
+<p><em>Each line ends with badges: its tier, the engineering-track outcome it builds (EO1 to EO8, from the track's curriculum) and where it is assessed (a <code>check</code> group, a problem P, the build or a written answer).</em></p>
+<ul>
+<li>Say for a given job whether a workflow or an agent should decide the next step, and what each choice does to cost, latency and testing. &lt;span class=&quot;label tier&quot;&gt;Foundations&lt;/span&gt;</li>
+<li>Parse and check a tool call's arguments against its schema, and return errors that name the field and the fix. &lt;span class=&quot;label tier&quot;&gt;Foundations&lt;/span&gt;</li>
+<li>Convert a tool-calling history and reply between Chat Completions and Anthropic Messages, both ways. &lt;span class=&quot;label tier&quot;&gt;Foundations&lt;/span&gt;</li>
+<li>Run a turn's tool calls with reads in parallel, writes as barriers and results in the order asked, and say why &quot;safe to reorder&quot; is not &quot;safe&quot;. &lt;span class=&quot;label tier&quot;&gt;Advanced&lt;/span&gt;</li>
+<li>Retry the failures worth retrying with full-jitter backoff and Retry-After, predict a task's success from the per-call failure rate, and check the prediction by simulation. &lt;span class=&quot;label tier&quot;&gt;Advanced&lt;/span&gt;</li>
+<li>Bound a run by steps, tokens, cost and wall clock, derive how prompt tokens grow with steps, and report why a run stopped. &lt;span class=&quot;label tier&quot;&gt;Advanced&lt;/span&gt;</li>
+<li>Turn a final reply into a value checked against a schema with one repair, and report conformance and correctness separately. &lt;span class=&quot;label tier&quot;&gt;Advanced&lt;/span&gt;</li>
+<li>Reassemble a streamed reply, fragments of tool calls included, and act on a call only when it is complete. &lt;span class=&quot;label tier&quot;&gt;Advanced&lt;/span&gt;</li>
+<li>Measure your loop against Module 1's on twenty tasks with a paired, task-clustered comparison and pass^k. &lt;span class=&quot;label tier&quot;&gt;Advanced&lt;/span&gt;</li>
+<li>Argue about how far a loop can go: compounding error and self-conditioning, the time-horizon trend and its validity, and what code actions gain and cost. &lt;span class=&quot;label tier&quot;&gt;Expert&lt;/span&gt;</li>
+</ul>
+<h2 id="lessons">Lessons</h2>
+<p><strong>Foundations</strong></p>
+<ol>
+<li><a href="01-workflow-or-agent.html">Who decides the next step? Workflows and agents</a></li>
+<li><a href="02-a-tool-is-three-texts.html">A tool is a schema, a function and an error message, and the model reads two of them</a></li>
+<li><a href="03-three-wire-formats.html">One tool call, three wire formats</a></li>
+</ol>
+<p><strong>Advanced</strong></p>
+<ol start="4">
+<li><a href="04-parallel-calls.html">Parallel tool calls: reads commute, writes do not</a></li>
+<li><a href="05-retries.html">Retry the server, not the model: errors, backoff and jitter</a></li>
+<li><a href="06-budgets.html">A step is not a unit of cost: four budgets and a stop reason</a></li>
+<li><a href="07-structured-answers.html">An answer a program can read: schemas and one repair</a></li>
+<li><a href="08-streaming.html">A streamed tool call is half a JSON object</a></li>
+</ol>
+<p><strong>Expert</strong></p>
+<ol start="9">
+<li><a href="09-long-horizons.html">How far can a loop go? Compounding error, code actions and the time horizon</a></li>
+</ol>
+<p>Then: <a href="build.html">the build</a>, <a href="at-scale.html">at scale</a> and <a href="problems.html">problems</a>.</p>
+<p>Assumes Module 1 (the lab, the local model and lesson 9's intervals). Uses nothing from Modules 2 to 21. E1 and E2 help but are not required. Module 3 lesson 1 (the tool call as a record) and lesson 5 (the shell) are the security reading of lessons 2 and 9.</p>
+<h2 id="check">Check</h2>
+<pre><code class="language-bash">make check-E3                         # about two minutes, most of it the live test
+CHECK_E3_OFFLINE=1 make check-E3      # under a second: everything but the live test
+make loop-study PARTS=&quot;faults herd growth&quot;   # the model-free numbers, about a minute
+make loop-study PARTS=&quot;tasks reps=3&quot;         # the twenty tasks, both loops: about an hour on qwen3:4b
+</code></pre>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Passes when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>formats</td>
+<td>tool schemas and a history with parallel calls, an empty-arguments call and a system prompt convert to Anthropic Messages, all results in one user message; a reply converts back with its usage renamed</td>
+</tr>
+<tr>
+<td>schema</td>
+<td>malformed, empty and non-object arguments are told apart; missing, mistyped, unexpected and out-of-enum fields are named; <code>true</code> is not an integer and <code>3.0</code> is</td>
+</tr>
+<tr>
+<td>retry</td>
+<td>timeouts, refused connections, 429 and 5xx are retried, 4xx and bugs are not; backoff is uniform under its ceiling; Retry-After is honoured; attempts stop at the limit</td>
+</tr>
+<tr>
+<td>budget</td>
+<td>each of steps, tokens, cost and seconds stops a run at its limit, and a second start keeps the first</td>
+</tr>
+<tr>
+<td>parallel</td>
+<td>three slow reads overlap and return in call order; a write is a barrier; refused and failing calls become text; unknown tools and bad arguments are refused before running</td>
+</tr>
+<tr>
+<td>structured</td>
+<td>JSON is found in prose and fences; a reply is checked against a schema</td>
+</tr>
+<tr>
+<td>stream</td>
+<td>text and fragmented tool calls are reassembled by index; whole calls as Ollama sends them pass too</td>
+</tr>
+<tr>
+<td>loop</td>
+<td>the loop answers and records calls and usage; malformed arguments go back to the model and the tool never runs; each budget stops it; model failures are retried and a permanent one reported; one schema repair, then <code>schema</code>; a streamed reply runs</td>
+</tr>
+<tr>
+<td>live</td>
+<td>on your local model, your loop completes Module 1's task (summary e-mailed to the manager) in at least one of three tries</td>
+</tr>
+</tbody>
+</table></div>
+<p>Written: your study table (both loops, pass rates with intervals, the paired difference, tokens and seconds per run), and one paragraph on the largest difference you found and whether you believe it.</p>
+<h2 id="readings">Readings</h2>
+<ul>
+<li>Anthropic. &quot;<a href="https://www.anthropic.com/engineering/building-effective-agents">Building effective agents</a>.&quot; 2024. Workflows before agents.</li>
+<li>Xia, C. S., Deng, Y., Dunn, S. and Zhang, L. &quot;<a href="https://arxiv.org/abs/2407.01489">Agentless: demystifying LLM-based software engineering agents</a>.&quot; 2024.</li>
+<li>Kapoor, S., Stroebl, B., Siegel, Z. S., Nadgir, N. and Narayanan, A. &quot;<a href="https://arxiv.org/abs/2407.01502">AI agents that matter</a>.&quot; 2024. Cost beside accuracy.</li>
+<li>Yao, S. et al. &quot;<a href="https://arxiv.org/abs/2210.03629">ReAct: synergizing reasoning and acting in language models</a>.&quot; ICLR 2023. The loop's ancestor.</li>
+<li>Schick, T. et al. &quot;<a href="https://arxiv.org/abs/2302.04761">Toolformer: language models can teach themselves to use tools</a>.&quot; NeurIPS 2023.</li>
+<li>Patil, S. G., Zhang, T., Wang, X. and Gonzalez, J. E. &quot;<a href="https://arxiv.org/abs/2305.15334">Gorilla: large language model connected with massive APIs</a>.&quot; 2023. Wrong arguments and invented APIs, measured.</li>
+<li>OpenAI. &quot;<a href="https://developers.openai.com/api/docs/guides/function-calling">Function calling</a>.&quot; API guide, read October 2026: the Responses format, <code>parallel_tool_calls</code>, streamed argument deltas.</li>
+<li>Anthropic. &quot;<a href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview">Tool use with Claude</a>&quot; and &quot;<a href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use">Parallel tool use</a>.&quot; Documentation, read October 2026: <code>tool_use</code> and <code>tool_result</code> blocks, one user message for all results.</li>
+<li>Ollama. &quot;<a href="https://docs.ollama.com/api/openai-compatibility">OpenAI compatibility</a>.&quot; Documentation, read October 2026.</li>
+<li>Wright, A., Andrews, H. and Hutton, B. (eds.) &quot;<a href="https://json-schema.org/draft/2020-12/json-schema-validation">JSON Schema Validation</a>.&quot; Draft 2020-12.</li>
+<li>Brooker, M. &quot;<a href="https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/">Exponential backoff and jitter</a>.&quot; AWS Architecture Blog, 2015.</li>
+<li>Beyer, B., Jones, C., Petoff, J. and Murphy, N. R. (eds.) <em>Site Reliability Engineering</em>. O'Reilly, 2016; chapter 21, &quot;<a href="https://sre.google/sre-book/handling-overload/">Handling Overload</a>&quot;: per-client retry budgets and adaptive throttling.</li>
+<li>Fielding, R., Nottingham, M. and Reschke, J. (eds.) &quot;<a href="https://www.rfc-editor.org/rfc/rfc9110#field.retry-after">HTTP Semantics</a>.&quot; RFC 9110, 2022. Section 10.2.3, Retry-After.</li>
+<li>WHATWG. &quot;<a href="https://html.spec.whatwg.org/multipage/server-sent-events.html">Server-sent events</a>.&quot; <em>HTML Standard</em>, section 9.2.</li>
+<li>Tam, Z. R. et al. &quot;<a href="https://arxiv.org/abs/2408.02442">Let me speak freely? A study on the impact of format restrictions on performance of large language models</a>.&quot; 2024.</li>
+<li>Willard, B. T. and Louf, R. &quot;<a href="https://arxiv.org/abs/2307.09702">Efficient guided generation for large language models</a>.&quot; 2023. Constrained decoding.</li>
+<li>Yao, S., Shinn, N., Razavi, P. and Narasimhan, K. &quot;<a href="https://arxiv.org/abs/2406.12045">τ-bench: a benchmark for tool-agent-user interaction in real-world domains</a>.&quot; 2024. pass^k.</li>
+<li>Sinha, A., Arun, A., Goel, S., Staab, S. and Geiping, J. &quot;<a href="https://arxiv.org/abs/2509.09677">The illusion of diminishing returns: measuring long horizon execution in LLMs</a>.&quot; 2025. Self-conditioning.</li>
+<li>Kwa, T. et al. &quot;<a href="https://arxiv.org/abs/2503.14499">Measuring AI ability to complete long software tasks</a>.&quot; 2025. The 50% time horizon.</li>
+<li>Wang, X. et al. &quot;<a href="https://arxiv.org/abs/2402.01030">Executable code actions elicit better LLM agents</a>.&quot; ICML 2024. CodeAct.</li>
+<li>Yang, J. et al. &quot;<a href="https://arxiv.org/abs/2405.15793">SWE-agent: agent-computer interfaces enable automated software engineering</a>.&quot; NeurIPS 2024.</li>
+<li>In practice: every agent framework implements this loop (E4 compares three); HTTP clients with retry policies (<a href="https://www.python-httpx.org/advanced/transports/">httpx transports</a>, <a href="https://urllib3.readthedocs.io/en/stable/reference/urllib3.util.html#urllib3.util.Retry">urllib3 Retry</a>, <a href="https://tenacity.readthedocs.io/">tenacity</a>); JSON Schema validators (<a href="https://python-jsonschema.readthedocs.io/">jsonschema</a>). Compare what each does at the limits with the lessons before trusting its defaults.</li>
+</ul>
+
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>Mark complete</button></p>
+      <nav class="pager" aria-label="Pages"><span></span><a class="pn next" href="01-workflow-or-agent.html"><span class="label">Next</span>Who decides the next step? Workflows and agents</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 Defending AI Agents</span>
+  <nav aria-label="Footer">
+    <a href="../../workshop/">Team workshops</a>
+    <a href="../../courses/">Online courses</a>
+    <a href="mailto:shimon@defendingaiagents.com">Contact</a>
+    <a href="../../.well-known/security.txt">Security</a>
+    <a href="../../he/learn/e03-agent-loop/" lang="he" hreflang="he">עברית</a>
+  </nav>
+</footer>
+<script src="../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"Dark":"Light";
+b.setAttribute("aria-label","Switch to "+n+" mode")};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

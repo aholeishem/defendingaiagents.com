@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="he" dir="rtl" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>שתים־עשרה שאלות מפרידות בין מדידה לסיסמה · הגנה על סוכני AI</title>
+<meta name="description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<link rel="canonical" href="https://defendingaiagents.com/he/learn/00-orientation/09-reading-a-security-claim.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/00-orientation/09-reading-a-security-claim.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/00-orientation/09-reading-a-security-claim.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/00-orientation/09-reading-a-security-claim.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="הגנה על סוכני AI">
+<meta property="og:title" content="שתים־עשרה שאלות מפרידות בין מדידה לסיסמה · הגנה על סוכני AI"><meta property="og:description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<meta property="og:url" content="https://defendingaiagents.com/he/learn/00-orientation/09-reading-a-security-claim.html"><meta property="og:image" content="https://defendingaiagents.com/og-he.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="he_IL"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+<link rel="preload" href="../../../assets/fonts/rubik-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../../assets/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../../assets/course.css"><script src="../../../assets/progress.js" defer></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script><script>addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".math").forEach(function(e){katex.render(e.textContent,e,{displayMode:e.dataset.display==="1",throwOnError:false})})})</script>
+</head>
+<body>
+<a class="skip" href="#main">דילוג לתוכן</a>
+<header class="top">
+  <a class="brand" href="../../../learn/00-orientation/09-reading-a-security-claim.html"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">הגנה על סוכני AI</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="החלפת ערכת צבע"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>ערכת צבע</span></button>
+    <a class="lang label" href="../../../learn/00-orientation/09-reading-a-security-claim.html" lang="en" hreflang="en">English</a>
+    <a class="btn" href="../../../he/course/#waitlist" data-waitlist>לרשימת ההמתנה<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">תפריט</summary><nav aria-label="תפריט"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="00-orientation/09-reading-a-security-claim" data-module="00-orientation">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">תצוגה מקדימה חינמית</a><span>/</span><a href="./">מודול 00</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="מודול 00">
+      <p class="label"><em>מודול 00</em> תיאורטי</p>
+      <p class="side-title">התמצאות: למה אבטחת סוכנים היא בעיה סטטיסטית</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="00-orientation/index"><span class="label">·</span><span>סקירה</span></a></li><li data-stem="01-an-agent-in-one-picture"><a href="01-an-agent-in-one-picture.html" data-page-link="00-orientation/01-an-agent-in-one-picture"><span class="label">01</span><span>סוכן הוא מודל עם תופעות לוואי</span></a></li><li data-stem="02-four-incidents"><a href="02-four-incidents.html" data-page-link="00-orientation/02-four-incidents"><span class="label">02</span><span>ארבע תקריות, דפוס אחד</span></a></li><li data-stem="03-trifecta-and-rule-of-two"><a href="03-trifecta-and-rule-of-two.html" data-page-link="00-orientation/03-trifecta-and-rule-of-two"><span class="label">03</span><span>שלוש יכולות יוצרות דליפה: השילוש הקטלני וכלל השניים</span></a></li><li data-stem="04-two-kinds-of-defence"><a href="04-two-kinds-of-defence.html" data-page-link="00-orientation/04-two-kinds-of-defence"><span class="label">04</span><span>שני סוגי הגנה, ובאיזה לבטוח קודם</span></a></li><li data-stem="05-five-statistics-problems"><a href="05-five-statistics-problems.html" data-page-link="00-orientation/05-five-statistics-problems"><span class="label">05</span><span>השאלות הקשות באבטחת סוכנים הן חמש בעיות סטטיסטיות</span></a></li><li data-stem="06-base-rate-in-depth"><a href="06-base-rate-in-depth.html" data-page-link="00-orientation/06-base-rate-in-depth"><span class="label">06</span><span>גלאי עם recall של 99% יכול לטעות ב־99 מתוך 100 התרעות: שיעור הבסיס לעומק</span></a></li><li data-stem="07-training-is-not-a-boundary"><a href="07-training-is-not-a-boundary.html" data-page-link="00-orientation/07-training-is-not-a-boundary"><span class="label">07</span><span>אימון הוא לא גבול</span></a></li><li data-stem="08-trifecta-as-information-flow"><a href="08-trifecta-as-information-flow.html" data-page-link="00-orientation/08-trifecta-as-information-flow"><span class="label">08</span><span>השילוש הוא שתי זרימות מידע, לא שלוש רגליים</span></a></li><li data-stem="09-reading-a-security-claim" aria-current="page"><a href="09-reading-a-security-claim.html" data-page-link="00-orientation/09-reading-a-security-claim"><span class="label">09</span><span>שתים־עשרה שאלות מפרידות בין מדידה לסיסמה</span></a></li><li data-stem="10-course-map"><a href="10-course-map.html" data-page-link="00-orientation/10-course-map"><span class="label">10</span><span>שער בקרה (gateway) אחד, נבנה מודול אחרי מודול: מפת הקורס</span></a></li><li data-stem="build"><a href="build.html" data-page-link="00-orientation/build"><span class="label">B</span><span>תרגיל על נייר: איפה הייתם עוצרים את זה?</span></a></li><li data-stem="at-scale"><a href="at-scale.html" data-page-link="00-orientation/at-scale"><span class="label">S</span><span>בקנה מידה: אלפי סוכנים, ואף אחד לא מחזיק את הרשימה</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="00-orientation/problems"><span class="label">P</span><span>בעיות</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="00-orientation" data-total="14" data-problems="14" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">מודול 00 · שיעור 09</p>
+        <h1>שתים־עשרה שאלות מפרידות בין מדידה לסיסמה</h1>
+      </header>
+      <p>«ההגנה שלנו מורידה את הצלחת המתקפות מ־62% ל־0.8%.» המשפט הזה יכול להיות מדידה ויכול להיות סיסמה, ושום דבר בו לא אומר מה מהשניים. השיעור הזה הוא רשימת הבדיקה שמבדילה ביניהם, ואחריה רשימה קצרה וכנה של מה שעוד לא נפתר.</p>
+<h2 id="twelve-questions-for-any-claim">שתים־עשרה שאלות לכל טענה</h2>
+<p>שאלו:</p>
+<ol>
+<li><strong>מה מודל האיום?</strong> היכולות של מי, הידע של מי, איזו מטרה?</li>
+<li><strong>סטטי או מסתגל?</strong> האם המתקפות נקבעו מראש, או עברו אופטימיזציה מול ההגנה <em>הזו</em>, ובאיזה תקציב?</li>
+<li><strong>מה המכנה?</strong> מתקפות שנוסו, מתקפות שהגיעו להגנה, או מתקפות שהצליחו מול המערכת בלי הגנה?</li>
+<li><strong>מה נחשב הצלחה?</strong> הסוכן התחיל את הפעולה המזיקה, או השלים אותה? דעה של מודל שופט, או המצב הסופי של הסביבה? (ארבעת הסלים של מודול 9.)</li>
+<li><strong>מה רווח הסמך (confidence interval)?</strong> «0 מתוך 50» זה לא 0%: הגבול העליון החד־צדדי ב־95% הוא 5.8%, והקצה העליון של רווח הסמך הדו־צדדי 7.1% (מודול 1, שיעור 9 מלמד את שניהם).</li>
+<li><strong>מה זה עולה?</strong> משימות שהושלמו עם ההגנה ובלעדיה; חיוביים שגויים על טראפיק תמים בצורה שתיפרס.</li>
+<li><strong>על איזו אוכלוסייה?</strong> של הבנצ'מרק, או של הפריסה? פרוזה, או payloads של קריאות לכלים?</li>
+<li><strong>מול איזה בסיס השוואה?</strong> סוכן בלי הגנה, כלל פשוט, או קלאסיפייר נאיבי?</li>
+<li><strong>כמה הרצות?</strong> סוכן סטוכסטי שהורץ פעם אחת הוא אנקדוטה. «מצליח לפחות פעם אחת ב־<span class="math" data-display="0">k</span> ניסיונות» (pass@<span class="math" data-display="0">k</span>, <span class="math" data-display="0">1-(1-p)^k</span>) ו«מצליח בכל <span class="math" data-display="0">k</span>» (pass$^k$, <span class="math" data-display="0">p^k</span>) הן טענות שונות; מודול 1, שיעור 9 מציג את שתיהן.</li>
+<li><strong>מי הריץ את זה?</strong> מחבר ההגנה שמעריך את ההגנה של עצמו מחזיק בכל התמריצים ובכל השטחים המתים.</li>
+<li><strong>מה מחוץ לתחום?</strong> קראו קודם את פרק המגבלות.</li>
+<li><strong>האם זה היה שורד תוקף נחוש עם שבוע?</strong> אם התשובה הכנה היא «אף אחד לא ניסה», אמרו את זה.</li>
+</ol>
+<p>הממצא של Nasr et al. (שיעור 7) הוא כתב אישום שקט נגד מי שמדלג על שאלות 2 ו־12.</p>
+<h2 id="what-is-not-solved">מה לא נפתר</h2>
+<p>מפה כנה, נכון לאוקטובר 2026, עם המקורות בקורס:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>בעיה</th>
+<th>מצב</th>
+<th>איפה</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>מודל שמפריד באופן אמין בין הוראות לדאטה</td>
+<td>לא קיים; אימון מצמצם את הפער (Wallace et al., 2024) ומתקפות מסתגלות פותחות אותו מחדש (Nasr et al., 2025)</td>
+<td>שיעור 7; מודול 4</td>
+</tr>
+<tr>
+<td>גלאים שמחזיקים מעמד מול תוקפים מסתגלים</td>
+<td>הראיות נגד, במשפחות שנבדקו (Nasr et al., 2025)</td>
+<td>מודול 9</td>
+</tr>
+<tr>
+<td>הגנות מבניות במחיר תועלת נמוך</td>
+<td>קיימות (CaMeL, Debenedetti et al., 2025: 77% מהמשימות מול 84% בלי הגנה על AgentDojo); המחיר אמיתי ותלוי משימה</td>
+<td>שיעור 7; מודול 11</td>
+</tr>
+<tr>
+<td>הרכבה: אבטחה של סוכנים רבים מתוך האבטחה של כל אחד</td>
+<td>אין תיאוריה מקובלת בפועל; מתקפות מכוונות לניתוב</td>
+<td>מודול 3, שיעור 9</td>
+</tr>
+<tr>
+<td>מצב מתמשך (זיכרון, אחזור) כמשטח תקיפה</td>
+<td>הודגמו כמה מתקפות, כמעט אין הגנה עקרונית</td>
+<td>מודול 5</td>
+</tr>
+<tr>
+<td>הערכה בקנה מידה של פריסה עם שיעורי בסיס אמיתיים</td>
+<td>כל ארגון עושה את זה לבד, עם הדאטה שלו</td>
+<td>מודולים 7, 8</td>
+</tr>
+</tbody>
+</table></div>
+<p>התייחסו לטבלה הזו כאל סעיף הכנות של הקורס. איפה ששורה אומרת שהבעיה פתוחה, ספק שאומר שהיא פתורה חייב לכם את המדידה, עם שתים־עשרה התשובות שלמעלה.</p>
+<h2 id="check-yourself">בדקו את עצמכם</h2>
+<ol>
+<li>הפעילו את שאלות 1 עד 12 על התוצאה של CaMeL כפי ששיעור 7 מדווח אותה (77% מהמשימות עם אבטחה מוכחת, מול 84% בלי הגנה, על AgentDojo). על אילו אפשר לענות משיעור 7, ואילו ישלחו אתכם למאמר?</li>
+<li>ספק טוען «אפס מתקפות מוצלחות ב־10,000 בדיקות». מה הגבול העליון ב־95% על השיעור האמיתי, ומה היה משנה את דעתכם על הטענה?</li>
+</ol>
+<details class="answers"><summary>תשובות</summary>
+<ol>
+<li>משיעור 7: שאלה 6 (77% מול 84% מהמשימות), 7 (AgentDojo, לא הפריסה שלכם), 8 (מערכת בלי הגנה), 10 (המתכננים מעריכים את התכנון של עצמם), ו־2 בחלקה (הוכחה מתקיימת מול תוקפים מסתגלים בתוך מודל האיום שלה). המאמר נדרש בשביל 1, 3, 4, 5, 9, 11 ו־12: מודל האיום המדויק, המכנה, מה נחשב הצלחה, רווחי הסמך, מספר ההרצות, מה «מוכח» משאיר בחוץ, והאם מישהו אחר תקף את זה.</li>
+<li>אפס מתוך 10,000 נותן גבול עליון חד־צדדי ב־95% של <span class="math" data-display="0">1 - 0.05^{1/10{,}000} = 0.030\%</span> (כלל השלוש, <span class="math" data-display="0">3/n</span>). זה חוסם את השיעור רק עבור 10,000 הבדיקות האלה. מתקפות קבועות או חוזרות, ספק שבודק את העבודה של עצמו, או היעדר תוקף מסתגל, היו גורמים למספר לתאר את האוכלוסייה הלא נכונה; בדיקה עצמאית ומסתגלת, עם תקציב וקריטריון הצלחה מוצהר, הייתה משפרת את דעתי עליו.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>סימון כהושלם</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="08-trifecta-as-information-flow.html"><span class="label">הקודם</span>השילוש הוא שתי זרימות מידע, לא שלוש רגליים</a><a href="../../../he/map/"><span class="label">הבא</span>שער בקרה (gateway) אחד, נבנה מודול אחרי מודול: מפת הקורס</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 הגנה על סוכני AI</span>
+  <nav aria-label="Footer">
+    <a href="../../../he/workshop/">סדנאות לצוותים</a>
+    <a href="../../../he/courses/">קורסים מקוונים</a>
+    <a href="mailto:shimon@defendingaiagents.com">יצירת קשר</a>
+    <a href="../../../.well-known/security.txt">אבטחה</a>
+    <a href="../../../learn/00-orientation/09-reading-a-security-claim.html" lang="en" hreflang="en">English</a>
+  </nav>
+</footer>
+<script src="../../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"כהה":"בהיר";
+b.setAttribute("aria-label","מעבר למצב "+(n==="dark"?"כהה":"בהיר"))};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

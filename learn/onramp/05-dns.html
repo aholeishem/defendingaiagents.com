@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A name is not an address, and the answer can change · Defending AI Agents</title>
+<meta name="description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<link rel="canonical" href="https://defendingaiagents.com/learn/onramp/05-dns.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/onramp/05-dns.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/onramp/05-dns.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/onramp/05-dns.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Defending AI Agents">
+<meta property="og:title" content="A name is not an address, and the answer can change · Defending AI Agents"><meta property="og:description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<meta property="og:url" content="https://defendingaiagents.com/learn/onramp/05-dns.html"><meta property="og:image" content="https://defendingaiagents.com/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preload" href="../../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../assets/course.css"><script src="../../assets/progress.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="../../"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">Defending AI Agents</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="Switch colour theme"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>Theme</span></button>
+    <a class="lang label" href="../../he/learn/onramp/05-dns.html" lang="he" hreflang="he">עברית</a>
+    <a class="btn" href="../../course/#waitlist" data-waitlist>Join waitlist<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">Menu</summary><nav aria-label="Menu"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="onramp/05-dns" data-module="onramp">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">Free preview</a><span>/</span><a href="./">On-ramp</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="On-ramp">
+      <p class="label"><em>On-ramp</em> Theoretical</p>
+      <p class="side-title">On-ramp: the web plumbing the course assumes</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="onramp/index"><span class="label">·</span><span>Overview</span></a></li><li data-stem="01-http-is-text"><a href="01-http-is-text.html" data-page-link="onramp/01-http-is-text"><span class="label">01</span><span>An HTTP call is text in, text out</span></a></li><li data-stem="02-json-edges"><a href="02-json-edges.html" data-page-link="onramp/02-json-edges"><span class="label">02</span><span>JSON is simple, and its parsers still disagree</span></a></li><li data-stem="03-yaml-traps"><a href="03-yaml-traps.html" data-page-link="onramp/03-yaml-traps"><span class="label">03</span><span>YAML is JSON with indentation and four traps</span></a></li><li data-stem="04-api-token"><a href="04-api-token.html" data-page-link="onramp/04-api-token"><span class="label">04</span><span>An API token is a password with a label</span></a></li><li data-stem="05-dns" aria-current="page"><a href="05-dns.html" data-page-link="onramp/05-dns"><span class="label">05</span><span>A name is not an address, and the answer can change</span></a></li><li data-stem="06-proxy"><a href="06-proxy.html" data-page-link="onramp/06-proxy"><span class="label">06</span><span>A proxy is a server that is also a client</span></a></li><li data-stem="07-tls"><a href="07-tls.html" data-page-link="onramp/07-tls"><span class="label">07</span><span>TLS proves you reached a name, not that the name is honest</span></a></li><li data-stem="08-jwt"><a href="08-jwt.html" data-page-link="onramp/08-jwt"><span class="label">08</span><span>A JWT is signed claims, and a check has an order</span></a></li><li data-stem="09-oauth-roles"><a href="09-oauth-roles.html" data-page-link="onramp/09-oauth-roles"><span class="label">09</span><span>OAuth gives a token a purpose: roles, scope, audience</span></a></li><li data-stem="10-parser-differentials"><a href="10-parser-differentials.html" data-page-link="onramp/10-parser-differentials"><span class="label">10</span><span>Two parsers, one message: a check is sound only if it reads what the target reads</span></a></li><li data-stem="11-oauth-threat-model"><a href="11-oauth-threat-model.html" data-page-link="onramp/11-oauth-threat-model"><span class="label">11</span><span>OAuth&#x27;s own threat model: what RFC 9700 requires, and why an agent needs all of it</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="onramp/problems"><span class="label">P</span><span>Problems</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="onramp" data-total="13" data-problems="14" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">On-ramp · Lesson 05</p>
+        <h1>A name is not an address, and the answer can change</h1>
+      </header>
+      <p>A gateway checks that the host in a tool's URL is on the allow-list, <code>files.acme.example</code>, and lets the call through. The tool service then looks the name up and gets an internal address, because the name's record was changed an hour ago. The check was correct about the name and said nothing about where the connection went.</p>
+<h2 id="what-dns-answers">What DNS answers</h2>
+<p>A client asks a <strong>resolver</strong>: &quot;what are the addresses for this name?&quot; The resolver walks the hierarchy or answers from cache and returns <strong>records</strong> (RFC 1035, 1987). The ones you need:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Record</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>A</code></td>
+<td>the name's IPv4 addresses</td>
+<td><code>files.acme.example. 300 IN A 203.0.113.7</code></td>
+</tr>
+<tr>
+<td><code>AAAA</code></td>
+<td>its IPv6 addresses</td>
+<td><code>... AAAA 2001:db8::7</code></td>
+</tr>
+<tr>
+<td><code>CNAME</code></td>
+<td>this name is an alias for another</td>
+<td><code>docs.acme.example. CNAME acme.github.example.</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>The number is the <strong>TTL</strong>, in seconds: how long a cache may keep the answer. A name may have several addresses, and a program picks one or tries them in turn:</p>
+<pre><code class="language-python">import socket
+print(socket.getaddrinfo(&quot;localhost&quot;, 80, proto=socket.IPPROTO_TCP)[:2])
+# [(AF_INET6, ..., ('::1', 80, 0, 0)), (AF_INET, ..., ('127.0.0.1', 80))]
+</code></pre>
+<p>One name, two addresses, one of them IPv6. A check that looks only at the IPv4 one has checked half of it.</p>
+<h2 id="three-consequences-for-a-control">Three consequences for a control</h2>
+<ol>
+<li><strong>A name is checked, an address is connected.</strong> The two steps are separate lookups, and the answer can differ between them (<strong>DNS rebinding</strong>: a record with a TTL of a few seconds, answered as the allowed public address to the check and as an internal address to the connection). The only sound design resolves once, checks the address, and connects to <em>that</em> address with the name carried in the <code>Host</code> header and TLS server name. Module 12 lesson 7 builds exactly that.</li>
+<li><strong>Where the name came from matters.</strong> A CNAME chain can lead from an allowed name to a name its owner does not control. Allow-listing a name is trusting everyone who can edit its zone and every zone it aliases into.</li>
+<li><strong>Special address ranges are special.</strong> Loopback (<code>127.0.0.0/8</code>, <code>::1</code>), private (<code>10/8</code>, <code>172.16/12</code>, <code>192.168/16</code>), link-local (<code>169.254/16</code>) and the cloud metadata address are never a legitimate destination for an agent talking to the outside world.</li>
+</ol>
+<h2 id="reading-an-address-as-a-number">Reading an address as a number</h2>
+<p><code>http://2130706433/</code> and <code>http://0x7f.1/</code> both mean <code>127.0.0.1</code> to many URL parsers and to <code>inet_aton</code>, and neither looks like an IP. The rule from lesson 1 applies: compare what you will connect to, in one canonical form, produced by the parser that will connect.</p>
+<h2 id="expert-caches-split-horizons-and-what-you-cannot-see">Expert: caches, split horizons and what you cannot see</h2>
+<p>Resolvers cache (and a stub resolver in your container caches again), so a TTL of 30 seconds is an upper bound on how long <em>that</em> resolver keeps an answer, not on how long your process does: a connection pool may hold an address for hours. <strong>Split-horizon</strong> DNS gives inside and outside clients different answers for one name, so &quot;what does this name resolve to?&quot; has no single answer without saying <em>from where</em>. DNS over HTTPS (RFC 8484) moves the lookup into an HTTPS connection to a resolver of the application's choice, which takes it out of the network's view and out of its egress rules.</p>
+<h2 id="check-yourself">Check yourself</h2>
+<ol>
+<li><code>files.acme.example</code> has two records, <code>A 203.0.113.7</code> and <code>AAAA ::1</code>. A gateway resolves the name, checks only its IPv4 address and then lets the HTTP library connect to the name. Where can the connection go, and what must the gateway do instead?</li>
+<li>Why can &quot;block private addresses&quot; at the gateway still be bypassed by a name under an allowed domain?</li>
+<li>What does a TTL of 0 do for the attacker's version of the attack, and what does it do for a legitimate operator who wants to move a service?</li>
+</ol>
+<details class="answers"><summary>Answers</summary>
+<ol>
+<li>To <code>::1</code>, loopback on the machine that connects: the library gets both addresses and may try the IPv6 one first, as <code>getaddrinfo</code> listed <code>::1</code> first for <code>localhost</code>. The check passed <code>203.0.113.7</code> and never saw the loopback address. The gateway must check every address the name returns, refuse the name if any is special, and connect to the address it checked rather than hand the name back to the library.</li>
+<li>The block applies to addresses, and a name-based check never sees the address the tool connects to. Whoever controls the allowed domain's zone, or any zone it aliases into through a CNAME, can point a name at <code>10.0.0.5</code> or the metadata address. Only a gateway that resolves the name itself, checks that address and connects to it closes the gap.</li>
+<li>For the attacker, TTL 0 tells caches not to keep the answer, so each lookup returns to the attacker's server and the check and the connection a moment later can get different addresses. For the operator it makes a move take effect almost at once, at the cost of a lookup per connection, and only for clients that honour it: a connection pool may hold the old address for hours.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>Mark complete</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="04-api-token.html"><span class="label">Previous</span>An API token is a password with a label</a><a class="pn next" href="06-proxy.html"><span class="label">Next</span>A proxy is a server that is also a client</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 Defending AI Agents</span>
+  <nav aria-label="Footer">
+    <a href="../../workshop/">Team workshops</a>
+    <a href="../../courses/">Online courses</a>
+    <a href="mailto:shimon@defendingaiagents.com">Contact</a>
+    <a href="../../.well-known/security.txt">Security</a>
+    <a href="../../he/learn/onramp/05-dns.html" lang="he" hreflang="he">עברית</a>
+  </nav>
+</footer>
+<script src="../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"Dark":"Light";
+b.setAttribute("aria-label","Switch to "+n+" mode")};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

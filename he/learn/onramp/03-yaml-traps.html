@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="he" dir="rtl" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>YAML הוא JSON עם הזחה וארבע מלכודות · הגנה על סוכני AI</title>
+<meta name="description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<link rel="canonical" href="https://defendingaiagents.com/he/learn/onramp/03-yaml-traps.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/onramp/03-yaml-traps.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/onramp/03-yaml-traps.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/onramp/03-yaml-traps.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="הגנה על סוכני AI">
+<meta property="og:title" content="YAML הוא JSON עם הזחה וארבע מלכודות · הגנה על סוכני AI"><meta property="og:description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<meta property="og:url" content="https://defendingaiagents.com/he/learn/onramp/03-yaml-traps.html"><meta property="og:image" content="https://defendingaiagents.com/og-he.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="he_IL"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+<link rel="preload" href="../../../assets/fonts/rubik-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../../assets/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../../assets/course.css"><script src="../../../assets/progress.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">דילוג לתוכן</a>
+<header class="top">
+  <a class="brand" href="../../../learn/onramp/03-yaml-traps.html"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">הגנה על סוכני AI</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="החלפת ערכת צבע"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>ערכת צבע</span></button>
+    <a class="lang label" href="../../../learn/onramp/03-yaml-traps.html" lang="en" hreflang="en">English</a>
+    <a class="btn" href="../../../he/course/#waitlist" data-waitlist>לרשימת ההמתנה<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">תפריט</summary><nav aria-label="תפריט"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="onramp/03-yaml-traps" data-module="onramp">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">תצוגה מקדימה חינמית</a><span>/</span><a href="./">מסלול הכנה</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="מסלול הכנה">
+      <p class="label"><em>מסלול הכנה</em> תיאורטי</p>
+      <p class="side-title">מסלול הכנה (on-ramp): צנרת הווב שהקורס מניח שאתם מכירים</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="onramp/index"><span class="label">·</span><span>סקירה</span></a></li><li data-stem="01-http-is-text"><a href="01-http-is-text.html" data-page-link="onramp/01-http-is-text"><span class="label">01</span><span>קריאת HTTP היא טקסט נכנס, טקסט יוצא</span></a></li><li data-stem="02-json-edges"><a href="02-json-edges.html" data-page-link="onramp/02-json-edges"><span class="label">02</span><span>JSON פשוט, והמפענחים שלו עדיין חלוקים</span></a></li><li data-stem="03-yaml-traps" aria-current="page"><a href="03-yaml-traps.html" data-page-link="onramp/03-yaml-traps"><span class="label">03</span><span>YAML הוא JSON עם הזחה וארבע מלכודות</span></a></li><li data-stem="04-api-token"><a href="04-api-token.html" data-page-link="onramp/04-api-token"><span class="label">04</span><span>טוקן API הוא סיסמה עם תווית</span></a></li><li data-stem="05-dns"><a href="05-dns.html" data-page-link="onramp/05-dns"><span class="label">05</span><span>שם הוא לא כתובת, והתשובה יכולה להשתנות</span></a></li><li data-stem="06-proxy"><a href="06-proxy.html" data-page-link="onramp/06-proxy"><span class="label">06</span><span>פרוקסי הוא שרת שהוא גם לקוח</span></a></li><li data-stem="07-tls"><a href="07-tls.html" data-page-link="onramp/07-tls"><span class="label">07</span><span>TLS מוכיח שהגעתם לשם, לא שהשם הגון</span></a></li><li data-stem="08-jwt"><a href="08-jwt.html" data-page-link="onramp/08-jwt"><span class="label">08</span><span>JWT הוא טענות חתומות, ולבדיקה יש סדר</span></a></li><li data-stem="09-oauth-roles"><a href="09-oauth-roles.html" data-page-link="onramp/09-oauth-roles"><span class="label">09</span><span>OAuth נותן לטוקן ייעוד: תפקידים, scope, קהל יעד</span></a></li><li data-stem="10-parser-differentials"><a href="10-parser-differentials.html" data-page-link="onramp/10-parser-differentials"><span class="label">10</span><span>שני מפענחים, הודעה אחת: בדיקה תקינה רק אם היא קוראת את מה שהיעד קורא</span></a></li><li data-stem="11-oauth-threat-model"><a href="11-oauth-threat-model.html" data-page-link="onramp/11-oauth-threat-model"><span class="label">11</span><span>מודל האיום של OAuth עצמו: מה RFC 9700 דורש, ולמה סוכן צריך את כולו</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="onramp/problems"><span class="label">P</span><span>תרגילים</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="onramp" data-total="13" data-problems="14" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">מסלול הכנה · שיעור 03</p>
+        <h1>YAML הוא JSON עם הזחה וארבע מלכודות</h1>
+      </header>
+      <p>צוות רושם בקובץ קונפיגורציה את המדינות המותרות: <code>- GB</code>, <code>- DE</code>, <code>- NO</code>. השירות עולה, ומשתמשים מנורווגיה נחסמים. טוען ה־YAML קרא את <code>NO</code> כערך הבוליאני false. אותו קובץ, שנטען באותו קוד, הוא מדיניות אחרת מזו שהכותב שלו קרא.</p>
+<h2 id="the-reading-skill">מיומנות הקריאה</h2>
+<p>YAML הוא הרחבה של JSON (מאז גרסה 1.2) שנכתבת בהזחה במקום בסוגריים מסולסלים (YAML, 2021). תפגשו אותו בכל קובץ קונפיגורציה בקורס: המעבדה, מדיניות, CI. שלוש צורות מכסות כמעט הכול:</p>
+<pre><code class="language-yaml">name: acme-gateway          # a mapping: key, colon, space, value
+allow:                      # a list is dashes at one indentation
+  - crm.acme.example
+  - cal.acme.example
+limits: {rate: 10, burst: 20}   # JSON-style on one line is legal
+</code></pre>
+<p>ההזחה היא המבנה, והיא ברווחים, אף פעם לא בטאבים. <code>#</code> פותח הערה. שני רווחי הזחה פחות הם קובץ אחר.</p>
+<h2 id="trap-1-bare-words-become-types">מלכודת 1: מילים חשופות הופכות לטיפוסים</h2>
+<p>הריצו את זה, כמו שהכלים של הקורס עושים, עם הטוען שמחזיר דאטה בלבד:</p>
+<pre><code class="language-python">import yaml
+print(yaml.safe_load(&quot;country: no\nversion: 1.10\nports: [80, 0o17, 010]\nmode: 0755\non: yes&quot;))
+# {'country': False, 'version': 1.1, 'ports': [80, '0o17', 8], 'mode': 493, True: True}
+</code></pre>
+<p><code>no</code> הוא False, <code>1.10</code> הוא המספר העשרוני 1.1 (מספר גרסה שאיבד את האפס שלו), <code>010</code> הוא 8 בבסיס אוקטלי, <code>0755</code> הוא ביטי ההרשאות 493, והמפתח <code>on</code> הוא הבוליאני True. אלה הטיפוסים המשתמעים של YAML 1.1 (הטיפוס הבוליאני של YAML 1.1 מונה את <code>y</code>, <code>yes</code>, <code>on</code> ואת השלילות שלהם; <em>Boolean Language-Independent Type for YAML version 1.1</em>, 2005). גרסה 1.2 מקצצת את הרשימה, אבל PyYAML, שרוב הכלים ב־Python משתמשים בו, עדיין מפרש את המילים של 1.1 (אם כי לא את האותיות הבודדות), כפי שההרצה למעלה מראה. <strong>שימו במירכאות מחרוזות שחייבות להישאר מחרוזות:</strong> <code>&quot;NO&quot;</code>, <code>&quot;1.10&quot;</code>.</p>
+<h2 id="trap-2-duplicate-keys-again">מלכודת 2: מפתחות כפולים, שוב</h2>
+<pre><code class="language-python">yaml.safe_load(&quot;a: 1\na: 2&quot;)      # {'a': 2}
+</code></pre>
+<p>המאוחר מנצח בשקט, ובלוק שהועתק והודבק יכול להסתיר את המפתח שמעליו. אותו פער כמו בשיעור 2, בקובץ שבן אדם עורך.</p>
+<h2 id="trap-3-load-can-run-code">מלכודת 3: <code>load</code> יכול להריץ קוד</h2>
+<p>יש טוענים שבונים אובייקטים שרירותיים מתגיות כמו <code>!!python/object/apply:os.system</code>. התיעוד של PyYAML אומר ש־<code>yaml.load</code> חזק כמו <code>pickle.load</code> ולכן עלול לקרוא לכל פונקציית Python (PyYAML documentation); <code>safe_load</code> דוחה תגית כזו עם <code>ConstructorError</code>. <strong>השתמשו בטוען הבטוח לכל קובץ שלא אתם כתבתם</strong>, וגם לאלה שכן, כי ייתכן שמישהו אחר יכול לערוך אותם.</p>
+<h2 id="trap-4-anchors-and-merge-keys">מלכודת 4: עוגנים ומפתחות מיזוג</h2>
+<p><code>&amp;base</code> נותן שם לבלוק, ו־<code>*base</code> או <code>&lt;&lt;: *base</code> משתמשים בו שוב. קובץ מדיניות שממזג בלוק בסיס לעשרים כללים נקרא קצר יותר ונבדק לא נכון: הקורא רואה כלל, לא את השדות שהוא יורש. פרשו את הקובץ לפני סקירה (טענו אותו והדפיסו את התוצאה).</p>
+<h2 id="expert-why-a-control-reads-data-not-text">מומחה: למה בקרה קוראת דאטה, לא טקסט</h2>
+<p>קונפיגורציה של שער בקרה (gateway) שנטענת מחדש כשהיא משתנה היא control plane. טעינה שלה עם סכמה קפדנית וטיפוסית (השדה <code>country</code> הוא <em>מחרוזת</em>, וכל דבר אחר נכשל בטעינה) הופכת את מלכודת 1 לשגיאה בעלייה, ולא לשינוי מדיניות שקט. תכשילו את הטעינה, לא את הבקשה.</p>
+<h2 id="check-yourself">בדקו את עצמכם</h2>
+<ol>
+<li>אילו מאלה נטענים כמחרוזת: <code>id: 0x1F</code>, <code>id: &quot;0x1F&quot;</code>, <code>id: 1_000</code>, <code>id: ~</code>? הריצו.</li>
+<li>סוקר קורא כלל שאומר <code>allow: [crm]</code>. אילו שתי תכונות של YAML יכולות להפוך את הכלל בפועל לרחב יותר ממה שהוא קרא?</li>
+<li>למה «אנחנו טוענים רק קבצים מה־repo שלנו» הוא לא תשובה למלכודת 3? ואילו מארבע המלכודות נשארות פתוחות אחרי מעבר ל־<code>safe_load</code>?</li>
+</ol>
+<details class="answers"><summary>תשובות</summary>
+<ol>
+<li>רק <code>id: &quot;0x1F&quot;</code>. <code>safe_load</code> של PyYAML קורא את <code>0x1F</code> כמספר השלם 31, את <code>1_000</code> כ־1000 (YAML 1.1 מתיר קווים תחתונים במספרים שלמים) ואת <code>~</code> כ־<code>None</code>.</li>
+<li>מפתחות כפולים (מלכודת 2): <code>allow:</code> שני בהמשך אותו מיפוי מחליף בשקט את זה שהסוקר קרא. עוגנים ומפתחות מיזוג (מלכודת 4): <code>&lt;&lt;: *base</code> בכלל מכניס שדות שהסוקר לא רואה בעמוד. טעינת הקובץ והדפסת התוצאה מראות את הכלל שחל בפועל.</li>
+<li>כי «ה־repo שלנו» הוא קבוצה של כותבים, לא כותב אחד: כל תורם, חשבון פרוץ, שלב CI או כלי עם הרשאת כתיבה יכולים לשתול תגית <code>!!python/object/apply</code>, ו־<code>load</code> יריץ אותה. <code>safe_load</code> סוגר רק את מלכודת 3; טיפוסים משתמעים, מפתחות כפולים ומפתחות מיזוג מתנהגים בדיוק אותו דבר תחתיו, כפי שההרצות בשיעור עצמו מראות.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>סימון כהושלם</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="02-json-edges.html"><span class="label">הקודם</span>JSON פשוט, והמפענחים שלו עדיין חלוקים</a><a class="pn next" href="04-api-token.html"><span class="label">הבא</span>טוקן API הוא סיסמה עם תווית</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 הגנה על סוכני AI</span>
+  <nav aria-label="Footer">
+    <a href="../../../he/workshop/">סדנאות לצוותים</a>
+    <a href="../../../he/courses/">קורסים מקוונים</a>
+    <a href="mailto:shimon@defendingaiagents.com">יצירת קשר</a>
+    <a href="../../../.well-known/security.txt">אבטחה</a>
+    <a href="../../../learn/onramp/03-yaml-traps.html" lang="en" hreflang="en">English</a>
+  </nav>
+</footer>
+<script src="../../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"כהה":"בהיר";
+b.setAttribute("aria-label","מעבר למצב "+(n==="dark"?"כהה":"בהיר"))};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

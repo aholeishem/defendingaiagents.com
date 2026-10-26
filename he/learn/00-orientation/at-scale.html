@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="he" dir="rtl" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>בקנה מידה: אלפי סוכנים, ואף אחד לא מחזיק את הרשימה · הגנה על סוכני AI</title>
+<meta name="description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<link rel="canonical" href="https://defendingaiagents.com/he/learn/00-orientation/at-scale.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/00-orientation/at-scale.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/00-orientation/at-scale.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/00-orientation/at-scale.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="הגנה על סוכני AI">
+<meta property="og:title" content="בקנה מידה: אלפי סוכנים, ואף אחד לא מחזיק את הרשימה · הגנה על סוכני AI"><meta property="og:description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<meta property="og:url" content="https://defendingaiagents.com/he/learn/00-orientation/at-scale.html"><meta property="og:image" content="https://defendingaiagents.com/og-he.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="he_IL"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+<link rel="preload" href="../../../assets/fonts/rubik-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../../assets/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../../assets/course.css"><script src="../../../assets/progress.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">דילוג לתוכן</a>
+<header class="top">
+  <a class="brand" href="../../../learn/00-orientation/at-scale.html"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">הגנה על סוכני AI</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="החלפת ערכת צבע"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>ערכת צבע</span></button>
+    <a class="lang label" href="../../../learn/00-orientation/at-scale.html" lang="en" hreflang="en">English</a>
+    <a class="btn" href="../../../he/course/#waitlist" data-waitlist>לרשימת ההמתנה<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">תפריט</summary><nav aria-label="תפריט"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="00-orientation/at-scale" data-module="00-orientation">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">תצוגה מקדימה חינמית</a><span>/</span><a href="./">מודול 00</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="מודול 00">
+      <p class="label"><em>מודול 00</em> תיאורטי</p>
+      <p class="side-title">התמצאות: למה אבטחת סוכנים היא בעיה סטטיסטית</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="00-orientation/index"><span class="label">·</span><span>סקירה</span></a></li><li data-stem="01-an-agent-in-one-picture"><a href="01-an-agent-in-one-picture.html" data-page-link="00-orientation/01-an-agent-in-one-picture"><span class="label">01</span><span>סוכן הוא מודל עם תופעות לוואי</span></a></li><li data-stem="02-four-incidents"><a href="02-four-incidents.html" data-page-link="00-orientation/02-four-incidents"><span class="label">02</span><span>ארבע תקריות, דפוס אחד</span></a></li><li data-stem="03-trifecta-and-rule-of-two"><a href="03-trifecta-and-rule-of-two.html" data-page-link="00-orientation/03-trifecta-and-rule-of-two"><span class="label">03</span><span>שלוש יכולות יוצרות דליפה: השילוש הקטלני וכלל השניים</span></a></li><li data-stem="04-two-kinds-of-defence"><a href="04-two-kinds-of-defence.html" data-page-link="00-orientation/04-two-kinds-of-defence"><span class="label">04</span><span>שני סוגי הגנה, ובאיזה לבטוח קודם</span></a></li><li data-stem="05-five-statistics-problems"><a href="05-five-statistics-problems.html" data-page-link="00-orientation/05-five-statistics-problems"><span class="label">05</span><span>השאלות הקשות באבטחת סוכנים הן חמש בעיות סטטיסטיות</span></a></li><li data-stem="06-base-rate-in-depth"><a href="06-base-rate-in-depth.html" data-page-link="00-orientation/06-base-rate-in-depth"><span class="label">06</span><span>גלאי עם recall של 99% יכול לטעות ב־99 מתוך 100 התרעות: שיעור הבסיס לעומק</span></a></li><li data-stem="07-training-is-not-a-boundary"><a href="07-training-is-not-a-boundary.html" data-page-link="00-orientation/07-training-is-not-a-boundary"><span class="label">07</span><span>אימון הוא לא גבול</span></a></li><li data-stem="08-trifecta-as-information-flow"><a href="08-trifecta-as-information-flow.html" data-page-link="00-orientation/08-trifecta-as-information-flow"><span class="label">08</span><span>השילוש הוא שתי זרימות מידע, לא שלוש רגליים</span></a></li><li data-stem="09-reading-a-security-claim"><a href="09-reading-a-security-claim.html" data-page-link="00-orientation/09-reading-a-security-claim"><span class="label">09</span><span>שתים־עשרה שאלות מפרידות בין מדידה לסיסמה</span></a></li><li data-stem="10-course-map"><a href="10-course-map.html" data-page-link="00-orientation/10-course-map"><span class="label">10</span><span>שער בקרה (gateway) אחד, נבנה מודול אחרי מודול: מפת הקורס</span></a></li><li data-stem="build"><a href="build.html" data-page-link="00-orientation/build"><span class="label">B</span><span>תרגיל על נייר: איפה הייתם עוצרים את זה?</span></a></li><li data-stem="at-scale" aria-current="page"><a href="at-scale.html" data-page-link="00-orientation/at-scale"><span class="label">S</span><span>בקנה מידה: אלפי סוכנים, ואף אחד לא מחזיק את הרשימה</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="00-orientation/problems"><span class="label">P</span><span>בעיות</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="00-orientation" data-total="14" data-problems="14" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">מודול 00 · בקנה מידה: אלפי סוכנים, ואף אחד לא מחזיק את הרשימה</p>
+        <h1>בקנה מידה: אלפי סוכנים, ואף אחד לא מחזיק את הרשימה</h1>
+      </header>
+      <p>בלפטופ שלכם יש סוכן אחד, שאתם כתבתם, עם שלושה־עשר כלים: עשרה כלי מעבדה ועוד שלושה כלי CRM דרך MCP. בארגון גדול יש משהו כזה:</p>
+<ul>
+<li><strong>מאות עד אלפי סוכנים</strong>, שבנו צוותים שונים על פריימוורקים שונים, ועוד סוכנים בתוך כל מוצר SaaS שהארגון קונה, ועוד סוכני קוד על רוב הלפטופים של המפתחים.</li>
+<li><strong>אין רשימה מלאה שלהם.</strong> שאלו צוות אבטחה כמה סוכנים מריצה החברה שלהם, והתשובה הכנה היא טווח. מודול 19 קורא לזה בעיית המכנה, המספר הראשון שמבקר שואל עליו, ומודול 20 אומד אותו עם רווח סמך (confidence interval).</li>
+<li><strong>פרטי גישה (credentials) משותפים.</strong> מפתח API שנוצר לאב־טיפוס אחד מגיע לחמישה סוכנים. כשמשהו משתבש, היומן אומר «המפתח עשה את זה».</li>
+</ul>
+<h2 id="why-the-boundary-becomes-shared-infrastructure">למה הגבול הופך לתשתית משותפת</h2>
+<p>אי אפשר להכניס בקרה שנבנתה בקפידה לתוך כל אחד מאלף סוכנים, שבבעלות מאה צוותים, שחצי מהם נקנו. אפשר לשים אחת במקום שדרכו עוברות הקריאות שלהם לכלים:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>נקודת יירוט</th>
+<th>רואה</th>
+<th>מפספס</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>שער בקרה (gateway) או proxy לתעבורת כלים ו־API</td>
+<td>כל קריאה שמנותבת דרכו</td>
+<td>קריאות שלא מנותבות דרכו</td>
+</tr>
+<tr>
+<td>sidecar ליד כל workload של סוכן</td>
+<td>כל מה שה־workload הזה שולח</td>
+<td>סוכנים שלא פרוסים על הפלטפורמה הזו</td>
+</tr>
+<tr>
+<td>hook בסוכן הקוד בכל לפטופ</td>
+<td>פקודות לפני שהן רצות</td>
+<td>לפטופים בלי ה־hook</td>
+</tr>
+<tr>
+<td>הבקרות של ספק ה־SaaS עצמו</td>
+<td>הפעולות של הסוכן שלו</td>
+<td>כל מה שאי אפשר להגדיר</td>
+</tr>
+</tbody>
+</table></div>
+<p>כל שורה מחליפה כיסוי בעומק. בגלל זה שער הבקרה המיניאטורי שאתם בונים יושב על הקריאה לכלי: זה הרכיב היחיד שעדיין הגיוני כשמכפילים אותו באלף. מודול 3 חוזר לשאלה איפה הוא יושב ומה הוא עולה בזמן תגובה (latency); מודול 21 לשאלה מה קורה כשהוא איטי או למטה.</p>
+<h2 id="a-first-estimate">אומדן ראשון</h2>
+<p>נניח ש־2,000 סוכנים מבצעים בממוצע 25,000 קריאות לכלים ביום כל אחד: 50 מיליון קריאות ביום, בערך 580 בשנייה בממוצע, ופי כמה מזה בשיא. תחזיקו את המספר הזה. במודול 4 תמדדו את זמן הריצה של הגלאי שלכם על הלפטופ ותגלו כמה ליבות הוא היה צריך.</p>
+<h2 id="check-yourself">בדקו את עצמכם</h2>
+<ol>
+<li>שער בקרה רואה 100% מהתעבורה שמנותבת אליו. מה קובע כמה מתעבורת הסוכנים של <em>הארגון</em> הוא רואה, ואיך הייתם אומדים את החלק הזה?</li>
+<li>ה־580 קריאות בשנייה הן ממוצע. איזו הנחה בודדת באומדן היא הכי פחות ודאית, ואיך טעות של פי עשרה בה הייתה משנה את מה שאתם בונים?</li>
+</ol>
+<details class="answers"><summary>תשובות</summary>
+<ol>
+<li>ניתוב: החלק מהסוכנים של הארגון שהקריאות שלהם לכלים עוברות דרכו, וזה לא כולל סוכנים על פלטפורמות אחרות, בתוך SaaS שנקנה ועל לפטופים בלי hook. כדי לאמוד אותו צריך את המכנה: לספור סוכנים ממקורות בלתי תלויים (יומני תעבורה יוצאת (egress), חיובים אצל ספקי מודלים, מפתחות API בשימוש) ולהשוות למה ששער הבקרה רואה, כמו שמודול 20 עושה עם רווח סמך.</li>
+<li>מספר הסוכנים, 2,000: לאף אחד אין רשימה מלאה, והתשובה הכנה היא טווח. טעות של פי עשרה מזיזה את הממוצע בין 58 ל־5,800 קריאות בשנייה (עם שיאים גבוהים פי כמה). ב־58 אפשר להרשות לעצמכם גלאי כבד יותר, לכל קריאה, על שרת אחד; ב־5,800 כל מילישנייה וכל ליבה לקריאה מוכפלות, ושער הבקרה צריך לגדול לרוחב (scale out).</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>סימון כהושלם</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="build.html"><span class="label">הקודם</span>תרגיל על נייר: איפה הייתם עוצרים את זה?</a><a class="pn next" href="problems.html"><span class="label">הבא</span>בעיות</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 הגנה על סוכני AI</span>
+  <nav aria-label="Footer">
+    <a href="../../../he/workshop/">סדנאות לצוותים</a>
+    <a href="../../../he/courses/">קורסים מקוונים</a>
+    <a href="mailto:shimon@defendingaiagents.com">יצירת קשר</a>
+    <a href="../../../.well-known/security.txt">אבטחה</a>
+    <a href="../../../learn/00-orientation/at-scale.html" lang="en" hreflang="en">English</a>
+  </nav>
+</footer>
+<script src="../../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"כהה":"בהיר";
+b.setAttribute("aria-label","מעבר למצב "+(n==="dark"?"כהה":"בהיר"))};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

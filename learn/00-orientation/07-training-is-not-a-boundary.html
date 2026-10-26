@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Training is not a boundary · Defending AI Agents</title>
+<meta name="description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<link rel="canonical" href="https://defendingaiagents.com/learn/00-orientation/07-training-is-not-a-boundary.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/00-orientation/07-training-is-not-a-boundary.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/00-orientation/07-training-is-not-a-boundary.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/00-orientation/07-training-is-not-a-boundary.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Defending AI Agents">
+<meta property="og:title" content="Training is not a boundary · Defending AI Agents"><meta property="og:description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<meta property="og:url" content="https://defendingaiagents.com/learn/00-orientation/07-training-is-not-a-boundary.html"><meta property="og:image" content="https://defendingaiagents.com/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preload" href="../../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../assets/course.css"><script src="../../assets/progress.js" defer></script><script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs";const v=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();const th=document.documentElement.dataset.theme;const dark=th?th==="dark":matchMedia("(prefers-color-scheme: dark)").matches;mermaid.initialize({startOnLoad:true,theme:"base",fontFamily:"Inter, sans-serif",themeVariables:{darkMode:dark,background:v("--bg"),primaryColor:v("--bg-2"),primaryTextColor:v("--fg"),primaryBorderColor:v("--line-2"),lineColor:v("--dim"),secondaryColor:v("--bg"),tertiaryColor:v("--bg-2"),noteBkgColor:v("--bg-2"),noteTextColor:v("--fg"),noteBorderColor:v("--sig"),actorBkg:v("--bg-2"),actorBorder:v("--line-2"),actorTextColor:v("--fg"),signalColor:v("--fg"),signalTextColor:v("--fg"),clusterBkg:v("--bg"),clusterBorder:v("--line-2"),edgeLabelBackground:v("--bg"),fontSize:"14px"}});</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="../../"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">Defending AI Agents</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="Switch colour theme"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>Theme</span></button>
+    <a class="lang label" href="../../he/learn/00-orientation/07-training-is-not-a-boundary.html" lang="he" hreflang="he">עברית</a>
+    <a class="btn" href="../../course/#waitlist" data-waitlist>Join waitlist<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">Menu</summary><nav aria-label="Menu"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="00-orientation/07-training-is-not-a-boundary" data-module="00-orientation">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">Free preview</a><span>/</span><a href="./">Module 00</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="Module 00">
+      <p class="label"><em>Module 00</em> Theoretical</p>
+      <p class="side-title">Orientation: why agent security is a statistics problem</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="00-orientation/index"><span class="label">·</span><span>Overview</span></a></li><li data-stem="01-an-agent-in-one-picture"><a href="01-an-agent-in-one-picture.html" data-page-link="00-orientation/01-an-agent-in-one-picture"><span class="label">01</span><span>An agent is a model with side effects</span></a></li><li data-stem="02-four-incidents"><a href="02-four-incidents.html" data-page-link="00-orientation/02-four-incidents"><span class="label">02</span><span>Four incidents, one pattern</span></a></li><li data-stem="03-trifecta-and-rule-of-two"><a href="03-trifecta-and-rule-of-two.html" data-page-link="00-orientation/03-trifecta-and-rule-of-two"><span class="label">03</span><span>Three capabilities make a leak: the lethal trifecta and the rule of two</span></a></li><li data-stem="04-two-kinds-of-defence"><a href="04-two-kinds-of-defence.html" data-page-link="00-orientation/04-two-kinds-of-defence"><span class="label">04</span><span>Two kinds of defence, and which to trust first</span></a></li><li data-stem="05-five-statistics-problems"><a href="05-five-statistics-problems.html" data-page-link="00-orientation/05-five-statistics-problems"><span class="label">05</span><span>The hard questions in agent security are five statistics problems</span></a></li><li data-stem="06-base-rate-in-depth"><a href="06-base-rate-in-depth.html" data-page-link="00-orientation/06-base-rate-in-depth"><span class="label">06</span><span>A 99%-recall detector&#x27;s alerts can be wrong 99 times in 100: the base rate in depth</span></a></li><li data-stem="07-training-is-not-a-boundary" aria-current="page"><a href="07-training-is-not-a-boundary.html" data-page-link="00-orientation/07-training-is-not-a-boundary"><span class="label">07</span><span>Training is not a boundary</span></a></li><li data-stem="08-trifecta-as-information-flow"><a href="08-trifecta-as-information-flow.html" data-page-link="00-orientation/08-trifecta-as-information-flow"><span class="label">08</span><span>The trifecta is two information flows, not three legs</span></a></li><li data-stem="09-reading-a-security-claim"><a href="09-reading-a-security-claim.html" data-page-link="00-orientation/09-reading-a-security-claim"><span class="label">09</span><span>Twelve questions separate a measurement from a slogan</span></a></li><li data-stem="10-course-map"><a href="10-course-map.html" data-page-link="00-orientation/10-course-map"><span class="label">10</span><span>One gateway, built a module at a time: the course map</span></a></li><li data-stem="build"><a href="build.html" data-page-link="00-orientation/build"><span class="label">B</span><span>Paper exercise: where would you have stopped it?</span></a></li><li data-stem="at-scale"><a href="at-scale.html" data-page-link="00-orientation/at-scale"><span class="label">S</span><span>At scale: thousands of agents, nobody&#x27;s inventory</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="00-orientation/problems"><span class="label">P</span><span>Problems</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="00-orientation" data-total="14" data-problems="14" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">Module 00 · Lesson 07</p>
+        <h1>Training is not a boundary</h1>
+      </header>
+      <p>&quot;We told the model not to.&quot; &quot;The model was trained to refuse.&quot; These are the most common first answers to agent security, and the most important thing this lesson can do is show why each is worth having and why neither is a boundary.</p>
+<h2 id="there-is-one-stream">There is one stream</h2>
+<p>A chat model receives a sequence of tokens. Roles (system, user, assistant, tool) are marked by delimiter tokens that the serving template inserts. After that, the transformer processes one sequence; nothing in the architecture treats a &quot;system&quot; span as more binding than a &quot;tool&quot; span. Any difference in how the model treats them is <strong>learned</strong>, from training examples, as a statistical regularity.</p>
+<figure class="diagram"><pre class="mermaid">flowchart TD
+  S[&quot;system: be an ops assistant&quot;] --- U[&quot;user: summarise the report&quot;]
+  U --- T[&quot;tool result: file contents,&lt;br/&gt;which includes whatever the author wrote&quot;]
+  T --&gt; Q[&quot;one sequence&quot;]
+  Q --&gt; M[&quot;model&quot;]
+  M --&gt; N[&quot;next token&quot;]
+</pre></figure>
+<p>You can see it for yourself in Module 1, lesson 8, where you print the exact string your lab's model receives.</p>
+<h2 id="what-training-buys">What training buys</h2>
+<p>The <strong>instruction hierarchy</strong> (Wallace et al., 2024) names the root problem precisely: models treat system prompts as no higher in priority than text from users and third parties. Their remedy is data: train the model to follow privileged instructions over lower-privileged ones when they conflict, and they report that it substantially increases robustness, including to attack types not seen in training, at small cost in capability. Other work (preference-trained resistance, structured queries) is in the same family and Module 4 covers it.</p>
+<p>This is real and worth using. It lowers the rate at which opportunistic and accidental injections succeed.</p>
+<h2 id="what-it-does-not-buy">What it does not buy</h2>
+<p>Nasr, Carlini and co-authors (2025) took 12 recent defences, covering several families, and attacked each with adaptive methods: gradient descent, reinforcement learning, random search and human-guided exploration, each tuned to the defence's design and given a large budget. They report attack success above 90% for most, and note that <strong>the majority of those defences had originally reported near-zero attack success rates.</strong></p>
+<p>Read that as a statement about evaluation, not only about those defences. A defence evaluated on a <em>fixed</em> set of attack strings, or on weak optimisers not designed against it, is measured under a distribution the attacker will not use. Its reported number is the success rate against an attacker who never saw the defence, which is not the attacker that exists. This is the fourth problem of lesson 5 (an adversary who moves second), now with a measured size.</p>
+<p>Module 1 has a small version of the same observation, in the author's runs of the attack its build asks you to write (<code>qwen3:4b</code>, October 2026): the same request, placed at the end of a document, landed 0 times in 5; placed at the top of the file as a note to the assistant, 5 times in 6. Your own runs will differ; the direction is the point. A person spent an hour on placement. A search procedure spends an afternoon and finds the next one.</p>
+<h2 id="so-what-is-the-boundary">So what is the boundary?</h2>
+<p>Training is a <strong>probabilistic</strong> property of one model on one distribution. A boundary is a <strong>structural</strong> property that holds for every input, including the ones an optimiser finds:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th></th>
+<th>Statement</th>
+<th>Holds for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Training</td>
+<td>&quot;this model resists injections like those in the test set&quot;</td>
+<td>the test distribution</td>
+</tr>
+<tr>
+<td>Structure</td>
+<td>&quot;no value derived from untrusted input can reach an external send&quot;</td>
+<td>every input</td>
+</tr>
+</tbody>
+</table></div>
+<p>The CaMeL design (Debenedetti et al., 2025) is the cleanest example: the control flow is extracted from the trusted request alone, so untrusted data &quot;can never impact the program flow&quot;, and capabilities on values stop private data leaving over unauthorised flows. On AgentDojo it solved 77% of tasks with provable security, against 84% for an undefended system. That seven-point gap is the <strong>price of structure</strong>, measured; Module 11 has you measure your own.</p>
+<h2 id="use-both-in-the-right-order">Use both, in the right order</h2>
+<p>Training and structure are not rivals; they fail differently (Module 2, lesson 7 on correlation). The mistake is to count the first as the second. In this course &quot;the model was trained to refuse&quot; is worth a number, measured on your own attack set, with adaptive attackers, and it is never worth &quot;secure&quot;.</p>
+<h2 id="check-yourself">Check yourself</h2>
+<ol>
+<li>A paper reports attack success falling from 70% to 1% with a new fine-tune, on 200 fixed prompts. List three things you would ask before believing it protects a deployment.</li>
+<li>An instruction hierarchy ranks the system prompt above the user, and the user above tool results. When does it help against a malicious <em>user</em>, and when does it not? Which writer in <a href="01-an-agent-in-one-picture.html#where-an-attacker-can-write">lesson 1's table</a> does it rank lowest, and so guard against most directly?</li>
+<li>Write the structural statement that would make incident 1 of <a href="02-four-incidents.html">lesson 2</a> impossible, in one sentence, without mentioning any detector.</li>
+</ol>
+<details class="answers"><summary>Answers</summary>
+<ol>
+<li>Whether it was attacked adaptively, by optimisers tuned against the fine-tune with a real budget, not 200 fixed prompts (the gap Nasr et al. measured). What the interval is: 1% of 200 is 2 successes, with a one-sided 95% upper bound of 3.1%. And what it costs: task completion and false refusals on benign traffic shaped like the deployment's, not the benchmark's.</li>
+<li>It helps when the malicious user's instruction conflicts with the system prompt, such as asking the agent to ignore the developer's restrictions. It does not help when the harmful request is within what the system prompt allows: the user is the principal, and the agent's legitimate capabilities do the harm. It ranks tool results lowest, so it guards most directly against whoever wrote the files, e-mails and pages the agent reads.</li>
+<li>After the agent reads an e-mail from outside the organisation, no <code>send_email</code> to an external address may carry any value read from the CRM.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>Mark complete</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="06-base-rate-in-depth.html"><span class="label">Previous</span>A 99%-recall detector&#x27;s alerts can be wrong 99 times in 100: the base rate in depth</a><a class="pn next" href="08-trifecta-as-information-flow.html"><span class="label">Next</span>The trifecta is two information flows, not three legs</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 Defending AI Agents</span>
+  <nav aria-label="Footer">
+    <a href="../../workshop/">Team workshops</a>
+    <a href="../../courses/">Online courses</a>
+    <a href="mailto:shimon@defendingaiagents.com">Contact</a>
+    <a href="../../.well-known/security.txt">Security</a>
+    <a href="../../he/learn/00-orientation/07-training-is-not-a-boundary.html" lang="he" hreflang="he">עברית</a>
+  </nav>
+</footer>
+<script src="../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"Dark":"Light";
+b.setAttribute("aria-label","Switch to "+n+" mode")};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

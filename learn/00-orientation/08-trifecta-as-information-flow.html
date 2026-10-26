@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The trifecta is two information flows, not three legs · Defending AI Agents</title>
+<meta name="description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<link rel="canonical" href="https://defendingaiagents.com/learn/00-orientation/08-trifecta-as-information-flow.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/00-orientation/08-trifecta-as-information-flow.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/00-orientation/08-trifecta-as-information-flow.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/00-orientation/08-trifecta-as-information-flow.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Defending AI Agents">
+<meta property="og:title" content="The trifecta is two information flows, not three legs · Defending AI Agents"><meta property="og:description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<meta property="og:url" content="https://defendingaiagents.com/learn/00-orientation/08-trifecta-as-information-flow.html"><meta property="og:image" content="https://defendingaiagents.com/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preload" href="../../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../assets/course.css"><script src="../../assets/progress.js" defer></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script><script>addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".math").forEach(function(e){katex.render(e.textContent,e,{displayMode:e.dataset.display==="1",throwOnError:false})})})</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="../../"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">Defending AI Agents</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="Switch colour theme"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>Theme</span></button>
+    <a class="lang label" href="../../he/learn/00-orientation/08-trifecta-as-information-flow.html" lang="he" hreflang="he">עברית</a>
+    <a class="btn" href="../../course/#waitlist" data-waitlist>Join waitlist<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">Menu</summary><nav aria-label="Menu"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="00-orientation/08-trifecta-as-information-flow" data-module="00-orientation">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">Free preview</a><span>/</span><a href="./">Module 00</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="Module 00">
+      <p class="label"><em>Module 00</em> Theoretical</p>
+      <p class="side-title">Orientation: why agent security is a statistics problem</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="00-orientation/index"><span class="label">·</span><span>Overview</span></a></li><li data-stem="01-an-agent-in-one-picture"><a href="01-an-agent-in-one-picture.html" data-page-link="00-orientation/01-an-agent-in-one-picture"><span class="label">01</span><span>An agent is a model with side effects</span></a></li><li data-stem="02-four-incidents"><a href="02-four-incidents.html" data-page-link="00-orientation/02-four-incidents"><span class="label">02</span><span>Four incidents, one pattern</span></a></li><li data-stem="03-trifecta-and-rule-of-two"><a href="03-trifecta-and-rule-of-two.html" data-page-link="00-orientation/03-trifecta-and-rule-of-two"><span class="label">03</span><span>Three capabilities make a leak: the lethal trifecta and the rule of two</span></a></li><li data-stem="04-two-kinds-of-defence"><a href="04-two-kinds-of-defence.html" data-page-link="00-orientation/04-two-kinds-of-defence"><span class="label">04</span><span>Two kinds of defence, and which to trust first</span></a></li><li data-stem="05-five-statistics-problems"><a href="05-five-statistics-problems.html" data-page-link="00-orientation/05-five-statistics-problems"><span class="label">05</span><span>The hard questions in agent security are five statistics problems</span></a></li><li data-stem="06-base-rate-in-depth"><a href="06-base-rate-in-depth.html" data-page-link="00-orientation/06-base-rate-in-depth"><span class="label">06</span><span>A 99%-recall detector&#x27;s alerts can be wrong 99 times in 100: the base rate in depth</span></a></li><li data-stem="07-training-is-not-a-boundary"><a href="07-training-is-not-a-boundary.html" data-page-link="00-orientation/07-training-is-not-a-boundary"><span class="label">07</span><span>Training is not a boundary</span></a></li><li data-stem="08-trifecta-as-information-flow" aria-current="page"><a href="08-trifecta-as-information-flow.html" data-page-link="00-orientation/08-trifecta-as-information-flow"><span class="label">08</span><span>The trifecta is two information flows, not three legs</span></a></li><li data-stem="09-reading-a-security-claim"><a href="09-reading-a-security-claim.html" data-page-link="00-orientation/09-reading-a-security-claim"><span class="label">09</span><span>Twelve questions separate a measurement from a slogan</span></a></li><li data-stem="10-course-map"><a href="10-course-map.html" data-page-link="00-orientation/10-course-map"><span class="label">10</span><span>One gateway, built a module at a time: the course map</span></a></li><li data-stem="build"><a href="build.html" data-page-link="00-orientation/build"><span class="label">B</span><span>Paper exercise: where would you have stopped it?</span></a></li><li data-stem="at-scale"><a href="at-scale.html" data-page-link="00-orientation/at-scale"><span class="label">S</span><span>At scale: thousands of agents, nobody&#x27;s inventory</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="00-orientation/problems"><span class="label">P</span><span>Problems</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="00-orientation" data-total="14" data-problems="14" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">Module 00 · Lesson 08</p>
+        <h1>The trifecta is two information flows, not three legs</h1>
+      </header>
+      <p>The lethal trifecta and the rule of two are heuristics: easy to remember, quick to apply, and wrong at the edges. This lesson derives them from a formal idea so you can see where they stop being true.</p>
+<h2 id="labels-and-a-lattice">Labels and a lattice</h2>
+<p>Denning (1976) modelled secure information flow like this. Attach a <strong>label</strong> to every piece of information. Labels form a lattice with an order <span class="math" data-display="0">\sqsubseteq</span> (&quot;may flow to&quot;). A flow from <span class="math" data-display="0">a</span> to <span class="math" data-display="0">b</span> is permitted only if <span class="math" data-display="0">\text{label}(a) \sqsubseteq \text{label}(b)</span>.</p>
+<p>For confidentiality, take labels <em>public</em> <span class="math" data-display="0">\sqsubseteq</span> <em>internal</em> <span class="math" data-display="0">\sqsubseteq</span> <em>secret</em>: data may move up, never down. For <strong>integrity</strong> the lattice is dual (Biba, 1977): a high-integrity sink (a decision, a privileged action) must not be influenced by low-integrity data. Untrusted input is <em>low integrity</em>; a tool call is a high-integrity sink.</p>
+<h2 id="restating-the-trifecta">Restating the trifecta</h2>
+<p>An exfiltration needs two flows at once:</p>
+<ol>
+<li>a <strong>confidentiality-violating flow</strong>: secret data reaches an external (public) sink;</li>
+<li>an <strong>integrity-violating flow</strong>: low-integrity data, written by the attacker, influences <em>which</em> flow happens (what is read, where it is sent).</li>
+</ol>
+<p>Remove (1)'s source (no private data), or its sink (no way out), or (2) (no untrusted influence), and the attack has nowhere to go. That is the trifecta, restated: <em>private data</em> is the source of flow 1, <em>external communication</em> is its sink, <em>untrusted content</em> is the source of flow 2.</p>
+<h2 id="where-the-heuristic-is-wrong">Where the heuristic is wrong</h2>
+<p><strong>A. Three legs, no attack.</strong> Flows are between <em>particular</em> sources and sinks. An agent that reads the customer list and can send mail only to an internal address list, with untrusted text in context, holds all three &quot;legs&quot; in the loose sense, but the private data cannot reach any external sink. Treating the rule as a count says &quot;forbidden&quot;. Labelling says &quot;fine&quot;.</p>
+<p><strong>B. Two legs, still an attack.</strong> Untrusted input plus a state-changing capability, with <em>no</em> private data, is the integrity half alone: an injected instruction can delete records, send spam in your name, or trigger a payment. The rule of two permits it. The harm is an integrity violation, and the rule's own letters (A and C) flag it, but only if you read C as &quot;changes state&quot;, not as &quot;sends data out&quot;.</p>
+<p><strong>C. The leg count does not compose</strong> (Module 3, lesson 9): a system of one-leg agents can hold all three as a whole.</p>
+<h2 id="the-lab-labelled">The lab, labelled</h2>
+<p>For the thirteen tools the lab gives the agent (ten lab tools plus three CRM tools over MCP; <code>search_docs</code>, <code>remember</code> and <code>recall</code> enter the story in Module 5):</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Reads: integrity</th>
+<th>Reads: confidentiality</th>
+<th>Sink: external?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>read_inbox</code></td>
+<td><strong>low</strong> (strangers)</td>
+<td>internal</td>
+<td>no</td>
+</tr>
+<tr>
+<td><code>fetch_url</code></td>
+<td><strong>low</strong></td>
+<td>public</td>
+<td><strong>yes</strong>, via the URL</td>
+</tr>
+<tr>
+<td><code>list_files</code>, <code>read_file</code></td>
+<td>mixed: workspace is written by many</td>
+<td>secret for <code>private/</code>, internal elsewhere</td>
+<td>no</td>
+</tr>
+<tr>
+<td><code>search_docs</code></td>
+<td>mixed: curated pages, plus a shared folder anyone can write</td>
+<td>internal</td>
+<td>no</td>
+</tr>
+<tr>
+<td><code>recall</code></td>
+<td><strong>low</strong>: whatever an earlier session saved, from whatever it read</td>
+<td>internal</td>
+<td>no</td>
+</tr>
+<tr>
+<td><code>crm__lookup_customer</code>, <code>crm__search_customers</code></td>
+<td>high (data), <strong>low</strong> (tool text)</td>
+<td>secret</td>
+<td>no</td>
+</tr>
+<tr>
+<td><code>run_shell</code></td>
+<td>mixed</td>
+<td>secret</td>
+<td><strong>yes</strong>, in a real deployment</td>
+</tr>
+<tr>
+<td><code>send_email</code></td>
+<td>n/a</td>
+<td>n/a</td>
+<td><strong>yes</strong></td>
+</tr>
+<tr>
+<td><code>write_file</code>, <code>remember</code>, <code>crm__log_interaction</code></td>
+<td>n/a</td>
+<td>n/a</td>
+<td>no, but writes state others (or later sessions) will read</td>
+</tr>
+</tbody>
+</table></div>
+<p>The dangerous pairs are (source with secret data) × (sink with external reach) × (any low-integrity source in the same session). In this lab that is a small set of tools, and a policy can name it: <strong>after any low-integrity read, an external sink's arguments must carry no secret-labelled value.</strong> That sentence is the whole of Module 11 in outline.</p>
+<h2 id="what-makes-it-hard">What makes it hard</h2>
+<p>Labels live on <em>values</em>, and a model is a function that takes labelled values and returns an unlabelled string. Information flows through the model's weights and sampling with no record of where it came from, so a harness has to choose:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>Rule</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Session taint</strong></td>
+<td>once any low-integrity value enters context, everything after is tainted</td>
+<td>cheap, over-conservative: most sessions touch untrusted data, so most sends are held</td>
+</tr>
+<tr>
+<td><strong>Value taint</strong></td>
+<td>track which values derive from which sources, through code</td>
+<td>precise; needs the program structure to be explicit (CaMeL's interpreter)</td>
+</tr>
+<tr>
+<td><strong>Quarantined reader</strong></td>
+<td>a model with no tools reads untrusted text and returns structured data only</td>
+<td>the reader can still lie in its output; limits what the attacker can ask for</td>
+</tr>
+</tbody>
+</table></div>
+<p>Module 11 builds all three (value taint by matching copied values, without an interpreter) and measures what each costs in tasks lost.</p>
+<h2 id="implicit-flows-and-the-property-a-structural-defence-claims">Implicit flows, and the property a structural defence claims</h2>
+<p>Copying is not the only flow. In <code>if secret: send(&quot;yes&quot;)</code> no secret value reaches <code>send</code>, yet the message reveals a bit of it: an <strong>implicit flow</strong>, carried by control flow rather than by data. Denning (1976) handles it by giving the program counter a label: inside a branch on a value labelled <span class="math" data-display="0">\ell</span>, everything the branch does carries <span class="math" data-display="0">\ell</span> as well. In an agent the branches are chosen by a model that conditions on its whole context, so every action it takes is a branch on everything it has read, and the program counter's label is the join of the context. Session taint is therefore not a crude approximation; it is the correct label when the model chooses the control flow. The only way to keep the program counter high-integrity is to fix the branches before any low-integrity value is read, which is what CaMeL does by extracting the plan from the trusted request alone.</p>
+<p>The property such a design claims is <strong>noninterference</strong> (Goguen and Meseguer, 1982), in its integrity form: change the low-integrity inputs, hold everything else fixed, and the high-integrity outputs (which tools run, with which non-data arguments) do not change. It quantifies over all pairs of inputs, so no finite sample can estimate it; it is proved from the program's structure, and that is the precise meaning of lesson 7's &quot;holds for every input&quot;. Two things escape it. Low-integrity values still flow as <em>data</em> into the steps the plan permits, so a quarantined reader's summary can be false, or carry the attacker's text to the user. And timing, error messages and resource use are channels the lattice does not label: Module 2, lesson 11, measures how much an attacker gains from a reply that says which defence stopped them.</p>
+<h2 id="check-yourself">Check yourself</h2>
+<ol>
+<li>Give an agent that holds the three legs by count and cannot leak. State the labelling that makes it so.</li>
+<li>Give one with two legs by count and an attack that matters. Which half of the lattice is violated?</li>
+<li>A plan is fixed from the trusted request, but one step reads <code>if summary_is_urgent: send_email(manager, summary)</code>, where <code>summary</code> comes from an untrusted e-mail. Which label does the send carry, through which kind of flow, and what can the attacker now decide?</li>
+</ol>
+<details class="answers"><summary>Answers</summary>
+<ol>
+<li>An agent that reads the customer list, reads e-mail from strangers, and can send mail only to addresses on the internal list. Label the customer list <em>internal</em> and the only send sink <em>internal</em> (recipients restricted to the organisation): no path from the data to a public sink exists, so flow 1 has no sink, whatever the untrusted e-mail asks for.</li>
+<li>An agent that reads public web pages and can delete records or make payments, with no private data in reach: an injected page makes it delete or pay. The integrity half (Biba) is violated: low-integrity data influences a high-integrity sink.</li>
+<li>Low integrity, through an implicit flow: the branch condition derives from the untrusted e-mail, so the program counter, and everything inside the branch, carries its label. The summary also reaches the send as data. The attacker now decides whether the manager is mailed and what the summary says, though not the recipient, which the plan fixed.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>Mark complete</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="07-training-is-not-a-boundary.html"><span class="label">Previous</span>Training is not a boundary</a><a class="pn next" href="09-reading-a-security-claim.html"><span class="label">Next</span>Twelve questions separate a measurement from a slogan</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 Defending AI Agents</span>
+  <nav aria-label="Footer">
+    <a href="../../workshop/">Team workshops</a>
+    <a href="../../courses/">Online courses</a>
+    <a href="mailto:shimon@defendingaiagents.com">Contact</a>
+    <a href="../../.well-known/security.txt">Security</a>
+    <a href="../../he/learn/00-orientation/08-trifecta-as-information-flow.html" lang="he" hreflang="he">עברית</a>
+  </nav>
+</footer>
+<script src="../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"Dark":"Light";
+b.setAttribute("aria-label","Switch to "+n+" mode")};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="he" dir="rtl" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>השילוש הוא שתי זרימות מידע, לא שלוש רגליים · הגנה על סוכני AI</title>
+<meta name="description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<link rel="canonical" href="https://defendingaiagents.com/he/learn/00-orientation/08-trifecta-as-information-flow.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/00-orientation/08-trifecta-as-information-flow.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/00-orientation/08-trifecta-as-information-flow.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/00-orientation/08-trifecta-as-information-flow.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="הגנה על סוכני AI">
+<meta property="og:title" content="השילוש הוא שתי זרימות מידע, לא שלוש רגליים · הגנה על סוכני AI"><meta property="og:description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<meta property="og:url" content="https://defendingaiagents.com/he/learn/00-orientation/08-trifecta-as-information-flow.html"><meta property="og:image" content="https://defendingaiagents.com/og-he.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="he_IL"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+<link rel="preload" href="../../../assets/fonts/rubik-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../../assets/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../../assets/course.css"><script src="../../../assets/progress.js" defer></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script><script>addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".math").forEach(function(e){katex.render(e.textContent,e,{displayMode:e.dataset.display==="1",throwOnError:false})})})</script>
+</head>
+<body>
+<a class="skip" href="#main">דילוג לתוכן</a>
+<header class="top">
+  <a class="brand" href="../../../learn/00-orientation/08-trifecta-as-information-flow.html"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">הגנה על סוכני AI</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="החלפת ערכת צבע"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>ערכת צבע</span></button>
+    <a class="lang label" href="../../../learn/00-orientation/08-trifecta-as-information-flow.html" lang="en" hreflang="en">English</a>
+    <a class="btn" href="../../../he/course/#waitlist" data-waitlist>לרשימת ההמתנה<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">תפריט</summary><nav aria-label="תפריט"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="00-orientation/08-trifecta-as-information-flow" data-module="00-orientation">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">תצוגה מקדימה חינמית</a><span>/</span><a href="./">מודול 00</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="מודול 00">
+      <p class="label"><em>מודול 00</em> תיאורטי</p>
+      <p class="side-title">התמצאות: למה אבטחת סוכנים היא בעיה סטטיסטית</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="00-orientation/index"><span class="label">·</span><span>סקירה</span></a></li><li data-stem="01-an-agent-in-one-picture"><a href="01-an-agent-in-one-picture.html" data-page-link="00-orientation/01-an-agent-in-one-picture"><span class="label">01</span><span>סוכן הוא מודל עם תופעות לוואי</span></a></li><li data-stem="02-four-incidents"><a href="02-four-incidents.html" data-page-link="00-orientation/02-four-incidents"><span class="label">02</span><span>ארבע תקריות, דפוס אחד</span></a></li><li data-stem="03-trifecta-and-rule-of-two"><a href="03-trifecta-and-rule-of-two.html" data-page-link="00-orientation/03-trifecta-and-rule-of-two"><span class="label">03</span><span>שלוש יכולות יוצרות דליפה: השילוש הקטלני וכלל השניים</span></a></li><li data-stem="04-two-kinds-of-defence"><a href="04-two-kinds-of-defence.html" data-page-link="00-orientation/04-two-kinds-of-defence"><span class="label">04</span><span>שני סוגי הגנה, ובאיזה לבטוח קודם</span></a></li><li data-stem="05-five-statistics-problems"><a href="05-five-statistics-problems.html" data-page-link="00-orientation/05-five-statistics-problems"><span class="label">05</span><span>השאלות הקשות באבטחת סוכנים הן חמש בעיות סטטיסטיות</span></a></li><li data-stem="06-base-rate-in-depth"><a href="06-base-rate-in-depth.html" data-page-link="00-orientation/06-base-rate-in-depth"><span class="label">06</span><span>גלאי עם recall של 99% יכול לטעות ב־99 מתוך 100 התרעות: שיעור הבסיס לעומק</span></a></li><li data-stem="07-training-is-not-a-boundary"><a href="07-training-is-not-a-boundary.html" data-page-link="00-orientation/07-training-is-not-a-boundary"><span class="label">07</span><span>אימון הוא לא גבול</span></a></li><li data-stem="08-trifecta-as-information-flow" aria-current="page"><a href="08-trifecta-as-information-flow.html" data-page-link="00-orientation/08-trifecta-as-information-flow"><span class="label">08</span><span>השילוש הוא שתי זרימות מידע, לא שלוש רגליים</span></a></li><li data-stem="09-reading-a-security-claim"><a href="09-reading-a-security-claim.html" data-page-link="00-orientation/09-reading-a-security-claim"><span class="label">09</span><span>שתים־עשרה שאלות מפרידות בין מדידה לסיסמה</span></a></li><li data-stem="10-course-map"><a href="10-course-map.html" data-page-link="00-orientation/10-course-map"><span class="label">10</span><span>שער בקרה (gateway) אחד, נבנה מודול אחרי מודול: מפת הקורס</span></a></li><li data-stem="build"><a href="build.html" data-page-link="00-orientation/build"><span class="label">B</span><span>תרגיל על נייר: איפה הייתם עוצרים את זה?</span></a></li><li data-stem="at-scale"><a href="at-scale.html" data-page-link="00-orientation/at-scale"><span class="label">S</span><span>בקנה מידה: אלפי סוכנים, ואף אחד לא מחזיק את הרשימה</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="00-orientation/problems"><span class="label">P</span><span>בעיות</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="00-orientation" data-total="14" data-problems="14" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">מודול 00 · שיעור 08</p>
+        <h1>השילוש הוא שתי זרימות מידע, לא שלוש רגליים</h1>
+      </header>
+      <p>השילוש הקטלני (lethal trifecta) וכלל השניים (rule of two) הם היוריסטיקות: קל לזכור אותם, מהר להפעיל אותם, והם שגויים בקצוות. השיעור הזה גוזר אותם מרעיון פורמלי, כדי שתראו איפה הם מפסיקים להיות נכונים.</p>
+<h2 id="labels-and-a-lattice">תוויות וסריג</h2>
+<p>Denning (1976) מידלה זרימת מידע מאובטחת כך. מצמידים <strong>תווית</strong> (label) לכל פיסת מידע. התוויות יוצרות סריג (lattice) עם יחס סדר <span class="math" data-display="0">\sqsubseteq</span> («רשאי לזרום אל»). זרימה מ־<span class="math" data-display="0">a</span> אל <span class="math" data-display="0">b</span> מותרת רק אם <span class="math" data-display="0">\text{label}(a) \sqsubseteq \text{label}(b)</span>.</p>
+<p>לסודיות (confidentiality), קחו את התוויות <em>ציבורי</em> <span class="math" data-display="0">\sqsubseteq</span> <em>פנימי</em> <span class="math" data-display="0">\sqsubseteq</span> <em>סודי</em>: מידע רשאי לעלות, אף פעם לא לרדת. ל<strong>שלמות</strong> (integrity) הסריג הוא הדואלי (Biba, 1977): יעד (sink) בשלמות גבוהה, כמו החלטה או פעולה מורשית, אסור שיושפע ממידע בשלמות נמוכה. קלט לא מהימן הוא <em>בשלמות נמוכה</em>; קריאה לכלי היא יעד בשלמות גבוהה.</p>
+<h2 id="restating-the-trifecta">השילוש, בניסוח מחדש</h2>
+<p>הוצאת מידע (exfiltration) דורשת שתי זרימות בבת אחת:</p>
+<ol>
+<li><strong>זרימה שמפרה סודיות</strong>: מידע סודי מגיע ליעד חיצוני (ציבורי);</li>
+<li><strong>זרימה שמפרה שלמות</strong>: מידע בשלמות נמוכה, שהתוקף כתב, משפיע על <em>איזו</em> זרימה מתרחשת (מה נקרא, לאן זה נשלח).</li>
+</ol>
+<p>הסירו את המקור של (1) (אין מידע פרטי), או את היעד שלה (אין דרך החוצה), או את (2) (אין השפעה לא מהימנה), ולמתקפה אין לאן ללכת. זה השילוש, בניסוח מחדש: <em>מידע פרטי</em> הוא המקור של זרימה 1, <em>תקשורת חיצונית</em> היא היעד שלה, <em>תוכן לא מהימן</em> הוא המקור של זרימה 2.</p>
+<h2 id="where-the-heuristic-is-wrong">איפה ההיוריסטיקה טועה</h2>
+<p><strong>א. שלוש רגליים, אין מתקפה.</strong> זרימות הן בין מקורות ויעדים <em>מסוימים</em>. סוכן שקורא את רשימת הלקוחות ויכול לשלוח מייל רק לרשימת כתובות פנימית, עם טקסט לא מהימן בהקשר, מחזיק בשלוש ה«רגליים» במובן הרופף, אבל המידע הפרטי לא יכול להגיע לשום יעד חיצוני. מי שמתייחס לכלל כספירה אומר «אסור». מי שמתייג אומר «בסדר».</p>
+<p><strong>ב. שתי רגליים, ועדיין מתקפה.</strong> קלט לא מהימן ועוד קייפביליטי (capability) שמשנה מצב, <em>בלי</em> מידע פרטי, הוא חצי השלמות לבדו: הוראה מוזרקת יכולה למחוק רשומות, לשלוח ספאם בשמכם או להפעיל תשלום. כלל השניים מרשה את זה. הנזק הוא הפרת שלמות, והאותיות של הכלל עצמו (A ו־C) מסמנות אותו, אבל רק אם קוראים את C כ«משנה מצב» ולא כ«שולח מידע החוצה».</p>
+<p><strong>ג. ספירת הרגליים לא מתחברת</strong> (מודול 3, שיעור 9): מערכת של סוכנים בעלי רגל אחת כל אחד יכולה להחזיק בשלושתן כמכלול.</p>
+<h2 id="the-lab-labelled">המעבדה, מתויגת</h2>
+<p>עבור שלושה־עשר הכלים שהמעבדה נותנת לסוכן (עשרה כלי מעבדה ועוד שלושה כלי CRM דרך MCP; <code>search_docs</code>, <code>remember</code> ו־<code>recall</code> נכנסים לסיפור במודול 5):</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>כלי</th>
+<th>קורא: שלמות</th>
+<th>קורא: סודיות</th>
+<th>יעד: חיצוני?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>read_inbox</code></td>
+<td><strong>נמוכה</strong> (זרים)</td>
+<td>פנימי</td>
+<td>לא</td>
+</tr>
+<tr>
+<td><code>fetch_url</code></td>
+<td><strong>נמוכה</strong></td>
+<td>ציבורי</td>
+<td><strong>כן</strong>, דרך ה־URL</td>
+</tr>
+<tr>
+<td><code>list_files</code>, <code>read_file</code></td>
+<td>מעורבת: הרבה כותבים לסביבת העבודה</td>
+<td>סודי ל־<code>private/</code>, פנימי בשאר</td>
+<td>לא</td>
+</tr>
+<tr>
+<td><code>search_docs</code></td>
+<td>מעורבת: דפים שנאצרו, ועוד תיקייה משותפת שכל אחד יכול לכתוב אליה</td>
+<td>פנימי</td>
+<td>לא</td>
+</tr>
+<tr>
+<td><code>recall</code></td>
+<td><strong>נמוכה</strong>: כל מה שסשן קודם שמר, מכל מה שהוא קרא</td>
+<td>פנימי</td>
+<td>לא</td>
+</tr>
+<tr>
+<td><code>crm__lookup_customer</code>, <code>crm__search_customers</code></td>
+<td>גבוהה (הדאטה), <strong>נמוכה</strong> (טקסט הכלי)</td>
+<td>סודי</td>
+<td>לא</td>
+</tr>
+<tr>
+<td><code>run_shell</code></td>
+<td>מעורבת</td>
+<td>סודי</td>
+<td><strong>כן</strong>, בפריסה אמיתית</td>
+</tr>
+<tr>
+<td><code>send_email</code></td>
+<td>לא רלוונטי</td>
+<td>לא רלוונטי</td>
+<td><strong>כן</strong></td>
+</tr>
+<tr>
+<td><code>write_file</code>, <code>remember</code>, <code>crm__log_interaction</code></td>
+<td>לא רלוונטי</td>
+<td>לא רלוונטי</td>
+<td>לא, אבל כותב מצב שאחרים (או סשנים מאוחרים יותר) יקראו</td>
+</tr>
+</tbody>
+</table></div>
+<p>הזוגות המסוכנים הם (מקור עם מידע סודי) × (יעד עם טווח חיצוני) × (כל מקור בשלמות נמוכה באותו סשן). במעבדה הזו זו קבוצה קטנה של כלים, ומדיניות יכולה לקרוא לה בשם: <strong>אחרי כל קריאה בשלמות נמוכה, הארגומנטים של יעד חיצוני לא יכולים לשאת אף ערך שתויג כסודי.</strong> המשפט הזה הוא כל מודול 11, בקווים כלליים.</p>
+<h2 id="what-makes-it-hard">מה הופך את זה לקשה</h2>
+<p>תוויות יושבות על <em>ערכים</em>, ומודל הוא פונקציה שמקבלת ערכים מתויגים ומחזירה מחרוזת לא מתויגת. מידע זורם דרך המשקולות והדגימה של המודל בלי שום תיעוד של מאיפה הגיע, ולכן סביבת ההרצה (harness) צריכה לבחור:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>אסטרטגיה</th>
+<th>כלל</th>
+<th>מחיר</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>זיהום ברמת הסשן</strong> (session taint)</td>
+<td>מרגע שערך כלשהו בשלמות נמוכה נכנס להקשר, כל מה שבא אחריו מזוהם</td>
+<td>זול, שמרני מדי: רוב הסשנים נוגעים במידע לא מהימן, ולכן רוב השליחות מעוכבות</td>
+</tr>
+<tr>
+<td><strong>זיהום ברמת הערך</strong> (value taint)</td>
+<td>עוקבים אחרי אילו ערכים נגזרים מאילו מקורות, דרך קוד</td>
+<td>מדויק; דורש שמבנה התוכנית יהיה מפורש (המפרש של CaMeL)</td>
+</tr>
+<tr>
+<td><strong>קורא מבודד</strong> (quarantined reader)</td>
+<td>מודל בלי כלים קורא טקסט לא מהימן ומחזיר רק דאטה מובנה</td>
+<td>הקורא עדיין יכול לשקר בפלט שלו; מגביל את מה שהתוקף יכול לבקש</td>
+</tr>
+</tbody>
+</table></div>
+<p>מודול 11 בונה את שלושתן (זיהום ברמת הערך באמצעות התאמה של ערכים מועתקים, בלי מפרש) ומודד כמה משימות כל אחת עולה.</p>
+<h2 id="implicit-flows-and-the-property-a-structural-defence-claims">זרימות סמויות, והתכונה שהגנה מבנית טוענת לה</h2>
+<p>העתקה היא לא הזרימה היחידה. ב־<code>if secret: send(&quot;yes&quot;)</code> שום ערך סודי לא מגיע ל־<code>send</code>, ובכל זאת ההודעה חושפת ביט ממנו: <strong>זרימה סמויה</strong> (implicit flow), שנישאת בזרימת הבקרה ולא בדאטה. Denning (1976) מטפלת בזה בכך שהיא נותנת תווית למונה התוכנית (program counter): בתוך הסתעפות על ערך עם תווית <span class="math" data-display="0">\ell</span>, כל מה שההסתעפות עושה נושא גם הוא את <span class="math" data-display="0">\ell</span>. בסוכן, ההסתעפויות נבחרות על ידי מודל שמתנה על כל ההקשר שלו, ולכן כל פעולה שהוא עושה היא הסתעפות על כל מה שהוא קרא, והתווית של מונה התוכנית היא ה־join של ההקשר. זיהום ברמת הסשן הוא לכן לא קירוב גס; זו התווית הנכונה כשהמודל בוחר את זרימת הבקרה. הדרך היחידה לשמור על מונה התוכנית בשלמות גבוהה היא לקבע את ההסתעפויות לפני שקוראים ערך כלשהו בשלמות נמוכה, וזה מה ש־CaMeL עושה כשהוא גוזר את התוכנית מהבקשה המהימנה בלבד.</p>
+<p>התכונה שתכנון כזה טוען לה היא <strong>אי־התערבות</strong> (noninterference; Goguen and Meseguer, 1982), בגרסת השלמות שלה: שנו את הקלטים בשלמות נמוכה, השאירו את כל השאר קבוע, והפלטים בשלמות גבוהה (אילו כלים רצים, עם אילו ארגומנטים שאינם דאטה) לא משתנים. היא מכמתת על כל זוגות הקלטים, ולכן שום מדגם סופי לא יכול לאמוד אותה; מוכיחים אותה ממבנה התוכנית, וזו המשמעות המדויקת של «מתקיימת לכל קלט» משיעור 7. שני דברים חומקים ממנה. ערכים בשלמות נמוכה עדיין זורמים <em>כדאטה</em> לתוך הצעדים שהתוכנית מרשה, ולכן הסיכום של קורא מבודד יכול להיות שקרי, או להעביר את הטקסט של התוקף למשתמש. ותזמון, הודעות שגיאה וצריכת משאבים הם ערוצים שהסריג לא מתייג: מודול 2, שיעור 11, מודד כמה תוקף מרוויח מתשובה שאומרת איזו הגנה עצרה אותו.</p>
+<h2 id="check-yourself">בדקו את עצמכם</h2>
+<ol>
+<li>תנו סוכן שמחזיק בשלוש הרגליים לפי ספירה ולא יכול להדליף. ציינו את התיוג שגורם לכך.</li>
+<li>תנו סוכן עם שתי רגליים לפי ספירה ומתקפה שמשנה משהו. איזה חצי של הסריג מופר?</li>
+<li>תוכנית מקובעת מהבקשה המהימנה, אבל אחד הצעדים הוא <code>if summary_is_urgent: send_email(manager, summary)</code>, כאשר <code>summary</code> מגיע ממייל לא מהימן. איזו תווית נושאת השליחה, דרך איזה סוג זרימה, ומה התוקף יכול להחליט עכשיו?</li>
+</ol>
+<details class="answers"><summary>תשובות</summary>
+<ol>
+<li>סוכן שקורא את רשימת הלקוחות, קורא מיילים מזרים, ויכול לשלוח מייל רק לכתובות שברשימה הפנימית. תייגו את רשימת הלקוחות <em>פנימי</em> ואת יעד השליחה היחיד <em>פנימי</em> (נמענים מוגבלים לארגון): אין שום מסלול מהמידע ליעד ציבורי, ולכן לזרימה 1 אין יעד, לא משנה מה המייל הלא מהימן מבקש.</li>
+<li>סוכן שקורא דפי אינטרנט ציבוריים ויכול למחוק רשומות או לבצע תשלומים, בלי מידע פרטי בהישג יד: דף מוזרק גורם לו למחוק או לשלם. חצי השלמות (Biba) מופר: מידע בשלמות נמוכה משפיע על יעד בשלמות גבוהה.</li>
+<li>שלמות נמוכה, דרך זרימה סמויה: תנאי ההסתעפות נגזר מהמייל הלא מהימן, ולכן מונה התוכנית, וכל מה שבתוך ההסתעפות, נושאים את התווית שלו. הסיכום מגיע לשליחה גם כדאטה. התוקף מחליט עכשיו אם המנהל מקבל מייל ומה כתוב בסיכום, אבל לא את הנמען, שהתוכנית קיבעה.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>סימון כהושלם</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="07-training-is-not-a-boundary.html"><span class="label">הקודם</span>אימון הוא לא גבול</a><a class="pn next" href="09-reading-a-security-claim.html"><span class="label">הבא</span>שתים־עשרה שאלות מפרידות בין מדידה לסיסמה</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 הגנה על סוכני AI</span>
+  <nav aria-label="Footer">
+    <a href="../../../he/workshop/">סדנאות לצוותים</a>
+    <a href="../../../he/courses/">קורסים מקוונים</a>
+    <a href="mailto:shimon@defendingaiagents.com">יצירת קשר</a>
+    <a href="../../../.well-known/security.txt">אבטחה</a>
+    <a href="../../../learn/00-orientation/08-trifecta-as-information-flow.html" lang="en" hreflang="en">English</a>
+  </nav>
+</footer>
+<script src="../../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"כהה":"בהיר";
+b.setAttribute("aria-label","מעבר למצב "+(n==="dark"?"כהה":"בהיר"))};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

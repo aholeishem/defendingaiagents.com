@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A proxy is a server that is also a client · Defending AI Agents</title>
+<meta name="description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<link rel="canonical" href="https://defendingaiagents.com/learn/onramp/06-proxy.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/onramp/06-proxy.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/onramp/06-proxy.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/onramp/06-proxy.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Defending AI Agents">
+<meta property="og:title" content="A proxy is a server that is also a client · Defending AI Agents"><meta property="og:description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<meta property="og:url" content="https://defendingaiagents.com/learn/onramp/06-proxy.html"><meta property="og:image" content="https://defendingaiagents.com/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preload" href="../../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../assets/course.css"><script src="../../assets/progress.js" defer></script><script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs";const v=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();const th=document.documentElement.dataset.theme;const dark=th?th==="dark":matchMedia("(prefers-color-scheme: dark)").matches;mermaid.initialize({startOnLoad:true,theme:"base",fontFamily:"Inter, sans-serif",themeVariables:{darkMode:dark,background:v("--bg"),primaryColor:v("--bg-2"),primaryTextColor:v("--fg"),primaryBorderColor:v("--line-2"),lineColor:v("--dim"),secondaryColor:v("--bg"),tertiaryColor:v("--bg-2"),noteBkgColor:v("--bg-2"),noteTextColor:v("--fg"),noteBorderColor:v("--sig"),actorBkg:v("--bg-2"),actorBorder:v("--line-2"),actorTextColor:v("--fg"),signalColor:v("--fg"),signalTextColor:v("--fg"),clusterBkg:v("--bg"),clusterBorder:v("--line-2"),edgeLabelBackground:v("--bg"),fontSize:"14px"}});</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="../../"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">Defending AI Agents</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="Switch colour theme"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>Theme</span></button>
+    <a class="lang label" href="../../he/learn/onramp/06-proxy.html" lang="he" hreflang="he">עברית</a>
+    <a class="btn" href="../../course/#waitlist" data-waitlist>Join waitlist<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">Menu</summary><nav aria-label="Menu"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="onramp/06-proxy" data-module="onramp">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">Free preview</a><span>/</span><a href="./">On-ramp</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="On-ramp">
+      <p class="label"><em>On-ramp</em> Theoretical</p>
+      <p class="side-title">On-ramp: the web plumbing the course assumes</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="onramp/index"><span class="label">·</span><span>Overview</span></a></li><li data-stem="01-http-is-text"><a href="01-http-is-text.html" data-page-link="onramp/01-http-is-text"><span class="label">01</span><span>An HTTP call is text in, text out</span></a></li><li data-stem="02-json-edges"><a href="02-json-edges.html" data-page-link="onramp/02-json-edges"><span class="label">02</span><span>JSON is simple, and its parsers still disagree</span></a></li><li data-stem="03-yaml-traps"><a href="03-yaml-traps.html" data-page-link="onramp/03-yaml-traps"><span class="label">03</span><span>YAML is JSON with indentation and four traps</span></a></li><li data-stem="04-api-token"><a href="04-api-token.html" data-page-link="onramp/04-api-token"><span class="label">04</span><span>An API token is a password with a label</span></a></li><li data-stem="05-dns"><a href="05-dns.html" data-page-link="onramp/05-dns"><span class="label">05</span><span>A name is not an address, and the answer can change</span></a></li><li data-stem="06-proxy" aria-current="page"><a href="06-proxy.html" data-page-link="onramp/06-proxy"><span class="label">06</span><span>A proxy is a server that is also a client</span></a></li><li data-stem="07-tls"><a href="07-tls.html" data-page-link="onramp/07-tls"><span class="label">07</span><span>TLS proves you reached a name, not that the name is honest</span></a></li><li data-stem="08-jwt"><a href="08-jwt.html" data-page-link="onramp/08-jwt"><span class="label">08</span><span>A JWT is signed claims, and a check has an order</span></a></li><li data-stem="09-oauth-roles"><a href="09-oauth-roles.html" data-page-link="onramp/09-oauth-roles"><span class="label">09</span><span>OAuth gives a token a purpose: roles, scope, audience</span></a></li><li data-stem="10-parser-differentials"><a href="10-parser-differentials.html" data-page-link="onramp/10-parser-differentials"><span class="label">10</span><span>Two parsers, one message: a check is sound only if it reads what the target reads</span></a></li><li data-stem="11-oauth-threat-model"><a href="11-oauth-threat-model.html" data-page-link="onramp/11-oauth-threat-model"><span class="label">11</span><span>OAuth&#x27;s own threat model: what RFC 9700 requires, and why an agent needs all of it</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="onramp/problems"><span class="label">P</span><span>Problems</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="onramp" data-total="13" data-problems="14" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">On-ramp · Lesson 06</p>
+        <h1>A proxy is a server that is also a client</h1>
+      </header>
+      <p>Acme's agent talks to <code>gateway.acme.example</code>, which forwards the call to the CRM. The CRM's log shows every request from the gateway's address. To see who really called, an engineer trusts the <code>X-Forwarded-For</code> header the gateway passes along. An attacker who sends their own <code>X-Forwarded-For: 10.0.0.5</code> straight to a gateway that appends to it, rather than replacing it, now appears in the log as an internal host.</p>
+<h2 id="three-words-for-one-idea">Three words for one idea</h2>
+<p>An <strong>intermediary</strong> receives a request and sends another (RFC 9110, 2022). Three shapes matter:</p>
+<ul>
+<li><strong>Forward proxy</strong>: configured in the <em>client</em> (<code>HTTP_PROXY</code>, a browser setting). The client names the real destination, and the proxy fetches it. Egress controls live here.</li>
+<li><strong>Reverse proxy</strong>: placed in front of <em>servers</em>. The client thinks it is talking to the server. Load balancers, API gateways and the course's gateway are reverse proxies.</li>
+<li><strong>Tunnel</strong>: after a <code>CONNECT crm.acme.example:443</code> request the proxy relays bytes both ways and sees only ciphertext (lesson 7).</li>
+</ul>
+<figure class="diagram"><pre class="mermaid">flowchart TD
+  A[&quot;Agent (client)&quot;] --&gt;|&quot;POST /call&quot;| G[&quot;Gateway: server to the agent, client to the CRM&quot;]
+  G --&gt;|&quot;POST /records, own connection, own headers&quot;| T[&quot;CRM (server)&quot;]
+  T --&gt;|&quot;reply&quot;| G
+  G --&gt;|&quot;reply&quot;| A
+</pre></figure>
+<p>There are two connections, and two sets of headers. The gateway decides what crosses from one to the other. That is the whole security idea: <strong>a proxy is a place where one thing is read, a decision is made, and a possibly different thing is written.</strong></p>
+<h2 id="which-headers-you-may-believe">Which headers you may believe</h2>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Header</th>
+<th>Says</th>
+<th>Who wrote it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Host</code></td>
+<td>the name the client addressed</td>
+<td>the client, anything it likes</td>
+</tr>
+<tr>
+<td><code>X-Forwarded-For</code>, <code>Forwarded</code> (RFC 7239)</td>
+<td>the chain of client addresses</td>
+<td>each hop appends; the first value is the client's own claim</td>
+</tr>
+<tr>
+<td><code>Authorization</code></td>
+<td>a credential</td>
+<td>the client; useless to forward unchanged (Module 3, lesson 10)</td>
+</tr>
+<tr>
+<td><code>Connection</code>, <code>Upgrade</code>, <code>TE</code></td>
+<td>hop-by-hop: for this connection only</td>
+<td>an intermediary must remove them (RFC 9110, section 7.6.1)</td>
+</tr>
+<tr>
+<td><code>Content-Length</code>, <code>Transfer-Encoding</code></td>
+<td>message framing</td>
+<td>whoever sent it; see lesson 1</td>
+</tr>
+</tbody>
+</table></div>
+<p>The rule: <strong>believe the address of the TCP peer you accepted the connection from, and the forwarding headers only if that peer is a proxy you run.</strong> A gateway that sits directly on the internet should discard any <code>X-Forwarded-*</code> it receives and write its own. A service behind a trusted proxy should read the <em>rightmost</em> entry the proxy added, not the leftmost one the client typed.</p>
+<h2 id="what-a-gateway-forwards">What a gateway forwards</h2>
+<p>The course's gateway passes an allow-list of headers upstream, five of them, and never <code>Authorization</code> or cookies. An allow-list is correct for the same reason as before: the list of headers an attacker may add is unbounded, the list you know the server needs is short. A <strong>deny</strong>-list of dangerous headers is always one entry behind.</p>
+<h2 id="expert-the-proxy-is-also-where-limits-live">Expert: the proxy is also where limits live</h2>
+<p>Timeouts, body-size caps, connection reuse and retries are the proxy's, and each changes meaning. A gateway that retries a <code>POST</code> on a timeout can run a side effect twice (Module 21, lesson 7: loops that must not run twice). A body cap lower upstream than at the gateway turns into a confusing 502. Hop-by-hop handling was the root of cache-poisoning and smuggling bugs because two proxies in a chain disagreed on which headers were whose.</p>
+<h2 id="check-yourself">Check yourself</h2>
+<ol>
+<li>The CRM sits behind the gateway and reads the leftmost <code>X-Forwarded-For</code>. Give the fix at the gateway and the fix at the CRM, and say what each fix still assumes about the gateway.</li>
+<li>An egress allow-list decides which outside hosts the agent's tools may reach. Is that a forward or a reverse proxy's job, and which connection does it examine?</li>
+<li>Why can a reverse proxy that reads each request and reply see a prompt injection in a tool result, when a tunnel opened with <code>CONNECT</code> cannot? What can the tunnel still decide on?</li>
+</ol>
+<details class="answers"><summary>Answers</summary>
+<ol>
+<li>At the gateway: discard any <code>X-Forwarded-For</code> the client sent and write a fresh one holding the TCP peer's address. At the CRM: read the rightmost entry, the one the gateway added, and only on connections whose peer is the gateway. Both assume the gateway is the only path to the CRM and is itself honest; a compromised gateway, or a second route in, can write anything.</li>
+<li>A forward proxy's: it sits on the client side and sees the destination the tool names. It examines the outbound connection from the tool to the outside host (the request's target, or the <code>CONNECT</code> line for HTTPS), not the agent's connection to the gateway.</li>
+<li>A reverse proxy terminates the connection and writes its own request, so it holds the plaintext of every reply, tool results included. A <code>CONNECT</code> tunnel only relays ciphertext. It can still decide on the target host and port in the <code>CONNECT</code> line, the TLS server name in the clear, and the addresses, sizes and timing of the traffic.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>Mark complete</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="05-dns.html"><span class="label">Previous</span>A name is not an address, and the answer can change</a><a class="pn next" href="07-tls.html"><span class="label">Next</span>TLS proves you reached a name, not that the name is honest</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 Defending AI Agents</span>
+  <nav aria-label="Footer">
+    <a href="../../workshop/">Team workshops</a>
+    <a href="../../courses/">Online courses</a>
+    <a href="mailto:shimon@defendingaiagents.com">Contact</a>
+    <a href="../../.well-known/security.txt">Security</a>
+    <a href="../../he/learn/onramp/06-proxy.html" lang="he" hreflang="he">עברית</a>
+  </nav>
+</footer>
+<script src="../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"Dark":"Light";
+b.setAttribute("aria-label","Switch to "+n+" mode")};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

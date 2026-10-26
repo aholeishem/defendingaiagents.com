@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="he" dir="rtl" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>פרוקסי הוא שרת שהוא גם לקוח · הגנה על סוכני AI</title>
+<meta name="description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<link rel="canonical" href="https://defendingaiagents.com/he/learn/onramp/06-proxy.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/onramp/06-proxy.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/onramp/06-proxy.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/onramp/06-proxy.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="הגנה על סוכני AI">
+<meta property="og:title" content="פרוקסי הוא שרת שהוא גם לקוח · הגנה על סוכני AI"><meta property="og:description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<meta property="og:url" content="https://defendingaiagents.com/he/learn/onramp/06-proxy.html"><meta property="og:image" content="https://defendingaiagents.com/og-he.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="he_IL"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+<link rel="preload" href="../../../assets/fonts/rubik-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../../assets/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../../assets/course.css"><script src="../../../assets/progress.js" defer></script><script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs";const v=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();const th=document.documentElement.dataset.theme;const dark=th?th==="dark":matchMedia("(prefers-color-scheme: dark)").matches;mermaid.initialize({startOnLoad:true,theme:"base",fontFamily:"Inter, sans-serif",themeVariables:{darkMode:dark,background:v("--bg"),primaryColor:v("--bg-2"),primaryTextColor:v("--fg"),primaryBorderColor:v("--line-2"),lineColor:v("--dim"),secondaryColor:v("--bg"),tertiaryColor:v("--bg-2"),noteBkgColor:v("--bg-2"),noteTextColor:v("--fg"),noteBorderColor:v("--sig"),actorBkg:v("--bg-2"),actorBorder:v("--line-2"),actorTextColor:v("--fg"),signalColor:v("--fg"),signalTextColor:v("--fg"),clusterBkg:v("--bg"),clusterBorder:v("--line-2"),edgeLabelBackground:v("--bg"),fontSize:"14px"}});</script>
+</head>
+<body>
+<a class="skip" href="#main">דילוג לתוכן</a>
+<header class="top">
+  <a class="brand" href="../../../learn/onramp/06-proxy.html"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">הגנה על סוכני AI</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="החלפת ערכת צבע"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>ערכת צבע</span></button>
+    <a class="lang label" href="../../../learn/onramp/06-proxy.html" lang="en" hreflang="en">English</a>
+    <a class="btn" href="../../../he/course/#waitlist" data-waitlist>לרשימת ההמתנה<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">תפריט</summary><nav aria-label="תפריט"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="onramp/06-proxy" data-module="onramp">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">תצוגה מקדימה חינמית</a><span>/</span><a href="./">מסלול הכנה</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="מסלול הכנה">
+      <p class="label"><em>מסלול הכנה</em> תיאורטי</p>
+      <p class="side-title">מסלול הכנה (on-ramp): צנרת הווב שהקורס מניח שאתם מכירים</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="onramp/index"><span class="label">·</span><span>סקירה</span></a></li><li data-stem="01-http-is-text"><a href="01-http-is-text.html" data-page-link="onramp/01-http-is-text"><span class="label">01</span><span>קריאת HTTP היא טקסט נכנס, טקסט יוצא</span></a></li><li data-stem="02-json-edges"><a href="02-json-edges.html" data-page-link="onramp/02-json-edges"><span class="label">02</span><span>JSON פשוט, והמפענחים שלו עדיין חלוקים</span></a></li><li data-stem="03-yaml-traps"><a href="03-yaml-traps.html" data-page-link="onramp/03-yaml-traps"><span class="label">03</span><span>YAML הוא JSON עם הזחה וארבע מלכודות</span></a></li><li data-stem="04-api-token"><a href="04-api-token.html" data-page-link="onramp/04-api-token"><span class="label">04</span><span>טוקן API הוא סיסמה עם תווית</span></a></li><li data-stem="05-dns"><a href="05-dns.html" data-page-link="onramp/05-dns"><span class="label">05</span><span>שם הוא לא כתובת, והתשובה יכולה להשתנות</span></a></li><li data-stem="06-proxy" aria-current="page"><a href="06-proxy.html" data-page-link="onramp/06-proxy"><span class="label">06</span><span>פרוקסי הוא שרת שהוא גם לקוח</span></a></li><li data-stem="07-tls"><a href="07-tls.html" data-page-link="onramp/07-tls"><span class="label">07</span><span>TLS מוכיח שהגעתם לשם, לא שהשם הגון</span></a></li><li data-stem="08-jwt"><a href="08-jwt.html" data-page-link="onramp/08-jwt"><span class="label">08</span><span>JWT הוא טענות חתומות, ולבדיקה יש סדר</span></a></li><li data-stem="09-oauth-roles"><a href="09-oauth-roles.html" data-page-link="onramp/09-oauth-roles"><span class="label">09</span><span>OAuth נותן לטוקן ייעוד: תפקידים, scope, קהל יעד</span></a></li><li data-stem="10-parser-differentials"><a href="10-parser-differentials.html" data-page-link="onramp/10-parser-differentials"><span class="label">10</span><span>שני מפענחים, הודעה אחת: בדיקה תקינה רק אם היא קוראת את מה שהיעד קורא</span></a></li><li data-stem="11-oauth-threat-model"><a href="11-oauth-threat-model.html" data-page-link="onramp/11-oauth-threat-model"><span class="label">11</span><span>מודל האיום של OAuth עצמו: מה RFC 9700 דורש, ולמה סוכן צריך את כולו</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="onramp/problems"><span class="label">P</span><span>תרגילים</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="onramp" data-total="13" data-problems="14" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">מסלול הכנה · שיעור 06</p>
+        <h1>פרוקסי הוא שרת שהוא גם לקוח</h1>
+      </header>
+      <p>הסוכן של Acme מדבר עם <code>gateway.acme.example</code>, שמעביר את הקריאה ל־CRM. היומן של ה־CRM מראה שכל בקשה הגיעה מהכתובת של שער הבקרה (gateway). כדי לראות מי באמת קרא, מהנדס סומך על כותרת <code>X-Forwarded-For</code> ששער הבקרה מעביר הלאה. תוקף ששולח <code>X-Forwarded-For: 10.0.0.5</code> משלו ישירות לשער בקרה שמוסיף לכותרת במקום להחליף אותה, מופיע עכשיו ביומן כמכונה פנימית.</p>
+<h2 id="three-words-for-one-idea">שלוש מילים לרעיון אחד</h2>
+<p><strong>מתווך (intermediary)</strong> מקבל בקשה ושולח בקשה אחרת (RFC 9110, 2022). שלוש צורות חשובות:</p>
+<ul>
+<li><strong>פרוקסי קדמי (forward proxy)</strong>: מוגדר אצל ה<em>לקוח</em> (<code>HTTP_PROXY</code>, הגדרה בדפדפן). הלקוח מציין את היעד האמיתי, והפרוקסי מביא אותו. בקרות תעבורה יוצאת (egress) יושבות כאן.</li>
+<li><strong>פרוקסי הפוך (reverse proxy)</strong>: ממוקם לפני <em>שרתים</em>. הלקוח חושב שהוא מדבר עם השרת. Load balancers, API gateways ושער הבקרה של הקורס הם פרוקסים הפוכים.</li>
+<li><strong>מנהרה (tunnel)</strong>: אחרי בקשת <code>CONNECT crm.acme.example:443</code> הפרוקסי מעביר בתים לשני הכיוונים ורואה רק טקסט מוצפן (שיעור 7).</li>
+</ul>
+<figure class="diagram"><pre class="mermaid">flowchart TD
+  A[&quot;סוכן (לקוח)&quot;] --&gt;|&quot;POST /call&quot;| G[&quot;Gateway: שרת מול הסוכן, לקוח מול ה־CRM&quot;]
+  G --&gt;|&quot;POST /records, חיבור משלו, כותרות משלו&quot;| T[&quot;CRM (שרת)&quot;]
+  T --&gt;|&quot;תשובה&quot;| G
+  G --&gt;|&quot;תשובה&quot;| A
+</pre></figure>
+<p>יש שני חיבורים, ושתי קבוצות של כותרות. שער הבקרה מחליט מה עובר מאחד לשני. זה כל רעיון האבטחה: <strong>פרוקסי הוא מקום שבו קוראים דבר אחד, מקבלים החלטה, וכותבים דבר שאולי שונה ממנו.</strong></p>
+<h2 id="which-headers-you-may-believe">באילו כותרות מותר להאמין</h2>
+<div class="table"><table>
+<thead>
+<tr>
+<th>כותרת</th>
+<th>אומרת</th>
+<th>מי כתב אותה</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Host</code></td>
+<td>השם שהלקוח פנה אליו</td>
+<td>הלקוח, כל מה שבא לו</td>
+</tr>
+<tr>
+<td><code>X-Forwarded-For</code>, <code>Forwarded</code> (RFC 7239)</td>
+<td>שרשרת כתובות הלקוח</td>
+<td>כל תחנה מוסיפה; הערך הראשון הוא הטענה של הלקוח עצמו</td>
+</tr>
+<tr>
+<td><code>Authorization</code></td>
+<td>פרטי גישה (credentials)</td>
+<td>הלקוח; אין טעם להעביר אותה הלאה כמו שהיא (מודול 3, שיעור 10)</td>
+</tr>
+<tr>
+<td><code>Connection</code>, <code>Upgrade</code>, <code>TE</code></td>
+<td>hop-by-hop: לחיבור הזה בלבד</td>
+<td>מתווך חייב להסיר אותן (RFC 9110, סעיף 7.6.1)</td>
+</tr>
+<tr>
+<td><code>Content-Length</code>, <code>Transfer-Encoding</code></td>
+<td>מסגור ההודעה</td>
+<td>מי ששלח אותה; ראו שיעור 1</td>
+</tr>
+</tbody>
+</table></div>
+<p>הכלל: <strong>האמינו לכתובת של הצד השני בחיבור ה־TCP שקיבלתם, ולכותרות ההעברה רק אם הצד השני הוא פרוקסי שאתם מפעילים.</strong> שער בקרה שיושב ישירות על האינטרנט צריך לזרוק כל <code>X-Forwarded-*</code> שהוא מקבל ולכתוב משלו. שירות שיושב מאחורי פרוקסי אמין צריך לקרוא את הרשומה ה<em>ימנית ביותר</em> שהפרוקסי הוסיף, לא את השמאלית ביותר שהלקוח הקליד.</p>
+<h2 id="what-a-gateway-forwards">מה שער בקרה מעביר הלאה</h2>
+<p>שער הבקרה של הקורס מעביר לשרת שמאחוריו allow-list של כותרות, חמש במספר, ואף פעם לא את <code>Authorization</code> או עוגיות. allow-list נכון מאותה סיבה כמו קודם: רשימת הכותרות שתוקף יכול להוסיף אינסופית, ורשימת הכותרות שאתם יודעים שהשרת צריך קצרה. <strong>deny-list</strong> של כותרות מסוכנות תמיד מפגר ברשומה אחת.</p>
+<h2 id="expert-the-proxy-is-also-where-limits-live">מומחה: בפרוקסי גם יושבות המגבלות</h2>
+<p>Timeouts, תקרות לגודל הגוף, שימוש חוזר בחיבורים וניסיונות חוזרים שייכים לפרוקסי, וכל אחד מהם משנה משמעות. שער בקרה שמנסה שוב <code>POST</code> אחרי timeout עלול להריץ תופעת לוואי פעמיים (מודול 21, שיעור 7: לולאות שאסור להן לרוץ פעמיים). תקרת גוף נמוכה יותר בשרת שמאחור מאשר בשער הבקרה הופכת ל־502 מבלבל. הטיפול ב־hop-by-hop היה שורש של באגים של cache poisoning ו־smuggling, כי שני פרוקסים בשרשרת לא הסכימו אילו כותרות שייכות למי.</p>
+<h2 id="check-yourself">בדקו את עצמכם</h2>
+<ol>
+<li>ה־CRM יושב מאחורי שער הבקרה וקורא את ה־<code>X-Forwarded-For</code> השמאלי ביותר. תנו את התיקון בשער הבקרה ואת התיקון ב־CRM, ואמרו מה כל תיקון עדיין מניח לגבי שער הבקרה.</li>
+<li>allow-list לתעבורה יוצאת קובע לאילו מכונות חיצוניות הכלים של הסוכן רשאים להגיע. זה תפקיד של פרוקסי קדמי או הפוך, ואיזה חיבור הוא בוחן?</li>
+<li>למה פרוקסי הפוך שקורא כל בקשה ותשובה יכול לראות הזרקת פרומפט (prompt injection) בתוצאה של כלי, ומנהרה שנפתחה ב־<code>CONNECT</code> לא? על מה המנהרה עדיין יכולה להחליט?</li>
+</ol>
+<details class="answers"><summary>תשובות</summary>
+<ol>
+<li>בשער הבקרה: לזרוק כל <code>X-Forwarded-For</code> שהלקוח שלח ולכתוב חדש עם הכתובת של הצד השני בחיבור ה־TCP. ב־CRM: לקרוא את הרשומה הימנית ביותר, זו ששער הבקרה הוסיף, ורק בחיבורים שהצד השני בהם הוא שער הבקרה. שני התיקונים מניחים ששער הבקרה הוא הדרך היחידה ל־CRM ושהוא עצמו ישר; שער בקרה פרוץ, או דרך כניסה נוספת, יכולים לכתוב כל דבר.</li>
+<li>של פרוקסי קדמי: הוא יושב בצד הלקוח ורואה את היעד שהכלי מציין. הוא בוחן את החיבור היוצא מהכלי אל המכונה החיצונית (היעד של הבקשה, או שורת ה־<code>CONNECT</code> ב־HTTPS), לא את החיבור של הסוכן לשער הבקרה.</li>
+<li>פרוקסי הפוך מסיים את החיבור וכותב בקשה משלו, ולכן מחזיק את הטקסט הגלוי של כל תשובה, כולל תוצאות של כלים. מנהרת <code>CONNECT</code> רק מעבירה טקסט מוצפן. היא עדיין יכולה להחליט לפי ה־host והפורט של היעד בשורת ה־<code>CONNECT</code>, לפי ה־server name של TLS שעובר גלוי, ולפי הכתובות, הגדלים והתזמון של התעבורה.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>סימון כהושלם</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="05-dns.html"><span class="label">הקודם</span>שם הוא לא כתובת, והתשובה יכולה להשתנות</a><a class="pn next" href="07-tls.html"><span class="label">הבא</span>TLS מוכיח שהגעתם לשם, לא שהשם הגון</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 הגנה על סוכני AI</span>
+  <nav aria-label="Footer">
+    <a href="../../../he/workshop/">סדנאות לצוותים</a>
+    <a href="../../../he/courses/">קורסים מקוונים</a>
+    <a href="mailto:shimon@defendingaiagents.com">יצירת קשר</a>
+    <a href="../../../.well-known/security.txt">אבטחה</a>
+    <a href="../../../learn/onramp/06-proxy.html" lang="en" hreflang="en">English</a>
+  </nav>
+</footer>
+<script src="../../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"כהה":"בהיר";
+b.setAttribute("aria-label","מעבר למצב "+(n==="dark"?"כהה":"בהיר"))};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Two parsers, one message: a check is sound only if it reads what the target reads · Defending AI Agents</title>
+<meta name="description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<link rel="canonical" href="https://defendingaiagents.com/learn/onramp/10-parser-differentials.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/onramp/10-parser-differentials.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/onramp/10-parser-differentials.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/onramp/10-parser-differentials.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Defending AI Agents">
+<meta property="og:title" content="Two parsers, one message: a check is sound only if it reads what the target reads · Defending AI Agents"><meta property="og:description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<meta property="og:url" content="https://defendingaiagents.com/learn/onramp/10-parser-differentials.html"><meta property="og:image" content="https://defendingaiagents.com/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preload" href="../../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../assets/course.css"><script src="../../assets/progress.js" defer></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script><script>addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".math").forEach(function(e){katex.render(e.textContent,e,{displayMode:e.dataset.display==="1",throwOnError:false})})})</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="../../"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">Defending AI Agents</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="Switch colour theme"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>Theme</span></button>
+    <a class="lang label" href="../../he/learn/onramp/10-parser-differentials.html" lang="he" hreflang="he">עברית</a>
+    <a class="btn" href="../../course/#waitlist" data-waitlist>Join waitlist<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">Menu</summary><nav aria-label="Menu"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="onramp/10-parser-differentials" data-module="onramp">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">Free preview</a><span>/</span><a href="./">On-ramp</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="On-ramp">
+      <p class="label"><em>On-ramp</em> Theoretical</p>
+      <p class="side-title">On-ramp: the web plumbing the course assumes</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="onramp/index"><span class="label">·</span><span>Overview</span></a></li><li data-stem="01-http-is-text"><a href="01-http-is-text.html" data-page-link="onramp/01-http-is-text"><span class="label">01</span><span>An HTTP call is text in, text out</span></a></li><li data-stem="02-json-edges"><a href="02-json-edges.html" data-page-link="onramp/02-json-edges"><span class="label">02</span><span>JSON is simple, and its parsers still disagree</span></a></li><li data-stem="03-yaml-traps"><a href="03-yaml-traps.html" data-page-link="onramp/03-yaml-traps"><span class="label">03</span><span>YAML is JSON with indentation and four traps</span></a></li><li data-stem="04-api-token"><a href="04-api-token.html" data-page-link="onramp/04-api-token"><span class="label">04</span><span>An API token is a password with a label</span></a></li><li data-stem="05-dns"><a href="05-dns.html" data-page-link="onramp/05-dns"><span class="label">05</span><span>A name is not an address, and the answer can change</span></a></li><li data-stem="06-proxy"><a href="06-proxy.html" data-page-link="onramp/06-proxy"><span class="label">06</span><span>A proxy is a server that is also a client</span></a></li><li data-stem="07-tls"><a href="07-tls.html" data-page-link="onramp/07-tls"><span class="label">07</span><span>TLS proves you reached a name, not that the name is honest</span></a></li><li data-stem="08-jwt"><a href="08-jwt.html" data-page-link="onramp/08-jwt"><span class="label">08</span><span>A JWT is signed claims, and a check has an order</span></a></li><li data-stem="09-oauth-roles"><a href="09-oauth-roles.html" data-page-link="onramp/09-oauth-roles"><span class="label">09</span><span>OAuth gives a token a purpose: roles, scope, audience</span></a></li><li data-stem="10-parser-differentials" aria-current="page"><a href="10-parser-differentials.html" data-page-link="onramp/10-parser-differentials"><span class="label">10</span><span>Two parsers, one message: a check is sound only if it reads what the target reads</span></a></li><li data-stem="11-oauth-threat-model"><a href="11-oauth-threat-model.html" data-page-link="onramp/11-oauth-threat-model"><span class="label">11</span><span>OAuth&#x27;s own threat model: what RFC 9700 requires, and why an agent needs all of it</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="onramp/problems"><span class="label">P</span><span>Problems</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="onramp" data-total="13" data-problems="14" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">On-ramp · Lesson 10</p>
+        <h1>Two parsers, one message: a check is sound only if it reads what the target reads</h1>
+      </header>
+      <p>Lessons 1, 2, 3, 5 and 7 each ended on the same shape. In each, a gateway decides on one reading of a message and a server acts on another: two <code>Content-Length</code> rules, two answers to a repeated JSON key, <code>NO</code> as a string and as a boolean, a name checked and an address connected to, SNI routed and <code>Host</code> decided. This lesson treats them as one class: what makes a check on a message sound, why that cannot be tested into existence, and which designs close the gap.</p>
+<h2 id="the-condition-stated-once">The condition, stated once</h2>
+<p>Let <span class="math" data-display="0">x</span> be the bytes on the wire. The check parses them with <span class="math" data-display="0">P_C</span> and accepts when a predicate <span class="math" data-display="0">\varphi</span> holds of the result; the target parses the same bytes with <span class="math" data-display="0">P_T</span> and acts on its result. The check is sound for <span class="math" data-display="0">\varphi</span> when</p>
+<div class="math" data-display="1">\forall x:\quad \varphi\big(P_C(x)\big) \;\Rightarrow\; \varphi\big(P_T(x)\big).</div>
+<p>The <strong>differential set</strong> <span class="math" data-display="0">D = \{x : P_C(x) \neq P_T(x)\}</span> is where soundness can fail. Its size is irrelevant. A gateway whose parser agrees with the server on 99.999% of real traffic is exactly as unsound as one that agrees on half of it, because the attacker does not sample from real traffic: one reachable <span class="math" data-display="0">x \in D</span> with <span class="math" data-display="0">\varphi(P_C(x))</span> true and <span class="math" data-display="0">\varphi(P_T(x))</span> false is enough, and it can be sent every time. This is &quot;the attacker moves second&quot; (Module 9, lesson 3) in its purest form. An agreement rate measured on traffic estimates the wrong quantity.</p>
+<h2 id="why-agreement-cannot-be-tested-into-existence">Why agreement cannot be tested into existence</h2>
+<p>Testing two parsers against each other finds members of <span class="math" data-display="0">D</span>; it cannot show that <span class="math" data-display="0">D</span> is empty. For the formats in this unit, nothing else can show it either. Deciding whether two context-free grammars define the same language is undecidable in general, and none of these formats is simpler than context-free: JSON is context-free, while length-prefixed HTTP bodies and YAML's indentation are beyond it. Sassaman, Patterson, Bratus and Locasto (2013) draw the consequence for input handling: two independently written parsers of a rich format cannot, in general, be proved equivalent, so a design that needs them to agree rests on an assumption no one can discharge. They argue for the opposite design: make the accepted language as simple as possible, and recognise it completely, in one place, before acting on any of it.</p>
+<p>Differential testing is still worth running, as a search rather than as evidence. Jabiyev, Sprecher, Onarlioglu and Kirda (2021) generated HTTP requests from a grammar, mutated them, sent each to pairs of real servers and proxies, and compared how each side split the stream into messages. Disagreements on framing turned up across the pairs they tested. Each finding is a counterexample to soundness, but a clean run proves nothing, for the same reason that zero failures in <span class="math" data-display="0">n</span> trials bounds a rate and does not make it zero.</p>
+<h2 id="three-designs-in-order-of-strength">Three designs, in order of strength</h2>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Design</th>
+<th>What it guarantees</th>
+<th>Where the course uses it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>One parser.</strong> The check parses, decides, and forwards a re-serialisation of what it decided on, never the original bytes.</td>
+<td>The target sees only the check's output. Soundness then needs only <span class="math" data-display="0">P_T(\text{serialise}(v)) = v</span> on the values the check emits, a far smaller and simpler language.</td>
+<td>JSON, Module 3 lesson 6; a proxy that terminates HTTP and writes its own request (lesson 6); resolve once and connect to the checked address (lesson 5)</td>
+</tr>
+<tr>
+<td><strong>A smaller language.</strong> Reject every input on which reasonable parsers are known to disagree.</td>
+<td>Shrinks <span class="math" data-display="0">D</span> by excluding inputs, not by trusting agreement.</td>
+<td>a repeated JSON key; a message with both <code>Content-Length</code> and <code>Transfer-Encoding</code>, which RFC 9112 (section 6.3) says &quot;ought to be handled as an error&quot;; a numeric IP in a non-canonical form; a YAML scalar whose type the schema does not name</td>
+</tr>
+<tr>
+<td><strong>Agreement by testing.</strong> Two parsers, differentially tested.</td>
+<td>Only that no disagreement has been found yet.</td>
+<td>nowhere as a control; as a search for bugs in the other two</td>
+</tr>
+</tbody>
+</table></div>
+<p>The first design does not remove the problem; it moves it to a place you control. The re-serialiser must be deterministic, must emit only the subset of the format both sides read identically (no duplicate keys, integers within <span class="math" data-display="0">2^{53}</span>, one Unicode normal form), and must not drop a field the target reads. RFC 8785 exists because signatures need the strongest version of that promise. A gateway needs a weaker one, and should write down which one it claims (lesson 2).</p>
+<h2 id="where-agents-add-pairs">Where agents add pairs</h2>
+<p>An agent stack has more parsers in series than a web stack:</p>
+<ul>
+<li>the harness extracts a tool call from the model's text (Module 1, lesson 8): a parser of output that an attacker can influence;</li>
+<li>the gateway parses the call's JSON arguments, and the tool server parses them again;</li>
+<li>an argument that is itself a URL, a path or a shell command is parsed a third time by the tool, often by a library the gateway has never seen.</li>
+</ul>
+<p>Each adjacent pair is a <span class="math" data-display="0">(P_C, P_T)</span>, and the soundness condition has to hold for every pair that carries a decision. The third bullet is the hard one. A gateway that allows <code>fetch_url</code> to <code>files.acme.example</code> has decided on its own URL parser's reading of the host. Two living specifications describe URLs, RFC 3986 and the WHATWG URL Standard that browsers follow, and they disagree on some inputs (the treatment of a backslash in an <code>http</code> URL is one). A check written against one and a fetcher built on the other have a non-empty <span class="math" data-display="0">D</span> by construction. The one-parser design is the only clean answer: the gateway parses the URL, decides, and hands the tool a host and a path as separate, already-parsed fields, not a string to parse again.</p>
+<h2 id="what-is-open">What is open</h2>
+<p>For JSON there is a canonical form and for HTTP/1.1 a strict reading, so the one-parser design is available. For URLs, file paths across operating systems, shell command lines and natural-language &quot;arguments&quot; there is no canonical form both sides accept, and some tools take only a string. The defence there falls back to the smaller-language design (refuse what is ambiguous) plus containment for what gets through (Module 12). No published work yet measures, across real agent tool servers, how often their argument parsers disagree with the gateways in front of them.</p>
+<h2 id="check-yourself">Check yourself</h2>
+<ol>
+<li>A gateway logs that its JSON parser and the tool's agreed on all of 10 million recorded calls. What does that number bound, and what does it not?</li>
+<li>Why does forwarding a re-serialisation help even when the gateway's parser is the less common of the two?</li>
+<li>A tool accepts only a shell command string. Which of the three designs are available for a gateway in front of it, and what has to carry the rest of the risk?</li>
+</ol>
+<details class="answers"><summary>Answers</summary>
+<ol>
+<li>It bounds the rate of disagreement on traffic like the recorded traffic: zero in <span class="math" data-display="0">10^7</span> gives a one-sided 95% upper bound of <span class="math" data-display="0">3.0 \times 10^{-7}</span>. It does not bound the differential set <span class="math" data-display="0">D</span> or show it empty, because the attacker does not sample from recorded traffic: one reachable <span class="math" data-display="0">x \in D</span>, sent every time, breaks soundness.</li>
+<li>Because soundness then rests on <span class="math" data-display="0">P_T(\text{serialise}(v)) = v</span> for the values the gateway emits, not on the two parsers agreeing about arbitrary bytes. The gateway can restrict its output to a small subset (no repeated keys, integers within <span class="math" data-display="0">2^{53}</span>, one Unicode normal form) that common parsers read identically, so which parser is more common no longer matters.</li>
+<li>Only the smaller language: accept commands from a narrow, unambiguous grammar (no quoting tricks, metacharacters or expansions) and refuse everything else, with differential testing as a search for bugs in that filter. One parser is not available, because the tool takes a string and parses it again. The rest of the risk falls to containment: a sandbox and least privilege that limit what an accepted command can do (Module 12).</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>Mark complete</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="09-oauth-roles.html"><span class="label">Previous</span>OAuth gives a token a purpose: roles, scope, audience</a><a class="pn next" href="11-oauth-threat-model.html"><span class="label">Next</span>OAuth&#x27;s own threat model: what RFC 9700 requires, and why an agent needs all of it</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 Defending AI Agents</span>
+  <nav aria-label="Footer">
+    <a href="../../workshop/">Team workshops</a>
+    <a href="../../courses/">Online courses</a>
+    <a href="mailto:shimon@defendingaiagents.com">Contact</a>
+    <a href="../../.well-known/security.txt">Security</a>
+    <a href="../../he/learn/onramp/10-parser-differentials.html" lang="he" hreflang="he">עברית</a>
+  </nav>
+</footer>
+<script src="../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"Dark":"Light";
+b.setAttribute("aria-label","Switch to "+n+" mode")};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

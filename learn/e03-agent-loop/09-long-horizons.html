@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>How far can a loop go? Compounding error, code actions and the time horizon · Defending AI Agents</title>
+<meta name="description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<link rel="canonical" href="https://defendingaiagents.com/learn/e03-agent-loop/09-long-horizons.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/e03-agent-loop/09-long-horizons.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/e03-agent-loop/09-long-horizons.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/e03-agent-loop/09-long-horizons.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Defending AI Agents">
+<meta property="og:title" content="How far can a loop go? Compounding error, code actions and the time horizon · Defending AI Agents"><meta property="og:description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<meta property="og:url" content="https://defendingaiagents.com/learn/e03-agent-loop/09-long-horizons.html"><meta property="og:image" content="https://defendingaiagents.com/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preload" href="../../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../assets/course.css"><script src="../../assets/progress.js" defer></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script><script>addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".math").forEach(function(e){katex.render(e.textContent,e,{displayMode:e.dataset.display==="1",throwOnError:false})})})</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="../../"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">Defending AI Agents</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="Switch colour theme"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>Theme</span></button>
+    <a class="lang label" href="../../he/learn/e03-agent-loop/09-long-horizons.html" lang="he" hreflang="he">עברית</a>
+    <a class="btn" href="../../course/#waitlist" data-waitlist>Join waitlist<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">Menu</summary><nav aria-label="Menu"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="e03-agent-loop/09-long-horizons" data-module="e03-agent-loop">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">Free preview</a><span>/</span><a href="./">E3</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="E3">
+      <p class="label"><em>E3</em> Applied</p>
+      <p class="side-title">The agent loop from scratch</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="e03-agent-loop/index"><span class="label">·</span><span>Overview</span></a></li><li data-stem="01-workflow-or-agent"><a href="01-workflow-or-agent.html" data-page-link="e03-agent-loop/01-workflow-or-agent"><span class="label">01</span><span>Who decides the next step? Workflows and agents</span></a></li><li data-stem="02-a-tool-is-three-texts"><a href="02-a-tool-is-three-texts.html" data-page-link="e03-agent-loop/02-a-tool-is-three-texts"><span class="label">02</span><span>A tool is a schema, a function and an error message, and the model reads two of them</span></a></li><li data-stem="03-three-wire-formats"><a href="03-three-wire-formats.html" data-page-link="e03-agent-loop/03-three-wire-formats"><span class="label">03</span><span>One tool call, three wire formats</span></a></li><li data-stem="04-parallel-calls"><a href="04-parallel-calls.html" data-page-link="e03-agent-loop/04-parallel-calls"><span class="label">04</span><span>Parallel tool calls: reads commute, writes do not</span></a></li><li data-stem="05-retries"><a href="05-retries.html" data-page-link="e03-agent-loop/05-retries"><span class="label">05</span><span>Retry the server, not the model: errors, backoff and jitter</span></a></li><li data-stem="06-budgets"><a href="06-budgets.html" data-page-link="e03-agent-loop/06-budgets"><span class="label">06</span><span>A step is not a unit of cost: four budgets and a stop reason</span></a></li><li data-stem="07-structured-answers"><a href="07-structured-answers.html" data-page-link="e03-agent-loop/07-structured-answers"><span class="label">07</span><span>An answer a program can read: schemas and one repair</span></a></li><li data-stem="08-streaming"><a href="08-streaming.html" data-page-link="e03-agent-loop/08-streaming"><span class="label">08</span><span>A streamed tool call is half a JSON object</span></a></li><li data-stem="09-long-horizons" aria-current="page"><a href="09-long-horizons.html" data-page-link="e03-agent-loop/09-long-horizons"><span class="label">09</span><span>How far can a loop go? Compounding error, code actions and the time horizon</span></a></li><li data-stem="build"><a href="build.html" data-page-link="e03-agent-loop/build"><span class="label">B</span><span>Build: Module 1&#x27;s loop, made to run unattended, and measured</span></a></li><li data-stem="at-scale"><a href="at-scale.html" data-page-link="e03-agent-loop/at-scale"><span class="label">S</span><span>At scale: the same loop, ten thousand times at once</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="e03-agent-loop/problems"><span class="label">P</span><span>Problems</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="e03-agent-loop" data-total="13" data-problems="15" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">E3 · Lesson 09</p>
+        <h1>How far can a loop go? Compounding error, code actions and the time horizon</h1>
+      </header>
+      <p>Everything so far makes one run more robust. The expert question is about length: how many steps can an agent take before it goes wrong, why that number is moving fast, and which design choices move it. Three lines of research meet here, and they do not all agree.</p>
+<h2 id="compounding-and-why-a-small-gain-is-a-large-one">Compounding, and why a small gain is a large one</h2>
+<p>If each step succeeds independently with probability <span class="math" data-display="0">s</span>, an <span class="math" data-display="0">n</span>-step task succeeds with probability <span class="math" data-display="0">s^n</span>. The length at which success falls to one half, the 50% <strong>horizon</strong>, is</p>
+<div class="math" data-display="1">H_{50} = \frac{\ln 0.5}{\ln s} \approx \frac{0.69}{1 - s} \quad \text{for } s \text{ near } 1.</div>
+<p>The horizon is inversely proportional to the per-step error rate. Going from 99% to 99.5% per step looks like a rounding error on a short benchmark and doubles the horizon, from 69 steps to 138. Sinha et al. (2025) make this argument against claims of diminishing returns: short-task benchmarks hide gains that become large on long tasks. They then measure something the formula leaves out. Per-step accuracy <em>falls</em> as a run goes on, and not only because the context is long: models become more likely to err when the context holds their own earlier errors. They call this <strong>self-conditioning</strong>. It breaks the independence assumption in the pessimistic direction, so the real horizon is shorter than <span class="math" data-display="0">0.69/(1-s)</span>. In their experiments, thinking mitigates it and scale alone does not.</p>
+<p>This is the statistical twin of a Markov chain with an absorbing failure state whose transition probability depends on the chain's own history. It is why lesson 2's error messages matter more than they look: a run that recovers cleanly from a refused call has an error in its context that it has dealt with, and one that flails has several it has not.</p>
+<h2 id="the-time-horizon-measured">The time horizon, measured</h2>
+<p>Kwa et al. (2025) turn the horizon into a benchmark statistic. They time skilled people on software tasks, fit each model's success probability against the human time with a logistic curve, and report the human time at which the model succeeds half the time. For frontier models in early 2025 that was about 50 minutes, and it had doubled roughly every seven months since 2019. At that rate, 50 minutes becomes about nine hours in two years (<span class="math" data-display="0">50 \times 2^{24/7} \approx 540</span> minutes).</p>
+<p>Read it with the caveats its authors give. The tasks are software tasks with automatic scoring. The fit is one logistic per model, so the horizon inherits that fit's uncertainty. And extrapolating a doubling time is extrapolating a trend fitted on a few years of a field that changes its methods every year. External validity is the open question: whether &quot;a task that takes a person an hour&quot; means the same thing in your domain, and whether success at 50% is the operating point you care about. For an agent that sends e-mail, you care about something nearer 99%, and the horizon at 99% is far shorter than at 50%.</p>
+<h2 id="reliability-across-tries-pass-k">Reliability across tries: pass^k</h2>
+<p>A rate measured once per task hides inconsistency. τ-bench (Yao et al., 2024) reports pass^k, the probability that <em>all</em> of <span class="math" data-display="0">k</span> independent tries of the same task succeed. The state-of-the-art function-calling agents of mid-2024 solved under half its tasks, and pass^8 in the retail domain was under 25%. Module 1 lesson 9 derives the estimator. On the twenty lab tasks, E3's loop had pass^1 = 0.550 and pass^3 = 0.450 (the build), while <span class="math" data-display="0">(\text{pass}^1)^3</span> would be 0.166. Per-task success rates differ, so the mean of <span class="math" data-display="0">p_i^3</span> exceeds <span class="math" data-display="0">(\bar p)^3</span> by Jensen's inequality. Here the tasks split into ones the model nearly always solves and ones it nearly never does. A fleet's reliability depends on the spread of task difficulty, not only its mean.</p>
+<h2 id="code-as-action-and-what-it-costs">Code as action, and what it costs</h2>
+<p>Lessons 2 to 4 assume the model acts through JSON calls to named tools. CodeAct (Wang et al., 2024) lets it write Python instead, executed in an interpreter: a loop over files, a filter, three tools composed in one action. Across 17 models it reported up to 20% higher success than JSON or text actions. SWE-agent (Yang et al., 2024) showed the other side of the interface question: a purpose-built <em>agent-computer interface</em> (file viewer, editor and search commands designed for a model, not a person) took SWE-bench to 12.5% pass@1, then far ahead of non-interactive approaches. How the model acts is a design variable with a measured effect.</p>
+<p>The cost of code actions is the security course's subject. A JSON call to <code>send_email</code> can be checked field by field at a gateway (Modules 3 and 13). A code action is a program, and checking a program before it runs is the shell problem (Module 3 lesson 5, &quot;the hardest door&quot;). Code actions need a sandbox (E8, Module 12), and the capability gain is bought with inspectability. Teams argue about this trade, and should: the measured gain comes from benchmarks without an adversary, and the cost appears only when there is one.</p>
+<h2 id="open-problems">Open problems</h2>
+<ul>
+<li><strong>What limits the horizon?</strong> Sinha et al. locate it in execution, not reasoning. The time-horizon trend credits reliability and error recovery. Neither settles whether longer contexts, better recovery prompts or training is the cheapest lever for a given model.</li>
+<li><strong>Is the trend a law?</strong> Seven-month doubling is fitted on one task family. Whether it holds for e-mail, ledgers and the long tail of enterprise tools is unmeasured.</li>
+<li><strong>Can code actions be made inspectable?</strong> Restricted languages, typed tool APIs called from code, and information-flow tracking on the interpreter (Module 11's CaMeL) are attempts. None yet gives both CodeAct's flexibility and a JSON call's checkability.</li>
+</ul>
+<h2 id="check-yourself">Check yourself</h2>
+<ol>
+<li>Per-step success rises from 98% to 99%. By what factor does the 50% horizon grow, under independence?</li>
+<li>Self-conditioning means <span class="math" data-display="0">P(\text{error at } t \mid \text{an earlier error})</span> exceeds <span class="math" data-display="0">P(\text{error at } t \mid \text{none})</span>. Does that make the true horizon longer or shorter than <span class="math" data-display="0">0.69/(1-s)</span>, with <span class="math" data-display="0">s</span> measured on first steps?</li>
+<li>Why is the 50% time horizon the wrong operating point for an agent that sends e-mail on your behalf, and which way does the right one move the horizon?</li>
+</ol>
+<details class="answers"><summary>Answers</summary>
+<ol>
+<li>It doubles: <span class="math" data-display="0">0.69/0.02 \approx 34</span> steps becomes <span class="math" data-display="0">0.69/0.01 \approx 69</span>. Exactly, <span class="math" data-display="0">\ln 0.5 / \ln 0.98 = 34.3</span> and <span class="math" data-display="0">\ln 0.5 / \ln 0.99 = 69.0</span>.</li>
+<li>Shorter. The per-step error rate rises after the first error, so failures cluster and success decays faster than <span class="math" data-display="0">s^n</span> once a run has gone wrong. The formula, fed with a first-step <span class="math" data-display="0">s</span>, overstates the horizon.</li>
+<li>A 50% success rate means half the e-mails are wrong or missing. You want the length at which success is, say, 99%: <span class="math" data-display="0">\ln 0.99 / \ln s</span>, about <span class="math" data-display="0">0.01/(1-s)</span>, roughly 69 times shorter than the 50% horizon for the same <span class="math" data-display="0">s</span>.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>Mark complete</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="08-streaming.html"><span class="label">Previous</span>A streamed tool call is half a JSON object</a><a class="pn next" href="build.html"><span class="label">Next</span>Build: Module 1&#x27;s loop, made to run unattended, and measured</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 Defending AI Agents</span>
+  <nav aria-label="Footer">
+    <a href="../../workshop/">Team workshops</a>
+    <a href="../../courses/">Online courses</a>
+    <a href="mailto:shimon@defendingaiagents.com">Contact</a>
+    <a href="../../.well-known/security.txt">Security</a>
+    <a href="../../he/learn/e03-agent-loop/09-long-horizons.html" lang="he" hreflang="he">עברית</a>
+  </nav>
+</footer>
+<script src="../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"Dark":"Light";
+b.setAttribute("aria-label","Switch to "+n+" mode")};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>OAuth&#x27;s own threat model: what RFC 9700 requires, and why an agent needs all of it · Defending AI Agents</title>
+<meta name="description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<link rel="canonical" href="https://defendingaiagents.com/learn/onramp/11-oauth-threat-model.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/onramp/11-oauth-threat-model.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/onramp/11-oauth-threat-model.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/onramp/11-oauth-threat-model.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Defending AI Agents">
+<meta property="og:title" content="OAuth&#x27;s own threat model: what RFC 9700 requires, and why an agent needs all of it · Defending AI Agents"><meta property="og:description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<meta property="og:url" content="https://defendingaiagents.com/learn/onramp/11-oauth-threat-model.html"><meta property="og:image" content="https://defendingaiagents.com/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preload" href="../../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../assets/course.css"><script src="../../assets/progress.js" defer></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script><script>addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".math").forEach(function(e){katex.render(e.textContent,e,{displayMode:e.dataset.display==="1",throwOnError:false})})})</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="../../"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">Defending AI Agents</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="Switch colour theme"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>Theme</span></button>
+    <a class="lang label" href="../../he/learn/onramp/11-oauth-threat-model.html" lang="he" hreflang="he">עברית</a>
+    <a class="btn" href="../../course/#waitlist" data-waitlist>Join waitlist<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">Menu</summary><nav aria-label="Menu"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="onramp/11-oauth-threat-model" data-module="onramp">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">Free preview</a><span>/</span><a href="./">On-ramp</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="On-ramp">
+      <p class="label"><em>On-ramp</em> Theoretical</p>
+      <p class="side-title">On-ramp: the web plumbing the course assumes</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="onramp/index"><span class="label">·</span><span>Overview</span></a></li><li data-stem="01-http-is-text"><a href="01-http-is-text.html" data-page-link="onramp/01-http-is-text"><span class="label">01</span><span>An HTTP call is text in, text out</span></a></li><li data-stem="02-json-edges"><a href="02-json-edges.html" data-page-link="onramp/02-json-edges"><span class="label">02</span><span>JSON is simple, and its parsers still disagree</span></a></li><li data-stem="03-yaml-traps"><a href="03-yaml-traps.html" data-page-link="onramp/03-yaml-traps"><span class="label">03</span><span>YAML is JSON with indentation and four traps</span></a></li><li data-stem="04-api-token"><a href="04-api-token.html" data-page-link="onramp/04-api-token"><span class="label">04</span><span>An API token is a password with a label</span></a></li><li data-stem="05-dns"><a href="05-dns.html" data-page-link="onramp/05-dns"><span class="label">05</span><span>A name is not an address, and the answer can change</span></a></li><li data-stem="06-proxy"><a href="06-proxy.html" data-page-link="onramp/06-proxy"><span class="label">06</span><span>A proxy is a server that is also a client</span></a></li><li data-stem="07-tls"><a href="07-tls.html" data-page-link="onramp/07-tls"><span class="label">07</span><span>TLS proves you reached a name, not that the name is honest</span></a></li><li data-stem="08-jwt"><a href="08-jwt.html" data-page-link="onramp/08-jwt"><span class="label">08</span><span>A JWT is signed claims, and a check has an order</span></a></li><li data-stem="09-oauth-roles"><a href="09-oauth-roles.html" data-page-link="onramp/09-oauth-roles"><span class="label">09</span><span>OAuth gives a token a purpose: roles, scope, audience</span></a></li><li data-stem="10-parser-differentials"><a href="10-parser-differentials.html" data-page-link="onramp/10-parser-differentials"><span class="label">10</span><span>Two parsers, one message: a check is sound only if it reads what the target reads</span></a></li><li data-stem="11-oauth-threat-model" aria-current="page"><a href="11-oauth-threat-model.html" data-page-link="onramp/11-oauth-threat-model"><span class="label">11</span><span>OAuth&#x27;s own threat model: what RFC 9700 requires, and why an agent needs all of it</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="onramp/problems"><span class="label">P</span><span>Problems</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="onramp" data-total="13" data-problems="14" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">On-ramp · Lesson 11</p>
+        <h1>OAuth&#x27;s own threat model: what RFC 9700 requires, and why an agent needs all of it</h1>
+      </header>
+      <p>An agent connects to whatever MCP server its user names, and each server points the agent to its own authorization server (Module 3, lesson 10). So the agent is an OAuth client that talks to many authorization servers, and an attacker can run one of them simply by publishing a server. That is the setting in which OAuth's best-known protocol attacks work. RFC 9700 (Lodderstedt et al., 2025), the IETF's security best current practice for OAuth 2.0, writes the attacker down and derives its requirements from it. This lesson reads it as a threat model, and then adds the two operations an agent's tokens depend on: exchange and key rotation.</p>
+<h2 id="the-attackers-made-explicit">The attackers, made explicit</h2>
+<p>RFC 9700, section 3, names five attackers. The first two come from the formal analysis by Fett, Küsters and Schmitz (2016). The other three are there because real attacks used them.</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Attacker</th>
+<th>Can</th>
+<th>In an agent deployment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A1, web attacker</strong></td>
+<td>run any number of endpoints, including its own client, authorization server and resource server; send the user's browser to any URL</td>
+<td>anyone who publishes an MCP server or a page the agent will open</td>
+</tr>
+<tr>
+<td><strong>A2, network attacker</strong></td>
+<td>read, change and block traffic that cryptography does not protect</td>
+<td>an untrusted network; TLS (lesson 7) answers it</td>
+</tr>
+<tr>
+<td><strong>A3</strong></td>
+<td>read the authorization <em>response</em></td>
+<td>codes in redirect URLs that reach logs, history or an open redirector</td>
+</tr>
+<tr>
+<td><strong>A4</strong></td>
+<td>read the authorization <em>request</em></td>
+<td>the same channels, one step earlier</td>
+</tr>
+<tr>
+<td><strong>A5</strong></td>
+<td>obtain an access token issued to someone else</td>
+<td><strong>every resource server the agent calls</strong>: a malicious or compromised one receives the token by design</td>
+</tr>
+</tbody>
+</table></div>
+<p>A5 is the row that matters most for agents. A browser user talks to a handful of known resource servers. An agent hands a token to every server it calls, and some of those servers are written by strangers. Any requirement that defends against A5 is one an agent deployment cannot drop.</p>
+<h2 id="each-requirement-against-its-attacker">Each requirement, against its attacker</h2>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Requirement (RFC 9700)</th>
+<th>Defends against</th>
+<th>Mechanism</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Redirect URIs compared by <strong>exact string match</strong> (section 4.1.3; a port may vary only for a native app's <code>localhost</code>)</td>
+<td>A3, through a redirect the attacker can also satisfy</td>
+<td>a pattern such as <code>https://*.client.example/*</code> is a parser of URLs, and lesson 10 says what that costs; equality has no differential set</td>
+</tr>
+<tr>
+<td><strong>PKCE</strong> for every public client (section 2.1.1)</td>
+<td>A3 and A4 redeeming a stolen code; code injection</td>
+<td>the code is redeemable only with a verifier that never left the client (RFC 7636)</td>
+</tr>
+<tr>
+<td>The <strong>issuer in the authorization response</strong> (RFC 9207), or a distinct redirect URI per issuer (section 4.4.2)</td>
+<td>mix-up, below</td>
+<td>the client learns which server actually answered</td>
+</tr>
+<tr>
+<td><strong>Audience-restricted</strong> access tokens (sections 2.3 and 4.10.2)</td>
+<td>A5 replaying a token at another resource server</td>
+<td>the audience must be the URL the client actually sends requests to, or a counterfeit server's token works at the real one</td>
+</tr>
+<tr>
+<td><strong>Sender-constrained</strong> access tokens (sections 2.2.1 and 4.10.1; mutual TLS or DPoP)</td>
+<td>A5 and any other leak</td>
+<td>the token is useless without the client's private key (lesson 4)</td>
+</tr>
+<tr>
+<td>Refresh tokens of public clients <strong>sender-constrained or rotated</strong> (sections 2.2.2 and 4.14)</td>
+<td>a stolen long-lived refresh token</td>
+<td>see below</td>
+</tr>
+<tr>
+<td>No implicit grant (SHOULD NOT); no password grant (MUST NOT) (sections 2.1.2 and 2.4)</td>
+<td>tokens in URLs; a client that sees the user's password</td>
+<td>tokens travel only in back-channel responses, and the password only to the authorization server</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Rotation as detection.</strong> With rotation, every refresh returns a new refresh token and invalidates the old one, and the server remembers which token replaced which. If a stolen refresh token is used, either the thief or the legitimate client will later present a token that has already been replaced. The server cannot tell which of the two is legitimate, so it revokes the whole chain (section 4.14.2). The legitimate client pays with a fresh authorization. In exchange, theft becomes visible the first time both parties refresh, instead of lasting as long as the token does. It is a detector with a known false-positive cost, which makes it an expected-cost decision of the kind in Module 2, lesson 6.</p>
+<h2 id="mix-up-as-a-mechanism">Mix-up, as a mechanism</h2>
+<p>The precondition is a client that uses one redirect URI for several authorization servers and remembers, per browser session, which one the user picked. If the user picks the attacker's server, that server can pass the browser on to the honest server, and the honest server's code arrives at the shared redirect URI. The client still believes it is talking to the attacker's server, so it sends the code to the attacker's token endpoint. No signature fails and no TLS check fails. The client has misattributed a response, and it is the same error as believing a forwarded header (lesson 6). The defence gives the response its provenance: the authorization server puts its issuer identifier in the response (RFC 9207), and the client compares it with the issuer it started with before doing anything else. An agent that discovers authorization servers at run time from resource metadata meets the precondition by default. Checking the issuer is therefore not optional for it.</p>
+<h2 id="token-exchange-narrowing-as-an-invariant">Token exchange: narrowing as an invariant</h2>
+<p>When the gateway trades the agent's token for one meant for the CRM (RFC 8693; lesson 9), every exchange should satisfy</p>
+<div class="math" data-display="1">\text{scope}_{\text{out}} \subseteq \text{scope}_{\text{in}} \cap \text{policy}, \quad
+\text{aud}_{\text{out}} = \text{one resource server}, \quad
+\text{exp}_{\text{out}} \le \text{exp}_{\text{in}}, \quad
+\text{act}_{\text{out}} = \text{act}_{\text{in}} \text{ extended by one hop.}</div>
+<p>The RFC defines the request and the response. Whether the output is narrower than the input is left to the authorization server's policy. An exchange that can widen any of the four turns the gateway into Hardy's confused deputy (Module 2, lesson 3), with a valid signature on the result. Because the property is a universally quantified invariant over pairs (input, output), it can be checked on every exchange the server makes. Module 12 builds that check and tests it.</p>
+<h2 id="keys-change-rotation-without-an-outage">Keys change: rotation without an outage</h2>
+<p>A resource server verifies signatures with the issuer's public keys. It finds them as a JSON Web Key Set (RFC 7517) at the <code>jwks_uri</code> given in the issuer's metadata (RFC 8414), and selects one by the token's <code>kid</code>. Two rules follow from lesson 8. The key set comes from the configured issuer's metadata, never from a URL in the token: RFC 8725, section 3.10, warns that following <code>jku</code> or <code>x5u</code> invites server-side request forgery. And the algorithm comes from the key (a JWK's <code>alg</code> member), not from the token's header.</p>
+<p>Rotation is then arithmetic. Let verifiers cache the key set for up to <span class="math" data-display="0">C</span>, tokens live up to <span class="math" data-display="0">L</span>, and clocks differ by up to <span class="math" data-display="0">s</span>:</p>
+<ul>
+<li>publish the new key at least <span class="math" data-display="0">C</span> before the first token is signed with it, so that every cache holds it in time;</li>
+<li>keep the old key published for at least <span class="math" data-display="0">L + s</span> after the last token is signed with it.</li>
+</ul>
+<p>With <span class="math" data-display="0">C</span> = 1 hour, <span class="math" data-display="0">L</span> = 5 minutes and <span class="math" data-display="0">s</span> = 30 seconds, the new key appears at least an hour ahead, and the old one goes 5.5 minutes after the switch. Get the first rule wrong and valid tokens fail for up to <span class="math" data-display="0">C</span>; that is an outage, not a breach.</p>
+<p>Rotation after a compromise runs the other way. The key is withdrawn at once, and tokens signed with it fail. Verifiers must refetch the key set when they see an unknown <code>kid</code>, or they keep trusting their cache until it expires. Refetches must be rate-limited, though, or tokens with random <code>kid</code> values turn every request into a fetch from the issuer: a denial of service that needs no valid key. The two failure modes are held apart by a refetch budget, which is a choice between failing open and failing closed (Module 2, lesson 6).</p>
+<h2 id="what-is-open">What is open</h2>
+<p>RFC 9700 assumes a person, a browser and a few servers. An agent changes all three. One consent may cover a long task, tokens go to many servers, some of them unknown in advance, and authority passes along chains of agents. No RFC yet says how a person's consent should map onto the scopes of a task that is planned after the consent is given. Nor does one say how long an <code>act</code> chain may grow, or whether a resource server should accept a token exchanged through <span class="math" data-display="0">n</span> intermediaries, and on whose policy. Module 3, lesson 10, and Module 12 build the parts that can be built today. The rest is standards work in progress.</p>
+<h2 id="check-yourself">Check yourself</h2>
+<ol>
+<li>Which of A1 to A5 does a malicious MCP server, called by your agent with a valid token, belong to? Which two requirements in the table limit what it can do with that token, and which of them still protects you if it persuaded the client to put the real CRM's URL in the token's audience?</li>
+<li>An authorization server allows the redirect pattern <code>https://agent.example/callback*</code>. Using lesson 10's terms, what is the check, what is the target, and why is exact matching the only design with an empty differential set?</li>
+<li>Rotate a key with <span class="math" data-display="0">C</span> = 24 hours, <span class="math" data-display="0">L</span> = 1 hour and <span class="math" data-display="0">s</span> = 2 minutes. When must the new key be published, when may the old one go, and what changes if the old key leaked?</li>
+</ol>
+<details class="answers"><summary>Answers</summary>
+<ol>
+<li>A5: it obtains an access token by design (and as its publisher it is also A1). Audience restriction and sender-constrained tokens limit what it can do with the token. If it got the real CRM's URL into the audience, audience restriction no longer helps, and only sender-constraining (DPoP or mutual TLS) still protects you: without the client's private key the token is useless at the CRM.</li>
+<li>The check is the authorization server's pattern match, <span class="math" data-display="0">P_C</span>, a parser of URLs; the target, <span class="math" data-display="0">P_T</span>, is the browser and the client, which resolve the redirect and decide where the code goes. A pattern accepts strings such as <code>https://agent.example/callback/../open-redirect?to=...</code> that <span class="math" data-display="0">P_T</span> normalises to another destination. Exact matching parses nothing: <span class="math" data-display="0">\varphi</span> is byte equality with a registered string, so the check and the target read the same thing and <span class="math" data-display="0">D</span> is empty.</li>
+<li>Publish the new key at least 24 hours before the first token signed with it; keep the old key published for at least <span class="math" data-display="0">L + s</span> = 62 minutes after the last token it signed. If the old key leaked, withdraw it at once and accept that tokens signed in the last hour fail; and caches keep trusting the leaked key for up to 24 hours unless verifiers are told to refetch, so the cache lifetime, not <span class="math" data-display="0">L</span>, becomes the exposure window.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>Mark complete</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="10-parser-differentials.html"><span class="label">Previous</span>Two parsers, one message: a check is sound only if it reads what the target reads</a><a class="pn next" href="problems.html"><span class="label">Next</span>Problems</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 Defending AI Agents</span>
+  <nav aria-label="Footer">
+    <a href="../../workshop/">Team workshops</a>
+    <a href="../../courses/">Online courses</a>
+    <a href="mailto:shimon@defendingaiagents.com">Contact</a>
+    <a href="../../.well-known/security.txt">Security</a>
+    <a href="../../he/learn/onramp/11-oauth-threat-model.html" lang="he" hreflang="he">עברית</a>
+  </nav>
+</footer>
+<script src="../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"Dark":"Light";
+b.setAttribute("aria-label","Switch to "+n+" mode")};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

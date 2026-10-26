@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>OAuth gives a token a purpose: roles, scope, audience · Defending AI Agents</title>
+<meta name="description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<link rel="canonical" href="https://defendingaiagents.com/learn/onramp/09-oauth-roles.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/onramp/09-oauth-roles.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/onramp/09-oauth-roles.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/onramp/09-oauth-roles.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Defending AI Agents">
+<meta property="og:title" content="OAuth gives a token a purpose: roles, scope, audience · Defending AI Agents"><meta property="og:description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<meta property="og:url" content="https://defendingaiagents.com/learn/onramp/09-oauth-roles.html"><meta property="og:image" content="https://defendingaiagents.com/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preload" href="../../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../assets/course.css"><script src="../../assets/progress.js" defer></script><script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs";const v=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();const th=document.documentElement.dataset.theme;const dark=th?th==="dark":matchMedia("(prefers-color-scheme: dark)").matches;mermaid.initialize({startOnLoad:true,theme:"base",fontFamily:"Inter, sans-serif",themeVariables:{darkMode:dark,background:v("--bg"),primaryColor:v("--bg-2"),primaryTextColor:v("--fg"),primaryBorderColor:v("--line-2"),lineColor:v("--dim"),secondaryColor:v("--bg"),tertiaryColor:v("--bg-2"),noteBkgColor:v("--bg-2"),noteTextColor:v("--fg"),noteBorderColor:v("--sig"),actorBkg:v("--bg-2"),actorBorder:v("--line-2"),actorTextColor:v("--fg"),signalColor:v("--fg"),signalTextColor:v("--fg"),clusterBkg:v("--bg"),clusterBorder:v("--line-2"),edgeLabelBackground:v("--bg"),fontSize:"14px"}});</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="../../"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">Defending AI Agents</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="Switch colour theme"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>Theme</span></button>
+    <a class="lang label" href="../../he/learn/onramp/09-oauth-roles.html" lang="he" hreflang="he">עברית</a>
+    <a class="btn" href="../../course/#waitlist" data-waitlist>Join waitlist<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">Menu</summary><nav aria-label="Menu"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="onramp/09-oauth-roles" data-module="onramp">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">Free preview</a><span>/</span><a href="./">On-ramp</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="On-ramp">
+      <p class="label"><em>On-ramp</em> Theoretical</p>
+      <p class="side-title">On-ramp: the web plumbing the course assumes</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="onramp/index"><span class="label">·</span><span>Overview</span></a></li><li data-stem="01-http-is-text"><a href="01-http-is-text.html" data-page-link="onramp/01-http-is-text"><span class="label">01</span><span>An HTTP call is text in, text out</span></a></li><li data-stem="02-json-edges"><a href="02-json-edges.html" data-page-link="onramp/02-json-edges"><span class="label">02</span><span>JSON is simple, and its parsers still disagree</span></a></li><li data-stem="03-yaml-traps"><a href="03-yaml-traps.html" data-page-link="onramp/03-yaml-traps"><span class="label">03</span><span>YAML is JSON with indentation and four traps</span></a></li><li data-stem="04-api-token"><a href="04-api-token.html" data-page-link="onramp/04-api-token"><span class="label">04</span><span>An API token is a password with a label</span></a></li><li data-stem="05-dns"><a href="05-dns.html" data-page-link="onramp/05-dns"><span class="label">05</span><span>A name is not an address, and the answer can change</span></a></li><li data-stem="06-proxy"><a href="06-proxy.html" data-page-link="onramp/06-proxy"><span class="label">06</span><span>A proxy is a server that is also a client</span></a></li><li data-stem="07-tls"><a href="07-tls.html" data-page-link="onramp/07-tls"><span class="label">07</span><span>TLS proves you reached a name, not that the name is honest</span></a></li><li data-stem="08-jwt"><a href="08-jwt.html" data-page-link="onramp/08-jwt"><span class="label">08</span><span>A JWT is signed claims, and a check has an order</span></a></li><li data-stem="09-oauth-roles" aria-current="page"><a href="09-oauth-roles.html" data-page-link="onramp/09-oauth-roles"><span class="label">09</span><span>OAuth gives a token a purpose: roles, scope, audience</span></a></li><li data-stem="10-parser-differentials"><a href="10-parser-differentials.html" data-page-link="onramp/10-parser-differentials"><span class="label">10</span><span>Two parsers, one message: a check is sound only if it reads what the target reads</span></a></li><li data-stem="11-oauth-threat-model"><a href="11-oauth-threat-model.html" data-page-link="onramp/11-oauth-threat-model"><span class="label">11</span><span>OAuth&#x27;s own threat model: what RFC 9700 requires, and why an agent needs all of it</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="onramp/problems"><span class="label">P</span><span>Problems</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="onramp" data-total="13" data-problems="14" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">On-ramp · Lesson 09</p>
+        <h1>OAuth gives a token a purpose: roles, scope, audience</h1>
+      </header>
+      <p>An agent needs to read one customer's record. The CRM must not hand the agent a password, and it must not trust the agent with every customer. OAuth is the vocabulary for that: who asks, who decides, who issues, who serves, and what the token is <em>for</em>.</p>
+<h2 id="four-roles">Four roles</h2>
+<p>OAuth 2.0 names four roles (RFC 6749, 2012):</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Role</th>
+<th>In an agent deployment</th>
+<th>Does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Resource owner</strong></td>
+<td>the person (or the organisation) whose data it is</td>
+<td>grants or refuses</td>
+</tr>
+<tr>
+<td><strong>Client</strong></td>
+<td>the agent, or the gateway acting for it</td>
+<td>asks for a token, presents it</td>
+</tr>
+<tr>
+<td><strong>Authorization server</strong></td>
+<td>the identity provider</td>
+<td>authenticates, applies policy, issues tokens</td>
+</tr>
+<tr>
+<td><strong>Resource server</strong></td>
+<td>the CRM, the calendar, an MCP server</td>
+<td>verifies the token and serves the request</td>
+</tr>
+</tbody>
+</table></div>
+<figure class="diagram"><pre class="mermaid">flowchart TD
+  C[&quot;Client (agent)&quot;] --&gt;|&quot;1. token request: who I am, which scope, which resource&quot;| A[&quot;Authorization server&quot;]
+  A --&gt;|&quot;2. access token: sub, scope, aud, exp&quot;| C
+  C --&gt;|&quot;3. Authorization: Bearer token&quot;| R[&quot;Resource server (CRM)&quot;]
+  R --&gt;|&quot;4. verify iss, aud, exp, scope; then answer&quot;| C
+</pre></figure>
+<p>The resource server never sees a password and never talks to the client's user. It checks a token against the issuer it trusts.</p>
+<h2 id="what-a-token-for-an-agent-usually-is">What a token for an agent usually is</h2>
+<p>Two flows cover this course:</p>
+<ul>
+<li><strong>Authorization code</strong> (with PKCE, RFC 7636): a person signs in at the authorization server and consents; the client gets a token that acts <em>for that person</em>. MCP's authorization uses this.</li>
+<li><strong>Client credentials</strong> (RFC 6749, section 4.4): no person. The client authenticates as itself and gets a token naming the client. This is an agent with an identity of its own (Module 12, lesson 1).</li>
+</ul>
+<h2 id="three-fields-three-limits">Three fields, three limits</h2>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Limits</th>
+<th>Wrong if</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>scope</code></td>
+<td>which operations (<code>crm:read</code>)</td>
+<td>it is <code>*</code>, or carries more than the task needs</td>
+</tr>
+<tr>
+<td><code>aud</code></td>
+<td>which server accepts it</td>
+<td>missing, or the token is accepted by any server</td>
+</tr>
+<tr>
+<td><code>sub</code> (and the actor chain)</td>
+<td>whom the action is attributed to</td>
+<td>it names a shared service account that fifty agents use</td>
+</tr>
+</tbody>
+</table></div>
+<p>Resource indicators (RFC 8707, 2020) let the client <em>name</em> the audience in the request, and the authorization server put it in <code>aud</code>. Token exchange (RFC 8693, 2020) lets a service trade one token for another with a narrower scope and a different audience, which is how a gateway can hold a token for itself and hand the CRM one made for the CRM. The exchanged token can carry an <code>act</code> (actor) claim naming the party acting for <code>sub</code>, nested once per hop, so &quot;the gateway, acting for agent-7, acting for Dana&quot; is written in the token rather than inferred from logs. That nesting is the actor chain of the table above.</p>
+<h2 id="expert-scope-is-a-request-not-a-promise">Expert: scope is a request, not a promise</h2>
+<p>A client asks for scopes; the authorization server grants what its policy allows, and a token may carry fewer than were asked. A resource server that assumes the requested scope was granted has checked its client's wishes. A second trap: a scope is only as meaningful as the server that interprets it. Two servers that both read <code>read</code> can mean different things. A third: <strong>a token exchange that widens</strong>. Exchange must only narrow; Module 12 builds and tests the check.</p>
+<h2 id="check-yourself">Check yourself</h2>
+<ol>
+<li>Map the roles for this setup: a person asks an assistant agent to &quot;summarise my open tickets&quot;; the agent calls a ticketing MCP server through your gateway.</li>
+<li>A token has <code>aud</code> = the gateway. The gateway needs the ticketing server to accept the call. What are the two correct ways to get a token the ticketing server accepts, and what is the incorrect one?</li>
+<li><code>scope: crm:read</code> and <code>aud: crm</code>. Which of the two stops this token being replayed at the calendar, and which stops it deleting a record at the CRM?</li>
+</ol>
+<details class="answers"><summary>Answers</summary>
+<ol>
+<li>Resource owner: the person whose tickets they are. Client: the assistant agent, with the gateway acting for it on the outbound call. Authorization server: the identity provider where the person signs in and consents (authorization code with PKCE, since the token acts for that person). Resource server: the ticketing MCP server.</li>
+<li>Correct: the gateway exchanges its token for one with <code>aud</code> = the ticketing server and a narrower scope (token exchange, RFC 8693, with an <code>act</code> claim naming the gateway); or the client asks the authorization server for a token for the ticketing server directly, naming it as the resource (RFC 8707). Incorrect: forwarding the gateway's token unchanged and having the ticketing server skip or loosen its audience check.</li>
+<li><code>aud: crm</code> stops replay at the calendar, which is not the audience. <code>scope: crm:read</code> stops the delete at the CRM, which is not a read. Each holds only if the server receiving the token checks it.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>Mark complete</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="08-jwt.html"><span class="label">Previous</span>A JWT is signed claims, and a check has an order</a><a class="pn next" href="10-parser-differentials.html"><span class="label">Next</span>Two parsers, one message: a check is sound only if it reads what the target reads</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 Defending AI Agents</span>
+  <nav aria-label="Footer">
+    <a href="../../workshop/">Team workshops</a>
+    <a href="../../courses/">Online courses</a>
+    <a href="mailto:shimon@defendingaiagents.com">Contact</a>
+    <a href="../../.well-known/security.txt">Security</a>
+    <a href="../../he/learn/onramp/09-oauth-roles.html" lang="he" hreflang="he">עברית</a>
+  </nav>
+</footer>
+<script src="../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"Dark":"Light";
+b.setAttribute("aria-label","Switch to "+n+" mode")};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A 99%-recall detector&#x27;s alerts can be wrong 99 times in 100: the base rate in depth · Defending AI Agents</title>
+<meta name="description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<link rel="canonical" href="https://defendingaiagents.com/learn/00-orientation/06-base-rate-in-depth.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/00-orientation/06-base-rate-in-depth.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/00-orientation/06-base-rate-in-depth.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/00-orientation/06-base-rate-in-depth.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Defending AI Agents">
+<meta property="og:title" content="A 99%-recall detector&#x27;s alerts can be wrong 99 times in 100: the base rate in depth · Defending AI Agents"><meta property="og:description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<meta property="og:url" content="https://defendingaiagents.com/learn/00-orientation/06-base-rate-in-depth.html"><meta property="og:image" content="https://defendingaiagents.com/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preload" href="../../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../assets/course.css"><script src="../../assets/progress.js" defer></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script><script>addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".math").forEach(function(e){katex.render(e.textContent,e,{displayMode:e.dataset.display==="1",throwOnError:false})})})</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="../../"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">Defending AI Agents</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="Switch colour theme"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>Theme</span></button>
+    <a class="lang label" href="../../he/learn/00-orientation/06-base-rate-in-depth.html" lang="he" hreflang="he">עברית</a>
+    <a class="btn" href="../../course/#waitlist" data-waitlist>Join waitlist<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">Menu</summary><nav aria-label="Menu"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="00-orientation/06-base-rate-in-depth" data-module="00-orientation">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">Free preview</a><span>/</span><a href="./">Module 00</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="Module 00">
+      <p class="label"><em>Module 00</em> Theoretical</p>
+      <p class="side-title">Orientation: why agent security is a statistics problem</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="00-orientation/index"><span class="label">·</span><span>Overview</span></a></li><li data-stem="01-an-agent-in-one-picture"><a href="01-an-agent-in-one-picture.html" data-page-link="00-orientation/01-an-agent-in-one-picture"><span class="label">01</span><span>An agent is a model with side effects</span></a></li><li data-stem="02-four-incidents"><a href="02-four-incidents.html" data-page-link="00-orientation/02-four-incidents"><span class="label">02</span><span>Four incidents, one pattern</span></a></li><li data-stem="03-trifecta-and-rule-of-two"><a href="03-trifecta-and-rule-of-two.html" data-page-link="00-orientation/03-trifecta-and-rule-of-two"><span class="label">03</span><span>Three capabilities make a leak: the lethal trifecta and the rule of two</span></a></li><li data-stem="04-two-kinds-of-defence"><a href="04-two-kinds-of-defence.html" data-page-link="00-orientation/04-two-kinds-of-defence"><span class="label">04</span><span>Two kinds of defence, and which to trust first</span></a></li><li data-stem="05-five-statistics-problems"><a href="05-five-statistics-problems.html" data-page-link="00-orientation/05-five-statistics-problems"><span class="label">05</span><span>The hard questions in agent security are five statistics problems</span></a></li><li data-stem="06-base-rate-in-depth" aria-current="page"><a href="06-base-rate-in-depth.html" data-page-link="00-orientation/06-base-rate-in-depth"><span class="label">06</span><span>A 99%-recall detector&#x27;s alerts can be wrong 99 times in 100: the base rate in depth</span></a></li><li data-stem="07-training-is-not-a-boundary"><a href="07-training-is-not-a-boundary.html" data-page-link="00-orientation/07-training-is-not-a-boundary"><span class="label">07</span><span>Training is not a boundary</span></a></li><li data-stem="08-trifecta-as-information-flow"><a href="08-trifecta-as-information-flow.html" data-page-link="00-orientation/08-trifecta-as-information-flow"><span class="label">08</span><span>The trifecta is two information flows, not three legs</span></a></li><li data-stem="09-reading-a-security-claim"><a href="09-reading-a-security-claim.html" data-page-link="00-orientation/09-reading-a-security-claim"><span class="label">09</span><span>Twelve questions separate a measurement from a slogan</span></a></li><li data-stem="10-course-map"><a href="10-course-map.html" data-page-link="00-orientation/10-course-map"><span class="label">10</span><span>One gateway, built a module at a time: the course map</span></a></li><li data-stem="build"><a href="build.html" data-page-link="00-orientation/build"><span class="label">B</span><span>Paper exercise: where would you have stopped it?</span></a></li><li data-stem="at-scale"><a href="at-scale.html" data-page-link="00-orientation/at-scale"><span class="label">S</span><span>At scale: thousands of agents, nobody&#x27;s inventory</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="00-orientation/problems"><span class="label">P</span><span>Problems</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="00-orientation" data-total="14" data-problems="14" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">Module 00 · Lesson 06</p>
+        <h1>A 99%-recall detector&#x27;s alerts can be wrong 99 times in 100: the base rate in depth</h1>
+      </header>
+      <p>Lesson 5 stated the result: a detector with 99% recall and a 1% false-positive rate, run on traffic where 1 call in 10,000 is an attack, is right about 1 time in 100 when it fires. This lesson takes the result apart, because every threshold decision in Part III is this calculation with more care.</p>
+<h2 id="the-calculation-and-its-inverse">The calculation, and its inverse</h2>
+<p>Let <span class="math" data-display="0">\pi</span> be the base rate (the fraction of calls that are attacks), TPR the detector's recall, FPR its false-positive rate. By Bayes:</p>
+<div class="math" data-display="1">\text{precision} = P(\text{attack} \mid \text{alert}) = \frac{\text{TPR}\,\pi}{\text{TPR}\,\pi + \text{FPR}\,(1-\pi)}</div>
+<p>Hold TPR = 0.99 and <span class="math" data-display="0">\pi = 10^{-4}</span> and move the FPR:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>FPR</th>
+<th>Precision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10%</td>
+<td>0.1%</td>
+</tr>
+<tr>
+<td>1%</td>
+<td>1.0%</td>
+</tr>
+<tr>
+<td>0.1%</td>
+<td>9.0%</td>
+</tr>
+<tr>
+<td>0.01%</td>
+<td>49.8%</td>
+</tr>
+<tr>
+<td>0.001%</td>
+<td>90.8%</td>
+</tr>
+</tbody>
+</table></div>
+<p>Now run it backwards. Solve the formula for the FPR that gives a target precision <span class="math" data-display="0">P</span>:</p>
+<div class="math" data-display="1">\text{FPR} = \frac{\text{TPR}\,\pi\,(1-P)}{P\,(1-\pi)}</div>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Target precision</th>
+<th>FPR you need</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>50%</td>
+<td><span class="math" data-display="0">9.9 \times 10^{-5}</span></td>
+</tr>
+<tr>
+<td>90%</td>
+<td><span class="math" data-display="0">1.1 \times 10^{-5}</span></td>
+</tr>
+<tr>
+<td>99%</td>
+<td><span class="math" data-display="0">1.0 \times 10^{-6}</span></td>
+</tr>
+</tbody>
+</table></div>
+<p>To have <em>half</em> the alerts be real you need a false-positive rate near one in ten thousand: an order of magnitude below what most text classifiers achieve on in-distribution data, and they are not evaluated in distribution (Module 8). The inverse is the useful direction: <strong>choose the precision your reviewers can live with, and the FPR budget follows.</strong></p>
+<h2 id="alerts-are-a-staffing-problem">Alerts are a staffing problem</h2>
+<p>At 50 million calls a day (2,000 agents at 25,000 calls each; this module's at-scale page) and <span class="math" data-display="0">\pi = 10^{-4}</span> there are 5,000 attacks a day. At 2 minutes a review and 7.5 productive hours a day:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>FPR</th>
+<th>Alerts a day</th>
+<th>Real among them</th>
+<th>Reviewers (full time)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1%</td>
+<td>504,900</td>
+<td>4,950</td>
+<td>2,244</td>
+</tr>
+<tr>
+<td>0.1%</td>
+<td>54,945</td>
+<td>4,950</td>
+<td>244</td>
+</tr>
+<tr>
+<td>0.01%</td>
+<td>9,950</td>
+<td>4,950</td>
+<td>44</td>
+</tr>
+</tbody>
+</table></div>
+<p>Nobody employs 2,244 reviewers for this, so alerts are sampled, queued until stale, or ignored, and the system's real recall drops to whatever fraction somebody looks at. <strong>A detector's effective recall is its recall multiplied by the fraction of its alerts anyone acts on.</strong> That is why the course keeps asking for an FPR <em>budget</em> tied to an action.</p>
+<h2 id="why-auc-does-not-warn-you">Why AUC does not warn you</h2>
+<p>ROC curves plot TPR against FPR; both are conditional on the class, so neither moves when <span class="math" data-display="0">\pi</span> changes. Take two equal-variance Gaussian detectors, differing only in separation <span class="math" data-display="0">d&#x27;</span>, and measure each at FPR = 0.1%:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Separation</th>
+<th>AUC</th>
+<th>TPR at FPR 0.1%</th>
+<th>Precision at <span class="math" data-display="0">\pi = 10^{-4}</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="math" data-display="0">d&#x27; = 3</span></td>
+<td>0.983</td>
+<td>0.46</td>
+<td>4.4%</td>
+</tr>
+<tr>
+<td><span class="math" data-display="0">d&#x27; = 4</span></td>
+<td>0.998</td>
+<td>0.82</td>
+<td>7.6%</td>
+</tr>
+</tbody>
+</table></div>
+<p>An AUC of 0.998 is headline-worthy and gives alerts that are wrong 92 times in 100. Report the <strong>operating point</strong> (TPR at the FPR your budget allows) and the <strong>precision at the deployment prior</strong>, never AUC alone. Precision-recall curves expose the problem because precision depends on <span class="math" data-display="0">\pi</span>; they must be drawn at the deployment <span class="math" data-display="0">\pi</span>, not the benchmark's.</p>
+<h2 id="the-score-is-not-a-probability-at-deployment">The score is not a probability at deployment</h2>
+<p>Suppose a classifier trained on a balanced set (<span class="math" data-display="0">\pi_{\text{train}} = 0.5</span>) outputs 0.99 for a call. Is that a 99% chance of attack? Only if deployment is also balanced. Adjusting for a new prior (Saerens, Latinne and Decaestecker, 2002) multiplies the odds by the ratio of prior odds:</p>
+<div class="math" data-display="1">\frac{p_{\text{new}}}{1-p_{\text{new}}} = \frac{p_{\text{old}}}{1-p_{\text{old}}} \cdot \frac{\pi_{\text{new}}/(1-\pi_{\text{new}})}{\pi_{\text{train}}/(1-\pi_{\text{train}})}</div>
+<p>Here: <span class="math" data-display="0">99 \times \frac{10^{-4}/0.9999}{1} \approx 0.0099</span>, so <span class="math" data-display="0">p_{\text{new}} \approx 0.98\%</span>. The score &quot;0.99&quot; means &quot;about 1% likely&quot; in production.</p>
+<p>The adjustment rests on two assumptions, and both can fail: the score was <strong>calibrated</strong> at the training prior, and only the <strong>class prior</strong> changed between training and deployment, not what attacks and benign calls look like (label shift, not the covariate shift of Module 8).</p>
+<p>The 0.98% matches lesson 5's precision, but it is a different quantity. Lesson 5's is an average over every alert: <span class="math" data-display="0">P(\text{attack} \mid \text{score above threshold})</span>. This one is pointwise: <span class="math" data-display="0">P(\text{attack} \mid \text{score} = 0.99)</span>. They agree only because both likelihood ratios are 99: here the score's odds, <span class="math" data-display="0">0.99/0.01</span>; there <span class="math" data-display="0">\text{TPR}/\text{FPR} = 0.99/0.01</span>. Change either and they part.</p>
+<h2 id="the-prior-is-the-soft-spot">The prior is the soft spot</h2>
+<p>Everything above takes <span class="math" data-display="0">\pi</span> as known. It is not. <span class="math" data-display="0">\pi</span> is the rate of attacks <em>in your traffic</em>, which you cannot know without labelling traffic, and which an adversary can change. Treat it as a parameter with an interval, and report precision as a range. The same holds for the FPR: it is estimated from a finite benign sample, and with zero false positives in <span class="math" data-display="0">n</span> calls the one-sided 95% upper bound is <span class="math" data-display="0">1 - 0.05^{1/n} \approx 3/n</span>, the <strong>rule of three</strong> (Module 1, lesson 9 derives it). Zero in 300 still allows 1%. Two honest ways to bound it: (a) red-team rates times exposure (Module 9), and (b) a labelled random sample of production calls large enough to see at least a handful of attacks, which at <span class="math" data-display="0">\pi = 10^{-4}</span> means labelling tens of thousands. Module 7 does the interval arithmetic.</p>
+<p>One more asymmetry worth noticing: <span class="math" data-display="0">\pi</span> is not exogenous. Raise detection and attackers move; lower friction and more of them try. The prior is a property of the whole system, including your defences.</p>
+<h2 id="check-yourself">Check yourself</h2>
+<ol>
+<li>At <span class="math" data-display="0">\pi = 10^{-6}</span> (one attack in a million calls), what FPR gives 50% precision at TPR 0.99? How many benign calls, with zero false positives among them, would the rule of three need before you could claim that FPR?</li>
+<li>Two detectors have the same AUC. Detector A has a higher TPR at FPR = <span class="math" data-display="0">10^{-3}</span>; B is better at FPR = <span class="math" data-display="0">10^{-1}</span>. Which would you deploy for a hold-for-review action at 500,000 calls a day with five reviewers? Show the arithmetic.</li>
+<li>A vendor reports &quot;99.9% accuracy&quot; on a balanced test set. State the two numbers you would ask for.</li>
+</ol>
+<details class="answers"><summary>Answers</summary>
+<ol>
+<li><span class="math" data-display="0">\text{FPR} = 0.99 \times 10^{-6} \times 0.5/(0.5 \times (1 - 10^{-6})) = 9.9 \times 10^{-7}</span>. Zero false positives in <span class="math" data-display="0">n</span> calls certifies it once <span class="math" data-display="0">1 - 0.05^{1/n} \le 9.9 \times 10^{-7}</span>: about 3.03 million benign calls, the rule of three's <span class="math" data-display="0">3/\text{FPR}</span>.</li>
+<li>A. Five reviewers at 2 minutes a review and 7.5 hours a day clear 1,125 alerts, an FPR budget of <span class="math" data-display="0">1{,}125/500{,}000 = 0.225\%</span>. At <span class="math" data-display="0">\pi = 10^{-4}</span>, FPR <span class="math" data-display="0">10^{-3}</span> gives about 500 false alerts plus at most 50 real ones, within budget; FPR <span class="math" data-display="0">10^{-1}</span> gives about 50,000, 44 times what the team can read. Only the region near <span class="math" data-display="0">10^{-3}</span> is usable, and there A is better.</li>
+<li>TPR and FPR separately, measured on traffic shaped like the deployment's. On a balanced set accuracy is <span class="math" data-display="0">(\text{TPR} + 1 - \text{FPR})/2</span>, so 99.9% allows an FPR of up to 0.2%, which at <span class="math" data-display="0">\pi = 10^{-4}</span> gives a precision of only 4.8% even with perfect recall.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>Mark complete</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="05-five-statistics-problems.html"><span class="label">Previous</span>The hard questions in agent security are five statistics problems</a><a class="pn next" href="07-training-is-not-a-boundary.html"><span class="label">Next</span>Training is not a boundary</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 Defending AI Agents</span>
+  <nav aria-label="Footer">
+    <a href="../../workshop/">Team workshops</a>
+    <a href="../../courses/">Online courses</a>
+    <a href="mailto:shimon@defendingaiagents.com">Contact</a>
+    <a href="../../.well-known/security.txt">Security</a>
+    <a href="../../he/learn/00-orientation/06-base-rate-in-depth.html" lang="he" hreflang="he">עברית</a>
+  </nav>
+</footer>
+<script src="../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"Dark":"Light";
+b.setAttribute("aria-label","Switch to "+n+" mode")};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

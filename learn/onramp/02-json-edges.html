@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>JSON is simple, and its parsers still disagree · Defending AI Agents</title>
+<meta name="description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<link rel="canonical" href="https://defendingaiagents.com/learn/onramp/02-json-edges.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/onramp/02-json-edges.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/onramp/02-json-edges.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/onramp/02-json-edges.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Defending AI Agents">
+<meta property="og:title" content="JSON is simple, and its parsers still disagree · Defending AI Agents"><meta property="og:description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<meta property="og:url" content="https://defendingaiagents.com/learn/onramp/02-json-edges.html"><meta property="og:image" content="https://defendingaiagents.com/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preload" href="../../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../assets/course.css"><script src="../../assets/progress.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="../../"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">Defending AI Agents</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="Switch colour theme"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>Theme</span></button>
+    <a class="lang label" href="../../he/learn/onramp/02-json-edges.html" lang="he" hreflang="he">עברית</a>
+    <a class="btn" href="../../course/#waitlist" data-waitlist>Join waitlist<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">Menu</summary><nav aria-label="Menu"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="onramp/02-json-edges" data-module="onramp">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">Free preview</a><span>/</span><a href="./">On-ramp</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="On-ramp">
+      <p class="label"><em>On-ramp</em> Theoretical</p>
+      <p class="side-title">On-ramp: the web plumbing the course assumes</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="onramp/index"><span class="label">·</span><span>Overview</span></a></li><li data-stem="01-http-is-text"><a href="01-http-is-text.html" data-page-link="onramp/01-http-is-text"><span class="label">01</span><span>An HTTP call is text in, text out</span></a></li><li data-stem="02-json-edges" aria-current="page"><a href="02-json-edges.html" data-page-link="onramp/02-json-edges"><span class="label">02</span><span>JSON is simple, and its parsers still disagree</span></a></li><li data-stem="03-yaml-traps"><a href="03-yaml-traps.html" data-page-link="onramp/03-yaml-traps"><span class="label">03</span><span>YAML is JSON with indentation and four traps</span></a></li><li data-stem="04-api-token"><a href="04-api-token.html" data-page-link="onramp/04-api-token"><span class="label">04</span><span>An API token is a password with a label</span></a></li><li data-stem="05-dns"><a href="05-dns.html" data-page-link="onramp/05-dns"><span class="label">05</span><span>A name is not an address, and the answer can change</span></a></li><li data-stem="06-proxy"><a href="06-proxy.html" data-page-link="onramp/06-proxy"><span class="label">06</span><span>A proxy is a server that is also a client</span></a></li><li data-stem="07-tls"><a href="07-tls.html" data-page-link="onramp/07-tls"><span class="label">07</span><span>TLS proves you reached a name, not that the name is honest</span></a></li><li data-stem="08-jwt"><a href="08-jwt.html" data-page-link="onramp/08-jwt"><span class="label">08</span><span>A JWT is signed claims, and a check has an order</span></a></li><li data-stem="09-oauth-roles"><a href="09-oauth-roles.html" data-page-link="onramp/09-oauth-roles"><span class="label">09</span><span>OAuth gives a token a purpose: roles, scope, audience</span></a></li><li data-stem="10-parser-differentials"><a href="10-parser-differentials.html" data-page-link="onramp/10-parser-differentials"><span class="label">10</span><span>Two parsers, one message: a check is sound only if it reads what the target reads</span></a></li><li data-stem="11-oauth-threat-model"><a href="11-oauth-threat-model.html" data-page-link="onramp/11-oauth-threat-model"><span class="label">11</span><span>OAuth&#x27;s own threat model: what RFC 9700 requires, and why an agent needs all of it</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="onramp/problems"><span class="label">P</span><span>Problems</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="onramp" data-total="13" data-problems="14" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">On-ramp · Lesson 02</p>
+        <h1>JSON is simple, and its parsers still disagree</h1>
+      </header>
+      <p>A policy says &quot;deny any call whose <code>amount</code> exceeds 1,000&quot;. The gateway's JSON parser keeps the first <code>amount</code>; the payments service's keeps the last. The attacker sends <code>{&quot;amount&quot;: 10, &quot;amount&quot;: 1000000}</code> and the gateway reads 10. Nothing is malformed; two correct programs read one text two ways.</p>
+<h2 id="the-grammar-fits-on-a-card">The grammar fits on a card</h2>
+<p>JSON has six value types: object, array, string, number, <code>true</code>/<code>false</code>, <code>null</code> (RFC 8259, 2017). Keys are strings, strings are double-quoted, there are no comments and no trailing commas. That brevity is why it is the agents' language: tool arguments, model replies and MCP messages are JSON.</p>
+<h2 id="what-the-grammar-leaves-open">What the grammar leaves open</h2>
+<p>RFC 8259 leaves five places to the implementation, and in each two implementations can differ. Python 3 shows the first two, and the float arithmetic behind the second, in four lines:</p>
+<pre><code class="language-python">import json
+print(json.loads('{&quot;amount&quot;: 1, &quot;amount&quot;: 1000000}'))   # {'amount': 1000000}
+print(json.loads('{&quot;n&quot;: 1e400}'))                      # {'n': inf}
+print(json.loads('{&quot;n&quot;: 12345678901234567890}'))       # exact in Python; a double in JavaScript
+print(0.1 + 0.2)                                       # 0.30000000000000004
+</code></pre>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Open point</th>
+<th>What differs</th>
+<th>What an attacker does with it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Duplicate keys</strong></td>
+<td>&quot;The names within an object SHOULD be unique&quot;, and behaviour is otherwise unpredictable: first wins, last wins, or an error</td>
+<td>send two values; the control reads one, the tool the other</td>
+</tr>
+<tr>
+<td><strong>Number range</strong></td>
+<td>big integers and <code>1e400</code> become <code>inf</code>, a rounded double or an error</td>
+<td>a limit checked as 9007199254740993 and executed as ...992</td>
+</tr>
+<tr>
+<td><strong>Strings</strong></td>
+<td><code>\u0000</code>, lone surrogates, differently normalised Unicode</td>
+<td>a name that compares unequal to the allow-list and resolves to the same file</td>
+</tr>
+<tr>
+<td><strong>Depth and size</strong></td>
+<td>no limit stated</td>
+<td>a deep array that crashes one parser and not another</td>
+</tr>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>&quot;1&quot;</code> is a string, <code>1</code> a number</td>
+<td><code>&quot;amount&quot;: &quot;1000000&quot;</code> that one side coerces</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="the-rule-the-course-follows">The rule the course follows</h2>
+<p>Decide on the same bytes you forward, parsed by a parser that <strong>rejects</strong> what is ambiguous. Module 3 lesson 6 builds that: the gateway rejects any object with a repeated key, and forwards the <em>re-serialised</em> form it decided on, not the original bytes. Then the only parser the tool service meets is the gateway's own.</p>
+<h2 id="expert-canonical-form-is-a-proof-obligation">Expert: canonical form is a proof obligation</h2>
+<p>&quot;Re-serialise&quot; only closes the gap if parse then serialise is deterministic, loses nothing the tool reads, and the downstream parser reads the output as the gateway did. RFC 8785 (JSON Canonicalization Scheme) exists because signatures over JSON need that property; most gateways need a weaker one, that the output contains no duplicate keys and numbers in a range both sides agree on. State which one you are claiming.</p>
+<h2 id="check-yourself">Check yourself</h2>
+<ol>
+<li>Why is &quot;the gateway parses with a strict parser&quot; not enough if it forwards the original bytes?</li>
+<li>A float field <code>&quot;risk&quot;: 0.1</code> is summed ten times and compared with <code>1.0</code>. What will it say, and what does that say about using floats as money?</li>
+<li>A tool takes <code>{&quot;path&quot;: &quot;notes/café.txt&quot;}</code>, and the gateway compares the parsed string with an allow-list. Using the table's Strings row, describe a second valid JSON value that the comparison treats as different and a file system may open as the same file.</li>
+</ol>
+<details class="answers"><summary>Answers</summary>
+<ol>
+<li>Strictness only fixes the gateway's own reading. The tool still parses the original bytes with its own parser, and on any input where the two differ (number range, Unicode forms, type coercion) the gateway has decided on a value the tool never sees. Only forwarding the re-serialised form makes the gateway's reading the one the tool receives.</li>
+<li>Adding <code>0.1</code> ten times in a loop gives <code>0.9999999999999999</code>, so <code>== 1.0</code> is <code>False</code> and a check at exactly the limit flips. <code>0.1</code> has no exact binary representation and the errors accumulate; money belongs in integer minor units or a decimal type, never in floats.</li>
+<li><code>&quot;notes/café.txt&quot;</code>: <code>e</code> followed by the combining acute accent (U+0301), against the precomposed <code>é</code> (U+00E9) of the original. The two strings differ code point by code point, so the allow-list comparison fails, while a file system that normalises names opens the same file.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>Mark complete</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="01-http-is-text.html"><span class="label">Previous</span>An HTTP call is text in, text out</a><a class="pn next" href="03-yaml-traps.html"><span class="label">Next</span>YAML is JSON with indentation and four traps</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 Defending AI Agents</span>
+  <nav aria-label="Footer">
+    <a href="../../workshop/">Team workshops</a>
+    <a href="../../courses/">Online courses</a>
+    <a href="mailto:shimon@defendingaiagents.com">Contact</a>
+    <a href="../../.well-known/security.txt">Security</a>
+    <a href="../../he/learn/onramp/02-json-edges.html" lang="he" hreflang="he">עברית</a>
+  </nav>
+</footer>
+<script src="../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"Dark":"Light";
+b.setAttribute("aria-label","Switch to "+n+" mode")};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

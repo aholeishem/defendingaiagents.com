@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="he" dir="rtl" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>אימון הוא לא גבול · הגנה על סוכני AI</title>
+<meta name="description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<link rel="canonical" href="https://defendingaiagents.com/he/learn/00-orientation/07-training-is-not-a-boundary.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/00-orientation/07-training-is-not-a-boundary.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/00-orientation/07-training-is-not-a-boundary.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/00-orientation/07-training-is-not-a-boundary.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="הגנה על סוכני AI">
+<meta property="og:title" content="אימון הוא לא גבול · הגנה על סוכני AI"><meta property="og:description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<meta property="og:url" content="https://defendingaiagents.com/he/learn/00-orientation/07-training-is-not-a-boundary.html"><meta property="og:image" content="https://defendingaiagents.com/og-he.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="he_IL"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+<link rel="preload" href="../../../assets/fonts/rubik-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../../assets/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../../assets/course.css"><script src="../../../assets/progress.js" defer></script><script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs";const v=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();const th=document.documentElement.dataset.theme;const dark=th?th==="dark":matchMedia("(prefers-color-scheme: dark)").matches;mermaid.initialize({startOnLoad:true,theme:"base",fontFamily:"Inter, sans-serif",themeVariables:{darkMode:dark,background:v("--bg"),primaryColor:v("--bg-2"),primaryTextColor:v("--fg"),primaryBorderColor:v("--line-2"),lineColor:v("--dim"),secondaryColor:v("--bg"),tertiaryColor:v("--bg-2"),noteBkgColor:v("--bg-2"),noteTextColor:v("--fg"),noteBorderColor:v("--sig"),actorBkg:v("--bg-2"),actorBorder:v("--line-2"),actorTextColor:v("--fg"),signalColor:v("--fg"),signalTextColor:v("--fg"),clusterBkg:v("--bg"),clusterBorder:v("--line-2"),edgeLabelBackground:v("--bg"),fontSize:"14px"}});</script>
+</head>
+<body>
+<a class="skip" href="#main">דילוג לתוכן</a>
+<header class="top">
+  <a class="brand" href="../../../learn/00-orientation/07-training-is-not-a-boundary.html"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">הגנה על סוכני AI</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="החלפת ערכת צבע"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>ערכת צבע</span></button>
+    <a class="lang label" href="../../../learn/00-orientation/07-training-is-not-a-boundary.html" lang="en" hreflang="en">English</a>
+    <a class="btn" href="../../../he/course/#waitlist" data-waitlist>לרשימת ההמתנה<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">תפריט</summary><nav aria-label="תפריט"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="00-orientation/07-training-is-not-a-boundary" data-module="00-orientation">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">תצוגה מקדימה חינמית</a><span>/</span><a href="./">מודול 00</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="מודול 00">
+      <p class="label"><em>מודול 00</em> תיאורטי</p>
+      <p class="side-title">התמצאות: למה אבטחת סוכנים היא בעיה סטטיסטית</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="00-orientation/index"><span class="label">·</span><span>סקירה</span></a></li><li data-stem="01-an-agent-in-one-picture"><a href="01-an-agent-in-one-picture.html" data-page-link="00-orientation/01-an-agent-in-one-picture"><span class="label">01</span><span>סוכן הוא מודל עם תופעות לוואי</span></a></li><li data-stem="02-four-incidents"><a href="02-four-incidents.html" data-page-link="00-orientation/02-four-incidents"><span class="label">02</span><span>ארבע תקריות, דפוס אחד</span></a></li><li data-stem="03-trifecta-and-rule-of-two"><a href="03-trifecta-and-rule-of-two.html" data-page-link="00-orientation/03-trifecta-and-rule-of-two"><span class="label">03</span><span>שלוש יכולות יוצרות דליפה: השילוש הקטלני וכלל השניים</span></a></li><li data-stem="04-two-kinds-of-defence"><a href="04-two-kinds-of-defence.html" data-page-link="00-orientation/04-two-kinds-of-defence"><span class="label">04</span><span>שני סוגי הגנה, ובאיזה לבטוח קודם</span></a></li><li data-stem="05-five-statistics-problems"><a href="05-five-statistics-problems.html" data-page-link="00-orientation/05-five-statistics-problems"><span class="label">05</span><span>השאלות הקשות באבטחת סוכנים הן חמש בעיות סטטיסטיות</span></a></li><li data-stem="06-base-rate-in-depth"><a href="06-base-rate-in-depth.html" data-page-link="00-orientation/06-base-rate-in-depth"><span class="label">06</span><span>גלאי עם recall של 99% יכול לטעות ב־99 מתוך 100 התרעות: שיעור הבסיס לעומק</span></a></li><li data-stem="07-training-is-not-a-boundary" aria-current="page"><a href="07-training-is-not-a-boundary.html" data-page-link="00-orientation/07-training-is-not-a-boundary"><span class="label">07</span><span>אימון הוא לא גבול</span></a></li><li data-stem="08-trifecta-as-information-flow"><a href="08-trifecta-as-information-flow.html" data-page-link="00-orientation/08-trifecta-as-information-flow"><span class="label">08</span><span>השילוש הוא שתי זרימות מידע, לא שלוש רגליים</span></a></li><li data-stem="09-reading-a-security-claim"><a href="09-reading-a-security-claim.html" data-page-link="00-orientation/09-reading-a-security-claim"><span class="label">09</span><span>שתים־עשרה שאלות מפרידות בין מדידה לסיסמה</span></a></li><li data-stem="10-course-map"><a href="10-course-map.html" data-page-link="00-orientation/10-course-map"><span class="label">10</span><span>שער בקרה (gateway) אחד, נבנה מודול אחרי מודול: מפת הקורס</span></a></li><li data-stem="build"><a href="build.html" data-page-link="00-orientation/build"><span class="label">B</span><span>תרגיל על נייר: איפה הייתם עוצרים את זה?</span></a></li><li data-stem="at-scale"><a href="at-scale.html" data-page-link="00-orientation/at-scale"><span class="label">S</span><span>בקנה מידה: אלפי סוכנים, ואף אחד לא מחזיק את הרשימה</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="00-orientation/problems"><span class="label">P</span><span>בעיות</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="00-orientation" data-total="14" data-problems="14" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">מודול 00 · שיעור 07</p>
+        <h1>אימון הוא לא גבול</h1>
+      </header>
+      <p>«אמרנו למודל לא לעשות את זה.» «המודל אומן לסרב.» אלה התשובות הראשונות הנפוצות ביותר לאבטחת סוכנים, והדבר החשוב ביותר שהשיעור הזה יכול לעשות הוא להראות למה כל אחת מהן שווה משהו, ולמה אף אחת מהן איננה גבול.</p>
+<h2 id="there-is-one-stream">יש זרם אחד</h2>
+<p>מודל צ'אט מקבל רצף של טוקנים. התפקידים (system, user, assistant, tool) מסומנים בטוקנים מפרידים שתבנית ההגשה מכניסה. מאותו רגע הטרנספורמר מעבד רצף אחד; שום דבר בארכיטקטורה לא מתייחס לקטע «system» כמחייב יותר מקטע «tool». כל הבדל ביחס של המודל אליהם <strong>נלמד</strong>, מדוגמאות אימון, כסדירות סטטיסטית.</p>
+<figure class="diagram"><pre class="mermaid">flowchart TD
+  S[&quot;system: היה עוזר תפעול&quot;] --- U[&quot;user: סכם את הדוח&quot;]
+  U --- T[&quot;תוצאת כלי: תוכן הקובץ,&lt;br/&gt;כולל כל מה שהכותב כתב בו&quot;]
+  T --&gt; Q[&quot;רצף אחד&quot;]
+  Q --&gt; M[&quot;מודל&quot;]
+  M --&gt; N[&quot;הטוקן הבא&quot;]
+</pre></figure>
+<p>אפשר לראות את זה בעצמכם במודול 1, שיעור 8, שבו מדפיסים את המחרוזת המדויקת שהמודל של המעבדה מקבל.</p>
+<h2 id="what-training-buys">מה האימון קונה</h2>
+<p><strong>היררכיית ההוראות</strong> (instruction hierarchy; Wallace et al., 2024) מגדירה את שורש הבעיה במדויק: מודלים לא מעניקים לפרומפט המערכת עדיפות גבוהה יותר מאשר לטקסט ממשתמשים ומצדדים שלישיים. התרופה שלהם היא דאטה: לאמן את המודל לציית להוראות בעלות הרשאה גבוהה על פני הוראות בעלות הרשאה נמוכה כשהן מתנגשות. לפי הדיווח שלהם זה מעלה משמעותית את העמידות, גם מול סוגי מתקפות שלא נראו באימון, במחיר קטן ביכולת. עבודות אחרות (עמידות שנלמדה מאימון על העדפות, שאילתות מובנות) שייכות לאותה משפחה, ומודול 4 מכסה אותן.</p>
+<p>זה אמיתי ושווה להשתמש בזה. זה מוריד את השיעור שבו הזרקות מזדמנות ומקריות מצליחות.</p>
+<h2 id="what-it-does-not-buy">מה הוא לא קונה</h2>
+<p>Nasr, Carlini ושותפיהם (2025) לקחו 12 הגנות עדכניות, מכמה משפחות, ותקפו כל אחת בשיטות מסתגלות: gradient descent, למידת חיזוק, חיפוש אקראי וחקירה בהנחיה אנושית, כל אחת מכווננת לתכנון של ההגנה ועם תקציב גדול. הם מדווחים על הצלחת מתקפה מעל 90% ברובן, ומציינים ש<strong>רוב ההגנות האלה דיווחו במקור על שיעורי הצלחת מתקפה קרובים לאפס.</strong></p>
+<p>קראו את זה כאמירה על הערכה, לא רק על ההגנות האלה. הגנה שנמדדה על סט <em>קבוע</em> של מחרוזות מתקפה, או מול אופטימייזרים חלשים שלא תוכננו נגדה, נמדדת תחת התפלגות שהתוקף לא ישתמש בה. המספר שהיא מדווחת הוא שיעור ההצלחה מול תוקף שמעולם לא ראה את ההגנה, וזה לא התוקף שקיים. זו הבעיה הרביעית של שיעור 5 (יריב שזז שני), עכשיו עם גודל מדוד.</p>
+<p>במודול 1 יש גרסה קטנה של אותה תצפית, בהרצות של המחבר על המתקפה שהבנייה שם מבקשת מכם לכתוב (<code>qwen3:4b</code>, אוקטובר 2026): אותה בקשה, כשהיא בסוף מסמך, הצליחה 0 פעמים מתוך 5; כשהיא בראש הקובץ כהערה לעוזר, 5 פעמים מתוך 6. ההרצות שלכם יהיו שונות; הכיוון הוא העיקר. אדם השקיע שעה במיקום. אלגוריתם חיפוש משקיע אחר צהריים ומוצא את הבא.</p>
+<h2 id="so-what-is-the-boundary">אז מה כן גבול?</h2>
+<p>אימון הוא תכונה <strong>הסתברותית</strong> של מודל אחד על התפלגות אחת. גבול הוא תכונה <strong>מבנית</strong> שמתקיימת לכל קלט, כולל אלה שאופטימייזר מוצא:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th></th>
+<th>אמירה</th>
+<th>מתקיימת עבור</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>אימון</td>
+<td>«המודל הזה עמיד להזרקות כמו אלה שבסט הבדיקה»</td>
+<td>התפלגות הבדיקה</td>
+</tr>
+<tr>
+<td>מבנה</td>
+<td>«שום ערך שנגזר מקלט לא מהימן לא יכול להגיע לשליחה חיצונית»</td>
+<td>כל קלט</td>
+</tr>
+</tbody>
+</table></div>
+<p>התכנון של CaMeL (Debenedetti et al., 2025) הוא הדוגמה הנקייה ביותר: זרימת הבקרה נגזרת מהבקשה המהימנה בלבד, כך שדאטה לא מהימן «לעולם לא יכול להשפיע על זרימת התוכנית», וקייפביליטיז (capabilities) על ערכים מונעות מדאטה פרטי לצאת בזרימות לא מורשות. על AgentDojo הוא פתר 77% מהמשימות עם אבטחה מוכחת, מול 84% למערכת בלי הגנה. פער שבע הנקודות הזה הוא <strong>המחיר של מבנה</strong>, מדוד; במודול 11 תמדדו את שלכם.</p>
+<h2 id="use-both-in-the-right-order">השתמשו בשניהם, בסדר הנכון</h2>
+<p>אימון ומבנה הם לא יריבים; הם נכשלים בדרכים שונות (מודול 2, שיעור 7, על מתאם). הטעות היא לספור את הראשון כאילו הוא השני. בקורס הזה «המודל אומן לסרב» שווה מספר, שנמדד על סט המתקפות שלכם, מול תוקפים מסתגלים, והוא אף פעם לא שווה «מאובטח».</p>
+<h2 id="check-yourself">בדקו את עצמכם</h2>
+<ol>
+<li>מאמר מדווח שהצלחת המתקפה ירדה מ־70% ל־1% עם פיין־טיון (fine-tune) חדש, על 200 פרומפטים קבועים. מנו שלושה דברים שהייתם שואלים לפני שתאמינו שזה מגן על פריסה.</li>
+<li>היררכיית הוראות מדרגת את פרומפט המערכת מעל המשתמש, ואת המשתמש מעל תוצאות הכלים. מתי היא עוזרת מול <em>משתמש</em> זדוני, ומתי לא? איזה כותב ב<a href="01-an-agent-in-one-picture.html#where-an-attacker-can-write">טבלה של שיעור 1</a> היא מדרגת הכי נמוך, ולכן מולו היא מגינה הכי ישירות?</li>
+<li>כתבו במשפט אחד את האמירה המבנית שהייתה הופכת את תקרית 1 ב<a href="02-four-incidents.html">שיעור 2</a> לבלתי אפשרית, בלי להזכיר אף גלאי.</li>
+</ol>
+<details class="answers"><summary>תשובות</summary>
+<ol>
+<li>האם הותקף באופן מסתגל, על ידי אופטימייזרים שכוונו נגד הפיין־טיון עם תקציב אמיתי, ולא 200 פרומפטים קבועים (הפער ש־Nasr et al. מדדו). מה רווח הסמך (confidence interval): 1% מ־200 הם 2 הצלחות, עם גבול עליון חד־צדדי ב־95% של 3.1%. ומה המחיר: השלמת משימות וסירובי שווא על טראפיק תמים שנראה כמו זה של הפריסה, לא של הבנצ'מרק.</li>
+<li>היא עוזרת כשההוראה של המשתמש הזדוני מתנגשת בפרומפט המערכת, למשל כשהוא מבקש מהסוכן להתעלם מההגבלות של המפתח. היא לא עוזרת כשהבקשה המזיקה נמצאת בתוך מה שפרומפט המערכת מרשה: המשתמש הוא הישות (principal), והיכולות הלגיטימיות של הסוכן הן שעושות את הנזק. היא מדרגת את תוצאות הכלים הכי נמוך, ולכן מגינה הכי ישירות מפני מי שכתב את הקבצים, המיילים והדפים שהסוכן קורא.</li>
+<li>אחרי שהסוכן קורא מייל מחוץ לארגון, שום <code>send_email</code> לכתובת חיצונית לא יכול לשאת ערך כלשהו שנקרא מה־CRM.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>סימון כהושלם</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="06-base-rate-in-depth.html"><span class="label">הקודם</span>גלאי עם recall של 99% יכול לטעות ב־99 מתוך 100 התרעות: שיעור הבסיס לעומק</a><a class="pn next" href="08-trifecta-as-information-flow.html"><span class="label">הבא</span>השילוש הוא שתי זרימות מידע, לא שלוש רגליים</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 הגנה על סוכני AI</span>
+  <nav aria-label="Footer">
+    <a href="../../../he/workshop/">סדנאות לצוותים</a>
+    <a href="../../../he/courses/">קורסים מקוונים</a>
+    <a href="mailto:shimon@defendingaiagents.com">יצירת קשר</a>
+    <a href="../../../.well-known/security.txt">אבטחה</a>
+    <a href="../../../learn/00-orientation/07-training-is-not-a-boundary.html" lang="en" hreflang="en">English</a>
+  </nav>
+</footer>
+<script src="../../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"כהה":"בהיר";
+b.setAttribute("aria-label","מעבר למצב "+(n==="dark"?"כהה":"בהיר"))};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

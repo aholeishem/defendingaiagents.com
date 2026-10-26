@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="he" dir="rtl" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>קריאות מקבילות לכלים: פעולות קריאה מתחלפות, פעולות כתיבה לא · הגנה על סוכני AI</title>
+<meta name="description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<link rel="canonical" href="https://defendingaiagents.com/he/learn/e03-agent-loop/04-parallel-calls.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/e03-agent-loop/04-parallel-calls.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/e03-agent-loop/04-parallel-calls.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/e03-agent-loop/04-parallel-calls.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="הגנה על סוכני AI">
+<meta property="og:title" content="קריאות מקבילות לכלים: פעולות קריאה מתחלפות, פעולות כתיבה לא · הגנה על סוכני AI"><meta property="og:description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<meta property="og:url" content="https://defendingaiagents.com/he/learn/e03-agent-loop/04-parallel-calls.html"><meta property="og:image" content="https://defendingaiagents.com/og-he.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="he_IL"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+<link rel="preload" href="../../../assets/fonts/rubik-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../../assets/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../../assets/course.css"><script src="../../../assets/progress.js" defer></script><script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs";const v=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();const th=document.documentElement.dataset.theme;const dark=th?th==="dark":matchMedia("(prefers-color-scheme: dark)").matches;mermaid.initialize({startOnLoad:true,theme:"base",fontFamily:"Inter, sans-serif",themeVariables:{darkMode:dark,background:v("--bg"),primaryColor:v("--bg-2"),primaryTextColor:v("--fg"),primaryBorderColor:v("--line-2"),lineColor:v("--dim"),secondaryColor:v("--bg"),tertiaryColor:v("--bg-2"),noteBkgColor:v("--bg-2"),noteTextColor:v("--fg"),noteBorderColor:v("--sig"),actorBkg:v("--bg-2"),actorBorder:v("--line-2"),actorTextColor:v("--fg"),signalColor:v("--fg"),signalTextColor:v("--fg"),clusterBkg:v("--bg"),clusterBorder:v("--line-2"),edgeLabelBackground:v("--bg"),fontSize:"14px"}});</script>
+</head>
+<body>
+<a class="skip" href="#main">דילוג לתוכן</a>
+<header class="top">
+  <a class="brand" href="../../../learn/e03-agent-loop/04-parallel-calls.html"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">הגנה על סוכני AI</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="החלפת ערכת צבע"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>ערכת צבע</span></button>
+    <a class="lang label" href="../../../learn/e03-agent-loop/04-parallel-calls.html" lang="en" hreflang="en">English</a>
+    <a class="btn" href="../../../he/course/#waitlist" data-waitlist>לרשימת ההמתנה<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">תפריט</summary><nav aria-label="תפריט"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="e03-agent-loop/04-parallel-calls" data-module="e03-agent-loop">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">תצוגה מקדימה חינמית</a><span>/</span><a href="./">E3</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="E3">
+      <p class="label"><em>E3</em> מעשי</p>
+      <p class="side-title">לולאת הסוכן מאפס</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="e03-agent-loop/index"><span class="label">·</span><span>סקירה</span></a></li><li data-stem="01-workflow-or-agent"><a href="01-workflow-or-agent.html" data-page-link="e03-agent-loop/01-workflow-or-agent"><span class="label">01</span><span>מי מחליט על הצעד הבא? תהליכים קבועים וסוכנים</span></a></li><li data-stem="02-a-tool-is-three-texts"><a href="02-a-tool-is-three-texts.html" data-page-link="e03-agent-loop/02-a-tool-is-three-texts"><span class="label">02</span><span>כלי הוא סכמה, פונקציה והודעת שגיאה, והמודל קורא שניים מהם</span></a></li><li data-stem="03-three-wire-formats"><a href="03-three-wire-formats.html" data-page-link="e03-agent-loop/03-three-wire-formats"><span class="label">03</span><span>קריאה אחת לכלי, שלושה פורמטים על הקו</span></a></li><li data-stem="04-parallel-calls" aria-current="page"><a href="04-parallel-calls.html" data-page-link="e03-agent-loop/04-parallel-calls"><span class="label">04</span><span>קריאות מקבילות לכלים: פעולות קריאה מתחלפות, פעולות כתיבה לא</span></a></li><li data-stem="05-retries"><a href="05-retries.html" data-page-link="e03-agent-loop/05-retries"><span class="label">05</span><span>לנסות שוב את השרת, לא את המודל: שגיאות, backoff ו־jitter</span></a></li><li data-stem="06-budgets"><a href="06-budgets.html" data-page-link="e03-agent-loop/06-budgets"><span class="label">06</span><span>צעד הוא לא יחידת עלות: ארבעה תקציבים וסיבת עצירה אחת</span></a></li><li data-stem="07-structured-answers"><a href="07-structured-answers.html" data-page-link="e03-agent-loop/07-structured-answers"><span class="label">07</span><span>תשובה שתוכנה יכולה לקרוא: סכמות ותיקון אחד</span></a></li><li data-stem="08-streaming"><a href="08-streaming.html" data-page-link="e03-agent-loop/08-streaming"><span class="label">08</span><span>קריאה לכלי בסטרימינג היא חצי אובייקט JSON</span></a></li><li data-stem="09-long-horizons"><a href="09-long-horizons.html" data-page-link="e03-agent-loop/09-long-horizons"><span class="label">09</span><span>כמה רחוק לולאה יכולה להגיע? שגיאה מצטברת, פעולות קוד ואופק הזמן</span></a></li><li data-stem="build"><a href="build.html" data-page-link="e03-agent-loop/build"><span class="label">B</span><span>הבנייה: הלולאה של מודול 1, שהופכת לכזו שרצה בלי השגחה, ונמדדת</span></a></li><li data-stem="at-scale"><a href="at-scale.html" data-page-link="e03-agent-loop/at-scale"><span class="label">S</span><span>בקנה מידה: אותה לולאה, עשרת אלפים פעמים בבת אחת</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="e03-agent-loop/problems"><span class="label">P</span><span>בעיות</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="e03-agent-loop" data-total="13" data-problems="15" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">E3 · שיעור 04</p>
+        <h1>קריאות מקבילות לכלים: פעולות קריאה מתחלפות, פעולות כתיבה לא</h1>
+      </header>
+      <p>בקשו מהמודל המקומי &quot;read notes/a.txt and notes/b.txt&quot;, והוא יענה בשתי קריאות לכלים (tool calls) באותו תור (נמדד על <code>qwen3:4b</code>, 25 באוקטובר 2026). הלולאה של מודול 1 מריצה אותן אחת אחרי השנייה. אם כל פעולת קריאה לוקחת 200 ms, יוצא 400 ms במקום שבו 200 היו מספיקים, וסוכן שקורא עשרה מסמכים מחכה שתי שניות סתם. להריץ אותן בבת אחת זה קל. להריץ אותן בבת אחת <em>נכון</em> דורש שני כללים.</p>
+<h2 id="rule-1-results-go-back-in-the-order-asked">כלל 1: התוצאות חוזרות בסדר שבו התבקשו</h2>
+<p>כל תוצאה נושאת את ה־id של הקריאה שלה, והמודל מתאים תוצאות לקריאות לפי id. ובכל זאת, החזירו אותן בסדר שבו המודל ביקש. יש שרתים שבודקים שכל קריאה בתור נענתה לפני תוכן ה־user הבא. מודלים רבים גם נשענים על המיקום, ויומן שמשלב קריאות ותוצאות בערבוביה הוא סיוט לקרוא באמצע אירוע (מודול 18).</p>
+<h2 id="rule-2-only-calls-that-commute-run-together">כלל 2: רק קריאות מתחלפות רצות יחד</h2>
+<p>שתי קריאות <em>מתחלפות</em> (commute) אם הרצתן בכל סדר משאירה את אותו מצב ואת אותן תוצאות. שתי פעולות קריאה מתחלפות. קריאה וכתיבה של אותו קובץ לא: קריאה ואז כתיבה מחזירה את הטקסט הישן, כתיבה ואז קריאה את החדש. גם שני מיילים אינם מתחלפים. ההשפעות שלהם בלתי תלויות, אבל בתיבת הדואר של הנמען יש עכשיו סדר, וגם ביומן הביקורת שלכם.</p>
+<p>הלולאה לא יכולה להסיק חילופיות משם של כלי, ולכן אתם מצהירים עליה: <code>parallel_safe</code> היא קבוצת הכלים שלא משנים כלום. כל קריאה אחרת היא <strong>מחסום (barrier)</strong>. כל מה שהתבקש לפניה מסתיים לפני שהיא מתחילה, ושום דבר אחריה לא מתחיל עד שהיא מסתיימת.</p>
+<figure class="diagram"><pre class="mermaid">sequenceDiagram
+  participant L as לולאה
+  participant T as כלים
+  Note over L: תור: read a, read b, write a, read a
+  par פעולות קריאה יחד
+    L-&gt;&gt;T: read_file a
+    L-&gt;&gt;T: read_file b
+  end
+  T--&gt;&gt;L: alpha, beta
+  L-&gt;&gt;T: write_file a (לבד: מחסום)
+  T--&gt;&gt;L: ok
+  L-&gt;&gt;T: read_file a
+  T--&gt;&gt;L: new
+  Note over L: התוצאות חוזרות בסדר הקריאות: alpha, beta, ok, new
+</pre></figure>
+<p><code>loop/parallel.py</code> סורק את הקריאות של התור לפי הסדר. רצף של קריאות בטוחות עוקבות הולך ל־thread pool, כל קריאה לא בטוחה רצה לבד, והתוצאות נכתבות למשבצות לפי מיקום, כך שהסדר שלהן הוא סדר הקריאות, לא משנה באיזה סדר הן הסתיימו. הבדיקה מודדת את זה עם שלוש פעולות קריאה שכל אחת ישנה 200 ms: התור לוקח בערך 200 ms, עם שלושה כלים פעילים בו־זמנית, והתוצאות חוזרות בסדר שבו התבקשו.</p>
+<h2 id="safe-to-reorder-is-not-safe">בטוח לשנות סדר אינו בטוח</h2>
+<p><code>READ_ONLY</code> כולל את <code>fetch_url</code>. הוא לא משנה כלום במעבדה ומתחלף עם כל פעולת קריאה, ולכן מותר לו לרוץ במקביל. הוא גם דרך היציאה של המעבדה: URL יכול לשאת דאטה לכל מי ששולט בשרת (מודול 1 שיעור 6; מודול 11). מקביליות היא תכונה של <strong>ההשפעות</strong>. אבטחה היא תכונה של <strong>זרימת המידע</strong>. שני הסיווגים נעשים מסיבות שונות, ובלבול ביניהם, לכל כיוון, הוא באג. להתייחס ל־<code>fetch_url</code> כלא בטוח רק מאט את הסוכן. להתייחס אליו כלא מזיק כי הוא read-only, כך דאטה יוצא החוצה.</p>
+<h2 id="threads-not-processes-and-a-small-pool">threads, לא תהליכים, ו־pool קטן</h2>
+<p>הכלים הם קריאות HTTP למעבדה, כך שהעבודה היא המתנה, ו־threads הם הכלי הנכון (ה־GIL של Python משתחרר בזמן שסוקט ממתין). שמרו על pool קטן. ברירת המחדל היא ארבעה workers. מודל שמבקש עשרים פעולות fetch בתור אחד לא אמור לפתוח עשרים חיבורים לשרת אחד, ו־E10 מראה מה פרץ כזה עושה לזמן התגובה בזנב (tail latency) של שרת. ה־pool גם מגביל את מה שמודל סורר יכול לעשות בתור אחד, דבר שהתקציב (שיעור 6) לא עושה: התקציב סופר קריאות למודל, לא קריאות לכלים.</p>
+<h2 id="check-yourself">בדקו את עצמכם</h2>
+<ol>
+<li>תור מבקש <code>read_file a</code>, <code>send_email</code>, <code>read_file b</code>, <code>read_file c</code>, <code>write_file d</code>. אילו קריאות רצות בו־זמנית, ובכמה קבוצות?</li>
+<li>למה קריאה שנדחתה (שיעור 2) חייבת עדיין לתפוס את המשבצת שלה בתוצאות?</li>
+<li>תנו זוג קריאות לשני כלים <em>שונים</em> שאינן מתחלפות, למרות שאף אחת מהן אינה כתיבה למשאב של השנייה.</li>
+</ol>
+<details class="answers"><summary>תשובות</summary>
+<ol>
+<li>ארבע קבוצות: <code>read_file a</code> לבד (רצף של קריאה בטוחה אחת), אחר כך <code>send_email</code> לבד, אחר כך <code>read_file b</code> ו־<code>read_file c</code> יחד, ואחר כך <code>write_file d</code> לבד. רק b ו־c רצות בו־זמנית.</li>
+<li>כל קריאה בתור חייבת לקבל תשובה, עם ה־id שלה ובמקום שלה. המשבצת מחזיקה את טקסט הדחייה, כך שהמודל לומד איזו קריאה נכשלה ולמה, והתוצאות נשארות מיושרות עם הקריאות.</li>
+<li><code>recall</code> ו־<code>remember</code>: recall לפני ה־remember לא מחזיר את הפתק החדש, ו־recall אחריו כן. או <code>list_files</code> ו־<code>write_file</code> של קובץ חדש: הרשימה כוללת את הקובץ או שלא. חילופיות עוסקת במצב משותף, לא בשאלה איזה שם של כלי כותב.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>סימון כהושלם</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="03-three-wire-formats.html"><span class="label">הקודם</span>קריאה אחת לכלי, שלושה פורמטים על הקו</a><a class="pn next" href="05-retries.html"><span class="label">הבא</span>לנסות שוב את השרת, לא את המודל: שגיאות, backoff ו־jitter</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 הגנה על סוכני AI</span>
+  <nav aria-label="Footer">
+    <a href="../../../he/workshop/">סדנאות לצוותים</a>
+    <a href="../../../he/courses/">קורסים מקוונים</a>
+    <a href="mailto:shimon@defendingaiagents.com">יצירת קשר</a>
+    <a href="../../../.well-known/security.txt">אבטחה</a>
+    <a href="../../../learn/e03-agent-loop/04-parallel-calls.html" lang="en" hreflang="en">English</a>
+  </nav>
+</footer>
+<script src="../../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"כהה":"בהיר";
+b.setAttribute("aria-label","מעבר למצב "+(n==="dark"?"כהה":"בהיר"))};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

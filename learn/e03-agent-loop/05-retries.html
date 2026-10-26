@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Retry the server, not the model: errors, backoff and jitter · Defending AI Agents</title>
+<meta name="description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<link rel="canonical" href="https://defendingaiagents.com/learn/e03-agent-loop/05-retries.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/e03-agent-loop/05-retries.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/e03-agent-loop/05-retries.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/e03-agent-loop/05-retries.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Defending AI Agents">
+<meta property="og:title" content="Retry the server, not the model: errors, backoff and jitter · Defending AI Agents"><meta property="og:description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<meta property="og:url" content="https://defendingaiagents.com/learn/e03-agent-loop/05-retries.html"><meta property="og:image" content="https://defendingaiagents.com/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preload" href="../../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../assets/course.css"><script src="../../assets/progress.js" defer></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script><script>addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".math").forEach(function(e){katex.render(e.textContent,e,{displayMode:e.dataset.display==="1",throwOnError:false})})})</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="../../"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">Defending AI Agents</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="Switch colour theme"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>Theme</span></button>
+    <a class="lang label" href="../../he/learn/e03-agent-loop/05-retries.html" lang="he" hreflang="he">עברית</a>
+    <a class="btn" href="../../course/#waitlist" data-waitlist>Join waitlist<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">Menu</summary><nav aria-label="Menu"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="e03-agent-loop/05-retries" data-module="e03-agent-loop">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">Free preview</a><span>/</span><a href="./">E3</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="E3">
+      <p class="label"><em>E3</em> Applied</p>
+      <p class="side-title">The agent loop from scratch</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="e03-agent-loop/index"><span class="label">·</span><span>Overview</span></a></li><li data-stem="01-workflow-or-agent"><a href="01-workflow-or-agent.html" data-page-link="e03-agent-loop/01-workflow-or-agent"><span class="label">01</span><span>Who decides the next step? Workflows and agents</span></a></li><li data-stem="02-a-tool-is-three-texts"><a href="02-a-tool-is-three-texts.html" data-page-link="e03-agent-loop/02-a-tool-is-three-texts"><span class="label">02</span><span>A tool is a schema, a function and an error message, and the model reads two of them</span></a></li><li data-stem="03-three-wire-formats"><a href="03-three-wire-formats.html" data-page-link="e03-agent-loop/03-three-wire-formats"><span class="label">03</span><span>One tool call, three wire formats</span></a></li><li data-stem="04-parallel-calls"><a href="04-parallel-calls.html" data-page-link="e03-agent-loop/04-parallel-calls"><span class="label">04</span><span>Parallel tool calls: reads commute, writes do not</span></a></li><li data-stem="05-retries" aria-current="page"><a href="05-retries.html" data-page-link="e03-agent-loop/05-retries"><span class="label">05</span><span>Retry the server, not the model: errors, backoff and jitter</span></a></li><li data-stem="06-budgets"><a href="06-budgets.html" data-page-link="e03-agent-loop/06-budgets"><span class="label">06</span><span>A step is not a unit of cost: four budgets and a stop reason</span></a></li><li data-stem="07-structured-answers"><a href="07-structured-answers.html" data-page-link="e03-agent-loop/07-structured-answers"><span class="label">07</span><span>An answer a program can read: schemas and one repair</span></a></li><li data-stem="08-streaming"><a href="08-streaming.html" data-page-link="e03-agent-loop/08-streaming"><span class="label">08</span><span>A streamed tool call is half a JSON object</span></a></li><li data-stem="09-long-horizons"><a href="09-long-horizons.html" data-page-link="e03-agent-loop/09-long-horizons"><span class="label">09</span><span>How far can a loop go? Compounding error, code actions and the time horizon</span></a></li><li data-stem="build"><a href="build.html" data-page-link="e03-agent-loop/build"><span class="label">B</span><span>Build: Module 1&#x27;s loop, made to run unattended, and measured</span></a></li><li data-stem="at-scale"><a href="at-scale.html" data-page-link="e03-agent-loop/at-scale"><span class="label">S</span><span>At scale: the same loop, ten thousand times at once</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="e03-agent-loop/problems"><span class="label">P</span><span>Problems</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="e03-agent-loop" data-total="13" data-problems="15" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">E3 · Lesson 05</p>
+        <h1>Retry the server, not the model: errors, backoff and jitter</h1>
+      </header>
+      <p>Two kinds of failure reach the loop. They go to different places. When a <strong>tool</strong> fails (the file does not exist, the customer ID is wrong), the error goes back to the model as the tool's result, because the model can do something about it. When the <strong>model call</strong> fails (the server timed out, answered 503, or refused with 429), the model never hears of it: the loop waits and asks again. Mixing them up produces either an agent that gives up on a busy server or one that silently retries &quot;file not found&quot; until its budget runs out.</p>
+<h2 id="retry-what-may-pass-fail-what-will-not">Retry what may pass, fail what will not</h2>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Failure</th>
+<th>Retry?</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>timeout, refused connection, server hung up mid-reply</td>
+<td>yes</td>
+<td>transient by nature</td>
+</tr>
+<tr>
+<td>429 Too Many Requests</td>
+<td>yes, after Retry-After</td>
+<td>the server said &quot;later&quot;</td>
+</tr>
+<tr>
+<td>500, 502, 503, 504</td>
+<td>yes</td>
+<td>overloaded or restarting</td>
+</tr>
+<tr>
+<td>408, 425</td>
+<td>yes</td>
+<td>the request was early or slow, not wrong</td>
+</tr>
+<tr>
+<td>400, 401, 403, 404, 422</td>
+<td>no</td>
+<td>the same request fails the same way every time</td>
+</tr>
+<tr>
+<td>a reply that will not parse, a <code>KeyError</code> in your code</td>
+<td>no</td>
+<td>a bug: retrying hides it</td>
+</tr>
+</tbody>
+</table></div>
+<p><code>classify</code> in <code>loop/retry.py</code> encodes this table. The last row matters more than it looks. A retry policy that catches every exception turns a bug in your adapter into four slow failures, and then a report of &quot;server unreliable&quot;.</p>
+<h2 id="the-arithmetic-of-retries">The arithmetic of retries</h2>
+<p>A model call fails independently with probability <span class="math" data-display="0">p</span>. With <span class="math" data-display="0">k</span> attempts it fails only if all <span class="math" data-display="0">k</span> fail, so it succeeds with probability <span class="math" data-display="0">1 - p^k</span>. A task that needs <span class="math" data-display="0">n</span> successful calls succeeds with probability</p>
+<div class="math" data-display="1">P(\text{task}) = (1 - p^k)^n .</div>
+<p>Reliability compounds badly: at <span class="math" data-display="0">p = 0.05</span>, a five-call task with no retries (<span class="math" data-display="0">k = 1</span>) succeeds <span class="math" data-display="0">0.95^5 = 77.4\%</span> of the time. The study checks the formula against the loop itself. A scripted five-call task runs against a client that fails each call with probability <span class="math" data-display="0">p</span>, 4,000 runs per cell:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th><span class="math" data-display="0">p</span></th>
+<th style="text-align:right">attempts <span class="math" data-display="0">k</span></th>
+<th style="text-align:right">measured</th>
+<th>95% interval</th>
+<th style="text-align:right"><span class="math" data-display="0">(1-p^k)^5</span></th>
+<th style="text-align:right">model calls per run</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.02</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">90.0%</td>
+<td>89.1% to 90.9%</td>
+<td style="text-align:right">90.4%</td>
+<td style="text-align:right">4.80</td>
+</tr>
+<tr>
+<td>0.02</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">99.8%</td>
+<td>99.6% to 99.9%</td>
+<td style="text-align:right">99.8%</td>
+<td style="text-align:right">5.09</td>
+</tr>
+<tr>
+<td>0.05</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">77.4%</td>
+<td>76.1% to 78.7%</td>
+<td style="text-align:right">77.4%</td>
+<td style="text-align:right">4.52</td>
+</tr>
+<tr>
+<td>0.05</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">98.5%</td>
+<td>98.1% to 98.8%</td>
+<td style="text-align:right">98.8%</td>
+<td style="text-align:right">5.22</td>
+</tr>
+<tr>
+<td>0.05</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">100.0%</td>
+<td>99.9% to 100.0%</td>
+<td style="text-align:right">99.9%</td>
+<td style="text-align:right">5.26</td>
+</tr>
+<tr>
+<td>0.2</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">32.4%</td>
+<td>31.0% to 33.9%</td>
+<td style="text-align:right">32.8%</td>
+<td style="text-align:right">3.35</td>
+</tr>
+<tr>
+<td>0.2</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">95.9%</td>
+<td>95.2% to 96.4%</td>
+<td style="text-align:right">96.1%</td>
+<td style="text-align:right">6.09</td>
+</tr>
+<tr>
+<td>0.2</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">99.1%</td>
+<td>98.8% to 99.4%</td>
+<td style="text-align:right">99.2%</td>
+<td style="text-align:right">6.21</td>
+</tr>
+</tbody>
+</table></div>
+<p>Every theoretical value lies inside its interval. On the live model the same thing happens (the build): with a 10% failure rate injected into every model call, 5 of 20 Module 1 runs crashed on their first 503, the number <span class="math" data-display="0">1 - 0.9^{2.7}</span> predicts for runs of 2.7 calls, and no E3 run did. Two retries take a flaky server from 77% to near certainty, at a cost of about 0.7 extra calls per run. Module 1's loop is the <span class="math" data-display="0">k = 1</span> row: at <span class="math" data-display="0">p = 0.2</span> it finishes one run in three. Real failures are not independent (a server that is down stays down for a while), so treat the formula as a best case and the interval column as the cost of believing it.</p>
+<h2 id="how-long-to-wait-exponential-backoff-with-full-jitter">How long to wait: exponential backoff with full jitter</h2>
+<p>Retrying at once hits a struggling server when it can least cope. The standard wait doubles with each attempt up to a cap. The standard mistake is to make it exact. When a thousand agents fail at the same moment (a deploy, a network blip), exact backoff makes them retry at exactly 0.5 s, then 1 s, then 2 s: the herd stays a herd. <strong>Full jitter</strong> draws each wait uniformly from <span class="math" data-display="0">[0, \min(\text{cap}, \text{base} \cdot 2^n)]</span> (Brooker, 2015):</p>
+<pre><code class="language-python">def backoff(attempt, base=0.5, cap=8.0, rng=None):
+    rng = rng or random
+    return rng.uniform(0.0, min(cap, base * 2 ** attempt))
+</code></pre>
+<p>The study's herd: 1,000 clients fail at <span class="math" data-display="0">t = 0</span> and each retries four times; load is counted in 100 ms buckets.</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:right">retry 1</th>
+<th style="text-align:right">retry 2</th>
+<th style="text-align:right">retry 3</th>
+<th style="text-align:right">retry 4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no jitter: peak requests in one bucket</td>
+<td style="text-align:right">1,000</td>
+<td style="text-align:right">1,000</td>
+<td style="text-align:right">1,000</td>
+<td style="text-align:right">1,000</td>
+</tr>
+<tr>
+<td>full jitter</td>
+<td style="text-align:right">211</td>
+<td style="text-align:right">120</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">29</td>
+</tr>
+</tbody>
+</table></div>
+<p>Without jitter, every retry is the original spike moved later. With full jitter, the first retry already spreads the herd five-fold, and later retries spread it further, because each wait is drawn over a wider window.</p>
+<h2 id="retry-after">Retry-After</h2>
+<p>A 429 or 503 may carry <code>Retry-After: 7</code>, the server's own estimate of when to come back (RFC 9110, section 10.2.3). Honour it: wait at least that long, and wait longer if the backoff draw says so. That is <code>max(backoff, retry_after)</code> in <code>call_with_retries</code>. A thousand clients that all honour the same Retry-After exactly come back together, which is a herd again. Problem 7 asks how to fix that without ignoring the server.</p>
+<h2 id="what-the-budget-sees">What the budget sees</h2>
+<p>A failed model call costs no tokens, so <code>run</code> charges the budget only for successful calls. It still costs wall-clock time, and the seconds budget (lesson 6) counts that. An agent behind a struggling server should stop on its time limit before it has retried for ten minutes.</p>
+<h2 id="check-yourself">Check yourself</h2>
+<ol>
+<li>Your adapter has a bug that raises <code>KeyError('choices')</code> on every reply. What does a retry-everything policy report after four attempts, and what does <code>classify</code> do instead?</li>
+<li>At <span class="math" data-display="0">p = 0.1</span>, how many attempts per call keep a ten-call task's success above 99%?</li>
+<li>Why does full jitter spread the herd <em>more</em> at the fourth retry than at the first?</li>
+</ol>
+<details class="answers"><summary>Answers</summary>
+<ol>
+<li>After four attempts and about 4 s of backoff it reports the same <code>KeyError</code>, now looking like a flaky server. <code>classify</code> calls <code>KeyError</code> &quot;fail&quot;, so the loop stops on the first attempt and reports the bug as it is.</li>
+<li>Three. <span class="math" data-display="0">(1 - 0.1^2)^{10} = 0.99^{10} = 90.4\%</span>, too low. <span class="math" data-display="0">(1 - 0.1^3)^{10} = 0.999^{10} = 99.0\%</span>, just enough. <span class="math" data-display="0">(1 - 0.1^4)^{10} = 99.9\%</span>.</li>
+<li>Each wait is uniform on <span class="math" data-display="0">[0, \text{base} \cdot 2^n]</span>, so the window doubles with each attempt, and because the waits add up, the spread of the cumulative retry times grows too. The first retry spreads 1,000 clients over 0.5 s, five buckets. The fourth spreads them over the sum of four draws, about 7.5 s wide.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>Mark complete</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="04-parallel-calls.html"><span class="label">Previous</span>Parallel tool calls: reads commute, writes do not</a><a class="pn next" href="06-budgets.html"><span class="label">Next</span>A step is not a unit of cost: four budgets and a stop reason</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 Defending AI Agents</span>
+  <nav aria-label="Footer">
+    <a href="../../workshop/">Team workshops</a>
+    <a href="../../courses/">Online courses</a>
+    <a href="mailto:shimon@defendingaiagents.com">Contact</a>
+    <a href="../../.well-known/security.txt">Security</a>
+    <a href="../../he/learn/e03-agent-loop/05-retries.html" lang="he" hreflang="he">עברית</a>
+  </nav>
+</footer>
+<script src="../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"Dark":"Light";
+b.setAttribute("aria-label","Switch to "+n+" mode")};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

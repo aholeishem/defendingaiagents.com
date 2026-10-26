@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="he" dir="rtl" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>מי מחליט על הצעד הבא? תהליכים קבועים וסוכנים · הגנה על סוכני AI</title>
+<meta name="description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<link rel="canonical" href="https://defendingaiagents.com/he/learn/e03-agent-loop/01-workflow-or-agent.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/e03-agent-loop/01-workflow-or-agent.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/e03-agent-loop/01-workflow-or-agent.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/e03-agent-loop/01-workflow-or-agent.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="הגנה על סוכני AI">
+<meta property="og:title" content="מי מחליט על הצעד הבא? תהליכים קבועים וסוכנים · הגנה על סוכני AI"><meta property="og:description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<meta property="og:url" content="https://defendingaiagents.com/he/learn/e03-agent-loop/01-workflow-or-agent.html"><meta property="og:image" content="https://defendingaiagents.com/og-he.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="he_IL"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+<link rel="preload" href="../../../assets/fonts/rubik-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../../assets/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../../assets/course.css"><script src="../../../assets/progress.js" defer></script><script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs";const v=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();const th=document.documentElement.dataset.theme;const dark=th?th==="dark":matchMedia("(prefers-color-scheme: dark)").matches;mermaid.initialize({startOnLoad:true,theme:"base",fontFamily:"Inter, sans-serif",themeVariables:{darkMode:dark,background:v("--bg"),primaryColor:v("--bg-2"),primaryTextColor:v("--fg"),primaryBorderColor:v("--line-2"),lineColor:v("--dim"),secondaryColor:v("--bg"),tertiaryColor:v("--bg-2"),noteBkgColor:v("--bg-2"),noteTextColor:v("--fg"),noteBorderColor:v("--sig"),actorBkg:v("--bg-2"),actorBorder:v("--line-2"),actorTextColor:v("--fg"),signalColor:v("--fg"),signalTextColor:v("--fg"),clusterBkg:v("--bg"),clusterBorder:v("--line-2"),edgeLabelBackground:v("--bg"),fontSize:"14px"}});</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script><script>addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".math").forEach(function(e){katex.render(e.textContent,e,{displayMode:e.dataset.display==="1",throwOnError:false})})})</script>
+</head>
+<body>
+<a class="skip" href="#main">דילוג לתוכן</a>
+<header class="top">
+  <a class="brand" href="../../../learn/e03-agent-loop/01-workflow-or-agent.html"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">הגנה על סוכני AI</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="החלפת ערכת צבע"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>ערכת צבע</span></button>
+    <a class="lang label" href="../../../learn/e03-agent-loop/01-workflow-or-agent.html" lang="en" hreflang="en">English</a>
+    <a class="btn" href="../../../he/course/#waitlist" data-waitlist>לרשימת ההמתנה<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">תפריט</summary><nav aria-label="תפריט"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="e03-agent-loop/01-workflow-or-agent" data-module="e03-agent-loop">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">תצוגה מקדימה חינמית</a><span>/</span><a href="./">E3</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="E3">
+      <p class="label"><em>E3</em> מעשי</p>
+      <p class="side-title">לולאת הסוכן מאפס</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="e03-agent-loop/index"><span class="label">·</span><span>סקירה</span></a></li><li data-stem="01-workflow-or-agent" aria-current="page"><a href="01-workflow-or-agent.html" data-page-link="e03-agent-loop/01-workflow-or-agent"><span class="label">01</span><span>מי מחליט על הצעד הבא? תהליכים קבועים וסוכנים</span></a></li><li data-stem="02-a-tool-is-three-texts"><a href="02-a-tool-is-three-texts.html" data-page-link="e03-agent-loop/02-a-tool-is-three-texts"><span class="label">02</span><span>כלי הוא סכמה, פונקציה והודעת שגיאה, והמודל קורא שניים מהם</span></a></li><li data-stem="03-three-wire-formats"><a href="03-three-wire-formats.html" data-page-link="e03-agent-loop/03-three-wire-formats"><span class="label">03</span><span>קריאה אחת לכלי, שלושה פורמטים על הקו</span></a></li><li data-stem="04-parallel-calls"><a href="04-parallel-calls.html" data-page-link="e03-agent-loop/04-parallel-calls"><span class="label">04</span><span>קריאות מקבילות לכלים: פעולות קריאה מתחלפות, פעולות כתיבה לא</span></a></li><li data-stem="05-retries"><a href="05-retries.html" data-page-link="e03-agent-loop/05-retries"><span class="label">05</span><span>לנסות שוב את השרת, לא את המודל: שגיאות, backoff ו־jitter</span></a></li><li data-stem="06-budgets"><a href="06-budgets.html" data-page-link="e03-agent-loop/06-budgets"><span class="label">06</span><span>צעד הוא לא יחידת עלות: ארבעה תקציבים וסיבת עצירה אחת</span></a></li><li data-stem="07-structured-answers"><a href="07-structured-answers.html" data-page-link="e03-agent-loop/07-structured-answers"><span class="label">07</span><span>תשובה שתוכנה יכולה לקרוא: סכמות ותיקון אחד</span></a></li><li data-stem="08-streaming"><a href="08-streaming.html" data-page-link="e03-agent-loop/08-streaming"><span class="label">08</span><span>קריאה לכלי בסטרימינג היא חצי אובייקט JSON</span></a></li><li data-stem="09-long-horizons"><a href="09-long-horizons.html" data-page-link="e03-agent-loop/09-long-horizons"><span class="label">09</span><span>כמה רחוק לולאה יכולה להגיע? שגיאה מצטברת, פעולות קוד ואופק הזמן</span></a></li><li data-stem="build"><a href="build.html" data-page-link="e03-agent-loop/build"><span class="label">B</span><span>הבנייה: הלולאה של מודול 1, שהופכת לכזו שרצה בלי השגחה, ונמדדת</span></a></li><li data-stem="at-scale"><a href="at-scale.html" data-page-link="e03-agent-loop/at-scale"><span class="label">S</span><span>בקנה מידה: אותה לולאה, עשרת אלפים פעמים בבת אחת</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="e03-agent-loop/problems"><span class="label">P</span><span>בעיות</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="e03-agent-loop" data-total="13" data-problems="15" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">E3 · שיעור 01</p>
+        <h1>מי מחליט על הצעד הבא? תהליכים קבועים וסוכנים</h1>
+      </header>
+      <p>הסוכן של מודול 1 קרא דוח ושלח סיכום במייל. סקריפט של שתים־עשרה שורות יכול לעשות את אותו הדבר: לקרוא את הקובץ, לבקש מהמודל שלוש נקודות, לשלוח אותן. הסקריפט והסוכן משתמשים באותו מודל ובאותם כלים. ההבדל ביניהם אחד: מי בוחר מה קורה עכשיו.</p>
+<h2 id="two-kinds-of-program">שני סוגים של תוכנה</h2>
+<p><strong>תהליך קבוע (workflow)</strong> הוא תוכנה שאתם כתבתם. המודל ממלא בה משבצות (סכם את זה, סווג את זה), והקוד שלכם קובע את סדר הצעדים. <strong>סוכן (agent)</strong> הוא לולאה שבה המודל בוחר את הצעד הבא, והקוד שלכם רק מבצע אותו.</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th></th>
+<th>תהליך קבוע</th>
+<th>סוכן</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>מי בוחר את הצעד הבא</td>
+<td>הקוד שלכם</td>
+<td>המודל</td>
+</tr>
+<tr>
+<td>מספר הקריאות למודל</td>
+<td>קבוע וידוע מראש</td>
+<td>נקבע בזמן ריצה</td>
+</tr>
+<tr>
+<td>עלות וזמן תגובה (latency)</td>
+<td>צפויים</td>
+<td>התפלגות עם זנב ארוך</td>
+</tr>
+<tr>
+<td>נבדק באמצעות</td>
+<td>בדיקות יחידה רגילות</td>
+<td>מדידת שיעורי הצלחה על פני ריצות רבות</td>
+</tr>
+<tr>
+<td>מטפל ב</td>
+<td>מקרים שחזיתם</td>
+<td>חלק מהמקרים שלא חזיתם</td>
+</tr>
+</tbody>
+</table></div>
+<p>התאום הסטטיסטי הוא ההבדל בין תכנון ניסוי קבוע לתכנון סדרתי. תהליך קבוע הוא צינור של אומדים שמופעלים בסדר קבוע. סוכן הוא מדיניות (policy) <span class="math" data-display="0">\pi(a_t \mid h_t)</span>: בצעד <span class="math" data-display="0">t</span> הוא דוגם פעולה <span class="math" data-display="0">a_t</span> (קריאה לכלי, או תשובה) בהינתן ההיסטוריה <span class="math" data-display="0">h_t</span> של כל מה שקרה עד כה. הסביבה עונה, התשובה מצטרפת להיסטוריה, והמדיניות דוגמת שוב. זהו תהליך החלטה מרקובי (Markov decision process, MDP) שהמדיניות שלו היא מודל שפה בטמפרטורה 0.7, והאופק שלו הוא כל מה שהלולאה שלכם מרשה.</p>
+<figure class="diagram"><pre class="mermaid">flowchart RL
+  T[&quot;משימה&quot;] --&gt; H[&quot;היסטוריה&quot;]
+  H --&gt; M{&quot;המודל דוגם&lt;br/&gt;את הצעד הבא&quot;}
+  M --&gt;|&quot;קריאות לכלים&quot;| X[&quot;הקוד שלכם מריץ אותן&quot;]
+  X --&gt;|&quot;תוצאות&quot;| H
+  M --&gt;|&quot;אין קריאה לכלי&quot;| A[&quot;תשובה&quot;]
+  B[&quot;תקציב&quot;] -.-&gt;|&quot;נבדק לפני&lt;br/&gt;כל קריאה&quot;| M
+</pre></figure>
+<h2 id="the-simplest-thing-that-works">הדבר הפשוט ביותר שעובד</h2>
+<p>העצה של צוותים שמוציאים סוכנים לפרודקשן היא להתחיל מהתוכנה הפשוטה ביותר שעושה את העבודה, ולהוסיף סוכנות רק היכן שזה משתלם (Anthropic, 2024). המדידה המוכרת ביותר היא Agentless (Xia et al., 2024). על SWE-bench Lite, צינור קבוע בן שלושה שלבים (לאתר את הבאג, לכתוב תיקון, לאמת אותו), שבו המודל אף פעם לא בוחר את הפעולה הבאה, פתר 32.0% מהבעיות ב־0.70 דולר לבעיה. זה היה הציון הגבוה ביותר מבין כל מערכות הקוד הפתוח באותה עת, וכל האחרות היו סוכנים מלאים. Kapoor et al. (2024) מצאו את אותו דפוס על פני בנצ'מרקים רבים: כשמדווחים על עלות לצד דיוק, בסיסי השוואה פשוטים משתווים לעיתים קרובות לסוכנים משוכללים, בשבריר מהמחיר.</p>
+<p>זה לא הופך סוכנים לטעות. תהליך קבוע נכשל בכל מקרה שהכותב שלו לא חזה. סוכן יכול להתאושש מקובץ חסר בכך שירשום את תוכן התיקייה, וממספר לקוח שגוי בכך שיחפש. השתמשו בתהליך קבוע כשהצעדים ידועים, ובסוכן כשהצעדים תלויים במה שהכלים מחזירים. הרבה מערכות בפרודקשן הן תהליכים קבועים עם צעד סוכני אחד בפנים.</p>
+<h2 id="what-this-module-builds">מה המודול הזה בונה</h2>
+<p>תהפכו את הלולאה של מודול 1 ללולאה שיכולה לרוץ בלי השגחה. כל שיעור מוסיף חלק אחד, והבנייה מודדת מה הם נותנים יחד על עשרים משימות מעבדה:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>שיעור</th>
+<th>מוסיף</th>
+<th>הלולאה של מודול 1, במקום זאת</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>ארגומנטים מפוענחים ונבדקים, שגיאות מוחזרות למודל</td>
+<td>קורסת על JSON פגום; מעבירה לכלי ארגומנטים שגויים</td>
+</tr>
+<tr>
+<td>3</td>
+<td>מתאמים לפורמטים אחרים על הקו</td>
+<td>מדברת פורמט אחד</td>
+</tr>
+<tr>
+<td>4</td>
+<td>פעולות קריאה במקביל, פעולות כתיבה לפי הסדר</td>
+<td>מריצה כל קריאה בתורה</td>
+</tr>
+<tr>
+<td>5</td>
+<td>ניסיונות חוזרים על כשלים של השרת</td>
+<td>מתה על ה־503 הראשון</td>
+</tr>
+<tr>
+<td>6</td>
+<td>ארבעה תקציבים וסיבת עצירה</td>
+<td>נעצרת אחרי עשרה צעדים, ולא אומרת שום דבר מעבר לזה</td>
+</tr>
+<tr>
+<td>7</td>
+<td>תשובות שנבדקות מול סכמה</td>
+<td>מחזירה כל טקסט שחזר</td>
+</tr>
+<tr>
+<td>8</td>
+<td>סטרימינג</td>
+<td>מחכה לתשובה כולה</td>
+</tr>
+</tbody>
+</table></div>
+<p>E7 חוזר לתהליכים קבועים ולסוכנים בקנה מידה של כמה סוכנים, עם אותה שאלה: מי מחליט על הצעד הבא, וכמה עולה כל בחירה?</p>
+<h2 id="check-yourself">בדקו את עצמכם</h2>
+<ol>
+<li>בוט תמיכה צריך, לכל פנייה, לאתר את הלקוח, לבדוק את מדיניות ההחזרים ולנסח תשובה. תהליך קבוע או סוכן, ולמה?</li>
+<li>Agentless פתר 32.0% מ־SWE-bench Lite. מה הייתם צריכים לדעת לפני שתסיקו שצינור מנצח סוכן על המשימות שלכם?</li>
+<li>בתמונת ה־MDP, מה ממלא את התפקיד של פונקציית המעבר, ולמה אי אפשר לכתוב אותה?</li>
+</ol>
+<details class="answers"><summary>תשובות</summary>
+<ol>
+<li>תהליך קבוע. שלושת הצעדים והסדר שלהם ידועים מראש, ולכן תוכנה קבועה עושה אותם בעלות צפויה ואפשר לבדוק אותה בבדיקות יחידה. הוסיפו צעד סוכני רק אם יש פניות שדורשות צעדים שאף אחד לא יכול למנות מראש.</li>
+<li>האם המשימות שלכם דומות לאלה של SWE-bench Lite (תיקוני באגים במאגרי קוד עם בדיקות), כמה עולה כל מערכת למשימה אצלכם, ומה רווח הסמך (confidence interval) של שני שיעורי ההצלחה כשמודדים אותם על התפלגות המשימות שלכם. התוצאה של Agentless היא בנצ'מרק אחד, אוכלוסייה של 300 בעיות, בנקודת זמן אחת.</li>
+<li>הכלים והעולם שמאחוריהם: הקבצים של המעבדה, תיבת הדואר וה־CRM קובעים מה כל קריאה מחזירה. אי אפשר לכתוב אותה כי היא הסביבה עצמה. זו הסיבה שמעריכים סוכנים בכך שמריצים אותם, ולא בכך שמנתחים אותם.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>סימון כהושלם</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="./"><span class="label">הקודם</span>סקירה</a><a class="pn next" href="02-a-tool-is-three-texts.html"><span class="label">הבא</span>כלי הוא סכמה, פונקציה והודעת שגיאה, והמודל קורא שניים מהם</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 הגנה על סוכני AI</span>
+  <nav aria-label="Footer">
+    <a href="../../../he/workshop/">סדנאות לצוותים</a>
+    <a href="../../../he/courses/">קורסים מקוונים</a>
+    <a href="mailto:shimon@defendingaiagents.com">יצירת קשר</a>
+    <a href="../../../.well-known/security.txt">אבטחה</a>
+    <a href="../../../learn/e03-agent-loop/01-workflow-or-agent.html" lang="en" hreflang="en">English</a>
+  </nav>
+</footer>
+<script src="../../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"כהה":"בהיר";
+b.setAttribute("aria-label","מעבר למצב "+(n==="dark"?"כהה":"בהיר"))};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

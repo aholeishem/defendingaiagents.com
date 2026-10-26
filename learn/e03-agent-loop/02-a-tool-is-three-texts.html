@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A tool is a schema, a function and an error message, and the model reads two of them · Defending AI Agents</title>
+<meta name="description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<link rel="canonical" href="https://defendingaiagents.com/learn/e03-agent-loop/02-a-tool-is-three-texts.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/e03-agent-loop/02-a-tool-is-three-texts.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/e03-agent-loop/02-a-tool-is-three-texts.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/e03-agent-loop/02-a-tool-is-three-texts.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Defending AI Agents">
+<meta property="og:title" content="A tool is a schema, a function and an error message, and the model reads two of them · Defending AI Agents"><meta property="og:description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<meta property="og:url" content="https://defendingaiagents.com/learn/e03-agent-loop/02-a-tool-is-three-texts.html"><meta property="og:image" content="https://defendingaiagents.com/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preload" href="../../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../assets/course.css"><script src="../../assets/progress.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="../../"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">Defending AI Agents</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="Switch colour theme"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>Theme</span></button>
+    <a class="lang label" href="../../he/learn/e03-agent-loop/02-a-tool-is-three-texts.html" lang="he" hreflang="he">עברית</a>
+    <a class="btn" href="../../course/#waitlist" data-waitlist>Join waitlist<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">Menu</summary><nav aria-label="Menu"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="e03-agent-loop/02-a-tool-is-three-texts" data-module="e03-agent-loop">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">Free preview</a><span>/</span><a href="./">E3</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="E3">
+      <p class="label"><em>E3</em> Applied</p>
+      <p class="side-title">The agent loop from scratch</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="e03-agent-loop/index"><span class="label">·</span><span>Overview</span></a></li><li data-stem="01-workflow-or-agent"><a href="01-workflow-or-agent.html" data-page-link="e03-agent-loop/01-workflow-or-agent"><span class="label">01</span><span>Who decides the next step? Workflows and agents</span></a></li><li data-stem="02-a-tool-is-three-texts" aria-current="page"><a href="02-a-tool-is-three-texts.html" data-page-link="e03-agent-loop/02-a-tool-is-three-texts"><span class="label">02</span><span>A tool is a schema, a function and an error message, and the model reads two of them</span></a></li><li data-stem="03-three-wire-formats"><a href="03-three-wire-formats.html" data-page-link="e03-agent-loop/03-three-wire-formats"><span class="label">03</span><span>One tool call, three wire formats</span></a></li><li data-stem="04-parallel-calls"><a href="04-parallel-calls.html" data-page-link="e03-agent-loop/04-parallel-calls"><span class="label">04</span><span>Parallel tool calls: reads commute, writes do not</span></a></li><li data-stem="05-retries"><a href="05-retries.html" data-page-link="e03-agent-loop/05-retries"><span class="label">05</span><span>Retry the server, not the model: errors, backoff and jitter</span></a></li><li data-stem="06-budgets"><a href="06-budgets.html" data-page-link="e03-agent-loop/06-budgets"><span class="label">06</span><span>A step is not a unit of cost: four budgets and a stop reason</span></a></li><li data-stem="07-structured-answers"><a href="07-structured-answers.html" data-page-link="e03-agent-loop/07-structured-answers"><span class="label">07</span><span>An answer a program can read: schemas and one repair</span></a></li><li data-stem="08-streaming"><a href="08-streaming.html" data-page-link="e03-agent-loop/08-streaming"><span class="label">08</span><span>A streamed tool call is half a JSON object</span></a></li><li data-stem="09-long-horizons"><a href="09-long-horizons.html" data-page-link="e03-agent-loop/09-long-horizons"><span class="label">09</span><span>How far can a loop go? Compounding error, code actions and the time horizon</span></a></li><li data-stem="build"><a href="build.html" data-page-link="e03-agent-loop/build"><span class="label">B</span><span>Build: Module 1&#x27;s loop, made to run unattended, and measured</span></a></li><li data-stem="at-scale"><a href="at-scale.html" data-page-link="e03-agent-loop/at-scale"><span class="label">S</span><span>At scale: the same loop, ten thousand times at once</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="e03-agent-loop/problems"><span class="label">P</span><span>Problems</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="e03-agent-loop" data-total="13" data-problems="15" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">E3 · Lesson 02</p>
+        <h1>A tool is a schema, a function and an error message, and the model reads two of them</h1>
+      </header>
+      <p>A tool has three parts. The function is the only part the model never sees. The other two are text it reads: the schema, which says what it may ask for, and the error message, which says what went wrong when it asked badly. In this loop, the code you write that the model reads matters more than the code that does the work.</p>
+<h2 id="the-schema-is-a-prompt">The schema is a prompt</h2>
+<p>Module 1 lesson 8 showed the rendered prompt: every tool's name, description and parameter schema are serialised into the system turn, and the model reads them like any other text. So a schema does two jobs. It is documentation, which the model may follow or ignore, and it is a contract, which only your code can enforce. One of the lab's tools:</p>
+<pre><code class="language-json">{&quot;type&quot;: &quot;function&quot;, &quot;function&quot;: {&quot;name&quot;: &quot;send_email&quot;, &quot;description&quot;: &quot;Send an e-mail.&quot;,
+  &quot;parameters&quot;: {&quot;type&quot;: &quot;object&quot;,
+    &quot;properties&quot;: {&quot;to&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;description&quot;: &quot;Recipient address.&quot;},
+                   &quot;subject&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;description&quot;: &quot;Subject line.&quot;},
+                   &quot;body&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;description&quot;: &quot;Plain-text body.&quot;}},
+    &quot;required&quot;: [&quot;to&quot;, &quot;subject&quot;, &quot;body&quot;]}}}
+</code></pre>
+<p>Nothing in this stops the model from writing <code>{&quot;to&quot;: &quot;manager@acme.example&quot;, &quot;subject&quot;: &quot;Q3&quot;</code> and running out of tokens before the closing brace. Gorilla (Patil et al., 2023) measured the general version of the problem: even the strongest models of the time wrote wrong arguments and invented API usages often enough that a model fine-tuned on API documentation beat them. Two failures need different handling.</p>
+<h2 id="failure-1-not-json-at-all">Failure 1: not JSON at all</h2>
+<p>Chat Completions servers send <code>arguments</code> as a <strong>string</strong> of JSON, so it may not parse. Module 1's loop does this:</p>
+<pre><code class="language-python">args = json.loads(args) if isinstance(args, str) else args   # agent/agent.py
+</code></pre>
+<p>A malformed string raises <code>JSONDecodeError</code>, and the whole run dies with nothing reported. <code>loop/schema.py</code> returns the failure as data instead:</p>
+<pre><code class="language-python">&gt;&gt;&gt; parse_arguments('{&quot;path&quot;: &quot;notes/q3-report.txt&quot;,}')
+(None, &quot;arguments are not valid JSON: Expecting property name enclosed in double quotes at character 31&quot;)
+&gt;&gt;&gt; parse_arguments(&quot;&quot;)
+({}, None)                  # some servers send &quot;&quot; for a call with no arguments
+</code></pre>
+<h2 id="failure-2-json-but-not-what-the-schema-asked-for">Failure 2: JSON, but not what the schema asked for</h2>
+<p><code>SEND</code> is the check's version of <code>send_email</code>'s schema, with <code>&quot;additionalProperties&quot;: false</code> added:</p>
+<pre><code class="language-python">&gt;&gt;&gt; check_arguments(SEND, {&quot;to&quot;: &quot;x&quot;, &quot;subject&quot;: 3, &quot;cc&quot;: &quot;boss&quot;})
+[&quot;missing required field 'body'&quot;, &quot;'subject' must be string, got integer&quot;,
+ &quot;unexpected field 'cc' (allowed: body, subject, to)&quot;]
+</code></pre>
+<p><code>check_arguments</code> covers the part of JSON Schema that tool definitions use: <code>type</code>, <code>properties</code>, <code>required</code>, <code>additionalProperties: false</code>, <code>enum</code> and <code>items</code>. Two details are easy to miss. In JSON Schema <code>3.0</code> is an integer and <code>true</code> is not, while in Python <code>True == 1</code>, so a naive <code>isinstance(v, int)</code> accepts a boolean as a count. And without <code>additionalProperties: false</code>, a field the schema does not list passes. The lab's <code>send_email</code> above does not set it, so <code>{&quot;to&quot;: ..., &quot;subject&quot;: ..., &quot;body&quot;: ..., &quot;cc&quot;: &quot;boss@acme.example&quot;}</code> passes the check, and the tool silently ignores a recipient the model thought it had added. For an optional field, a misspelling (<code>&quot;subjcet&quot;</code>) passes the same way. Tighten the schemas you own. For the ones you do not, the check can only enforce what they say.</p>
+<h2 id="the-error-message-is-the-second-prompt">The error message is the second prompt</h2>
+<p>Both errors go back to the model as the tool's result, and the tool does not run:</p>
+<pre><code class="language-text">ERROR: send_email: invalid arguments: missing required field 'body'.
+</code></pre>
+<p>That message is the model's only information about what went wrong, so write it for a reader that will act on it immediately. Three rules:</p>
+<ol>
+<li><strong>Name the field and the fix.</strong> &quot;invalid arguments&quot; alone produces the same call again. &quot;missing required field 'body'&quot; produces a call with a body.</li>
+<li><strong>List the alternatives.</strong> An unknown tool gets the list of real ones: <code>ERROR: no tool named 'email_send'. Available: list_files, read_file, ...</code>.</li>
+<li><strong>Never let the function run on arguments that failed the check.</strong> A tool that &quot;does its best&quot; with <code>{&quot;to&quot;: 3}</code> has made a decision the model did not ask for.</li>
+</ol>
+<p>How often does it matter? On the twenty lab tasks, <code>qwen3:4b</code> wrote well-formed, schema-valid arguments in all 120 runs (the build): no call refused, no crash. A small model on a tool list of thirteen gets the shape right. The checks are for the day it does not: a longer tool list, a quantised model, a truncated reply, or a schema with an enum the model has never seen. Those rare failures are the ones that crash an unattended loop at three in the morning.</p>
+<h2 id="where-the-schema-cannot-help">Where the schema cannot help</h2>
+<p>A schema checks shape, not meaning. <code>{&quot;to&quot;: &quot;attacker@evil.example&quot;, &quot;subject&quot;: &quot;Q3&quot;, &quot;body&quot;: &quot;...&quot;}</code> passes every rule above. Whether that recipient is allowed is policy, and Modules 3 and 13 put it at the gateway, where the agent cannot rewrite it. Some providers offer a strict mode that constrains decoding to the schema, so that malformed arguments cannot be produced (E2 lesson 4). That removes failure 1 and most of failure 2. It removes none of the meaning problem.</p>
+<h2 id="check-yourself">Check yourself</h2>
+<ol>
+<li>A tool's schema lists <code>count</code> as <code>{&quot;type&quot;: &quot;integer&quot;}</code>. Which of <code>3</code>, <code>3.0</code>, <code>&quot;3&quot;</code>, <code>true</code> pass, and why does the answer for <code>true</code> differ between JSON Schema and a naive Python check?</li>
+<li>Why should a refused call still produce a <code>tool</code> message with the call's id, rather than being dropped silently?</li>
+<li>Your tool's description says &quot;date in ISO 8601&quot;, but the schema says only <code>{&quot;type&quot;: &quot;string&quot;}</code>. A model sends <code>&quot;next Tuesday&quot;</code>. Which layer should catch it, and what should the error say?</li>
+</ol>
+<details class="answers"><summary>Answers</summary>
+<ol>
+<li><code>3</code> and <code>3.0</code> pass: JSON Schema treats any number with no fractional part as an integer. <code>&quot;3&quot;</code> fails (a string), and so does <code>true</code> (a boolean). A naive Python <code>isinstance(v, int)</code> accepts <code>True</code>, because <code>bool</code> is a subclass of <code>int</code>, so the check must exclude booleans explicitly.</li>
+<li>The model asked for that call and is waiting for its result. Without a result carrying the same id, the next request has an assistant turn with an unanswered call. Some servers reject that outright, and every model then has to guess whether the call happened. The error result tells it exactly what did.</li>
+<li>The schema, with <code>&quot;format&quot;: &quot;date&quot;</code> or a <code>pattern</code>, and a check that enforces it. Until then the tool's own parser catches it and must raise an error that names the format: <code>'date' must be ISO 8601 (YYYY-MM-DD), got 'next Tuesday'</code>. The description alone is a request, not a check.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>Mark complete</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="01-workflow-or-agent.html"><span class="label">Previous</span>Who decides the next step? Workflows and agents</a><a class="pn next" href="03-three-wire-formats.html"><span class="label">Next</span>One tool call, three wire formats</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 Defending AI Agents</span>
+  <nav aria-label="Footer">
+    <a href="../../workshop/">Team workshops</a>
+    <a href="../../courses/">Online courses</a>
+    <a href="mailto:shimon@defendingaiagents.com">Contact</a>
+    <a href="../../.well-known/security.txt">Security</a>
+    <a href="../../he/learn/e03-agent-loop/02-a-tool-is-three-texts.html" lang="he" hreflang="he">עברית</a>
+  </nav>
+</footer>
+<script src="../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"Dark":"Light";
+b.setAttribute("aria-label","Switch to "+n+" mode")};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

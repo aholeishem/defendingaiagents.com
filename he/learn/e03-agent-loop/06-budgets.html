@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="he" dir="rtl" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>צעד הוא לא יחידת עלות: ארבעה תקציבים וסיבת עצירה אחת · הגנה על סוכני AI</title>
+<meta name="description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<link rel="canonical" href="https://defendingaiagents.com/he/learn/e03-agent-loop/06-budgets.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/e03-agent-loop/06-budgets.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/e03-agent-loop/06-budgets.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/e03-agent-loop/06-budgets.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="הגנה על סוכני AI">
+<meta property="og:title" content="צעד הוא לא יחידת עלות: ארבעה תקציבים וסיבת עצירה אחת · הגנה על סוכני AI"><meta property="og:description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<meta property="og:url" content="https://defendingaiagents.com/he/learn/e03-agent-loop/06-budgets.html"><meta property="og:image" content="https://defendingaiagents.com/og-he.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="he_IL"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+<link rel="preload" href="../../../assets/fonts/rubik-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../../assets/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../../assets/course.css"><script src="../../../assets/progress.js" defer></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script><script>addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".math").forEach(function(e){katex.render(e.textContent,e,{displayMode:e.dataset.display==="1",throwOnError:false})})})</script>
+</head>
+<body>
+<a class="skip" href="#main">דילוג לתוכן</a>
+<header class="top">
+  <a class="brand" href="../../../learn/e03-agent-loop/06-budgets.html"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">הגנה על סוכני AI</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="החלפת ערכת צבע"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>ערכת צבע</span></button>
+    <a class="lang label" href="../../../learn/e03-agent-loop/06-budgets.html" lang="en" hreflang="en">English</a>
+    <a class="btn" href="../../../he/course/#waitlist" data-waitlist>לרשימת ההמתנה<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">תפריט</summary><nav aria-label="תפריט"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="e03-agent-loop/06-budgets" data-module="e03-agent-loop">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">תצוגה מקדימה חינמית</a><span>/</span><a href="./">E3</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="E3">
+      <p class="label"><em>E3</em> מעשי</p>
+      <p class="side-title">לולאת הסוכן מאפס</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="e03-agent-loop/index"><span class="label">·</span><span>סקירה</span></a></li><li data-stem="01-workflow-or-agent"><a href="01-workflow-or-agent.html" data-page-link="e03-agent-loop/01-workflow-or-agent"><span class="label">01</span><span>מי מחליט על הצעד הבא? תהליכים קבועים וסוכנים</span></a></li><li data-stem="02-a-tool-is-three-texts"><a href="02-a-tool-is-three-texts.html" data-page-link="e03-agent-loop/02-a-tool-is-three-texts"><span class="label">02</span><span>כלי הוא סכמה, פונקציה והודעת שגיאה, והמודל קורא שניים מהם</span></a></li><li data-stem="03-three-wire-formats"><a href="03-three-wire-formats.html" data-page-link="e03-agent-loop/03-three-wire-formats"><span class="label">03</span><span>קריאה אחת לכלי, שלושה פורמטים על הקו</span></a></li><li data-stem="04-parallel-calls"><a href="04-parallel-calls.html" data-page-link="e03-agent-loop/04-parallel-calls"><span class="label">04</span><span>קריאות מקבילות לכלים: פעולות קריאה מתחלפות, פעולות כתיבה לא</span></a></li><li data-stem="05-retries"><a href="05-retries.html" data-page-link="e03-agent-loop/05-retries"><span class="label">05</span><span>לנסות שוב את השרת, לא את המודל: שגיאות, backoff ו־jitter</span></a></li><li data-stem="06-budgets" aria-current="page"><a href="06-budgets.html" data-page-link="e03-agent-loop/06-budgets"><span class="label">06</span><span>צעד הוא לא יחידת עלות: ארבעה תקציבים וסיבת עצירה אחת</span></a></li><li data-stem="07-structured-answers"><a href="07-structured-answers.html" data-page-link="e03-agent-loop/07-structured-answers"><span class="label">07</span><span>תשובה שתוכנה יכולה לקרוא: סכמות ותיקון אחד</span></a></li><li data-stem="08-streaming"><a href="08-streaming.html" data-page-link="e03-agent-loop/08-streaming"><span class="label">08</span><span>קריאה לכלי בסטרימינג היא חצי אובייקט JSON</span></a></li><li data-stem="09-long-horizons"><a href="09-long-horizons.html" data-page-link="e03-agent-loop/09-long-horizons"><span class="label">09</span><span>כמה רחוק לולאה יכולה להגיע? שגיאה מצטברת, פעולות קוד ואופק הזמן</span></a></li><li data-stem="build"><a href="build.html" data-page-link="e03-agent-loop/build"><span class="label">B</span><span>הבנייה: הלולאה של מודול 1, שהופכת לכזו שרצה בלי השגחה, ונמדדת</span></a></li><li data-stem="at-scale"><a href="at-scale.html" data-page-link="e03-agent-loop/at-scale"><span class="label">S</span><span>בקנה מידה: אותה לולאה, עשרת אלפים פעמים בבת אחת</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="e03-agent-loop/problems"><span class="label">P</span><span>בעיות</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="e03-agent-loop" data-total="13" data-problems="15" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">E3 · שיעור 06</p>
+        <h1>צעד הוא לא יחידת עלות: ארבעה תקציבים וסיבת עצירה אחת</h1>
+      </header>
+      <p>ללולאה של מודול 1 יש גבול אחד: עשרה צעדים. אבל צעד הוא לא יחידה של שום דבר שמשלמים עליו. צעד אחד יכול לשלוח 600 טוקנים (tokens) והבא אחריו 6,000, ומודל שחושב לפני שהוא עונה משלם על החשיבה בטוקני פלט. כשביקשנו מ־<code>qwen3:4b</code> לקרוא שני קבצים, הוא כתב 702 טוקני השלמה (completion tokens), ומתוכם שתי הקריאות לכלים היו בערך 30 (נמדד ב־25 באוקטובר 2026). כל השאר היה חשיבה (reasoning). ב־API מתארח, זה הסוג היקר של טוקנים.</p>
+<h2 id="why-tokens-grow-faster-than-steps">למה הטוקנים גדלים מהר יותר מהצעדים</h2>
+<p>המודל לא שומר מצב בין קריאות (מודול 1, שיעור 5), ולכן כל צעד שולח מחדש את כל ההיסטוריה. עם פרומפט מערכת וסכמות כלים של <span class="math" data-display="0">S</span> טוקנים, משימה של <span class="math" data-display="0">T</span>, וכל צעד שמוסיף קריאה של <span class="math" data-display="0">C</span> ותוצאה של <span class="math" data-display="0">R</span>, צעד <span class="math" data-display="0">t</span> שולח</p>
+<div class="math" data-display="1">\text{prompt}_t = S + T + (t-1)(C+R),</div>
+<p>כך שריצה של <span class="math" data-display="0">n</span> צעדים שולחת</p>
+<div class="math" data-display="1">\sum_{t=1}^{n} \text{prompt}_t = n(S+T) + (C+R)\frac{n(n-1)}{2}.</div>
+<p>ליניארי לכל צעד, ריבועי לכל ריצה. עם <span class="math" data-display="0">S = 600</span>, <span class="math" data-display="0">T = 40</span>, <span class="math" data-display="0">C = 30</span> ו־<span class="math" data-display="0">R = 400</span> (קובץ קצר בכל צעד), המחקר נותן:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th style="text-align:right">צעד</th>
+<th style="text-align:right">פרומפט בצעד הזה</th>
+<th style="text-align:right">פרומפט מצטבר</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">640</td>
+<td style="text-align:right">640</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:right">1,070</td>
+<td style="text-align:right">1,710</td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td style="text-align:right">2,360</td>
+<td style="text-align:right">7,500</td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td style="text-align:right">4,510</td>
+<td style="text-align:right">25,750</td>
+</tr>
+</tbody>
+</table></div>
+<p>בעשרה צעדים, 19,350 מתוך 25,750 טוקני הפרומפט הם היסטוריה שהמודל כבר ראה. מטמון פרומפטים (prompt caching) מוזיל קידומות שנשלחות שוב, בשרתים שתומכים בו (E1, שיעור 4; ב־Ollama השימוש מציג <code>cached_tokens</code>), אבל הן עדיין נספרות מול חלון ההקשר (context window) ומול מגבלת הטוקנים. משימה שקוראת קבצים תיתקע במגבלת טוקנים הרבה לפני מגבלת צעדים, ולכן מגבלת צעדים לבדה היא לא תקציב.</p>
+<h2 id="four-limits-one-stop-reason">ארבע מגבלות, סיבת עצירה אחת</h2>
+<p><code>loop/budget.py</code> בודק ארבע מגבלות לפני כל קריאה למודל, בסדר קבוע, ומחזיר את שמה של הראשונה שהגיעה לגבול:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>מגבלה</th>
+<th>סופרת</th>
+<th>מגינה מפני</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>steps</code></td>
+<td>קריאות למודל</td>
+<td>הלולאה שלא נגמרת</td>
+</tr>
+<tr>
+<td><code>tokens</code></td>
+<td>פרומפט + השלמה, מסוכם על פני הריצה</td>
+<td>ההקשר שגדל בכל צעד</td>
+</tr>
+<tr>
+<td><code>cost</code></td>
+<td>טוקנים במחיר למיליון</td>
+<td>החשבון: אפס על לפטופ, אז קבעו מחיר כדי לראות אותו</td>
+</tr>
+<tr>
+<td><code>seconds</code></td>
+<td>זמן שעון מתחילת הריצה</td>
+<td>המשתמש שמחכה; השרת שמנסה שוב</td>
+</tr>
+</tbody>
+</table></div>
+<pre><code class="language-python">b = Budget(max_steps=10, max_tokens=60_000, max_cost=0.05, max_seconds=120,
+           price_in=1.0, price_out=5.0)          # prices per million tokens, in your currency
+</code></pre>
+<p>שתי החלטות תכנון שכדאי להתווכח עליהן.</p>
+<p><strong>הגעה לגבול היא יציאה.</strong> עם <code>max_steps=3</code>, שלוש קריאות שחויבו לא משאירות מקום לרביעית. הבדיקה באה לפני הקריאה, כך שהריצה לעולם לא חורגת ממגבלת הצעדים. ממגבלת הטוקנים היא יכולה לחרוג בגודל של קריאה אחת, כי גודל הקריאה ידוע רק אחרי שהיא חוזרת. כדי לחסום את החריגה הזו צריך תקרה לכל קריאה (<code>max_tokens</code> בבקשה), שהשרתים תומכים בה והמעבדה לא קובעת.</p>
+<p><strong>הריצה מדווחת למה היא עצרה.</strong> <code>Result.stop</code> הוא <code>&quot;answer&quot;</code>, שם של מגבלה, <code>&quot;error&quot;</code> או <code>&quot;schema&quot;</code>. «הוחזרה מחרוזת» היא לא תוצאה. <code>&quot;[stopped: step limit reached]&quot;</code> במודול 1 הוא מחרוזת שנראית כמו תשובה, ומי שקורא לפונקציה ומעביר אותה למשתמש שלח כשל בתור תשובה.</p>
+<h2 id="what-to-do-at-the-limit">מה עושים בגבול</h2>
+<p>עצירה קשה לא מחזירה שום דבר שימושי. החלופה היא לתת קריאה אחרונה אחת בלי כלים, ולבקש את התשובה הטובה ביותר ממה שנאסף. זה עולה לכל היותר קריאה אחת נוספת, ולעתים קרובות מציל ריצה שחסר לה צעד אחד. זה גם מבטיח תשובה, ולא תמיד זה מה שרוצים: סוכן שנגמר לו התקציב באמצע החזר כספי צריך להגיד את זה, לא לסכם. הלולאה הזו עוצרת עצירה קשה ומשאירה את ההחלטה לקורא, שרואה <code>stop == &quot;tokens&quot;</code> ומחליט. בעיה 11 מבקשת את חסם העלות של כל מדיניות.</p>
+<h2 id="measured-on-the-twenty-tasks">נמדד על עשרים המשימות</h2>
+<p>על עשרים המשימות, הריצה החציונית השתמשה ב־4,582 טוקנים עם הלולאה של מודול 1 וב־4,194 עם זו של E3, ואף ריצה של אף אחת מהן לא הגיעה לעשרה צעדים (הבנייה). הן שולחות את אותם פרומפטים, כך שסכומים דומים צפויים. רוב טוקני ההשלמה היו חשיבה. התקציב לא נכנס לפעולה במשימות האלה. התפקיד שלו הוא הזנב שעוד לא פגשתם: הריצה שנתקעת בלולאה, ושמודול 1 היה מדווח עליה כעל תשובה.</p>
+<h2 id="check-yourself">בדקו את עצמכם</h2>
+<ol>
+<li>התקציב של ריצה הוא 20,000 טוקנים, עם <span class="math" data-display="0">S + T = 800</span> ו־<span class="math" data-display="0">C + R = 1{,}000</span> לכל צעד. אחרי כמה צעדים מגבלת הטוקנים עוצרת אותה, אם מתעלמים מטוקני ההשלמה?</li>
+<li>למה כדאי לקבוע תקציב עלות על לפטופ, שבו כל טוקן חינם?</li>
+<li>שרת נפל, וכל קריאה נגמרת ב־timeout אחרי 30 שניות, עם שלושה ניסיונות חוזרים לכל קריאה. עם <code>max_seconds=120</code>, איזו מארבע המגבלות עוצרת את הריצה, ואחרי כמה צעדים שחויבו?</li>
+</ol>
+<details class="answers"><summary>תשובות</summary>
+<ol>
+<li>אחרי 7 צעדים, ב־26,600 טוקנים. סך הפרומפט אחרי <span class="math" data-display="0">n</span> צעדים הוא <span class="math" data-display="0">800n + 1000\,n(n-1)/2</span>: ‏800, 2,600, 5,400, 9,200, 14,000, 19,800 עבור <span class="math" data-display="0">n = 1, \dots, 6</span>, ו־26,600 עבור <span class="math" data-display="0">n = 7</span>. הבדיקה לפני צעד 7 רואה 19,800, מתחת ל־20,000, אז צעד 7 נשלח והריצה נגמרת ב־26,600. החריגה היא בגודל קריאה אחת, כמו שהשיעור מתאר.</li>
+<li>כי אותה לולאה תרוץ על API בתשלום, ותקציב שמעולם לא קבעתם הוא תקציב שמעולם לא בדקתם. כשקובעים מחיר, הריצה על הלפטופ מדווחת כמה היא הייתה עולה, וכך תכנון שיקר פי עשרה מתגלה לפני שהוא עולה לאוויר.</li>
+<li>אף אחת מהן. קריאה שנכשלה לא מחויבת לעולם, ולכן מגבלות הצעדים, הטוקנים והעלות לא זזות, ומגבלת הזמן נבדקת רק <em>בין</em> קריאות למודל. אחרי ארבעה ניסיונות (שלושה חוזרים) ובערך 125 שניות, <code>call_with_retries</code> זורק שוב את ה־timeout והריצה נעצרת עם <code>stop == &quot;error&quot;</code> ואפס צעדים שחויבו, כשהיא כבר עברה את ה־120 שניות שלה. בעיה 11 שואלת איך לתת לתקציב הזמן לקטוע רצף של ניסיונות חוזרים.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>סימון כהושלם</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="05-retries.html"><span class="label">הקודם</span>לנסות שוב את השרת, לא את המודל: שגיאות, backoff ו־jitter</a><a class="pn next" href="07-structured-answers.html"><span class="label">הבא</span>תשובה שתוכנה יכולה לקרוא: סכמות ותיקון אחד</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 הגנה על סוכני AI</span>
+  <nav aria-label="Footer">
+    <a href="../../../he/workshop/">סדנאות לצוותים</a>
+    <a href="../../../he/courses/">קורסים מקוונים</a>
+    <a href="mailto:shimon@defendingaiagents.com">יצירת קשר</a>
+    <a href="../../../.well-known/security.txt">אבטחה</a>
+    <a href="../../../learn/e03-agent-loop/06-budgets.html" lang="en" hreflang="en">English</a>
+  </nav>
+</footer>
+<script src="../../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"כהה":"בהיר";
+b.setAttribute("aria-label","מעבר למצב "+(n==="dark"?"כהה":"בהיר"))};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

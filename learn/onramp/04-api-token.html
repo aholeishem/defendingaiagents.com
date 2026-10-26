@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>An API token is a password with a label · Defending AI Agents</title>
+<meta name="description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<link rel="canonical" href="https://defendingaiagents.com/learn/onramp/04-api-token.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/onramp/04-api-token.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/onramp/04-api-token.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/onramp/04-api-token.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Defending AI Agents">
+<meta property="og:title" content="An API token is a password with a label · Defending AI Agents"><meta property="og:description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<meta property="og:url" content="https://defendingaiagents.com/learn/onramp/04-api-token.html"><meta property="og:image" content="https://defendingaiagents.com/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preload" href="../../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../assets/course.css"><script src="../../assets/progress.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="../../"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">Defending AI Agents</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="Switch colour theme"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>Theme</span></button>
+    <a class="lang label" href="../../he/learn/onramp/04-api-token.html" lang="he" hreflang="he">עברית</a>
+    <a class="btn" href="../../course/#waitlist" data-waitlist>Join waitlist<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">Menu</summary><nav aria-label="Menu"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="onramp/04-api-token" data-module="onramp">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">Free preview</a><span>/</span><a href="./">On-ramp</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="On-ramp">
+      <p class="label"><em>On-ramp</em> Theoretical</p>
+      <p class="side-title">On-ramp: the web plumbing the course assumes</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="onramp/index"><span class="label">·</span><span>Overview</span></a></li><li data-stem="01-http-is-text"><a href="01-http-is-text.html" data-page-link="onramp/01-http-is-text"><span class="label">01</span><span>An HTTP call is text in, text out</span></a></li><li data-stem="02-json-edges"><a href="02-json-edges.html" data-page-link="onramp/02-json-edges"><span class="label">02</span><span>JSON is simple, and its parsers still disagree</span></a></li><li data-stem="03-yaml-traps"><a href="03-yaml-traps.html" data-page-link="onramp/03-yaml-traps"><span class="label">03</span><span>YAML is JSON with indentation and four traps</span></a></li><li data-stem="04-api-token" aria-current="page"><a href="04-api-token.html" data-page-link="onramp/04-api-token"><span class="label">04</span><span>An API token is a password with a label</span></a></li><li data-stem="05-dns"><a href="05-dns.html" data-page-link="onramp/05-dns"><span class="label">05</span><span>A name is not an address, and the answer can change</span></a></li><li data-stem="06-proxy"><a href="06-proxy.html" data-page-link="onramp/06-proxy"><span class="label">06</span><span>A proxy is a server that is also a client</span></a></li><li data-stem="07-tls"><a href="07-tls.html" data-page-link="onramp/07-tls"><span class="label">07</span><span>TLS proves you reached a name, not that the name is honest</span></a></li><li data-stem="08-jwt"><a href="08-jwt.html" data-page-link="onramp/08-jwt"><span class="label">08</span><span>A JWT is signed claims, and a check has an order</span></a></li><li data-stem="09-oauth-roles"><a href="09-oauth-roles.html" data-page-link="onramp/09-oauth-roles"><span class="label">09</span><span>OAuth gives a token a purpose: roles, scope, audience</span></a></li><li data-stem="10-parser-differentials"><a href="10-parser-differentials.html" data-page-link="onramp/10-parser-differentials"><span class="label">10</span><span>Two parsers, one message: a check is sound only if it reads what the target reads</span></a></li><li data-stem="11-oauth-threat-model"><a href="11-oauth-threat-model.html" data-page-link="onramp/11-oauth-threat-model"><span class="label">11</span><span>OAuth&#x27;s own threat model: what RFC 9700 requires, and why an agent needs all of it</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="onramp/problems"><span class="label">P</span><span>Problems</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="onramp" data-total="13" data-problems="14" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">On-ramp · Lesson 04</p>
+        <h1>An API token is a password with a label</h1>
+      </header>
+      <p>An engineer pastes a curl command into a ticket to show a failing call. It includes <code>-H 'Authorization: Bearer acmepay_live_…'</code>. The ticket system indexes it; the token is now readable by everyone who can search tickets, and works until someone notices. The prefix is a fictional service's, but the habit is real: many providers start their keys with a fixed string naming the service and whether the key is live, which is what lets a secret scanner recognise a leaked key in a ticket, a log or a commit.</p>
+<h2 id="what-it-is">What it is</h2>
+<p>An API token is a string a server accepts in place of a login. The client presents it on each request; the server looks it up (an <strong>opaque</strong> token) or verifies a signature on it (a <strong>self-contained</strong> one, lesson 8) and learns who is calling and what they may do. In HTTP it travels in the <code>Authorization</code> header as <code>Bearer &lt;token&gt;</code> (RFC 6750, 2012). <strong>Bearer</strong> is the operative word: whoever <em>bears</em> it is let in. There is no second factor, no check that the sender is the person it was issued to.</p>
+<p>The first lesson's server returned the token it was given, in <code>auth</code>. Anything that logs headers, a debugging proxy, an error report or a <code>curl -v</code> pasted into chat holds a working credential.</p>
+<h2 id="where-a-token-must-not-go">Where a token must not go</h2>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Place</th>
+<th>Why not</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The URL's query string (<code>?token=…</code>)</td>
+<td>it lands in access logs, browser history and <code>Referer</code> headers; RFC 6750 (section 5.3) says they should not be passed in page URLs</td>
+</tr>
+<tr>
+<td>A prompt or a tool result</td>
+<td>the model can repeat it to whoever the next turn's text reaches</td>
+</tr>
+<tr>
+<td>A log line or trace</td>
+<td>logs outlive tokens and are read by more people</td>
+</tr>
+<tr>
+<td>A repository</td>
+<td>forever, in history</td>
+</tr>
+<tr>
+<td>A tool call's arguments</td>
+<td>it is then in the record the gateway stores (Module 3, lesson 1)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Tokens belong in the <code>Authorization</code> header, set by code that the model cannot write.</p>
+<h2 id="four-properties-that-bound-the-damage">Four properties that bound the damage</h2>
+<ul>
+<li><strong>Audience</strong>: which server accepts it (lesson 8). A token for one server should be useless at another.</li>
+<li><strong>Scope</strong>: what it permits there (<code>crm:read</code>, not <code>crm:*</code>).</li>
+<li><strong>Lifetime</strong>: minutes, not months. A leaked token that expired is a log entry, not an incident.</li>
+<li><strong>Subject</strong>: whom it names, so the log can say who did the thing.</li>
+</ul>
+<p>A long-lived, all-scopes, all-audience, anonymous-subject key is a <strong>static secret</strong>; the whole of Module 12 is about not handing one to an agent.</p>
+<h2 id="expert-revocation-rotation-and-binding-a-token-to-a-key">Expert: revocation, rotation and binding a token to a key</h2>
+<p>Rotation replaces a token on a schedule; revocation kills one now. A self-contained token cannot be un-issued: a server that only verifies the signature will accept it until <code>exp</code>. Revocation therefore needs either a short lifetime (the course uses five minutes), a server-side list consulted on use, or an introspection call (RFC 7662). Each has a cost per request; Module 12 measures it.</p>
+<p>The other remedy attacks the word <em>bearer</em> itself. A <strong>sender-constrained</strong> token is bound to a key the client holds: with mutual TLS the token names the client certificate's thumbprint (RFC 8705), and with DPoP the client signs a fresh proof, covering the method, the URL and a timestamp, with the private key whose public half the token names (RFC 9449, 2023). A stolen token is then useless without the key. The protection moves rather than vanishes: a client whose key sits in the same process memory as the token loses both to one compromise, and every resource server must check the proof, or the binding is decoration.</p>
+<h2 id="check-yourself">Check yourself</h2>
+<ol>
+<li>Name two places in a typical agent stack, apart from the URL, where an <code>Authorization</code> header could be logged without anyone choosing to log it.</li>
+<li>A token has a one-year life, scope <code>*</code>, no audience. Which of the four properties would you tighten first, and what does that change about a leak?</li>
+<li>Why does &quot;the model never sees the token&quot; matter, if the model is not the one who leaks it?</li>
+</ol>
+<details class="answers"><summary>Answers</summary>
+<ol>
+<li>An error report or crash dump that attaches the failing request, headers and all; and a tool or service that echoes the request back, as lesson 1's server did with <code>auth</code>, which puts the token into the tool result, the model's context and every record the gateway keeps of that result. Debugging proxies and traces that record headers by default do the same.</li>
+<li>Lifetime first: from a year to minutes. Every other property bounds <em>what</em> a leaked token can do; lifetime bounds <em>for how long</em>, and a leak of a token that has already expired is a log entry, not an incident. Audience and scope come next, because a short-lived <code>*</code> token is still a skeleton key while it lives.</li>
+<li>Because the model's output is steered by whoever writes text into its context. A token the model can see is one an injected instruction can have it copy into a tool argument, an e-mail or an answer; the model needs no motive to be the channel. A token set in the header by code the model cannot write is out of reach of every prompt.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>Mark complete</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="03-yaml-traps.html"><span class="label">Previous</span>YAML is JSON with indentation and four traps</a><a class="pn next" href="05-dns.html"><span class="label">Next</span>A name is not an address, and the answer can change</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 Defending AI Agents</span>
+  <nav aria-label="Footer">
+    <a href="../../workshop/">Team workshops</a>
+    <a href="../../courses/">Online courses</a>
+    <a href="mailto:shimon@defendingaiagents.com">Contact</a>
+    <a href="../../.well-known/security.txt">Security</a>
+    <a href="../../he/learn/onramp/04-api-token.html" lang="he" hreflang="he">עברית</a>
+  </nav>
+</footer>
+<script src="../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"Dark":"Light";
+b.setAttribute("aria-label","Switch to "+n+" mode")};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

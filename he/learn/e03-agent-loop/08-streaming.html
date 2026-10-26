@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="he" dir="rtl" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>קריאה לכלי בסטרימינג היא חצי אובייקט JSON · הגנה על סוכני AI</title>
+<meta name="description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<link rel="canonical" href="https://defendingaiagents.com/he/learn/e03-agent-loop/08-streaming.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/e03-agent-loop/08-streaming.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/e03-agent-loop/08-streaming.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/e03-agent-loop/08-streaming.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="הגנה על סוכני AI">
+<meta property="og:title" content="קריאה לכלי בסטרימינג היא חצי אובייקט JSON · הגנה על סוכני AI"><meta property="og:description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<meta property="og:url" content="https://defendingaiagents.com/he/learn/e03-agent-loop/08-streaming.html"><meta property="og:image" content="https://defendingaiagents.com/og-he.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="he_IL"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+<link rel="preload" href="../../../assets/fonts/rubik-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../../assets/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../../assets/course.css"><script src="../../../assets/progress.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">דילוג לתוכן</a>
+<header class="top">
+  <a class="brand" href="../../../learn/e03-agent-loop/08-streaming.html"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">הגנה על סוכני AI</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="החלפת ערכת צבע"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>ערכת צבע</span></button>
+    <a class="lang label" href="../../../learn/e03-agent-loop/08-streaming.html" lang="en" hreflang="en">English</a>
+    <a class="btn" href="../../../he/course/#waitlist" data-waitlist>לרשימת ההמתנה<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">תפריט</summary><nav aria-label="תפריט"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="e03-agent-loop/08-streaming" data-module="e03-agent-loop">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">תצוגה מקדימה חינמית</a><span>/</span><a href="./">E3</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="E3">
+      <p class="label"><em>E3</em> מעשי</p>
+      <p class="side-title">לולאת הסוכן מאפס</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="e03-agent-loop/index"><span class="label">·</span><span>סקירה</span></a></li><li data-stem="01-workflow-or-agent"><a href="01-workflow-or-agent.html" data-page-link="e03-agent-loop/01-workflow-or-agent"><span class="label">01</span><span>מי מחליט על הצעד הבא? תהליכים קבועים וסוכנים</span></a></li><li data-stem="02-a-tool-is-three-texts"><a href="02-a-tool-is-three-texts.html" data-page-link="e03-agent-loop/02-a-tool-is-three-texts"><span class="label">02</span><span>כלי הוא סכמה, פונקציה והודעת שגיאה, והמודל קורא שניים מהם</span></a></li><li data-stem="03-three-wire-formats"><a href="03-three-wire-formats.html" data-page-link="e03-agent-loop/03-three-wire-formats"><span class="label">03</span><span>קריאה אחת לכלי, שלושה פורמטים על הקו</span></a></li><li data-stem="04-parallel-calls"><a href="04-parallel-calls.html" data-page-link="e03-agent-loop/04-parallel-calls"><span class="label">04</span><span>קריאות מקבילות לכלים: פעולות קריאה מתחלפות, פעולות כתיבה לא</span></a></li><li data-stem="05-retries"><a href="05-retries.html" data-page-link="e03-agent-loop/05-retries"><span class="label">05</span><span>לנסות שוב את השרת, לא את המודל: שגיאות, backoff ו־jitter</span></a></li><li data-stem="06-budgets"><a href="06-budgets.html" data-page-link="e03-agent-loop/06-budgets"><span class="label">06</span><span>צעד הוא לא יחידת עלות: ארבעה תקציבים וסיבת עצירה אחת</span></a></li><li data-stem="07-structured-answers"><a href="07-structured-answers.html" data-page-link="e03-agent-loop/07-structured-answers"><span class="label">07</span><span>תשובה שתוכנה יכולה לקרוא: סכמות ותיקון אחד</span></a></li><li data-stem="08-streaming" aria-current="page"><a href="08-streaming.html" data-page-link="e03-agent-loop/08-streaming"><span class="label">08</span><span>קריאה לכלי בסטרימינג היא חצי אובייקט JSON</span></a></li><li data-stem="09-long-horizons"><a href="09-long-horizons.html" data-page-link="e03-agent-loop/09-long-horizons"><span class="label">09</span><span>כמה רחוק לולאה יכולה להגיע? שגיאה מצטברת, פעולות קוד ואופק הזמן</span></a></li><li data-stem="build"><a href="build.html" data-page-link="e03-agent-loop/build"><span class="label">B</span><span>הבנייה: הלולאה של מודול 1, שהופכת לכזו שרצה בלי השגחה, ונמדדת</span></a></li><li data-stem="at-scale"><a href="at-scale.html" data-page-link="e03-agent-loop/at-scale"><span class="label">S</span><span>בקנה מידה: אותה לולאה, עשרת אלפים פעמים בבת אחת</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="e03-agent-loop/problems"><span class="label">P</span><span>בעיות</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="e03-agent-loop" data-total="13" data-problems="15" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">E3 · שיעור 08</p>
+        <h1>קריאה לכלי בסטרימינג היא חצי אובייקט JSON</h1>
+      </header>
+      <p>סטרימינג (streaming) שולח את התשובה תוך כדי שהיא נוצרת, כך שאדם רואה את המילים הראשונות בשבריר מהזמן שלוקחת התשובה כולה. בטקסט זה רווח נקי: אפשר להציג כל רישא של משפט. בקריאה לכלי זו מלכודת. שום רישא של אובייקט JSON היא לא אובייקט JSON, ולפעול לפי רישא זה לפעול לפי קריאה שהמודל עוד לא סיים לכתוב.</p>
+<h2 id="what-arrives">מה מגיע</h2>
+<p>עם <code>&quot;stream&quot;: true</code>, שרת תואם OpenAI שולח server-sent events ‏(WHATWG, <em>HTML Standard</em>, סעיף 9.2): שורת <code>data:</code> אחת לכל chunk, ובסוף <code>data: [DONE]</code>. קריאה לכלי יכולה להגיע בפרגמנטים, לפי מפתח <code>index</code>:</p>
+<pre><code class="language-text">data: {&quot;choices&quot;:[{&quot;delta&quot;:{&quot;tool_calls&quot;:[{&quot;index&quot;:0,&quot;id&quot;:&quot;call_1&quot;,&quot;type&quot;:&quot;function&quot;,
+                                           &quot;function&quot;:{&quot;name&quot;:&quot;read_file&quot;,&quot;arguments&quot;:&quot;&quot;}}]}}]}
+data: {&quot;choices&quot;:[{&quot;delta&quot;:{&quot;tool_calls&quot;:[{&quot;index&quot;:0,&quot;function&quot;:{&quot;arguments&quot;:&quot;{\&quot;pa&quot;}}]}}]}
+data: {&quot;choices&quot;:[{&quot;delta&quot;:{&quot;tool_calls&quot;:[{&quot;index&quot;:0,&quot;function&quot;:{&quot;arguments&quot;:&quot;th\&quot;: \&quot;a.txt\&quot;}&quot;}}]}}]}
+data: {&quot;choices&quot;:[{&quot;delta&quot;:{},&quot;finish_reason&quot;:&quot;tool_calls&quot;}]}
+data: {&quot;choices&quot;:[],&quot;usage&quot;:{&quot;prompt_tokens&quot;:140,&quot;completion_tokens&quot;:31}}
+data: [DONE]
+</code></pre>
+<p>ה־id והשם של הקריאה מגיעים בפרגמנט הראשון שלה, והארגומנטים שלה הם ה־<code>arguments</code> של כל הפרגמנטים, מחוברים לפי סדר ההגעה. נתוני השימוש מגיעים אחרונים, ב־chunk בלי choices, ורק אם ביקשתם אותם (<code>stream_options: {&quot;include_usage&quot;: true}</code>). ללולאה שמזרימה בלי לבקש אין ספירת טוקנים, ותקציב הטוקנים שלה לא נכנס לפעולה לעולם (שיעור 6).</p>
+<h2 id="servers-differ-so-write-for-the-hardest-one">השרתים שונים, אז כתבו לקשה מכולם</h2>
+<p>ה־API של OpenAI שולח ארגומנטים בפרגמנטים, כמו למעלה (המדריך שלה ל־function calling מציג אירועי <code>response.function_call_arguments.delta</code> עבור ה־Responses API). Ollama שולח כל קריאה לכלי שלמה, ב־chunk אחד:</p>
+<pre><code class="language-text">data: {&quot;choices&quot;:[{&quot;index&quot;:0,&quot;delta&quot;:{&quot;content&quot;:&quot;&quot;,&quot;tool_calls&quot;:[{&quot;id&quot;:&quot;call_6n2ulo9l&quot;,&quot;index&quot;:1,
+       &quot;type&quot;:&quot;function&quot;,&quot;function&quot;:{&quot;name&quot;:&quot;read_file&quot;,&quot;arguments&quot;:&quot;{\&quot;path\&quot;:\&quot;notes/b.txt\&quot;}&quot;}}]}, ...}]}
+</code></pre>
+<p>(נמדד על <code>qwen3:4b</code>, ‏25 באוקטובר 2026). מרכיב שנכתב מול Ollama, chunk אחד לכל קריאה, עובר כל בדיקה מקומית ונשבר על המודל המתארח הראשון. <code>assemble</code> שב־<code>loop/stream.py</code> נכתב לפרגמנטים, ומטפל בקריאות שלמות כמקרה פרטי של פרגמנט אחד. הבדיקה מזינה לו את שני הסוגים.</p>
+<h2 id="when-to-act">מתי לפעול</h2>
+<p>הציגו טקסט כשהוא מגיע, אם אדם צופה. פעלו לפי קריאה לכלי רק אחרי ששלושה דברים קרו: הזרם נגמר (<code>[DONE]</code>, או ש־<code>finish_reason</code> נקבע), הארגומנטים של הקריאה חוברו, והם עברו את הבדיקות של שיעור 2. ממשק שמציג «שולח מייל אל …» מהפרגמנט הראשון עלול להציג נמען שהקריאה הגמורה לא מכילה. מחרוזת חלקית היא לא הבטחה להמשך שלה.</p>
+<h2 id="what-streaming-buys-measured">מה סטרימינג קונה, במדידה</h2>
+<p>המחקר שולח את אותו פרומפט עשר פעמים בכל דרך, עם סטרימינג ובלי, ומתעד את הזמן עד הבייט הראשון של תוכן או של קריאה לכלי, ועד הבייט האחרון. המספרים נמצאים בפרק הבנייה. שתי תופעות שכדאי לנחש לפני שמסתכלים.</p>
+<ul>
+<li>ב<strong>קריאה לכלי</strong>, הבייט השימושי הראשון הוא הקריאה עצמה, וב־Ollama היא מגיעה שלמה, קרוב לסוף. סטרימינג קונה כמעט כלום.</li>
+<li>ב<strong>מודל חושב</strong>, בייט התוכן הראשון מגיע אחרי החשיבה. Ollama מזרים את החשיבה בשדה <code>reasoning</code> נפרד ש־<code>assemble</code> מתעלם ממנו, כך שהזמן עד הבייט הראשון של <em>התשובה</em> קרוב לזמן הכולל. להזרים את החשיבה למשתמש זו החלטה של מוצר. להכניס אותה להיסטוריה זו החלטה של הקשר (E2).</li>
+</ul>
+<p>סטרימינג לא הופך את המודל למהיר יותר. הוא משנה מתי ההמתנה קורית, ובלולאה שלא יכולה לפעול עד שהקריאה שלמה, ברוב המקרים הוא לא משנה גם את זה.</p>
+<h2 id="check-yourself">בדקו את עצמכם</h2>
+<ol>
+<li>פרגמנטים של index 1 מגיעים לפני כל פרגמנט של index 0. באיזה סדר מגיעות הקריאות לכלים אחרי ההרכבה, ולמה?</li>
+<li>זרם נגמר אחרי <code>{&quot;pa</code> כי החיבור נפל. מה הלולאה צריכה לעשות?</li>
+<li>למה המרכיב חייב לקחת את ה־id של קריאה מהפרגמנט <em>הראשון</em> שלה, ולא לדרוס אותו בפרגמנטים מאוחרים יותר?</li>
+</ol>
+<details class="answers"><summary>תשובות</summary>
+<ol>
+<li>לפי סדר ה־index, ‏0 ואחריו 1. ה־<code>index</code> הוא סדר הקריאות של המודל, וסדר ההגעה הוא מקרה של הרשת. הכלל של שיעור 4 (תוצאות לפי הסדר שבו התבקשו) צריך את הסדר הזה.</li>
+<li>להתייחס לזה כאל קריאה למודל שנכשלה. <code>ChatClient</code> זורק <code>RemoteProtocolError</code> כשזרם נגמר בלי <code>finish_reason</code>, בין אם החיבור נפל ובין אם נסגר כראוי, ו־<code>classify</code> מנסה שוב את כל הקריאה (שיעור 5). לעולם אל תפענחו או תתקנו את הפרגמנט: <code>{&quot;pa</code> היה יכול להפוך לכל קריאה.</li>
+<li>פרגמנטים מאוחרים בדרך כלל משמיטים את ה־id. שרת שחוזר עליו זה בסדר, אבל פרגמנט שנושא id אחר היה אחרת משנה בשקט את המפתח של הקריאה, ותוצאת הכלי הייתה עונה ל־id שהמודל מעולם לא הנפיק. ה־id הראשון הוא זה שהמודל הכריז עליו.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>סימון כהושלם</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="07-structured-answers.html"><span class="label">הקודם</span>תשובה שתוכנה יכולה לקרוא: סכמות ותיקון אחד</a><a class="pn next" href="09-long-horizons.html"><span class="label">הבא</span>כמה רחוק לולאה יכולה להגיע? שגיאה מצטברת, פעולות קוד ואופק הזמן</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 הגנה על סוכני AI</span>
+  <nav aria-label="Footer">
+    <a href="../../../he/workshop/">סדנאות לצוותים</a>
+    <a href="../../../he/courses/">קורסים מקוונים</a>
+    <a href="mailto:shimon@defendingaiagents.com">יצירת קשר</a>
+    <a href="../../../.well-known/security.txt">אבטחה</a>
+    <a href="../../../learn/e03-agent-loop/08-streaming.html" lang="en" hreflang="en">English</a>
+  </nav>
+</footer>
+<script src="../../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"כהה":"בהיר";
+b.setAttribute("aria-label","מעבר למצב "+(n==="dark"?"כהה":"בהיר"))};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

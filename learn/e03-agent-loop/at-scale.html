@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>At scale: the same loop, ten thousand times at once · Defending AI Agents</title>
+<meta name="description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<link rel="canonical" href="https://defendingaiagents.com/learn/e03-agent-loop/at-scale.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/e03-agent-loop/at-scale.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/e03-agent-loop/at-scale.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/e03-agent-loop/at-scale.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Defending AI Agents">
+<meta property="og:title" content="At scale: the same loop, ten thousand times at once · Defending AI Agents"><meta property="og:description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<meta property="og:url" content="https://defendingaiagents.com/learn/e03-agent-loop/at-scale.html"><meta property="og:image" content="https://defendingaiagents.com/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preload" href="../../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../assets/course.css"><script src="../../assets/progress.js" defer></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script><script>addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".math").forEach(function(e){katex.render(e.textContent,e,{displayMode:e.dataset.display==="1",throwOnError:false})})})</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="../../"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">Defending AI Agents</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="Switch colour theme"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>Theme</span></button>
+    <a class="lang label" href="../../he/learn/e03-agent-loop/at-scale.html" lang="he" hreflang="he">עברית</a>
+    <a class="btn" href="../../course/#waitlist" data-waitlist>Join waitlist<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">Menu</summary><nav aria-label="Menu"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="e03-agent-loop/at-scale" data-module="e03-agent-loop">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">Free preview</a><span>/</span><a href="./">E3</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="E3">
+      <p class="label"><em>E3</em> Applied</p>
+      <p class="side-title">The agent loop from scratch</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="e03-agent-loop/index"><span class="label">·</span><span>Overview</span></a></li><li data-stem="01-workflow-or-agent"><a href="01-workflow-or-agent.html" data-page-link="e03-agent-loop/01-workflow-or-agent"><span class="label">01</span><span>Who decides the next step? Workflows and agents</span></a></li><li data-stem="02-a-tool-is-three-texts"><a href="02-a-tool-is-three-texts.html" data-page-link="e03-agent-loop/02-a-tool-is-three-texts"><span class="label">02</span><span>A tool is a schema, a function and an error message, and the model reads two of them</span></a></li><li data-stem="03-three-wire-formats"><a href="03-three-wire-formats.html" data-page-link="e03-agent-loop/03-three-wire-formats"><span class="label">03</span><span>One tool call, three wire formats</span></a></li><li data-stem="04-parallel-calls"><a href="04-parallel-calls.html" data-page-link="e03-agent-loop/04-parallel-calls"><span class="label">04</span><span>Parallel tool calls: reads commute, writes do not</span></a></li><li data-stem="05-retries"><a href="05-retries.html" data-page-link="e03-agent-loop/05-retries"><span class="label">05</span><span>Retry the server, not the model: errors, backoff and jitter</span></a></li><li data-stem="06-budgets"><a href="06-budgets.html" data-page-link="e03-agent-loop/06-budgets"><span class="label">06</span><span>A step is not a unit of cost: four budgets and a stop reason</span></a></li><li data-stem="07-structured-answers"><a href="07-structured-answers.html" data-page-link="e03-agent-loop/07-structured-answers"><span class="label">07</span><span>An answer a program can read: schemas and one repair</span></a></li><li data-stem="08-streaming"><a href="08-streaming.html" data-page-link="e03-agent-loop/08-streaming"><span class="label">08</span><span>A streamed tool call is half a JSON object</span></a></li><li data-stem="09-long-horizons"><a href="09-long-horizons.html" data-page-link="e03-agent-loop/09-long-horizons"><span class="label">09</span><span>How far can a loop go? Compounding error, code actions and the time horizon</span></a></li><li data-stem="build"><a href="build.html" data-page-link="e03-agent-loop/build"><span class="label">B</span><span>Build: Module 1&#x27;s loop, made to run unattended, and measured</span></a></li><li data-stem="at-scale" aria-current="page"><a href="at-scale.html" data-page-link="e03-agent-loop/at-scale"><span class="label">S</span><span>At scale: the same loop, ten thousand times at once</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="e03-agent-loop/problems"><span class="label">P</span><span>Problems</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="e03-agent-loop" data-total="13" data-problems="15" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">E3 · At scale: the same loop, ten thousand times at once</p>
+        <h1>At scale: the same loop, ten thousand times at once</h1>
+      </header>
+      <p>On a laptop the loop has one user, one model server and twenty tasks. In production it has thousands of concurrent runs that share a rate-limited API, a bill and an on-call engineer. Each piece of this module changes character at that scale. The estimates below start from the laptop measurements in the build. Replace them with your own.</p>
+<h2 id="tokens-become-the-budget-line">Tokens become the budget line</h2>
+<p>The study gives a mean number of tokens per run (the build's table). At a million tasks a day, multiply. A loop that averages 20,000 tokens a task sends <span class="math" data-display="0">2 \times 10^{10}</span> tokens a day. At 1 per million prompt tokens and 5 per million completion tokens, with completion at a tenth of the total, that is about <span class="math" data-display="0">2 \times 10^{10} \times (0.9 \times 1 + 0.1 \times 5)/10^6 = 28{,}000</span> a day. Lesson 6's quadratic growth is the lever. Halving the steps of a ten-step task roughly quarters its history tokens, so a change that saves one step in the median task is worth more than a cheaper model for many workloads. Per-tenant budgets follow: the same <code>Budget</code> with a price, enforced per customer per day by whatever runs the loop, and reported with the stop reason.</p>
+<h2 id="retries-become-a-fleet-behaviour">Retries become a fleet behaviour</h2>
+<p>Lesson 5's herd is one incident. At scale the herd is the normal shape of every provider blip. Three rules carry over unchanged, and two are new.</p>
+<ul>
+<li><strong>Full jitter</strong>, and honour Retry-After with spread (problem 7).</li>
+<li><strong>A retry budget per client, not only per call.</strong> Google's SRE book retries a request only while retries are under 10% of the client's recent requests, on top of a per-request limit of three attempts (Beyer et al., 2016, &quot;Handling Overload&quot;). Past that, the server is not having a blip, and retrying makes it worse. The same chapter's adaptive throttling makes the client reject requests locally before they reach an overloaded server.</li>
+<li><strong>Classify before retrying</strong>, so that a bad deploy of your adapter does not quadruple the load on someone else's API.</li>
+<li><strong>New: retrying a model call is safe; retrying a tool call is not.</strong> The model call is a read. A <code>send_email</code> that timed out may have sent the e-mail. Consequential tools need an idempotency key, sent with the call and checked by the tool, so that a retry is recognised as the same action. The lab's tools have none, and Module 21 lesson 7 shows the general problem: some loops must not run twice.</li>
+<li><strong>New: the model is shared.</strong> A fleet behind one provider shares that provider's rate limit. E10 puts a model gateway in front of it, with queuing, fallback to a second model and caching. Most of this module's retry logic then moves into that gateway, and the agent sees fewer, slower failures.</li>
+</ul>
+<h2 id="parallel-calls-meet-connection-limits">Parallel calls meet connection limits</h2>
+<p>A pool of four per run times ten thousand runs is forty thousand concurrent tool calls. The constraint moves from the loop to the tools: each backend has a connection limit and a latency curve (Module 21's knee). A per-tool concurrency limit shared across runs is the scale version of <code>max_workers</code>.</p>
+<h2 id="formats-become-a-matrix">Formats become a matrix</h2>
+<p>Two providers and three local servers is six adapters, each with a test of recorded shapes. A provider's format change shows up as a failing adapter test in CI or as a production incident, and which one depends on whether those tests exist. Teams that run several providers usually standardise on one internal format, as this loop does, and keep the adapters in one library with its own release notes.</p>
+<h2 id="stop-reasons-become-metrics">Stop reasons become metrics</h2>
+<p><code>Result.stop</code> is a categorical outcome per run. At scale its distribution per hour is the first dashboard: the share of <code>answer</code>, of each limit, of <code>error</code> and of <code>schema</code>. A rise in <code>tokens</code> after a prompt change, or in <code>error</code> after a provider release, is visible within minutes. E11 turns it into traces and alerts. Module 18 reads the same distribution for a security reason: a run that hits its step limit while calling <code>send_email</code> repeatedly is an incident, not a cost.</p>
+<h2 id="what-the-laptop-cannot-show">What the laptop cannot show</h2>
+<p>The laptop has one model at a time, no contention and no adversary. It cannot show correlated failures across a fleet, provider rate limits, the tail latency of shared backends, or what an attacker does with a loop that retries what it is told to. The last is the rest of this course.</p>
+
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>Mark complete</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="build.html"><span class="label">Previous</span>Build: Module 1&#x27;s loop, made to run unattended, and measured</a><a class="pn next" href="problems.html"><span class="label">Next</span>Problems</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 Defending AI Agents</span>
+  <nav aria-label="Footer">
+    <a href="../../workshop/">Team workshops</a>
+    <a href="../../courses/">Online courses</a>
+    <a href="mailto:shimon@defendingaiagents.com">Contact</a>
+    <a href="../../.well-known/security.txt">Security</a>
+    <a href="../../he/learn/e03-agent-loop/at-scale.html" lang="he" hreflang="he">עברית</a>
+  </nav>
+</footer>
+<script src="../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"Dark":"Light";
+b.setAttribute("aria-label","Switch to "+n+" mode")};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

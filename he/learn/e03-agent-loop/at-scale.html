@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="he" dir="rtl" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>בקנה מידה: אותה לולאה, עשרת אלפים פעמים בבת אחת · הגנה על סוכני AI</title>
+<meta name="description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<link rel="canonical" href="https://defendingaiagents.com/he/learn/e03-agent-loop/at-scale.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/e03-agent-loop/at-scale.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/e03-agent-loop/at-scale.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/e03-agent-loop/at-scale.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="הגנה על סוכני AI">
+<meta property="og:title" content="בקנה מידה: אותה לולאה, עשרת אלפים פעמים בבת אחת · הגנה על סוכני AI"><meta property="og:description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<meta property="og:url" content="https://defendingaiagents.com/he/learn/e03-agent-loop/at-scale.html"><meta property="og:image" content="https://defendingaiagents.com/og-he.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="he_IL"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+<link rel="preload" href="../../../assets/fonts/rubik-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../../assets/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../../assets/course.css"><script src="../../../assets/progress.js" defer></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script><script>addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".math").forEach(function(e){katex.render(e.textContent,e,{displayMode:e.dataset.display==="1",throwOnError:false})})})</script>
+</head>
+<body>
+<a class="skip" href="#main">דילוג לתוכן</a>
+<header class="top">
+  <a class="brand" href="../../../learn/e03-agent-loop/at-scale.html"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">הגנה על סוכני AI</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="החלפת ערכת צבע"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>ערכת צבע</span></button>
+    <a class="lang label" href="../../../learn/e03-agent-loop/at-scale.html" lang="en" hreflang="en">English</a>
+    <a class="btn" href="../../../he/course/#waitlist" data-waitlist>לרשימת ההמתנה<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">תפריט</summary><nav aria-label="תפריט"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="e03-agent-loop/at-scale" data-module="e03-agent-loop">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">תצוגה מקדימה חינמית</a><span>/</span><a href="./">E3</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="E3">
+      <p class="label"><em>E3</em> מעשי</p>
+      <p class="side-title">לולאת הסוכן מאפס</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="e03-agent-loop/index"><span class="label">·</span><span>סקירה</span></a></li><li data-stem="01-workflow-or-agent"><a href="01-workflow-or-agent.html" data-page-link="e03-agent-loop/01-workflow-or-agent"><span class="label">01</span><span>מי מחליט על הצעד הבא? תהליכים קבועים וסוכנים</span></a></li><li data-stem="02-a-tool-is-three-texts"><a href="02-a-tool-is-three-texts.html" data-page-link="e03-agent-loop/02-a-tool-is-three-texts"><span class="label">02</span><span>כלי הוא סכמה, פונקציה והודעת שגיאה, והמודל קורא שניים מהם</span></a></li><li data-stem="03-three-wire-formats"><a href="03-three-wire-formats.html" data-page-link="e03-agent-loop/03-three-wire-formats"><span class="label">03</span><span>קריאה אחת לכלי, שלושה פורמטים על הקו</span></a></li><li data-stem="04-parallel-calls"><a href="04-parallel-calls.html" data-page-link="e03-agent-loop/04-parallel-calls"><span class="label">04</span><span>קריאות מקבילות לכלים: פעולות קריאה מתחלפות, פעולות כתיבה לא</span></a></li><li data-stem="05-retries"><a href="05-retries.html" data-page-link="e03-agent-loop/05-retries"><span class="label">05</span><span>לנסות שוב את השרת, לא את המודל: שגיאות, backoff ו־jitter</span></a></li><li data-stem="06-budgets"><a href="06-budgets.html" data-page-link="e03-agent-loop/06-budgets"><span class="label">06</span><span>צעד הוא לא יחידת עלות: ארבעה תקציבים וסיבת עצירה אחת</span></a></li><li data-stem="07-structured-answers"><a href="07-structured-answers.html" data-page-link="e03-agent-loop/07-structured-answers"><span class="label">07</span><span>תשובה שתוכנה יכולה לקרוא: סכמות ותיקון אחד</span></a></li><li data-stem="08-streaming"><a href="08-streaming.html" data-page-link="e03-agent-loop/08-streaming"><span class="label">08</span><span>קריאה לכלי בסטרימינג היא חצי אובייקט JSON</span></a></li><li data-stem="09-long-horizons"><a href="09-long-horizons.html" data-page-link="e03-agent-loop/09-long-horizons"><span class="label">09</span><span>כמה רחוק לולאה יכולה להגיע? שגיאה מצטברת, פעולות קוד ואופק הזמן</span></a></li><li data-stem="build"><a href="build.html" data-page-link="e03-agent-loop/build"><span class="label">B</span><span>הבנייה: הלולאה של מודול 1, שהופכת לכזו שרצה בלי השגחה, ונמדדת</span></a></li><li data-stem="at-scale" aria-current="page"><a href="at-scale.html" data-page-link="e03-agent-loop/at-scale"><span class="label">S</span><span>בקנה מידה: אותה לולאה, עשרת אלפים פעמים בבת אחת</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="e03-agent-loop/problems"><span class="label">P</span><span>בעיות</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="e03-agent-loop" data-total="13" data-problems="15" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">E3 · בקנה מידה: אותה לולאה, עשרת אלפים פעמים בבת אחת</p>
+        <h1>בקנה מידה: אותה לולאה, עשרת אלפים פעמים בבת אחת</h1>
+      </header>
+      <p>על לפטופ יש ללולאה משתמש אחד, שרת מודל אחד ועשרים משימות. בפרודקשן יש לה אלפי ריצות במקביל, שחולקות API עם הגבלת קצב (rate limit), חשבון אחד ומהנדס תורן אחד. כל חלק במודול הזה משנה את אופיו בקנה המידה הזה. ההערכות למטה מתחילות מהמדידות על הלפטופ שבפרק הבנייה. החליפו אותן במדידות שלכם.</p>
+<h2 id="tokens-become-the-budget-line">הטוקנים הופכים לשורה בתקציב</h2>
+<p>המחקר נותן מספר ממוצע של טוקנים (tokens) לריצה (הטבלה בפרק הבנייה). במיליון משימות ביום, הכפילו. לולאה שממוצע המשימה שלה 20,000 טוקנים שולחת <span class="math" data-display="0">2 \times 10^{10}</span> טוקנים ביום. ב־1 למיליון טוקני פרומפט וב־5 למיליון טוקני השלמה, כשההשלמה היא עשירית מהסך, זה בערך <span class="math" data-display="0">2 \times 10^{10} \times (0.9 \times 1 + 0.1 \times 5)/10^6 = 28{,}000</span> ביום. הגדילה הריבועית של שיעור 6 היא המנוף. חיתוך מספר הצעדים של משימה בת עשרה צעדים בחצי מקטין את טוקני ההיסטוריה שלה בערך לרבע, ולכן שינוי שחוסך צעד אחד במשימה החציונית שווה, בהרבה עומסי עבודה, יותר ממודל זול יותר. מכאן נגזרים תקציבים לכל לקוח (tenant): אותו <code>Budget</code> עם מחיר, שנאכף לכל לקוח לכל יום על ידי מה שמריץ את הלולאה, ומדווח יחד עם סיבת העצירה.</p>
+<h2 id="retries-become-a-fleet-behaviour">ניסיונות חוזרים הופכים להתנהגות של צי</h2>
+<p>העדר (thundering herd) של שיעור 5 הוא תקרית אחת. בקנה מידה, העדר הוא הצורה הרגילה של כל תקלה רגעית אצל הספק. שלושה כללים עוברים כמו שהם, ושניים חדשים.</p>
+<ul>
+<li><strong>Full jitter</strong>, וכיבוד של Retry-After עם פיזור (בעיה 7).</li>
+<li><strong>תקציב ניסיונות חוזרים לכל לקוח, לא רק לכל קריאה.</strong> ספר ה־SRE של Google מנסה שוב בקשה רק כל עוד הניסיונות החוזרים הם פחות מ־10% מהבקשות האחרונות של הלקוח, בנוסף למגבלה של שלושה ניסיונות לבקשה (Beyer et al., 2016, &quot;Handling Overload&quot;). מעבר לזה, השרת לא חווה תקלה רגעית, וניסיון חוזר רק מחמיר. ה־adaptive throttling של אותו פרק גורם ללקוח לדחות בקשות מקומית לפני שהן מגיעות לשרת עמוס.</li>
+<li><strong>לסווג לפני שמנסים שוב</strong>, כדי שפריסה גרועה של המתאם שלכם לא תכפיל פי ארבעה את העומס על ה־API של מישהו אחר.</li>
+<li><strong>חדש: לנסות שוב קריאה למודל זה בטוח; לנסות שוב קריאה לכלי, לא.</strong> הקריאה למודל היא קריאה בלבד. <code>send_email</code> שנגמר ב־timeout אולי כבר שלח את המייל. כלים עם השלכות צריכים מפתח אידמפוטנטיות (idempotency key), שנשלח עם הקריאה ונבדק על ידי הכלי, כך שניסיון חוזר מזוהה כאותה פעולה. לכלים של המעבדה אין כזה, ומודול 21, שיעור 7, מראה את הבעיה הכללית: יש לולאות שאסור שירוצו פעמיים.</li>
+<li><strong>חדש: המודל משותף.</strong> צי שעומד מאחורי ספק אחד חולק את הגבלת הקצב של הספק הזה. E10 מציב לפניו שער בקרה למודלים (model gateway), עם תור, נפילה למודל שני ומטמון. רוב לוגיקת הניסיונות החוזרים של המודול הזה עוברת אז לשער הבקרה, והסוכן רואה פחות כשלים, ואיטיים יותר.</li>
+</ul>
+<h2 id="parallel-calls-meet-connection-limits">קריאות מקבילות פוגשות מגבלות חיבורים</h2>
+<p>מאגר של ארבעה לכל ריצה כפול עשרת אלפים ריצות הם ארבעים אלף קריאות לכלים במקביל. האילוץ עובר מהלולאה לכלים: לכל backend יש מגבלת חיבורים ועקומת זמן תגובה (latency) (ה־knee של מודול 21). מגבלת מקביליות לכל כלי, שמשותפת לכל הריצות, היא הגרסה של <code>max_workers</code> בקנה מידה.</p>
+<h2 id="formats-become-a-matrix">פורמטים הופכים למטריצה</h2>
+<p>שני ספקים ושלושה שרתים מקומיים הם שישה מתאמים, ולכל אחד בדיקה של צורות מוקלטות. שינוי פורמט אצל ספק מופיע כבדיקת מתאם שנכשלת ב־CI או כתקרית בפרודקשן, ומה מהשניים תלוי בשאלה אם הבדיקות האלה קיימות. צוותים שמריצים כמה ספקים בדרך כלל מתקננים על פורמט פנימי אחד, כמו הלולאה הזו, ומחזיקים את המתאמים בספרייה אחת עם release notes משלה.</p>
+<h2 id="stop-reasons-become-metrics">סיבות עצירה הופכות למדדים</h2>
+<p><code>Result.stop</code> הוא תוצאה קטגורית לכל ריצה. בקנה מידה, ההתפלגות שלו לפי שעה היא הדשבורד הראשון: החלק של <code>answer</code>, של כל מגבלה, של <code>error</code> ושל <code>schema</code>. עלייה ב־<code>tokens</code> אחרי שינוי פרומפט, או ב־<code>error</code> אחרי גרסה חדשה של ספק, נראית בתוך דקות. E11 הופך את זה ל־traces ולהתרעות. מודול 18 קורא את אותה התפלגות מסיבה של אבטחה: ריצה שמגיעה למגבלת הצעדים שלה בזמן שהיא קוראת ל־<code>send_email</code> שוב ושוב היא תקרית, לא עלות.</p>
+<h2 id="what-the-laptop-cannot-show">מה הלפטופ לא יכול להראות</h2>
+<p>ללפטופ יש מודל אחד בכל פעם, אין תחרות על משאבים ואין יריב. הוא לא יכול להראות כשלים מתואמים בכל הצי, הגבלות קצב של ספקים, זמן התגובה בזנב (tail latency) של backends משותפים, או מה תוקף עושה עם לולאה שמנסה שוב את מה שאומרים לה. האחרון הוא שאר הקורס הזה.</p>
+
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>סימון כהושלם</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="build.html"><span class="label">הקודם</span>הבנייה: הלולאה של מודול 1, שהופכת לכזו שרצה בלי השגחה, ונמדדת</a><a class="pn next" href="problems.html"><span class="label">הבא</span>בעיות</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 הגנה על סוכני AI</span>
+  <nav aria-label="Footer">
+    <a href="../../../he/workshop/">סדנאות לצוותים</a>
+    <a href="../../../he/courses/">קורסים מקוונים</a>
+    <a href="mailto:shimon@defendingaiagents.com">יצירת קשר</a>
+    <a href="../../../.well-known/security.txt">אבטחה</a>
+    <a href="../../../learn/e03-agent-loop/at-scale.html" lang="en" hreflang="en">English</a>
+  </nav>
+</footer>
+<script src="../../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"כהה":"בהיר";
+b.setAttribute("aria-label","מעבר למצב "+(n==="dark"?"כהה":"בהיר"))};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

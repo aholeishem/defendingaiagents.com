@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>An agent is a model with side effects · Defending AI Agents</title>
+<meta name="description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<link rel="canonical" href="https://defendingaiagents.com/learn/00-orientation/01-an-agent-in-one-picture.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/00-orientation/01-an-agent-in-one-picture.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/00-orientation/01-an-agent-in-one-picture.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/00-orientation/01-an-agent-in-one-picture.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Defending AI Agents">
+<meta property="og:title" content="An agent is a model with side effects · Defending AI Agents"><meta property="og:description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<meta property="og:url" content="https://defendingaiagents.com/learn/00-orientation/01-an-agent-in-one-picture.html"><meta property="og:image" content="https://defendingaiagents.com/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preload" href="../../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../assets/course.css"><script src="../../assets/progress.js" defer></script><script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs";const v=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();const th=document.documentElement.dataset.theme;const dark=th?th==="dark":matchMedia("(prefers-color-scheme: dark)").matches;mermaid.initialize({startOnLoad:true,theme:"base",fontFamily:"Inter, sans-serif",themeVariables:{darkMode:dark,background:v("--bg"),primaryColor:v("--bg-2"),primaryTextColor:v("--fg"),primaryBorderColor:v("--line-2"),lineColor:v("--dim"),secondaryColor:v("--bg"),tertiaryColor:v("--bg-2"),noteBkgColor:v("--bg-2"),noteTextColor:v("--fg"),noteBorderColor:v("--sig"),actorBkg:v("--bg-2"),actorBorder:v("--line-2"),actorTextColor:v("--fg"),signalColor:v("--fg"),signalTextColor:v("--fg"),clusterBkg:v("--bg"),clusterBorder:v("--line-2"),edgeLabelBackground:v("--bg"),fontSize:"14px"}});</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="../../"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">Defending AI Agents</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="Switch colour theme"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>Theme</span></button>
+    <a class="lang label" href="../../he/learn/00-orientation/01-an-agent-in-one-picture.html" lang="he" hreflang="he">עברית</a>
+    <a class="btn" href="../../course/#waitlist" data-waitlist>Join waitlist<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">Menu</summary><nav aria-label="Menu"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="00-orientation/01-an-agent-in-one-picture" data-module="00-orientation">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">Free preview</a><span>/</span><a href="./">Module 00</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="Module 00">
+      <p class="label"><em>Module 00</em> Theoretical</p>
+      <p class="side-title">Orientation: why agent security is a statistics problem</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="00-orientation/index"><span class="label">·</span><span>Overview</span></a></li><li data-stem="01-an-agent-in-one-picture" aria-current="page"><a href="01-an-agent-in-one-picture.html" data-page-link="00-orientation/01-an-agent-in-one-picture"><span class="label">01</span><span>An agent is a model with side effects</span></a></li><li data-stem="02-four-incidents"><a href="02-four-incidents.html" data-page-link="00-orientation/02-four-incidents"><span class="label">02</span><span>Four incidents, one pattern</span></a></li><li data-stem="03-trifecta-and-rule-of-two"><a href="03-trifecta-and-rule-of-two.html" data-page-link="00-orientation/03-trifecta-and-rule-of-two"><span class="label">03</span><span>Three capabilities make a leak: the lethal trifecta and the rule of two</span></a></li><li data-stem="04-two-kinds-of-defence"><a href="04-two-kinds-of-defence.html" data-page-link="00-orientation/04-two-kinds-of-defence"><span class="label">04</span><span>Two kinds of defence, and which to trust first</span></a></li><li data-stem="05-five-statistics-problems"><a href="05-five-statistics-problems.html" data-page-link="00-orientation/05-five-statistics-problems"><span class="label">05</span><span>The hard questions in agent security are five statistics problems</span></a></li><li data-stem="06-base-rate-in-depth"><a href="06-base-rate-in-depth.html" data-page-link="00-orientation/06-base-rate-in-depth"><span class="label">06</span><span>A 99%-recall detector&#x27;s alerts can be wrong 99 times in 100: the base rate in depth</span></a></li><li data-stem="07-training-is-not-a-boundary"><a href="07-training-is-not-a-boundary.html" data-page-link="00-orientation/07-training-is-not-a-boundary"><span class="label">07</span><span>Training is not a boundary</span></a></li><li data-stem="08-trifecta-as-information-flow"><a href="08-trifecta-as-information-flow.html" data-page-link="00-orientation/08-trifecta-as-information-flow"><span class="label">08</span><span>The trifecta is two information flows, not three legs</span></a></li><li data-stem="09-reading-a-security-claim"><a href="09-reading-a-security-claim.html" data-page-link="00-orientation/09-reading-a-security-claim"><span class="label">09</span><span>Twelve questions separate a measurement from a slogan</span></a></li><li data-stem="10-course-map"><a href="10-course-map.html" data-page-link="00-orientation/10-course-map"><span class="label">10</span><span>One gateway, built a module at a time: the course map</span></a></li><li data-stem="build"><a href="build.html" data-page-link="00-orientation/build"><span class="label">B</span><span>Paper exercise: where would you have stopped it?</span></a></li><li data-stem="at-scale"><a href="at-scale.html" data-page-link="00-orientation/at-scale"><span class="label">S</span><span>At scale: thousands of agents, nobody&#x27;s inventory</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="00-orientation/problems"><span class="label">P</span><span>Problems</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="00-orientation" data-total="14" data-problems="14" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">Module 00 · Lesson 01</p>
+        <h1>An agent is a model with side effects</h1>
+      </header>
+      <p>Strip away the frameworks and an agent is a loop:</p>
+<figure class="diagram"><pre class="mermaid">flowchart TD
+  S[&quot;system prompt&lt;br/&gt;(the developer)&quot;] --&gt; H
+  U[&quot;user task&lt;br/&gt;(the user)&quot;] --&gt; H
+  H[&quot;prompt + history&quot;] --&gt; M[&quot;model&quot;]
+  M --&gt; C[&quot;tool call&lt;br/&gt;(name, arguments)&quot;]
+  C --&gt; T[&quot;tool&quot;]
+  T --&gt; W[&quot;the world:&lt;br/&gt;files, mail, money, code&quot;]
+  T --&gt; R[&quot;result&quot;]
+  R --&gt; H
+</pre></figure>
+<p>The model reads text and emits either an answer or a <strong>tool call</strong>: a name and some arguments, usually JSON.</p>
+<pre><code class="language-json">{&quot;name&quot;: &quot;send_email&quot;,
+ &quot;arguments&quot;: {&quot;to&quot;: &quot;partner@example.com&quot;, &quot;subject&quot;: &quot;Q3 summary&quot;, &quot;body&quot;: &quot;...&quot;}}
+</code></pre>
+<p>Something outside the model executes it, appends the result to the history, and calls the model again. The loop ends when the model answers instead of calling a tool, or when a step limit runs out. Module 1 gives you this loop in 88 lines, and you read every one of them.</p>
+<h2 id="where-an-attacker-can-write">Where an attacker can write</h2>
+<p>Count the arrows that carry text into the model:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Who writes it</th>
+<th>Trusted?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>System prompt</td>
+<td>The developer</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>User task</td>
+<td>The user</td>
+<td>Usually: the user is the <strong>principal</strong>, the party the agent acts for and whose authority it uses</td>
+</tr>
+<tr>
+<td>Tool results</td>
+<td><strong>Whoever wrote the file, e-mail, web page, ticket or API response</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td>Tool descriptions</td>
+<td>Whoever publishes the tool</td>
+<td>Only as far as you trust the publisher</td>
+</tr>
+<tr>
+<td>Memory, retrieved documents</td>
+<td>Whoever wrote them, possibly weeks ago</td>
+<td>Depends on provenance</td>
+</tr>
+</tbody>
+</table></div>
+<p>The model sees all of it as one stream of tokens. It has no reliable way to tell an instruction from its principal apart from an instruction that arrived inside an e-mail it was asked to summarise. That is the whole of prompt injection in one sentence. Module 4 adds the details.</p>
+<h2 id="the-boundary-is-the-tool-call">The boundary is the tool call</h2>
+<p>A model's output does harm when something acts on it. In an agent, what acts on it is almost always a tool call: before that, the output is text. So the main place to enforce security is <strong>outside the model, at the tool call</strong>, where the action is structured, inspectable and stoppable, and in <strong>how the system is built</strong>, which decides what tool calls are possible at all.</p>
+<p>&quot;Almost always&quot; matters. The other thing that acts on model output is whatever <strong>renders</strong> it. If the answer contains an image or a link and the user's client fetches it automatically, that fetch is an outbound request, made by the client, that no tool-call gateway sees. Lesson 2's public case, EchoLeak, sent its data out that way. The control for it is the same idea moved to the screen: strip or allow-list the addresses in model output before anything fetches them. This course builds the tool-call side; keep the rendering side on your list of doors.</p>
+<p>&quot;Train the model to refuse&quot; helps, and the providers do it. It is not a boundary, for the same reason a classifier's training objective is not a guarantee about its worst input. The attacker chooses the input after seeing the defence: the attacker moves second.</p>
+<h2 id="check-yourself">Check yourself</h2>
+<ol>
+<li>A support agent reads tickets and can issue refunds up to €50. List every party who can put text in front of its model.</li>
+<li>Why is the tool <em>description</em> in the table at all? Who could change it, and when?</li>
+<li>Name one thing a tool-call boundary cannot see that the model can.</li>
+</ol>
+<details class="answers"><summary>Answers</summary>
+<ol>
+<li>The developer, through the system prompt; the user who assigns the task; every customer or stranger who can open a ticket, with its attachments and quoted e-mails; whoever publishes the tools, refunds tool included, through their descriptions; and whoever wrote the knowledge base, memory or earlier tickets it retrieves. The €50 limit bounds what it does, not who writes to it.</li>
+<li>Because a tool's description is text in front of the model, and the model reads it as it reads any other. The publisher can change it whenever they update the tool, including after you reviewed and installed it, and every later session reads the new text with nothing to show it changed.</li>
+<li>Where the call came from. The boundary sees a name and arguments; the model saw the whole context, including the e-mail sentence that prompted the call, so the boundary cannot tell a send the user asked for from one an injected instruction asked for when the two look the same.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>Mark complete</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="./"><span class="label">Previous</span>Overview</a><a class="pn next" href="02-four-incidents.html"><span class="label">Next</span>Four incidents, one pattern</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 Defending AI Agents</span>
+  <nav aria-label="Footer">
+    <a href="../../workshop/">Team workshops</a>
+    <a href="../../courses/">Online courses</a>
+    <a href="mailto:shimon@defendingaiagents.com">Contact</a>
+    <a href="../../.well-known/security.txt">Security</a>
+    <a href="../../he/learn/00-orientation/01-an-agent-in-one-picture.html" lang="he" hreflang="he">עברית</a>
+  </nav>
+</footer>
+<script src="../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"Dark":"Light";
+b.setAttribute("aria-label","Switch to "+n+" mode")};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

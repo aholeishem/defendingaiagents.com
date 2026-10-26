@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TLS proves you reached a name, not that the name is honest · Defending AI Agents</title>
+<meta name="description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<link rel="canonical" href="https://defendingaiagents.com/learn/onramp/07-tls.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/onramp/07-tls.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/onramp/07-tls.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/onramp/07-tls.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Defending AI Agents">
+<meta property="og:title" content="TLS proves you reached a name, not that the name is honest · Defending AI Agents"><meta property="og:description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<meta property="og:url" content="https://defendingaiagents.com/learn/onramp/07-tls.html"><meta property="og:image" content="https://defendingaiagents.com/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preload" href="../../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../assets/course.css"><script src="../../assets/progress.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="../../"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">Defending AI Agents</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="Switch colour theme"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>Theme</span></button>
+    <a class="lang label" href="../../he/learn/onramp/07-tls.html" lang="he" hreflang="he">עברית</a>
+    <a class="btn" href="../../course/#waitlist" data-waitlist>Join waitlist<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">Menu</summary><nav aria-label="Menu"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="onramp/07-tls" data-module="onramp">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">Free preview</a><span>/</span><a href="./">On-ramp</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="On-ramp">
+      <p class="label"><em>On-ramp</em> Theoretical</p>
+      <p class="side-title">On-ramp: the web plumbing the course assumes</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="onramp/index"><span class="label">·</span><span>Overview</span></a></li><li data-stem="01-http-is-text"><a href="01-http-is-text.html" data-page-link="onramp/01-http-is-text"><span class="label">01</span><span>An HTTP call is text in, text out</span></a></li><li data-stem="02-json-edges"><a href="02-json-edges.html" data-page-link="onramp/02-json-edges"><span class="label">02</span><span>JSON is simple, and its parsers still disagree</span></a></li><li data-stem="03-yaml-traps"><a href="03-yaml-traps.html" data-page-link="onramp/03-yaml-traps"><span class="label">03</span><span>YAML is JSON with indentation and four traps</span></a></li><li data-stem="04-api-token"><a href="04-api-token.html" data-page-link="onramp/04-api-token"><span class="label">04</span><span>An API token is a password with a label</span></a></li><li data-stem="05-dns"><a href="05-dns.html" data-page-link="onramp/05-dns"><span class="label">05</span><span>A name is not an address, and the answer can change</span></a></li><li data-stem="06-proxy"><a href="06-proxy.html" data-page-link="onramp/06-proxy"><span class="label">06</span><span>A proxy is a server that is also a client</span></a></li><li data-stem="07-tls" aria-current="page"><a href="07-tls.html" data-page-link="onramp/07-tls"><span class="label">07</span><span>TLS proves you reached a name, not that the name is honest</span></a></li><li data-stem="08-jwt"><a href="08-jwt.html" data-page-link="onramp/08-jwt"><span class="label">08</span><span>A JWT is signed claims, and a check has an order</span></a></li><li data-stem="09-oauth-roles"><a href="09-oauth-roles.html" data-page-link="onramp/09-oauth-roles"><span class="label">09</span><span>OAuth gives a token a purpose: roles, scope, audience</span></a></li><li data-stem="10-parser-differentials"><a href="10-parser-differentials.html" data-page-link="onramp/10-parser-differentials"><span class="label">10</span><span>Two parsers, one message: a check is sound only if it reads what the target reads</span></a></li><li data-stem="11-oauth-threat-model"><a href="11-oauth-threat-model.html" data-page-link="onramp/11-oauth-threat-model"><span class="label">11</span><span>OAuth&#x27;s own threat model: what RFC 9700 requires, and why an agent needs all of it</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="onramp/problems"><span class="label">P</span><span>Problems</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="onramp" data-total="13" data-problems="14" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">On-ramp · Lesson 07</p>
+        <h1>TLS proves you reached a name, not that the name is honest</h1>
+      </header>
+      <p>The agent connects to <code>https://crm.acme.example</code>. The padlock is there; the call is encrypted. Another host, <code>crm-acme.example.net</code>, has an equally valid certificate. TLS did its job in both cases. It told the client the server holds a key a certificate authority vouched for under that <em>name</em>.</p>
+<h2 id="what-the-handshake-gives">What the handshake gives</h2>
+<p>TLS (RFC 8446, 2018) puts three properties on a TCP connection:</p>
+<ol>
+<li><strong>Confidentiality</strong>: a network observer sees addresses and sizes, not the bytes.</li>
+<li><strong>Integrity</strong>: bytes cannot be changed in flight undetected.</li>
+<li><strong>Server authentication</strong>: the server proves it holds the private key for a <strong>certificate</strong> naming it, and that certificate chains to a root the client trusts (RFC 5280, 2008).</li>
+</ol>
+<p>The client checks that the name it meant to reach is in the certificate (RFC 9525, 2023). Here it is on a local socket, with a certificate for <code>crm.acme.example</code> and a client that trusts only that certificate.</p>
+<p>Make a throwaway certificate, then save <code>t.py</code> beside it:</p>
+<pre><code class="language-bash">openssl req -x509 -newkey rsa:2048 -nodes -keyout k.pem -out c.pem -days 1 \
+  -subj &quot;/CN=crm.acme.example&quot; -addext &quot;subjectAltName=DNS:crm.acme.example&quot;
+</code></pre>
+<pre><code class="language-python">import socket, ssl, threading
+
+ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+ctx.load_cert_chain(&quot;c.pem&quot;, &quot;k.pem&quot;)
+srv = socket.socket(); srv.bind((&quot;127.0.0.1&quot;, 8443)); srv.listen()
+
+def serve():
+    while True:
+        conn, _ = srv.accept()
+        try:
+            ctx.wrap_socket(conn, server_side=True).sendall(b&quot;hello&quot;)
+        except Exception:
+            pass
+threading.Thread(target=serve, daemon=True).start()
+
+client = ssl.create_default_context(cafile=&quot;c.pem&quot;)      # trusts only this certificate
+for name in (&quot;crm.acme.example&quot;, &quot;cal.acme.example&quot;):
+    try:
+        with socket.create_connection((&quot;127.0.0.1&quot;, 8443)) as raw, \
+             client.wrap_socket(raw, server_hostname=name) as s:
+            print(name, &quot;-&gt;&quot;, s.version(), s.recv(5))
+    except ssl.SSLCertVerificationError as e:
+        print(name, &quot;-&gt;&quot;, e.verify_message)
+</code></pre>
+<p>It prints:</p>
+<pre><code class="language-text">crm.acme.example -&gt; TLSv1.3 b'hello'
+cal.acme.example -&gt; Hostname mismatch, certificate is not valid for 'cal.acme.example'.
+</code></pre>
+<p>The same server, the same address, the same bytes: the verdict turns on the <strong>name the client asked for</strong>. A client that connects by IP address, or turns off hostname checking (<code>verify=False</code>, <code>-k</code>), has encrypted a conversation with nobody in particular.</p>
+<h2 id="what-it-does-not-give">What it does not give</h2>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Looks like TLS means</th>
+<th>It actually means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&quot;the server is trustworthy&quot;</td>
+<td>a CA vouched that the key holder controls the name</td>
+</tr>
+<tr>
+<td>&quot;the content is safe&quot;</td>
+<td>nothing about the content: a prompt injection arrives encrypted and intact</td>
+</tr>
+<tr>
+<td>&quot;the client is who it says&quot;</td>
+<td>by default, nothing: only the server proved itself (mutual TLS adds the client, RFC 8705)</td>
+</tr>
+<tr>
+<td>&quot;nobody sees the traffic&quot;</td>
+<td>the endpoints and any proxy that terminates the connection see it</td>
+</tr>
+</tbody>
+</table></div>
+<p>A gateway that terminates TLS and re-encrypts to the upstream is a <strong>man in the middle by design</strong>: it holds a certificate its clients trust, so it can read every byte. That is what lets it inspect a tool call, and also why the keys of that gateway are among the most valuable in the deployment.</p>
+<h2 id="sni-the-name-travels-before-the-encryption">SNI: the name travels before the encryption</h2>
+<p>The client's first message carries the <strong>server name indication</strong> (RFC 6066) so one address can serve many certificates. It is in clear text in the classic handshake, which is how a network control can allow <code>crm.acme.example</code> and block another name without breaking encryption, and how a client can lie in it while sending a different <code>Host</code> header inside. A gateway that routes on SNI and decides on <code>Host</code> has a parser differential of lesson 1's kind, between two layers.</p>
+<h2 id="expert-pinning-and-the-cost-of-a-check">Expert: pinning and the cost of a check</h2>
+<p>A client can pin the key or certificate it expects, so a mis-issued certificate from a trusted CA fails. Pinning moves risk to rotation: a pinned key that is replaced without warning takes every client down. Revocation checks (CRLs, RFC 5280; OCSP) fail soft in many clients, because failing hard turns an unreachable CA into an outage for every site that uses it. Short-lived certificates reduce the problem to waiting for expiry.</p>
+<h2 id="check-yourself">Check yourself</h2>
+<ol>
+<li>An agent's HTTP library has <code>verify=False</code> &quot;for the lab&quot;. Which of the three properties does that remove, and is the traffic still encrypted?</li>
+<li>A prompt injection reaches the model over a TLS-protected page fetch. Which of the three properties held for the injected text, and which component from lessons 6 and 7 is placed to inspect it?</li>
+<li>Your gateway terminates TLS. What must be true of how it reaches the CRM for &quot;the CRM's log shows the gateway&quot; to be a property you can rely on?</li>
+</ol>
+<details class="answers"><summary>Answers</summary>
+<ol>
+<li>Server authentication: no chain check and no name check. The traffic is still encrypted and integrity-protected, but with whoever answered, so anyone on the path can terminate it, read and change everything, and re-encrypt: &quot;a conversation with nobody in particular&quot;.</li>
+<li>All three: the text arrived confidential, unaltered and from the server the client named. TLS says nothing about content. The component placed to inspect it is a proxy that terminates TLS, such as the gateway acting as a reverse proxy (lesson 6), a man in the middle by design that reads the plaintext.</li>
+<li>The gateway-to-CRM connection must authenticate the gateway, and be the only way in. By default TLS proves only the server, so the CRM needs mutual TLS with the gateway's client certificate (RFC 8705) or a network on which nothing else can reach it; and the gateway must verify the CRM's certificate in turn. Otherwise &quot;the gateway&quot; in the log is just whoever connected.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>Mark complete</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="06-proxy.html"><span class="label">Previous</span>A proxy is a server that is also a client</a><a class="pn next" href="08-jwt.html"><span class="label">Next</span>A JWT is signed claims, and a check has an order</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 Defending AI Agents</span>
+  <nav aria-label="Footer">
+    <a href="../../workshop/">Team workshops</a>
+    <a href="../../courses/">Online courses</a>
+    <a href="mailto:shimon@defendingaiagents.com">Contact</a>
+    <a href="../../.well-known/security.txt">Security</a>
+    <a href="../../he/learn/onramp/07-tls.html" lang="he" hreflang="he">עברית</a>
+  </nav>
+</footer>
+<script src="../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"Dark":"Light";
+b.setAttribute("aria-label","Switch to "+n+" mode")};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

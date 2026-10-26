@@ -538,6 +538,7 @@ def course_page(t, prefix):
     <div class="parts">{parts}</div>
     <div class="capstone reveal"><span class="label">{E(t['cap_label'])}</span><strong>{E(t['cap_h'])}</strong><span class="d">{E(t['cap_p'])}</span></div>
     <p class="label indent"><a href="{prefix}{t['home_path']}map/">{E(CATALOG[t['lang']]['map_link'])} {ARROW}</a></p>
+    <p class="label indent"><a href="{prefix}{t['home_path']}learn/">{E(CATALOG[t['lang']]['preview_link'])} {ARROW}</a></p>
     {bench_table(t)}
   </section>
 
@@ -663,6 +664,7 @@ CATALOG = {
         "compare_h": "The two courses side by side",
         "compare_p": "One agent runs through both: you build it in the first course, then attack and defend it in the second.",
         "map_link": "Every module of both courses on one map",
+        "preview_link": "Read the free preview: the on-ramp, Module 0 and E3",
         "compare_cols": ("", "Building AI Agents", "Defending AI Agents", "Both, in order"),
         "compare_rows": [
             ("For", "Data scientists and engineers who build with AI; no experience of building LLM applications needed", "Developers, ML engineers and data practitioners responsible for an agent; no security background needed", "Anyone who will build an agent and answer for it"),
@@ -703,6 +705,7 @@ CATALOG = {
         "compare_h": "שני הקורסים זה לצד זה",
         "compare_p": "סוכן אחד עובר בשני הקורסים: בונים אותו בראשון, ותוקפים ומגינים עליו בשני.",
         "map_link": "כל המודולים של שני הקורסים על מפה אחת",
+        "preview_link": "לקריאת התצוגה המקדימה החינמית: מסלול ההכנה, מודול 0 ו־E3",
         "compare_cols": ("", "בניית סוכני AI", "הגנה על סוכני AI", "שניהם, לפי הסדר"),
         "compare_rows": [
             ("למי", "מדעני נתונים ומהנדסים שבונים עם AI; לא נדרש ניסיון בבניית אפליקציות LLM", "מפתחים, מהנדסי ML ואנשי דאטה שאחראים על סוכן; לא נדרש רקע באבטחה", "מי שיבנה סוכן ויהיה אחראי עליו"),
@@ -826,6 +829,7 @@ def courses_page(t, prefix):
       <tbody>{"".join('<tr><th scope="row">' + E(r[0]) + '</th>' + "".join(f'<td>{E(x)}</td>' for x in r[1:]) + '</tr>' for r in c['compare_rows'])}</tbody></table>
     </div>
     <p class="label"><a href="{prefix}{t['home_path']}map/">{E(c['map_link'])} {ARROW}</a></p>
+    <p class="label"><a href="{prefix}{t['home_path']}learn/">{E(c['preview_link'])} {ARROW}</a></p>
   </section>
   <aside class="team-alternative"><div><h2>{E(c['team_note'])}</h2><p>{E(c['team_p'])}</p></div><a class="text-link" href="{prefix}{t['ws_path']}">{E(c['workshop_cta'])} {ARROW}</a></aside>
 </main>
@@ -1337,6 +1341,7 @@ def building_page(t, b, prefix, url, mail, other):
     {head_('topics_h')}
     <ol class="build indent">{topics}</ol>
     <p class="label indent"><a href="{prefix}{t['home_path']}map/">{E(CATALOG[t['lang']]['map_link'])} {ARROW}</a></p>
+    <p class="label indent"><a href="{prefix}{t['home_path']}learn/">{E(CATALOG[t['lang']]['preview_link'])} {ARROW}</a></p>
   </section>
 
   <section>

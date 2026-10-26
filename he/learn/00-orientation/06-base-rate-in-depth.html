@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="he" dir="rtl" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>גלאי עם recall של 99% יכול לטעות ב־99 מתוך 100 התרעות: שיעור הבסיס לעומק · הגנה על סוכני AI</title>
+<meta name="description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<link rel="canonical" href="https://defendingaiagents.com/he/learn/00-orientation/06-base-rate-in-depth.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/00-orientation/06-base-rate-in-depth.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/00-orientation/06-base-rate-in-depth.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/00-orientation/06-base-rate-in-depth.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="הגנה על סוכני AI">
+<meta property="og:title" content="גלאי עם recall של 99% יכול לטעות ב־99 מתוך 100 התרעות: שיעור הבסיס לעומק · הגנה על סוכני AI"><meta property="og:description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<meta property="og:url" content="https://defendingaiagents.com/he/learn/00-orientation/06-base-rate-in-depth.html"><meta property="og:image" content="https://defendingaiagents.com/og-he.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="he_IL"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+<link rel="preload" href="../../../assets/fonts/rubik-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../../assets/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../../assets/course.css"><script src="../../../assets/progress.js" defer></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script><script>addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".math").forEach(function(e){katex.render(e.textContent,e,{displayMode:e.dataset.display==="1",throwOnError:false})})})</script>
+</head>
+<body>
+<a class="skip" href="#main">דילוג לתוכן</a>
+<header class="top">
+  <a class="brand" href="../../../learn/00-orientation/06-base-rate-in-depth.html"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">הגנה על סוכני AI</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="החלפת ערכת צבע"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>ערכת צבע</span></button>
+    <a class="lang label" href="../../../learn/00-orientation/06-base-rate-in-depth.html" lang="en" hreflang="en">English</a>
+    <a class="btn" href="../../../he/course/#waitlist" data-waitlist>לרשימת ההמתנה<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">תפריט</summary><nav aria-label="תפריט"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="00-orientation/06-base-rate-in-depth" data-module="00-orientation">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">תצוגה מקדימה חינמית</a><span>/</span><a href="./">מודול 00</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="מודול 00">
+      <p class="label"><em>מודול 00</em> תיאורטי</p>
+      <p class="side-title">התמצאות: למה אבטחת סוכנים היא בעיה סטטיסטית</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="00-orientation/index"><span class="label">·</span><span>סקירה</span></a></li><li data-stem="01-an-agent-in-one-picture"><a href="01-an-agent-in-one-picture.html" data-page-link="00-orientation/01-an-agent-in-one-picture"><span class="label">01</span><span>סוכן הוא מודל עם תופעות לוואי</span></a></li><li data-stem="02-four-incidents"><a href="02-four-incidents.html" data-page-link="00-orientation/02-four-incidents"><span class="label">02</span><span>ארבע תקריות, דפוס אחד</span></a></li><li data-stem="03-trifecta-and-rule-of-two"><a href="03-trifecta-and-rule-of-two.html" data-page-link="00-orientation/03-trifecta-and-rule-of-two"><span class="label">03</span><span>שלוש יכולות יוצרות דליפה: השילוש הקטלני וכלל השניים</span></a></li><li data-stem="04-two-kinds-of-defence"><a href="04-two-kinds-of-defence.html" data-page-link="00-orientation/04-two-kinds-of-defence"><span class="label">04</span><span>שני סוגי הגנה, ובאיזה לבטוח קודם</span></a></li><li data-stem="05-five-statistics-problems"><a href="05-five-statistics-problems.html" data-page-link="00-orientation/05-five-statistics-problems"><span class="label">05</span><span>השאלות הקשות באבטחת סוכנים הן חמש בעיות סטטיסטיות</span></a></li><li data-stem="06-base-rate-in-depth" aria-current="page"><a href="06-base-rate-in-depth.html" data-page-link="00-orientation/06-base-rate-in-depth"><span class="label">06</span><span>גלאי עם recall של 99% יכול לטעות ב־99 מתוך 100 התרעות: שיעור הבסיס לעומק</span></a></li><li data-stem="07-training-is-not-a-boundary"><a href="07-training-is-not-a-boundary.html" data-page-link="00-orientation/07-training-is-not-a-boundary"><span class="label">07</span><span>אימון הוא לא גבול</span></a></li><li data-stem="08-trifecta-as-information-flow"><a href="08-trifecta-as-information-flow.html" data-page-link="00-orientation/08-trifecta-as-information-flow"><span class="label">08</span><span>השילוש הוא שתי זרימות מידע, לא שלוש רגליים</span></a></li><li data-stem="09-reading-a-security-claim"><a href="09-reading-a-security-claim.html" data-page-link="00-orientation/09-reading-a-security-claim"><span class="label">09</span><span>שתים־עשרה שאלות מפרידות בין מדידה לסיסמה</span></a></li><li data-stem="10-course-map"><a href="10-course-map.html" data-page-link="00-orientation/10-course-map"><span class="label">10</span><span>שער בקרה (gateway) אחד, נבנה מודול אחרי מודול: מפת הקורס</span></a></li><li data-stem="build"><a href="build.html" data-page-link="00-orientation/build"><span class="label">B</span><span>תרגיל על נייר: איפה הייתם עוצרים את זה?</span></a></li><li data-stem="at-scale"><a href="at-scale.html" data-page-link="00-orientation/at-scale"><span class="label">S</span><span>בקנה מידה: אלפי סוכנים, ואף אחד לא מחזיק את הרשימה</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="00-orientation/problems"><span class="label">P</span><span>בעיות</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="00-orientation" data-total="14" data-problems="14" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">מודול 00 · שיעור 06</p>
+        <h1>גלאי עם recall של 99% יכול לטעות ב־99 מתוך 100 התרעות: שיעור הבסיס לעומק</h1>
+      </header>
+      <p>שיעור 5 הציג את התוצאה: גלאי עם recall של 99% ושיעור חיוביים שגויים (false-positive rate) של 1%, שרץ על טראפיק שבו קריאה אחת מתוך 10,000 היא מתקפה, צודק בערך פעם אחת מתוך 100 כשהוא מתריע. השיעור הזה מפרק את התוצאה, כי כל החלטה על סף בחלק III היא בדיוק החישוב הזה, רק בזהירות רבה יותר.</p>
+<h2 id="the-calculation-and-its-inverse">החישוב, וההפוך שלו</h2>
+<p>נסמן ב־<span class="math" data-display="0">\pi</span> את שיעור הבסיס (base rate), כלומר החלק מהקריאות שהן מתקפות, ב־TPR את ה־recall של הגלאי וב־FPR את שיעור החיוביים השגויים שלו. לפי בייס:</p>
+<div class="math" data-display="1">\text{precision} = P(\text{attack} \mid \text{alert}) = \frac{\text{TPR}\,\pi}{\text{TPR}\,\pi + \text{FPR}\,(1-\pi)}</div>
+<p>נקבע TPR = 0.99 ו־<span class="math" data-display="0">\pi = 10^{-4}</span> ונזיז את ה־FPR:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>FPR</th>
+<th>Precision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10%</td>
+<td>0.1%</td>
+</tr>
+<tr>
+<td>1%</td>
+<td>1.0%</td>
+</tr>
+<tr>
+<td>0.1%</td>
+<td>9.0%</td>
+</tr>
+<tr>
+<td>0.01%</td>
+<td>49.8%</td>
+</tr>
+<tr>
+<td>0.001%</td>
+<td>90.8%</td>
+</tr>
+</tbody>
+</table></div>
+<p>עכשיו הפוך. נפתור את הנוסחה עבור ה־FPR שנותן precision רצוי <span class="math" data-display="0">P</span>:</p>
+<div class="math" data-display="1">\text{FPR} = \frac{\text{TPR}\,\pi\,(1-P)}{P\,(1-\pi)}</div>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Precision רצוי</th>
+<th>ה־FPR הנדרש</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>50%</td>
+<td><span class="math" data-display="0">9.9 \times 10^{-5}</span></td>
+</tr>
+<tr>
+<td>90%</td>
+<td><span class="math" data-display="0">1.1 \times 10^{-5}</span></td>
+</tr>
+<tr>
+<td>99%</td>
+<td><span class="math" data-display="0">1.0 \times 10^{-6}</span></td>
+</tr>
+</tbody>
+</table></div>
+<p>כדי ש<em>מחצית</em> מההתרעות יהיו אמיתיות צריך שיעור חיוביים שגויים של בערך אחד לעשרת אלפים: סדר גודל מתחת למה שרוב הקלאסיפיירים לטקסט משיגים על דאטה מההתפלגות שלהם, והם בכלל לא נמדדים בהתפלגות שלהם (מודול 8). הכיוון ההפוך הוא השימושי: <strong>בחרו את ה־precision שהבודקים שלכם יכולים לחיות איתו, ותקציב ה־FPR נגזר ממנו.</strong></p>
+<h2 id="alerts-are-a-staffing-problem">התרעות הן בעיית כוח אדם</h2>
+<p>ב־50 מיליון קריאות ביום (2,000 סוכנים, 25,000 קריאות כל אחד; ראו את עמוד «בקנה מידה» של המודול) ו־<span class="math" data-display="0">\pi = 10^{-4}</span> יש 5,000 מתקפות ביום. בשתי דקות לבדיקה ו־7.5 שעות עבודה אפקטיביות ביום:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>FPR</th>
+<th>התרעות ביום</th>
+<th>אמיתיות מתוכן</th>
+<th>בודקים (משרה מלאה)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1%</td>
+<td>504,900</td>
+<td>4,950</td>
+<td>2,244</td>
+</tr>
+<tr>
+<td>0.1%</td>
+<td>54,945</td>
+<td>4,950</td>
+<td>244</td>
+</tr>
+<tr>
+<td>0.01%</td>
+<td>9,950</td>
+<td>4,950</td>
+<td>44</td>
+</tr>
+</tbody>
+</table></div>
+<p>אף אחד לא מעסיק 2,244 בודקים בשביל זה, אז דוגמים מתוך ההתרעות, משאירים אותן בתור עד שהן מתיישנות, או מתעלמים מהן, וה־recall האמיתי של המערכת יורד לשבר שמישהו באמת מסתכל עליו. <strong>ה־recall האפקטיבי של גלאי הוא ה־recall שלו כפול השבר מההתרעות שמישהו פועל לפיהן.</strong> לכן הקורס חוזר ודורש <em>תקציב</em> FPR שקשור לפעולה.</p>
+<h2 id="why-auc-does-not-warn-you">למה AUC לא מזהיר אתכם</h2>
+<p>עקומת ROC משרטטת TPR מול FPR; שניהם מותנים במחלקה, ולכן אף אחד מהם לא זז כש־<span class="math" data-display="0">\pi</span> משתנה. קחו שני גלאים גאוסיאניים עם שונות שווה, שנבדלים רק בהפרדה <span class="math" data-display="0">d&#x27;</span>, ומדדו כל אחד ב־FPR = 0.1%:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>הפרדה</th>
+<th>AUC</th>
+<th>TPR ב־FPR 0.1%</th>
+<th>Precision ב־<span class="math" data-display="0">\pi = 10^{-4}</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="math" data-display="0">d&#x27; = 3</span></td>
+<td>0.983</td>
+<td>0.46</td>
+<td>4.4%</td>
+</tr>
+<tr>
+<td><span class="math" data-display="0">d&#x27; = 4</span></td>
+<td>0.998</td>
+<td>0.82</td>
+<td>7.6%</td>
+</tr>
+</tbody>
+</table></div>
+<p>AUC של 0.998 שווה כותרת, ונותן התרעות שטועות ב־92 מתוך 100. דווחו את <strong>נקודת העבודה</strong> (operating point), כלומר ה־TPR ב־FPR שהתקציב מרשה, ואת <strong>ה־precision ב־prior של הפריסה</strong>, ולעולם לא AUC לבד. עקומות precision-recall חושפות את הבעיה, כי ה־precision תלוי ב־<span class="math" data-display="0">\pi</span>; אבל צריך לשרטט אותן ב־<span class="math" data-display="0">\pi</span> של הפריסה, לא של הבנצ'מרק.</p>
+<h2 id="the-score-is-not-a-probability-at-deployment">בפריסה, הציון הוא לא הסתברות</h2>
+<p>נניח שקלאסיפייר שאומן על סט מאוזן (<span class="math" data-display="0">\pi_{\text{train}} = 0.5</span>) מוציא 0.99 עבור קריאה. האם זה סיכוי של 99% למתקפה? רק אם גם הפריסה מאוזנת. התאמה ל־prior חדש (Saerens, Latinne and Decaestecker, 2002) מכפילה את הסיכויים (odds) ביחס בין סיכויי ה־prior:</p>
+<div class="math" data-display="1">\frac{p_{\text{new}}}{1-p_{\text{new}}} = \frac{p_{\text{old}}}{1-p_{\text{old}}} \cdot \frac{\pi_{\text{new}}/(1-\pi_{\text{new}})}{\pi_{\text{train}}/(1-\pi_{\text{train}})}</div>
+<p>כאן: <span class="math" data-display="0">99 \times \frac{10^{-4}/0.9999}{1} \approx 0.0099</span>, ולכן <span class="math" data-display="0">p_{\text{new}} \approx 0.98\%</span>. הציון «0.99» פירושו «סבירות של בערך 1%» בפרודקשן.</p>
+<p>ההתאמה נשענת על שתי הנחות, ושתיהן יכולות להיכשל: שהציון היה <strong>מכויל</strong> (calibrated) ב־prior של האימון, ושרק <strong>ה־prior של המחלקות</strong> השתנה בין האימון לפריסה, ולא איך מתקפות וקריאות תמימות נראות (label shift, לא ה־covariate shift של מודול 8).</p>
+<p>ה־0.98% תואם ל־precision של שיעור 5, אבל זו כמות אחרת. זה של שיעור 5 הוא ממוצע על כל ההתרעות: <span class="math" data-display="0">P(\text{attack} \mid \text{score above threshold})</span>. כאן הוא נקודתי: <span class="math" data-display="0">P(\text{attack} \mid \text{score} = 0.99)</span>. הם מסכימים רק כי שני יחסי הנראות (likelihood ratios) הם 99: כאן הסיכויים של הציון, <span class="math" data-display="0">0.99/0.01</span>; שם <span class="math" data-display="0">\text{TPR}/\text{FPR} = 0.99/0.01</span>. שנו אחד מהם והם נפרדים.</p>
+<h2 id="the-prior-is-the-soft-spot">ה־prior הוא הנקודה הרכה</h2>
+<p>כל מה שלמעלה מניח ש־<span class="math" data-display="0">\pi</span> ידוע. הוא לא. <span class="math" data-display="0">\pi</span> הוא שיעור המתקפות <em>בטראפיק שלכם</em>, שאי אפשר לדעת בלי לתייג טראפיק, ושתוקף יכול לשנות. התייחסו אליו כפרמטר עם רווח סמך (confidence interval), ודווחו precision כטווח. אותו דבר נכון ל־FPR: הוא נאמד ממדגם סופי של קריאות תמימות, ואם יש אפס חיוביים שגויים ב־<span class="math" data-display="0">n</span> קריאות, הגבול העליון החד־צדדי ב־95% הוא <span class="math" data-display="0">1 - 0.05^{1/n} \approx 3/n</span>, <strong>כלל השלוש</strong> (rule of three; מודול 1, שיעור 9 גוזר אותו). אפס מתוך 300 עדיין מרשה 1%. שתי דרכים הוגנות לחסום אותו: (א) שיעורי red team כפול חשיפה (מודול 9), ו־(ב) מדגם אקראי מתויג של קריאות מפרודקשן, גדול מספיק כדי לראות לפחות קומץ מתקפות, שב־<span class="math" data-display="0">\pi = 10^{-4}</span> פירושו לתייג עשרות אלפים. מודול 7 עושה את חשבון רווחי הסמך.</p>
+<p>עוד אסימטריה ששווה לשים לב אליה: <span class="math" data-display="0">\pi</span> אינו אקסוגני. העלו את רמת הזיהוי והתוקפים זזים; הורידו חיכוך ויותר מהם ינסו. ה־prior הוא תכונה של המערכת כולה, כולל ההגנות שלכם.</p>
+<h2 id="check-yourself">בדקו את עצמכם</h2>
+<ol>
+<li>ב־<span class="math" data-display="0">\pi = 10^{-6}</span> (מתקפה אחת למיליון קריאות), איזה FPR נותן precision של 50% ב־TPR 0.99? כמה קריאות תמימות, בלי אף חיובי שגוי ביניהן, כלל השלוש היה דורש לפני שתוכלו לטעון ל־FPR הזה?</li>
+<li>לשני גלאים יש אותו AUC. לגלאי A יש TPR גבוה יותר ב־FPR = <span class="math" data-display="0">10^{-3}</span>; B טוב יותר ב־FPR = <span class="math" data-display="0">10^{-1}</span>. איזה מהם הייתם פורסים לפעולה של עיכוב לבדיקה, ב־500,000 קריאות ביום עם חמישה בודקים? הראו את החישוב.</li>
+<li>ספק מדווח «דיוק של 99.9%» (accuracy) על סט בדיקה מאוזן. ציינו את שני המספרים שהייתם מבקשים.</li>
+</ol>
+<details class="answers"><summary>תשובות</summary>
+<ol>
+<li><span class="math" data-display="0">\text{FPR} = 0.99 \times 10^{-6} \times 0.5/(0.5 \times (1 - 10^{-6})) = 9.9 \times 10^{-7}</span>. אפס חיוביים שגויים ב־<span class="math" data-display="0">n</span> קריאות מאשר אותו ברגע ש־<span class="math" data-display="0">1 - 0.05^{1/n} \le 9.9 \times 10^{-7}</span>: בערך 3.03 מיליון קריאות תמימות, ה־<span class="math" data-display="0">3/\text{FPR}</span> של כלל השלוש.</li>
+<li>A. חמישה בודקים, בשתי דקות לבדיקה ו־7.5 שעות ביום, מנקים 1,125 התרעות, כלומר תקציב FPR של <span class="math" data-display="0">1{,}125/500{,}000 = 0.225\%</span>. ב־<span class="math" data-display="0">\pi = 10^{-4}</span>, FPR של <span class="math" data-display="0">10^{-3}</span> נותן בערך 500 התרעות שווא ועוד לכל היותר 50 אמיתיות, בתוך התקציב; FPR של <span class="math" data-display="0">10^{-1}</span> נותן בערך 50,000, פי 44 ממה שהצוות מסוגל לקרוא. רק האזור סביב <span class="math" data-display="0">10^{-3}</span> שמיש, ושם A טוב יותר.</li>
+<li>TPR ו־FPR בנפרד, מדודים על טראפיק שנראה כמו זה של הפריסה. על סט מאוזן הדיוק הוא <span class="math" data-display="0">(\text{TPR} + 1 - \text{FPR})/2</span>, ולכן 99.9% מרשה FPR של עד 0.2%, שב־<span class="math" data-display="0">\pi = 10^{-4}</span> נותן precision של 4.8% בלבד, גם עם recall מושלם.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>סימון כהושלם</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="05-five-statistics-problems.html"><span class="label">הקודם</span>השאלות הקשות באבטחת סוכנים הן חמש בעיות סטטיסטיות</a><a class="pn next" href="07-training-is-not-a-boundary.html"><span class="label">הבא</span>אימון הוא לא גבול</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 הגנה על סוכני AI</span>
+  <nav aria-label="Footer">
+    <a href="../../../he/workshop/">סדנאות לצוותים</a>
+    <a href="../../../he/courses/">קורסים מקוונים</a>
+    <a href="mailto:shimon@defendingaiagents.com">יצירת קשר</a>
+    <a href="../../../.well-known/security.txt">אבטחה</a>
+    <a href="../../../learn/00-orientation/06-base-rate-in-depth.html" lang="en" hreflang="en">English</a>
+  </nav>
+</footer>
+<script src="../../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"כהה":"בהיר";
+b.setAttribute("aria-label","מעבר למצב "+(n==="dark"?"כהה":"בהיר"))};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

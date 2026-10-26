@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="he" dir="rtl" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>הבנייה: הלולאה של מודול 1, שהופכת לכזו שרצה בלי השגחה, ונמדדת · הגנה על סוכני AI</title>
+<meta name="description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<link rel="canonical" href="https://defendingaiagents.com/he/learn/e03-agent-loop/build.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/e03-agent-loop/build.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/e03-agent-loop/build.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/e03-agent-loop/build.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="הגנה על סוכני AI">
+<meta property="og:title" content="הבנייה: הלולאה של מודול 1, שהופכת לכזו שרצה בלי השגחה, ונמדדת · הגנה על סוכני AI"><meta property="og:description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<meta property="og:url" content="https://defendingaiagents.com/he/learn/e03-agent-loop/build.html"><meta property="og:image" content="https://defendingaiagents.com/og-he.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="he_IL"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+<link rel="preload" href="../../../assets/fonts/rubik-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../../assets/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../../assets/course.css"><script src="../../../assets/progress.js" defer></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script><script>addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".math").forEach(function(e){katex.render(e.textContent,e,{displayMode:e.dataset.display==="1",throwOnError:false})})})</script>
+</head>
+<body>
+<a class="skip" href="#main">דילוג לתוכן</a>
+<header class="top">
+  <a class="brand" href="../../../learn/e03-agent-loop/build.html"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">הגנה על סוכני AI</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="החלפת ערכת צבע"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>ערכת צבע</span></button>
+    <a class="lang label" href="../../../learn/e03-agent-loop/build.html" lang="en" hreflang="en">English</a>
+    <a class="btn" href="../../../he/course/#waitlist" data-waitlist>לרשימת ההמתנה<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">תפריט</summary><nav aria-label="תפריט"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="e03-agent-loop/build" data-module="e03-agent-loop">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">תצוגה מקדימה חינמית</a><span>/</span><a href="./">E3</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="E3">
+      <p class="label"><em>E3</em> מעשי</p>
+      <p class="side-title">לולאת הסוכן מאפס</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="e03-agent-loop/index"><span class="label">·</span><span>סקירה</span></a></li><li data-stem="01-workflow-or-agent"><a href="01-workflow-or-agent.html" data-page-link="e03-agent-loop/01-workflow-or-agent"><span class="label">01</span><span>מי מחליט על הצעד הבא? תהליכים קבועים וסוכנים</span></a></li><li data-stem="02-a-tool-is-three-texts"><a href="02-a-tool-is-three-texts.html" data-page-link="e03-agent-loop/02-a-tool-is-three-texts"><span class="label">02</span><span>כלי הוא סכמה, פונקציה והודעת שגיאה, והמודל קורא שניים מהם</span></a></li><li data-stem="03-three-wire-formats"><a href="03-three-wire-formats.html" data-page-link="e03-agent-loop/03-three-wire-formats"><span class="label">03</span><span>קריאה אחת לכלי, שלושה פורמטים על הקו</span></a></li><li data-stem="04-parallel-calls"><a href="04-parallel-calls.html" data-page-link="e03-agent-loop/04-parallel-calls"><span class="label">04</span><span>קריאות מקבילות לכלים: פעולות קריאה מתחלפות, פעולות כתיבה לא</span></a></li><li data-stem="05-retries"><a href="05-retries.html" data-page-link="e03-agent-loop/05-retries"><span class="label">05</span><span>לנסות שוב את השרת, לא את המודל: שגיאות, backoff ו־jitter</span></a></li><li data-stem="06-budgets"><a href="06-budgets.html" data-page-link="e03-agent-loop/06-budgets"><span class="label">06</span><span>צעד הוא לא יחידת עלות: ארבעה תקציבים וסיבת עצירה אחת</span></a></li><li data-stem="07-structured-answers"><a href="07-structured-answers.html" data-page-link="e03-agent-loop/07-structured-answers"><span class="label">07</span><span>תשובה שתוכנה יכולה לקרוא: סכמות ותיקון אחד</span></a></li><li data-stem="08-streaming"><a href="08-streaming.html" data-page-link="e03-agent-loop/08-streaming"><span class="label">08</span><span>קריאה לכלי בסטרימינג היא חצי אובייקט JSON</span></a></li><li data-stem="09-long-horizons"><a href="09-long-horizons.html" data-page-link="e03-agent-loop/09-long-horizons"><span class="label">09</span><span>כמה רחוק לולאה יכולה להגיע? שגיאה מצטברת, פעולות קוד ואופק הזמן</span></a></li><li data-stem="build" aria-current="page"><a href="build.html" data-page-link="e03-agent-loop/build"><span class="label">B</span><span>הבנייה: הלולאה של מודול 1, שהופכת לכזו שרצה בלי השגחה, ונמדדת</span></a></li><li data-stem="at-scale"><a href="at-scale.html" data-page-link="e03-agent-loop/at-scale"><span class="label">S</span><span>בקנה מידה: אותה לולאה, עשרת אלפים פעמים בבת אחת</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="e03-agent-loop/problems"><span class="label">P</span><span>בעיות</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="e03-agent-loop" data-total="13" data-problems="15" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">E3 · הבנייה: הלולאה של מודול 1, שהופכת לכזו שרצה בלי השגחה, ונמדדת</p>
+        <h1>הבנייה: הלולאה של מודול 1, שהופכת לכזו שרצה בלי השגחה, ונמדדת</h1>
+      </header>
+      <p>בערך שלוש שעות, ומתוכן בערך שעה המחשב מריץ את עשרים המשימות. אתם מממשים שמונה חלקים ב־<code>loop/</code>. הלקוח, הלקוח המתוסרט, עשרים המשימות והמחקר מסופקים. שלבים 1 עד 7 לא צריכים לא את המעבדה ולא מודל. שלבים 8 ו־9 צריכים את שניהם (<code>make lab-up</code>, ושרת המודל ממודול 1, שיעור 4).</p>
+<h2 id="0-setup">0. הכנה</h2>
+<pre><code class="language-bash">CHECK_E3_OFFLINE=1 make check-E3      # fails: NotImplementedError in loop/
+</code></pre>
+<div class="table"><table>
+<thead>
+<tr>
+<th>קובץ</th>
+<th>מה אתם מממשים</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>loop/schema.py</code></td>
+<td><code>parse_arguments</code>, <code>check_arguments</code></td>
+</tr>
+<tr>
+<td><code>loop/formats.py</code></td>
+<td><code>to_anthropic_tools</code>, <code>to_anthropic_request</code>, <code>from_anthropic_response</code></td>
+</tr>
+<tr>
+<td><code>loop/parallel.py</code></td>
+<td><code>execute</code></td>
+</tr>
+<tr>
+<td><code>loop/retry.py</code></td>
+<td><code>classify</code>, <code>backoff</code>, <code>call_with_retries</code></td>
+</tr>
+<tr>
+<td><code>loop/budget.py</code></td>
+<td><code>Budget.start</code>, <code>charge</code>, <code>exceeded</code></td>
+</tr>
+<tr>
+<td><code>loop/structured.py</code></td>
+<td><code>extract_json</code>, <code>parse_final</code></td>
+</tr>
+<tr>
+<td><code>loop/stream.py</code></td>
+<td><code>assemble</code></td>
+</tr>
+<tr>
+<td><code>loop/agent.py</code></td>
+<td><code>run</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>מסופקים: <code>loop/client.py</code> (<code>ChatClient</code>, שמחזיר את ההודעה עם נתוני השימוש והתזמון שלה, ו־<code>LegacyAdapter</code>, שמאפשר למחקר להריץ את הלולאה של מודול 1 על אותו לקוח), <code>loop/scripted.py</code>, <code>loop/tasks.py</code>, <code>parallel.prepare</code> ו־<code>READ_ONLY</code>, מתאם ה־Responses שב־<code>formats.py</code>, ו־<code>studies/loop_study.py</code>. הריצו קבוצה אחת בכל פעם תוך כדי עבודה: <code>uv run pytest checks/test_checkE3.py -k schema</code>.</p>
+<h2 id="1-arguments">1. ארגומנטים</h2>
+<p>ממשו את <code>parse_arguments</code> ואת <code>check_arguments</code> (שיעור 2). ה־docstrings קובעים את נוסח השגיאות, כי גם המודל וגם הבדיקות קוראים אותו. <code>-k schema</code> עובר כשבוליאנים לא נחשבים מספרים שלמים, ‏<code>3.0</code> כן נחשב, וכל שגיאה נוקבת בשם השדה שלה.</p>
+<h2 id="2-formats">2. פורמטים</h2>
+<p>ממשו את שלושת המתאמים של Anthropic (שיעור 3). קראו קודם את <code>to_responses_tools</code> ואת <code>from_responses_output</code>: הם עושים את אותה עבודה עבור הפורמט השני. <code>-k formats</code> עובר כשהתוצאות של תור עם שתי קריאות נוחתות בהודעת משתמש אחת, ונתוני השימוש חוזרים עם השמות החדשים.</p>
+<h2 id="3-parallel-calls">3. קריאות מקבילות</h2>
+<p>ממשו את <code>execute</code> (שיעור 4). בנו את הקבוצות בסריקה לפי הסדר, הריצו כל קבוצה של קריאות בטוחות עם <code>pool.map</code>, וכתבו את התוצאות לתאים לפי מיקום. <code>-k parallel</code> מתזמן שלוש קריאות של 200 ms ונכשל אם הן לוקחות יותר מ־450 ms או חוזרות בסדר הלא נכון.</p>
+<h2 id="4-retries">4. ניסיונות חוזרים</h2>
+<p>ממשו את <code>classify</code>, ‏<code>backoff</code> ו־<code>call_with_retries</code> (שיעור 5). אחר כך:</p>
+<pre><code class="language-bash">make loop-study PARTS=faults        # about a minute
+make loop-study PARTS=herd
+</code></pre>
+<p>טבלת ה־<code>faults</code> שלכם חייבת להתאים לזו של שיעור 5 בתוך רווחי הסמך (confidence intervals) שלה, וכל <code>(1-p^k)^5</code> חייב לשבת בתוך רווח הסמך של השורה שלו. אם השורות של <span class="math" data-display="0">k = 1</span> מתאימות והאחרות לא, כנראה שהלולאה שלכם מחייבת את התקציב על קריאות שנכשלו, או מנסה שוב קריאות ש־<code>classify</code> אומר להכשיל.</p>
+<h2 id="5-budgets">5. תקציבים</h2>
+<p>ממשו את <code>Budget.start</code>, ‏<code>charge</code> ו־<code>exceeded</code> (שיעור 6), ואז <code>make loop-study PARTS=growth</code>. שנו את הארגומנטים ב־<code>growth()</code> לגדלים של המעבדה שלכם. קחו את <code>S + T</code> מה־<code>prompt_tokens</code> הראשון של ריצה בשלב 8, ואת <code>R</code> מהגודל של קובץ שקראתם. ואז נחשו באיזה צעד תקציב של 20,000 טוקנים עוצר משימה שקוראת קבצים.</p>
+<h2 id="6-structured-answers">6. תשובות מובנות</h2>
+<p>ממשו את <code>extract_json</code> ואת <code>parse_final</code> (שיעור 7). ה־regex של הגדרות מסופק. העבודה היא למצוא את הערך הראשון שניתן לפענוח עם <code>json.JSONDecoder().raw_decode</code>.</p>
+<h2 id="7-streaming">7. סטרימינג</h2>
+<p>ממשו את <code>assemble</code> (שיעור 8). בדקו אותו עם פרגמנטים (הבדיקה) ועם קריאות שלמות (מה ש־Ollama שולח). שניהם חייבים לתת את אותה הודעה.</p>
+<h2 id="8-the-loop">8. הלולאה</h2>
+<p>ממשו את <code>run</code> (<code>loop/agent.py</code>), שמחבר את החלקים לפי הסדר שה־docstring שלו נותן. ואז את הבדיקה כולה, וריצה אחת ביד:</p>
+<pre><code class="language-bash">make check-E3                                    # about two minutes with the live test
+make loop TASK=&quot;Read notes/q3-report.txt and e-mail a three-bullet summary to manager@acme.example.&quot;
+</code></pre>
+<p>השורה האחרונה שמודפסת היא נתוני השימוש: צעדים, טוקני פרומפט והשלמה, עלות (אפס, כי לא נקבעו מחירים) ושניות. הריצו עם מחירים, <code>Budget(price_in=1.0, price_out=5.0)</code> ב־<code>main()</code>, וראו כמה הריצה על הלפטופ הייתה עולה.</p>
+<h2 id="9-measure-both-loops-on-twenty-tasks">9. מדדו את שתי הלולאות על עשרים משימות</h2>
+<pre><code class="language-bash">make loop-study PARTS=&quot;tasks reps=3&quot;     # 120 runs; about two hours on qwen3:4b with a busy laptop
+make loop-study PARTS=summary            # re-reads studies/out/loop_tasks.jsonl, no model
+make loop-study PARTS=&quot;stream n=10&quot;
+make loop-study PARTS=&quot;schema reps=2&quot;
+make loop-study PARTS=&quot;tasks reps=1 fault=0.1 out=loop_faults&quot;   # the same tasks with injected 503s, 40 runs
+</code></pre>
+<p>כל משימה מתחילה ממעבדה מאופסת, ושתי הלולאות מקבלות אותו מודל, שרת, טמפרטורה (0.7), פרומפט מערכת, מגבלת צעדים (10) וכלים. ההבדל היחיד הוא הלולאה. <strong>השתמשו במעבדה שאף אחד אחר לא משתמש בה:</strong> <code>tasks</code> מאפס אותה לפני כל ריצה.</p>
+<p>הריצה של הכותב, 25 באוקטובר 2026, <code>qwen3:4b</code> על Ollama, ‏MacBook עם Apple M5 ו־32 GB, כשקונטיינרים של פרויקט אחר רצים במקביל:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>לולאה</th>
+<th style="text-align:right">ריצות</th>
+<th style="text-align:right">עברו</th>
+<th style="text-align:right">שיעור</th>
+<th>Wilson ‏95%</th>
+<th style="text-align:right">קרסו</th>
+<th style="text-align:right">נעצרו על מגבלה</th>
+<th style="text-align:right">טוקנים לריצה (חציון)</th>
+<th style="text-align:right">שניות לריצה (חציון)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>הלולאה של מודול 1</td>
+<td style="text-align:right">60</td>
+<td style="text-align:right">32</td>
+<td style="text-align:right">53.3%</td>
+<td>40.9% עד 65.4%</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">4,582</td>
+<td style="text-align:right">51</td>
+</tr>
+<tr>
+<td>הלולאה של E3</td>
+<td style="text-align:right">60</td>
+<td style="text-align:right">33</td>
+<td style="text-align:right">55.0%</td>
+<td>42.5% עד 66.9%</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">4,194</td>
+<td style="text-align:right">47</td>
+</tr>
+</tbody>
+</table></div>
+<p>בזיווג לפי משימה וניסיון: 5 זוגות עברו רק עם E3 ו־4 רק עם מודול 1 (McNemar מדויק, <span class="math" data-display="0">p = 1.0</span>). ההבדל בשיעור ההצלחה, בדגימה חוזרת לפי משימה, הוא <span class="math" data-display="0">+0.017</span> (95%: ‏<span class="math" data-display="0">-0.117</span> עד <span class="math" data-display="0">+0.150</span>). לפי סוג, מודול 1 מול E3: עובדה 7/12 ו־9/12, שילוב 5/12 ו־5/12, כתיבה 7/12 ו־6/12, שליחה 7/12 ו־7/12, ‏CRM ‏6/12 ו־6/12. pass^1, ‏pass^2 ו־pass^3 היו 0.533, ‏0.433 ו־0.400 עבור מודול 1, ו־0.550, ‏0.483 ו־0.450 עבור E3. זוג אחד (<code>send-dana</code>, ניסיון ראשון) רץ בזמן שהלפטופ נכנס לשינה, והורץ מחדש, בשתי הלולאות, בסוף. הריצה הראשונה שלו ב־E3 לקחה 380 שניות ונכשלה.</p>
+<p><strong>על שרת תקין, הלולאות בתיקו.</strong> אף ריצה של אף לולאה לא קרסה, לא הגיעה למגבלת הצעדים ולא נתקלה בקריאה שנדחתה. <code>qwen3:4b</code> כתב ארגומנטים תקינים לכל קריאה ב־120 ריצות, והשרת המקומי לא נכשל אף פעם. אז לשום דבר ש־E3 מוסיף לא היה מה לעשות. החלקים שלו הם ביטוח, וביטוח מראה את הערך שלו כשמשהו משתבש. התיקו הוא המדידה, לא מדידה שנכשלה: תכנון ששינה את ההצלחה על שרת תקין היה משנה את <em>ההתנהגות</em> של הסוכן, ואת זה המודול הזה לא ניסה לעשות.</p>
+<p>קראו גם את הכשלים. בערך חצי מהריצות נכשלו בשתי הלולאות באותה מידה, כי המודל ויתר (נטישת לקוחות «לא נמצאת בבסיס הידע», אף שהיא מופיעה בדוח של Q3) או חישב לא נכון (הערך הכולל של הלקוחות). בשאלת ההכנסות, ריצה אחת של מודול 1 שלחה מייל ל־<code>finance@acme.example</code> כדי לבקש את המספר, במקום לקרוא את הדוח: פעולה שאף אחד לא ביקש, שבוצעה על ידי לולאה בלי מדיניות. צנרת טובה יותר לא מתקנת שום דבר מזה. E2 (הקשר), E5 (אחזור) ו־E9 (הערכה) עובדים על זה, ומודולים 3 ו־13 על המייל.</p>
+<p>שימו לב לפער בין pass^3 לבין <span class="math" data-display="0">(\text{pass}^1)^3</span>: ‏0.450 מול <span class="math" data-display="0">0.55^3 = 0.166</span> עבור E3. המשימות מתחלקות לכאלה שהמודל כמעט תמיד פותר ולכאלה שהוא כמעט אף פעם לא פותר (שיעור 9, בעיה 13).</p>
+<p><code>stream n=10</code>, אותו פרומפט (לקרוא את דוח Q3, ואז לסכם אותו) עשר פעמים בכל דרך:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:right">סך הכול, חציון</th>
+<th style="text-align:right">הבייט הראשון של תוכן או קריאה לכלי, חציון</th>
+<th style="text-align:right">טוקני השלמה, חציון</th>
+<th style="text-align:right">תשובות עם קריאה לכלי</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>בלי סטרימינג</td>
+<td style="text-align:right">15.0 s</td>
+<td style="text-align:right">n/a</td>
+<td style="text-align:right">632</td>
+<td style="text-align:right">10/10</td>
+</tr>
+<tr>
+<td>עם סטרימינג</td>
+<td style="text-align:right">14.6 s</td>
+<td style="text-align:right">14.6 s</td>
+<td style="text-align:right">584</td>
+<td style="text-align:right">10/10</td>
+</tr>
+</tbody>
+</table></div>
+<p>כל תשובה התחילה בקריאה לכלי, ו־Ollama שולח קריאה שלמה ברגע שהמודל סיים לחשוב, כך שהבייט השימושי הראשון הגיע בסוף. שיעור 8 חזה את זה: בתור שקורא לכלי, סטרימינג לא קונה כלום.</p>
+<p><code>schema reps=2</code>, ארבע משימות עובדה ומשימת CRM אחת, כל אחת פעמיים, עם סכמת תשובה של שני שדות (<code>answer</code>, ‏<code>source</code>): כל 10 התשובות תאמו בניסיון הראשון, כך שהתיקון לא הופעל אף פעם, ו־6 מתוך ה־10 היו נכונות. ארבע התשובות התואמות והשגויות הן התא המסוכן של שיעור 7. צינור שהיה מדווח «JSON תקין ב־100%» היה מדווח עליהן כהצלחות.</p>
+<p>ואז אותן עשרים משימות פעם נוספת, כשכל קריאה למודל נכשלת ב־503 בהסתברות 0.1, לשתי הלולאות באותה מידה (<code>tasks reps=1 fault=0.1 out=loop_faults</code>):</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>לולאה</th>
+<th style="text-align:right">ריצות</th>
+<th style="text-align:right">עברו</th>
+<th style="text-align:right">שיעור</th>
+<th>Wilson ‏95%</th>
+<th style="text-align:right">קרסו</th>
+<th style="text-align:right">טוקנים לריצה (ממוצע)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>הלולאה של מודול 1</td>
+<td style="text-align:right">20</td>
+<td style="text-align:right">8</td>
+<td style="text-align:right">40.0%</td>
+<td>21.9% עד 61.3%</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">4,926</td>
+</tr>
+<tr>
+<td>הלולאה של E3</td>
+<td style="text-align:right">20</td>
+<td style="text-align:right">11</td>
+<td style="text-align:right">55.0%</td>
+<td>34.2% עד 74.2%</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">4,490</td>
+</tr>
+</tbody>
+</table></div>
+<p>חמש ריצות של מודול 1 מתו ב־503 הראשון שלהן, ואף ריצה של E3 לא. המספר הוא מה ששיעור 5 חוזה: לריצות של מודול 1 היו בממוצע 2.7 קריאות למודל, ו־<span class="math" data-display="0">1 - 0.9^{2.7} = 25\%</span> מתוך 20 הם 5. שיעור ההצלחה של E3 זהה לזה שעל השרת התקין, 55%, כך שהניסיונות החוזרים שלו ספגו את התקלות לגמרי. ההבדל המזווג, <span class="math" data-display="0">+0.150</span> (95%: ‏<span class="math" data-display="0">-0.100</span> עד <span class="math" data-display="0">+0.400</span>; 5 זוגות עברו רק עם E3, ‏2 רק עם מודול 1, ‏McNemar ‏<span class="math" data-display="0">p = 0.45</span>), לא שולל אפס על 20 זוגות. ספירת הקריסות היא המדידה החדה יותר, כי היא מבודדת את מה שהניסיונות החוזרים עושים. עשרים ריצות נותנות לשונות של המודל עצמו מספיק מקום להסתיר הבדל של 15 נקודות. בעיה 12 שואלת כמה ריצות לא היו נותנות.</p>
+<h2 id="10-write-it-up">10. כתבו את זה</h2>
+<p>הטבלה שלכם, בצורה שלמעלה, ופסקה אחת: ההבדל הגדול ביותר בין שתי הלולאות שמצאתם, האם רווח הסמך שלו שולל אפס, והאם אתם מאמינים לו. אמרו מה עשרים המשימות לא: מדגם של עומס העבודה שלכם, או של מישהו אחר. הפסקה טובה יותר אם היא נוקבת במשימה שבה E3 הפסידה.</p>
+
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>סימון כהושלם</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="09-long-horizons.html"><span class="label">הקודם</span>כמה רחוק לולאה יכולה להגיע? שגיאה מצטברת, פעולות קוד ואופק הזמן</a><a class="pn next" href="at-scale.html"><span class="label">הבא</span>בקנה מידה: אותה לולאה, עשרת אלפים פעמים בבת אחת</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 הגנה על סוכני AI</span>
+  <nav aria-label="Footer">
+    <a href="../../../he/workshop/">סדנאות לצוותים</a>
+    <a href="../../../he/courses/">קורסים מקוונים</a>
+    <a href="mailto:shimon@defendingaiagents.com">יצירת קשר</a>
+    <a href="../../../.well-known/security.txt">אבטחה</a>
+    <a href="../../../learn/e03-agent-loop/build.html" lang="en" hreflang="en">English</a>
+  </nav>
+</footer>
+<script src="../../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"כהה":"בהיר";
+b.setAttribute("aria-label","מעבר למצב "+(n==="dark"?"כהה":"בהיר"))};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

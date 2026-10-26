@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="he" dir="rtl" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>JWT הוא טענות חתומות, ולבדיקה יש סדר · הגנה על סוכני AI</title>
+<meta name="description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<link rel="canonical" href="https://defendingaiagents.com/he/learn/onramp/08-jwt.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/onramp/08-jwt.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/onramp/08-jwt.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/onramp/08-jwt.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="הגנה על סוכני AI">
+<meta property="og:title" content="JWT הוא טענות חתומות, ולבדיקה יש סדר · הגנה על סוכני AI"><meta property="og:description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<meta property="og:url" content="https://defendingaiagents.com/he/learn/onramp/08-jwt.html"><meta property="og:image" content="https://defendingaiagents.com/og-he.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="he_IL"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+<link rel="preload" href="../../../assets/fonts/rubik-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../../assets/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../../assets/course.css"><script src="../../../assets/progress.js" defer></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script><script>addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".math").forEach(function(e){katex.render(e.textContent,e,{displayMode:e.dataset.display==="1",throwOnError:false})})})</script>
+</head>
+<body>
+<a class="skip" href="#main">דילוג לתוכן</a>
+<header class="top">
+  <a class="brand" href="../../../learn/onramp/08-jwt.html"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">הגנה על סוכני AI</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="החלפת ערכת צבע"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>ערכת צבע</span></button>
+    <a class="lang label" href="../../../learn/onramp/08-jwt.html" lang="en" hreflang="en">English</a>
+    <a class="btn" href="../../../he/course/#waitlist" data-waitlist>לרשימת ההמתנה<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">תפריט</summary><nav aria-label="תפריט"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="onramp/08-jwt" data-module="onramp">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">תצוגה מקדימה חינמית</a><span>/</span><a href="./">מסלול הכנה</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="מסלול הכנה">
+      <p class="label"><em>מסלול הכנה</em> תיאורטי</p>
+      <p class="side-title">מסלול הכנה (on-ramp): צנרת הווב שהקורס מניח שאתם מכירים</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="onramp/index"><span class="label">·</span><span>סקירה</span></a></li><li data-stem="01-http-is-text"><a href="01-http-is-text.html" data-page-link="onramp/01-http-is-text"><span class="label">01</span><span>קריאת HTTP היא טקסט נכנס, טקסט יוצא</span></a></li><li data-stem="02-json-edges"><a href="02-json-edges.html" data-page-link="onramp/02-json-edges"><span class="label">02</span><span>JSON פשוט, והמפענחים שלו עדיין חלוקים</span></a></li><li data-stem="03-yaml-traps"><a href="03-yaml-traps.html" data-page-link="onramp/03-yaml-traps"><span class="label">03</span><span>YAML הוא JSON עם הזחה וארבע מלכודות</span></a></li><li data-stem="04-api-token"><a href="04-api-token.html" data-page-link="onramp/04-api-token"><span class="label">04</span><span>טוקן API הוא סיסמה עם תווית</span></a></li><li data-stem="05-dns"><a href="05-dns.html" data-page-link="onramp/05-dns"><span class="label">05</span><span>שם הוא לא כתובת, והתשובה יכולה להשתנות</span></a></li><li data-stem="06-proxy"><a href="06-proxy.html" data-page-link="onramp/06-proxy"><span class="label">06</span><span>פרוקסי הוא שרת שהוא גם לקוח</span></a></li><li data-stem="07-tls"><a href="07-tls.html" data-page-link="onramp/07-tls"><span class="label">07</span><span>TLS מוכיח שהגעתם לשם, לא שהשם הגון</span></a></li><li data-stem="08-jwt" aria-current="page"><a href="08-jwt.html" data-page-link="onramp/08-jwt"><span class="label">08</span><span>JWT הוא טענות חתומות, ולבדיקה יש סדר</span></a></li><li data-stem="09-oauth-roles"><a href="09-oauth-roles.html" data-page-link="onramp/09-oauth-roles"><span class="label">09</span><span>OAuth נותן לטוקן ייעוד: תפקידים, scope, קהל יעד</span></a></li><li data-stem="10-parser-differentials"><a href="10-parser-differentials.html" data-page-link="onramp/10-parser-differentials"><span class="label">10</span><span>שני מפענחים, הודעה אחת: בדיקה תקינה רק אם היא קוראת את מה שהיעד קורא</span></a></li><li data-stem="11-oauth-threat-model"><a href="11-oauth-threat-model.html" data-page-link="onramp/11-oauth-threat-model"><span class="label">11</span><span>מודל האיום של OAuth עצמו: מה RFC 9700 דורש, ולמה סוכן צריך את כולו</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="onramp/problems"><span class="label">P</span><span>תרגילים</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="onramp" data-total="13" data-problems="14" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">מסלול הכנה · שיעור 08</p>
+        <h1>JWT הוא טענות חתומות, ולבדיקה יש סדר</h1>
+      </header>
+      <p>שרת מקבל <code>Authorization: Bearer eyJhbGciOi…</code>. הוא מפצל לפי נקודות, מפענח base64 את החלק האמצעי, קורא <code>&quot;role&quot;: &quot;admin&quot;</code> ומעביר את הקריאה. את החלק השלישי הוא לא בדק אף פעם. את הטוקן כתב הקורא, לפני דקה, בעורך טקסט.</p>
+<h2 id="three-parts-two-of-them-just-json">שלושה חלקים, שניים מהם סתם JSON</h2>
+<p>ל־JSON Web Token (JWT) יש שלושה חלקים בקידוד base64url, מחוברים בנקודות: <strong>header</strong>, <strong>payload</strong> (הטענות, claims) ו<strong>חתימה (signature)</strong> (RFC 7519, 2015; RFC 7515, 2015). הפענוח אינו סוד: base64url הוא קידוד, לא הצפנה. זה טוקן אמיתי שהונפק עם מפתח חד־פעמי, והספרייה הסטנדרטית קוראת אותו:</p>
+<pre><code class="language-python">import base64, json
+tok = (&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.&quot;
+       &quot;eyJpc3MiOiJodHRwczovL2F1dGguYWNtZS5leGFtcGxlIiwic3ViIjoiYWdlbnQtNyIsImF1ZCI6Imh0dHBzOi8vY3JtLmFjbWUuZXhhbXBsZS9tY3AiLCJzY29wZSI6ImNybTpyZWFkIiwiaWF0IjoxMDAwLCJleHAiOjEzMDB9.&quot;
+       &quot;2Vc6vcSxz-JiNHCGQqh18ZrUCUKVOqZghKK27YDicRo&quot;)
+part = lambda s: json.loads(base64.urlsafe_b64decode(s + &quot;=&quot; * (-len(s) % 4)))
+print(part(tok.split(&quot;.&quot;)[0]))   # {'alg': 'HS256', 'typ': 'JWT'}
+print(part(tok.split(&quot;.&quot;)[1]))
+# {'iss': 'https://auth.acme.example', 'sub': 'agent-7', 'aud': 'https://crm.acme.example/mcp',
+#  'scope': 'crm:read', 'iat': 1000, 'exp': 1300}
+</code></pre>
+<div class="table"><table>
+<thead>
+<tr>
+<th>טענה</th>
+<th>שם</th>
+<th>משמעות</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>iss</code></td>
+<td>issuer (מנפיק)</td>
+<td>מי הנפיק וחתם</td>
+</tr>
+<tr>
+<td><code>sub</code></td>
+<td>subject (נושא)</td>
+<td>על מי הטוקן (כאן סוכן, לא אדם)</td>
+</tr>
+<tr>
+<td><code>aud</code></td>
+<td>audience (קהל יעד)</td>
+<td>איזה שרת רשאי לקבל אותו</td>
+</tr>
+<tr>
+<td><code>exp</code>, <code>iat</code>, <code>nbf</code></td>
+<td>תפוגה, הנפקה, לא לפני</td>
+<td>חלון הזמן, בשניות מאז 1970</td>
+</tr>
+<tr>
+<td><code>scope</code></td>
+<td>scope (היקף)</td>
+<td>מה הוא מתיר (RFC 9068 נושא אותו בטוקני גישה של OAuth)</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="the-signature-binds-the-first-two-parts">החתימה קושרת את שני החלקים הראשונים</h2>
+<p>החתימה מחושבת על <code>header.payload</code> עם מפתח. <strong>HS256</strong> משתמש בסוד משותף אחד (HMAC-SHA-256): כל מי שיכול לאמת יכול גם לזייף. <strong>RS256</strong> ו־<strong>ES256</strong> משתמשים במפתח פרטי לחתימה ובמפתח ציבורי לאימות, כך ששרת משאבים (resource server) יכול לבדוק טוקנים בלי יכולת להנפיק אותם. שנו תו אחד ב־payload, והחתימה מפסיקה להתאים.</p>
+<h2 id="the-check-in-order">הבדיקה, לפי הסדר</h2>
+<p>המאמת שלמטה הוא הקצר ביותר שעדיין הגון (HS256 בלבד). הסדר שלו הוא השיעור:</p>
+<pre><code class="language-python">import hashlib, hmac
+
+def verify(tok, key, aud, now):
+    h, p, s = tok.split(&quot;.&quot;)
+    if part(h)[&quot;alg&quot;] != &quot;HS256&quot;:                       # 1. the algorithm we configured
+        raise ValueError(&quot;algorithm&quot;)
+    good = base64.urlsafe_b64encode(
+        hmac.new(key, f&quot;{h}.{p}&quot;.encode(), hashlib.sha256).digest()).rstrip(b&quot;=&quot;).decode()
+    if not hmac.compare_digest(good, s):                # 2. the signature
+        raise ValueError(&quot;signature&quot;)
+    c = part(p)
+    if c[&quot;iss&quot;] != &quot;https://auth.acme.example&quot;:         # 3. the issuer
+        raise ValueError(&quot;issuer&quot;)
+    if aud not in ([c[&quot;aud&quot;]] if isinstance(c[&quot;aud&quot;], str) else c[&quot;aud&quot;]):   # 4. the audience
+        raise ValueError(&quot;audience&quot;)
+    if c[&quot;exp&quot;] &lt;= now:                                 # 5. the time
+        raise ValueError(&quot;expired&quot;)
+    return c                                            # 6. only now read sub and scope
+</code></pre>
+<p>המספרים שלמטה הם השלבים שלו:</p>
+<ol>
+<li><strong>אלגוריתם</strong>: זה ש<em>אתם</em> הגדרתם, אף פעם לא זה שה־header של הטוקן מבקש.</li>
+<li><strong>חתימה</strong>: לחשב מחדש ולהשוות בזמן קבוע.</li>
+<li><strong>מנפיק</strong>: המנפיק שאתם סומכים עליו.</li>
+<li><strong>קהל יעד</strong>: אתם בתוכו (מודול 3, שיעור 10).</li>
+<li><strong>זמן</strong>: <code>exp</code> בעתיד; לאפשר סטיית שעון של שניות, לא דקות.</li>
+<li><strong>רק אז</strong> לקרוא את <code>sub</code> ואת <code>scope</code>.</li>
+</ol>
+<p>כשמריצים אותו עם המפתח <code>b&quot;demo-key-not-a-secret&quot;</code>, הוא מקבל את הטוקן שלמעלה בזמן <span class="math" data-display="0">t</span> = 1100 עבור קהל היעד <code>https://crm.acme.example/mcp</code>, ודוחה את ארבעת אלה, מהסיבות האלה:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>מה הוצג</th>
+<th>נדחה בגלל</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ל־<code>https://cal.acme.example/mcp</code></td>
+<td>קהל יעד</td>
+</tr>
+<tr>
+<td>בזמן <span class="math" data-display="0">t</span> = 1300</td>
+<td>פג תוקף (<code>exp</code> לא כולל את עצמו)</td>
+</tr>
+<tr>
+<td>payload ששונה ל־<code>crm:write</code>, עם החתימה המקורית</td>
+<td>חתימה</td>
+</tr>
+<tr>
+<td>header <code>{&quot;alg&quot;: &quot;none&quot;}</code>, בלי חתימה</td>
+<td>אלגוריתם</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="expert-the-attacks-all-live-in-step-1">מומחה: כל המתקפות גרות בשלב 1</h2>
+<p><code>alg: none</code> הוא אלגוריתם תקף לפי ה־RFC, ופירושו «לא מאובטח». ספרייה שמכבדת אותו מקבלת טוקן שאף אחד לא חתם עליו. המתקפה השנייה היא <strong>בלבול מפתחות (key confusion)</strong>: השרת מצפה ל־RS256 ומאמת עם המפתח הציבורי שלו; התוקף קובע <code>alg: HS256</code>, חותם עם <em>המפתח הציבורי בתור סוד ה־HMAC</em>, וספרייה שבוחרת את האלגוריתם לפי ה־header מאמתת אותו. JWT Best Current Practices (RFC 8725, 2020) מונה את שתיהן ואת התרופה: לנעוץ אלגוריתם לכל מפתח, ולדחות כל דבר אחר. שני פרמטרים ב־header מזמינים את אותה טעות: <code>kid</code> (באיזה מפתח להשתמש) ו־<code>jku</code> (URL שממנו מושכים קבוצת מפתחות). מאמת שהולך אחרי אחד מהם כפי שה<em>טוקן</em> אומר, נתן לטוקן לבחור את השופט שלו.</p>
+<h2 id="check-yourself">בדקו את עצמכם</h2>
+<ol>
+<li>שרת מחזיק מפתחות של שני מנפיקים ומקבל חתימה של כל אחד מהם. למה טוקן עם <code>&quot;role&quot;: &quot;admin&quot;</code> שחתום בידי המנפיק השני מסוכן לו יותר מטוקן בלי חתימה בכלל, ואיזה שלב עוצר אותו?</li>
+<li>שרת מאמת את החתימה ואת <code>exp</code> אבל לא את <code>aud</code>, ושרת הרשאות (authorization server) אחד מנפיק טוקנים ל־20 שרתי משאבים שכולם מדלגים על הבדיקה. בכמה שרתים אפשר להשתמש מחדש (replay) בטוקן שנגנב מאחד מהם, לפני שהוסיפו את שלב 4 ואחרי?</li>
+<li>מאמת קורא את <code>alg</code> מהטוקן ובוחר לפיו פונקציה מהספרייה. תארו, במשפט אחד כל אחת, את <code>none</code> ואת בלבול המפתחות נגדו.</li>
+</ol>
+<details class="answers"><summary>תשובות</summary>
+<ol>
+<li>טוקן בלי חתימה נכשל בשלב 1 או 2 בכל מאמת תקין. טוקן שחתום בידי המנפיק השני עובר את שלב 2, כי לשרת יש את המפתח הזה, ולכן <code>&quot;role&quot;: &quot;admin&quot;</code> מגיע ונראה אמיתי. שלב 3 עוצר אותו, בתנאי שהמנפיק נבדק מול המפתח שאימת את החתימה: טוקן שחתום במפתח של B אבל טוען <code>iss</code> A חייב להיכשל.</li>
+<li>לפני: בכל ה־20, כי כל אחד מהם מאמת את החתימה של אותו שרת הרשאות ואף אחד לא בודק את קהל היעד. אחרי שלב 4: באחד, השרת ששמו מופיע ב־<code>aud</code>; ואם הטוקן נגנב מהשרת הזה עצמו, באף מקום אחר.</li>
+<li><code>none</code>: התוקף קובע <code>&quot;alg&quot;: &quot;none&quot;</code>, שולח חתימה ריקה, והמאמת קורא לפונקציית «לא מאובטח» שלו, שמקבלת טענות שאף אחד לא חתם עליהן. בלבול מפתחות: לשרת יש מפתח ציבורי של RS256; התוקף קובע <code>&quot;alg&quot;: &quot;HS256&quot;</code> וחותם עם המפתח הציבורי הזה בתור סוד ה־HMAC, והמאמת, שמריץ HMAC עם המפתח שבידו, מוצא שהחתימה תקפה.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>סימון כהושלם</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="07-tls.html"><span class="label">הקודם</span>TLS מוכיח שהגעתם לשם, לא שהשם הגון</a><a class="pn next" href="09-oauth-roles.html"><span class="label">הבא</span>OAuth נותן לטוקן ייעוד: תפקידים, scope, קהל יעד</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 הגנה על סוכני AI</span>
+  <nav aria-label="Footer">
+    <a href="../../../he/workshop/">סדנאות לצוותים</a>
+    <a href="../../../he/courses/">קורסים מקוונים</a>
+    <a href="mailto:shimon@defendingaiagents.com">יצירת קשר</a>
+    <a href="../../../.well-known/security.txt">אבטחה</a>
+    <a href="../../../learn/onramp/08-jwt.html" lang="en" hreflang="en">English</a>
+  </nav>
+</footer>
+<script src="../../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"כהה":"בהיר";
+b.setAttribute("aria-label","מעבר למצב "+(n==="dark"?"כהה":"בהיר"))};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

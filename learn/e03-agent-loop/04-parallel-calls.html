@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Parallel tool calls: reads commute, writes do not · Defending AI Agents</title>
+<meta name="description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<link rel="canonical" href="https://defendingaiagents.com/learn/e03-agent-loop/04-parallel-calls.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/e03-agent-loop/04-parallel-calls.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/e03-agent-loop/04-parallel-calls.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/e03-agent-loop/04-parallel-calls.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Defending AI Agents">
+<meta property="og:title" content="Parallel tool calls: reads commute, writes do not · Defending AI Agents"><meta property="og:description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<meta property="og:url" content="https://defendingaiagents.com/learn/e03-agent-loop/04-parallel-calls.html"><meta property="og:image" content="https://defendingaiagents.com/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preload" href="../../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../assets/course.css"><script src="../../assets/progress.js" defer></script><script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs";const v=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();const th=document.documentElement.dataset.theme;const dark=th?th==="dark":matchMedia("(prefers-color-scheme: dark)").matches;mermaid.initialize({startOnLoad:true,theme:"base",fontFamily:"Inter, sans-serif",themeVariables:{darkMode:dark,background:v("--bg"),primaryColor:v("--bg-2"),primaryTextColor:v("--fg"),primaryBorderColor:v("--line-2"),lineColor:v("--dim"),secondaryColor:v("--bg"),tertiaryColor:v("--bg-2"),noteBkgColor:v("--bg-2"),noteTextColor:v("--fg"),noteBorderColor:v("--sig"),actorBkg:v("--bg-2"),actorBorder:v("--line-2"),actorTextColor:v("--fg"),signalColor:v("--fg"),signalTextColor:v("--fg"),clusterBkg:v("--bg"),clusterBorder:v("--line-2"),edgeLabelBackground:v("--bg"),fontSize:"14px"}});</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="../../"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">Defending AI Agents</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="Switch colour theme"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>Theme</span></button>
+    <a class="lang label" href="../../he/learn/e03-agent-loop/04-parallel-calls.html" lang="he" hreflang="he">עברית</a>
+    <a class="btn" href="../../course/#waitlist" data-waitlist>Join waitlist<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">Menu</summary><nav aria-label="Menu"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="e03-agent-loop/04-parallel-calls" data-module="e03-agent-loop">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">Free preview</a><span>/</span><a href="./">E3</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="E3">
+      <p class="label"><em>E3</em> Applied</p>
+      <p class="side-title">The agent loop from scratch</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="e03-agent-loop/index"><span class="label">·</span><span>Overview</span></a></li><li data-stem="01-workflow-or-agent"><a href="01-workflow-or-agent.html" data-page-link="e03-agent-loop/01-workflow-or-agent"><span class="label">01</span><span>Who decides the next step? Workflows and agents</span></a></li><li data-stem="02-a-tool-is-three-texts"><a href="02-a-tool-is-three-texts.html" data-page-link="e03-agent-loop/02-a-tool-is-three-texts"><span class="label">02</span><span>A tool is a schema, a function and an error message, and the model reads two of them</span></a></li><li data-stem="03-three-wire-formats"><a href="03-three-wire-formats.html" data-page-link="e03-agent-loop/03-three-wire-formats"><span class="label">03</span><span>One tool call, three wire formats</span></a></li><li data-stem="04-parallel-calls" aria-current="page"><a href="04-parallel-calls.html" data-page-link="e03-agent-loop/04-parallel-calls"><span class="label">04</span><span>Parallel tool calls: reads commute, writes do not</span></a></li><li data-stem="05-retries"><a href="05-retries.html" data-page-link="e03-agent-loop/05-retries"><span class="label">05</span><span>Retry the server, not the model: errors, backoff and jitter</span></a></li><li data-stem="06-budgets"><a href="06-budgets.html" data-page-link="e03-agent-loop/06-budgets"><span class="label">06</span><span>A step is not a unit of cost: four budgets and a stop reason</span></a></li><li data-stem="07-structured-answers"><a href="07-structured-answers.html" data-page-link="e03-agent-loop/07-structured-answers"><span class="label">07</span><span>An answer a program can read: schemas and one repair</span></a></li><li data-stem="08-streaming"><a href="08-streaming.html" data-page-link="e03-agent-loop/08-streaming"><span class="label">08</span><span>A streamed tool call is half a JSON object</span></a></li><li data-stem="09-long-horizons"><a href="09-long-horizons.html" data-page-link="e03-agent-loop/09-long-horizons"><span class="label">09</span><span>How far can a loop go? Compounding error, code actions and the time horizon</span></a></li><li data-stem="build"><a href="build.html" data-page-link="e03-agent-loop/build"><span class="label">B</span><span>Build: Module 1&#x27;s loop, made to run unattended, and measured</span></a></li><li data-stem="at-scale"><a href="at-scale.html" data-page-link="e03-agent-loop/at-scale"><span class="label">S</span><span>At scale: the same loop, ten thousand times at once</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="e03-agent-loop/problems"><span class="label">P</span><span>Problems</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="e03-agent-loop" data-total="13" data-problems="15" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">E3 · Lesson 04</p>
+        <h1>Parallel tool calls: reads commute, writes do not</h1>
+      </header>
+      <p>Ask the local model to &quot;read notes/a.txt and notes/b.txt&quot; and it replies with two tool calls in one turn (measured on <code>qwen3:4b</code>, 25 October 2026). Module 1's loop runs them one after the other. If each read takes 200 ms, that is 400 ms where 200 would do, and an agent that reads ten documents waits two seconds for nothing. Running them at once is easy. Running them at once <em>correctly</em> takes two rules.</p>
+<h2 id="rule-1-results-go-back-in-the-order-asked">Rule 1: results go back in the order asked</h2>
+<p>Each result carries its call's id, and a model matches results to calls by id. Return them in the order the model asked anyway. Some servers check that every call in the turn is answered before the next user content. Many models also lean on position, and a log that interleaves calls and results is miserable to read in an incident (Module 18).</p>
+<h2 id="rule-2-only-calls-that-commute-run-together">Rule 2: only calls that commute run together</h2>
+<p>Two calls <em>commute</em> if running them in either order leaves the same state and the same results. Two reads commute. A read and a write of the same file do not: read-then-write returns the old text, write-then-read the new. Two e-mails do not commute either. Their effects are independent, but the recipient's inbox now has an order, and so does your audit trail.</p>
+<p>The loop cannot work out commutativity from a name, so you declare it: <code>parallel_safe</code> is the set of tools that change nothing. Any other call is a <strong>barrier</strong>. Everything asked before it finishes before it starts, and nothing after it starts until it ends.</p>
+<figure class="diagram"><pre class="mermaid">sequenceDiagram
+  participant L as loop
+  participant T as tools
+  Note over L: turn: read a, read b, write a, read a
+  par reads together
+    L-&gt;&gt;T: read_file a
+    L-&gt;&gt;T: read_file b
+  end
+  T--&gt;&gt;L: alpha, beta
+  L-&gt;&gt;T: write_file a (alone: a barrier)
+  T--&gt;&gt;L: ok
+  L-&gt;&gt;T: read_file a
+  T--&gt;&gt;L: new
+  Note over L: results returned in call order: alpha, beta, ok, new
+</pre></figure>
+<p><code>loop/parallel.py</code> scans the turn's calls in order. A run of consecutive safe calls goes to a thread pool, each unsafe call runs alone, and results are written into slots by position, so their order is the calls' order whatever order they finished in. The check measures it with three reads that each sleep 200 ms: the turn takes about 200 ms, with three tools active at once, and the results come back in the order asked.</p>
+<h2 id="safe-to-reorder-is-not-safe">Safe to reorder is not safe</h2>
+<p><code>READ_ONLY</code> includes <code>fetch_url</code>. It changes nothing in the lab and commutes with every read, so it may run in parallel. It is also the lab's way out: a URL can carry data to whoever owns the host (Module 1 lesson 6; Module 11). Parallelism is a property of the <strong>effects</strong>. Security is a property of the <strong>information flow</strong>. The two classifications are made for different reasons, and confusing them in either direction is a bug. Treating <code>fetch_url</code> as unsafe only slows the agent down. Treating it as harmless because it is read-only is how data leaves.</p>
+<h2 id="threads-not-processes-and-a-small-pool">Threads, not processes, and a small pool</h2>
+<p>The tools are HTTP calls to the lab, so the work is waiting, and threads are the right tool (Python's GIL is released while a socket waits). Keep the pool small. Four workers is the default. A model that asks for twenty fetches in one turn should not open twenty connections to one server, and E10 shows what a burst does to a server's tail latency. The pool also bounds what a misbehaving model can do in one turn, which the budget (lesson 6) does not: the budget counts model calls, not tool calls.</p>
+<h2 id="check-yourself">Check yourself</h2>
+<ol>
+<li>A turn asks for <code>read_file a</code>, <code>send_email</code>, <code>read_file b</code>, <code>read_file c</code>, <code>write_file d</code>. Which calls run concurrently, and in how many groups?</li>
+<li>Why must a refused call (lesson 2) still occupy its slot in the results?</li>
+<li>Give a pair of calls on two <em>different</em> tools that do not commute, even though neither is a write to the other's resource.</li>
+</ol>
+<details class="answers"><summary>Answers</summary>
+<ol>
+<li>Four groups: <code>read_file a</code> alone (a run of one safe call), then <code>send_email</code> alone, then <code>read_file b</code> and <code>read_file c</code> together, then <code>write_file d</code> alone. Only b and c run concurrently.</li>
+<li>Every call in the turn must be answered, with its own id and in its place. The slot holds the refusal text, so the model learns which call failed and why, and the results stay aligned with the calls.</li>
+<li><code>recall</code> and <code>remember</code>: a recall before the remember does not return the new note, and one after it does. Or <code>list_files</code> and <code>write_file</code> of a new file: the listing either includes the file or it does not. Commutativity is about shared state, not about which tool name writes.</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>Mark complete</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="03-three-wire-formats.html"><span class="label">Previous</span>One tool call, three wire formats</a><a class="pn next" href="05-retries.html"><span class="label">Next</span>Retry the server, not the model: errors, backoff and jitter</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 Defending AI Agents</span>
+  <nav aria-label="Footer">
+    <a href="../../workshop/">Team workshops</a>
+    <a href="../../courses/">Online courses</a>
+    <a href="mailto:shimon@defendingaiagents.com">Contact</a>
+    <a href="../../.well-known/security.txt">Security</a>
+    <a href="../../he/learn/e03-agent-loop/04-parallel-calls.html" lang="he" hreflang="he">עברית</a>
+  </nav>
+</footer>
+<script src="../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"Dark":"Light";
+b.setAttribute("aria-label","Switch to "+n+" mode")};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

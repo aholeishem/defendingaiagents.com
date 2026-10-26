@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="he" dir="rtl" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>שני מפענחים, הודעה אחת: בדיקה תקינה רק אם היא קוראת את מה שהיעד קורא · הגנה על סוכני AI</title>
+<meta name="description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<link rel="canonical" href="https://defendingaiagents.com/he/learn/onramp/10-parser-differentials.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/onramp/10-parser-differentials.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/onramp/10-parser-differentials.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/onramp/10-parser-differentials.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="הגנה על סוכני AI">
+<meta property="og:title" content="שני מפענחים, הודעה אחת: בדיקה תקינה רק אם היא קוראת את מה שהיעד קורא · הגנה על סוכני AI"><meta property="og:description" content="בונים הגנות לסוכני AI, תוקפים ובודקים מה עובד. קורס חינמי בקצב שלכם לצוותי פיתוח, ML ודאטה. 22 מודולים בעברית ובאנגלית, ללא צורך ברקע באבטחה. הקורס בהכנה.">
+<meta property="og:url" content="https://defendingaiagents.com/he/learn/onramp/10-parser-differentials.html"><meta property="og:image" content="https://defendingaiagents.com/og-he.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="he_IL"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+<link rel="preload" href="../../../assets/fonts/rubik-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../../assets/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../../assets/course.css"><script src="../../../assets/progress.js" defer></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script><script>addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".math").forEach(function(e){katex.render(e.textContent,e,{displayMode:e.dataset.display==="1",throwOnError:false})})})</script>
+</head>
+<body>
+<a class="skip" href="#main">דילוג לתוכן</a>
+<header class="top">
+  <a class="brand" href="../../../learn/onramp/10-parser-differentials.html"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">הגנה על סוכני AI</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="החלפת ערכת צבע"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>ערכת צבע</span></button>
+    <a class="lang label" href="../../../learn/onramp/10-parser-differentials.html" lang="en" hreflang="en">English</a>
+    <a class="btn" href="../../../he/course/#waitlist" data-waitlist>לרשימת ההמתנה<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">תפריט</summary><nav aria-label="תפריט"><a class="label" href="../../../he/workshop/">סדנאות לצוותים</a><a class="label" href="../../../he/courses/">קורסים מקוונים</a><a class="label" href="../../../blog/">בלוג</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="onramp/10-parser-differentials" data-module="onramp">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">תצוגה מקדימה חינמית</a><span>/</span><a href="./">מסלול הכנה</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="מסלול הכנה">
+      <p class="label"><em>מסלול הכנה</em> תיאורטי</p>
+      <p class="side-title">מסלול הכנה (on-ramp): צנרת הווב שהקורס מניח שאתם מכירים</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="onramp/index"><span class="label">·</span><span>סקירה</span></a></li><li data-stem="01-http-is-text"><a href="01-http-is-text.html" data-page-link="onramp/01-http-is-text"><span class="label">01</span><span>קריאת HTTP היא טקסט נכנס, טקסט יוצא</span></a></li><li data-stem="02-json-edges"><a href="02-json-edges.html" data-page-link="onramp/02-json-edges"><span class="label">02</span><span>JSON פשוט, והמפענחים שלו עדיין חלוקים</span></a></li><li data-stem="03-yaml-traps"><a href="03-yaml-traps.html" data-page-link="onramp/03-yaml-traps"><span class="label">03</span><span>YAML הוא JSON עם הזחה וארבע מלכודות</span></a></li><li data-stem="04-api-token"><a href="04-api-token.html" data-page-link="onramp/04-api-token"><span class="label">04</span><span>טוקן API הוא סיסמה עם תווית</span></a></li><li data-stem="05-dns"><a href="05-dns.html" data-page-link="onramp/05-dns"><span class="label">05</span><span>שם הוא לא כתובת, והתשובה יכולה להשתנות</span></a></li><li data-stem="06-proxy"><a href="06-proxy.html" data-page-link="onramp/06-proxy"><span class="label">06</span><span>פרוקסי הוא שרת שהוא גם לקוח</span></a></li><li data-stem="07-tls"><a href="07-tls.html" data-page-link="onramp/07-tls"><span class="label">07</span><span>TLS מוכיח שהגעתם לשם, לא שהשם הגון</span></a></li><li data-stem="08-jwt"><a href="08-jwt.html" data-page-link="onramp/08-jwt"><span class="label">08</span><span>JWT הוא טענות חתומות, ולבדיקה יש סדר</span></a></li><li data-stem="09-oauth-roles"><a href="09-oauth-roles.html" data-page-link="onramp/09-oauth-roles"><span class="label">09</span><span>OAuth נותן לטוקן ייעוד: תפקידים, scope, קהל יעד</span></a></li><li data-stem="10-parser-differentials" aria-current="page"><a href="10-parser-differentials.html" data-page-link="onramp/10-parser-differentials"><span class="label">10</span><span>שני מפענחים, הודעה אחת: בדיקה תקינה רק אם היא קוראת את מה שהיעד קורא</span></a></li><li data-stem="11-oauth-threat-model"><a href="11-oauth-threat-model.html" data-page-link="onramp/11-oauth-threat-model"><span class="label">11</span><span>מודל האיום של OAuth עצמו: מה RFC 9700 דורש, ולמה סוכן צריך את כולו</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="onramp/problems"><span class="label">P</span><span>תרגילים</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="onramp" data-total="13" data-problems="14" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">מסלול הכנה · שיעור 10</p>
+        <h1>שני מפענחים, הודעה אחת: בדיקה תקינה רק אם היא קוראת את מה שהיעד קורא</h1>
+      </header>
+      <p>שיעורים 1, 2, 3, 5 ו־7 הסתיימו כולם באותה צורה. בכל אחד מהם שער בקרה (gateway) מחליט לפי קריאה אחת של ההודעה, ושרת פועל לפי קריאה אחרת: שני כללי <code>Content-Length</code>, שתי תשובות למפתח JSON שחוזר פעמיים, <code>NO</code> כמחרוזת וכבוליאני, שם שנבדק וכתובת שמתחברים אליה, SNI שלפיו מנתבים ו־<code>Host</code> שלפיו מחליטים. השיעור הזה מתייחס אליהם כמחלקה אחת: מה הופך בדיקה של הודעה לתקינה (sound), למה אי אפשר להגיע לזה בעזרת בדיקות, ואילו תכנונים סוגרים את הפער.</p>
+<h2 id="the-condition-stated-once">התנאי, פעם אחת</h2>
+<p>יהי <span class="math" data-display="0">x</span> הבייטים על הקו. הבדיקה מפענחת אותם עם <span class="math" data-display="0">P_C</span> ומקבלת כשפרדיקט <span class="math" data-display="0">\varphi</span> מתקיים על התוצאה; היעד מפענח את אותם בייטים עם <span class="math" data-display="0">P_T</span> ופועל לפי התוצאה שלו. הבדיקה תקינה עבור <span class="math" data-display="0">\varphi</span> כאשר</p>
+<div class="math" data-display="1">\forall x:\quad \varphi\big(P_C(x)\big) \;\Rightarrow\; \varphi\big(P_T(x)\big).</div>
+<p><strong>קבוצת ההבדלים (differential set)</strong> <span class="math" data-display="0">D = \{x : P_C(x) \neq P_T(x)\}</span> היא המקום שבו התקינות יכולה להישבר. הגודל שלה לא רלוונטי. שער בקרה שהמפענח שלו מסכים עם השרת על 99.999% מהטראפיק האמיתי לא תקין בדיוק כמו שער בקרה שמסכים על חצי ממנו, כי התוקף לא דוגם מהטראפיק האמיתי: מספיק <span class="math" data-display="0">x \in D</span> אחד שאפשר להגיע אליו, שבו <span class="math" data-display="0">\varphi(P_C(x))</span> אמת ו־<span class="math" data-display="0">\varphi(P_T(x))</span> שקר, ואפשר לשלוח אותו בכל פעם. זה «התוקף זז שני» (מודול 9, שיעור 3) בצורתו הטהורה. שיעור הסכמה שנמדד על טראפיק אומד את הגודל הלא נכון.</p>
+<h2 id="why-agreement-cannot-be-tested-into-existence">למה אי אפשר להגיע להסכמה בעזרת בדיקות</h2>
+<p>כשבודקים שני מפענחים זה מול זה מוצאים איברים של <span class="math" data-display="0">D</span>; אי אפשר להראות כך ש־<span class="math" data-display="0">D</span> ריקה. עבור הפורמטים ביחידה הזו, גם שום דבר אחר לא יכול להראות את זה. השאלה אם שני דקדוקים חסרי הקשר (context-free) מגדירים את אותה שפה אינה כריעה במקרה הכללי, ואף אחד מהפורמטים האלה אינו פשוט מחסר הקשר: JSON הוא חסר הקשר, וגופי HTTP עם תחילית אורך וההזחה של YAML הם מעבר לזה. Sassaman, Patterson, Bratus ו־Locasto (2013) גוזרים מכאן את המסקנה לטיפול בקלט: בדרך כלל אי אפשר להוכיח ששני מפענחים של פורמט עשיר, שנכתבו בנפרד, שקולים, ולכן תכנון שתלוי בכך שיסכימו נשען על הנחה שאף אחד לא יכול לפרוע. הם טוענים בעד התכנון ההפוך: להפוך את השפה המתקבלת לפשוטה ככל האפשר, ולזהות אותה במלואה, במקום אחד, לפני שפועלים על חלק כלשהו ממנה.</p>
+<p>עדיין שווה להריץ בדיקות הבדלים (differential testing), כחיפוש ולא כראיה. Jabiyev, Sprecher, Onarlioglu ו־Kirda (2021) ייצרו בקשות HTTP מדקדוק, עשו להן מוטציות, שלחו כל אחת לזוגות של שרתים ופרוקסים אמיתיים, והשוו איך כל צד חתך את הזרם להודעות. אי הסכמות על התחימה (framing) צצו בכל הזוגות שבדקו. כל ממצא הוא דוגמה נגדית לתקינות, אבל ריצה נקייה לא מוכיחה כלום, מאותה סיבה שאפס כשלונות ב־<span class="math" data-display="0">n</span> ניסיונות חוסם שיעור ולא הופך אותו לאפס.</p>
+<h2 id="three-designs-in-order-of-strength">שלושה תכנונים, לפי עוצמה</h2>
+<div class="table"><table>
+<thead>
+<tr>
+<th>תכנון</th>
+<th>מה הוא מבטיח</th>
+<th>איפה הקורס משתמש בו</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>מפענח אחד.</strong> הבדיקה מפענחת, מחליטה, ומעבירה הלאה סריאליזציה מחדש של מה שעליו החליטה, אף פעם לא את הבייטים המקוריים.</td>
+<td>היעד רואה רק את הפלט של הבדיקה. אז התקינות צריכה רק <span class="math" data-display="0">P_T(\text{serialise}(v)) = v</span> על הערכים שהבדיקה פולטת, שפה קטנה ופשוטה בהרבה.</td>
+<td>JSON, מודול 3 שיעור 6; פרוקסי שמסיים HTTP וכותב בקשה משלו (שיעור 6); לפענח את השם פעם אחת ולהתחבר לכתובת שנבדקה (שיעור 5)</td>
+</tr>
+<tr>
+<td><strong>שפה קטנה יותר.</strong> לדחות כל קלט שידוע שמפענחים סבירים חלוקים עליו.</td>
+<td>מקטין את <span class="math" data-display="0">D</span> על ידי הוצאת קלטים, לא על ידי אמון בהסכמה.</td>
+<td>מפתח JSON שחוזר פעמיים; הודעה עם <code>Content-Length</code> וגם <code>Transfer-Encoding</code>, ש־RFC 9112 (סעיף 6.3) אומר שעליה &quot;ought to be handled as an error&quot;; כתובת IP מספרית בצורה לא קנונית; סקלר YAML שהסכמה לא מציינת את הטיפוס שלו</td>
+</tr>
+<tr>
+<td><strong>הסכמה בעזרת בדיקות.</strong> שני מפענחים, עם בדיקות הבדלים.</td>
+<td>רק שעוד לא נמצאה אי הסכמה.</td>
+<td>בשום מקום כבקרה; כחיפוש באגים בשני התכנונים האחרים</td>
+</tr>
+</tbody>
+</table></div>
+<p>התכנון הראשון לא מעלים את הבעיה; הוא מעביר אותה למקום שבשליטתכם. המסרייל מחדש חייב להיות דטרמיניסטי, חייב לפלוט רק את תת־הקבוצה של הפורמט ששני הצדדים קוראים באופן זהה (בלי מפתחות כפולים, מספרים שלמים בתוך <span class="math" data-display="0">2^{53}</span>, צורה נורמלית אחת של Unicode), ואסור לו להשמיט שדה שהיעד קורא. RFC 8785 קיים כי חתימות צריכות את הגרסה החזקה ביותר של ההבטחה הזו. שער בקרה צריך גרסה חלשה יותר, וכדאי שיכתוב במפורש לאיזו מהן הוא טוען (שיעור 2).</p>
+<h2 id="where-agents-add-pairs">איפה סוכנים מוסיפים זוגות</h2>
+<p>בסטאק של סוכן יש יותר מפענחים בטור מאשר בסטאק ווב:</p>
+<ul>
+<li>סביבת ההרצה (harness) מחלצת קריאה לכלי מהטקסט של המודל (מודול 1, שיעור 8): מפענח של פלט שתוקף יכול להשפיע עליו;</li>
+<li>שער הבקרה מפענח את ארגומנטי ה־JSON של הקריאה, ושרת הכלי מפענח אותם שוב;</li>
+<li>ארגומנט שהוא בעצמו URL, נתיב או פקודת shell מפוענח פעם שלישית על ידי הכלי, לעתים קרובות בספרייה ששער הבקרה מעולם לא ראה.</li>
+</ul>
+<p>כל זוג סמוך הוא <span class="math" data-display="0">(P_C, P_T)</span>, ותנאי התקינות צריך להתקיים לכל זוג שנושא החלטה. הנקודה השלישית היא הקשה. שער בקרה שמאפשר <code>fetch_url</code> אל <code>files.acme.example</code> החליט לפי הקריאה של מפענח ה־URL שלו את שם השרת. שני מפרטים חיים מתארים URLs, RFC 3986 ו־WHATWG URL Standard שהדפדפנים עוקבים אחריו, והם חלוקים על חלק מהקלטים (הטיפול ב־backslash ב־URL של <code>http</code> הוא דוגמה אחת). לבדיקה שנכתבה מול אחד מהם ולשולף שנבנה על השני יש <span class="math" data-display="0">D</span> לא ריקה מעצם הבנייה. תכנון המפענח האחד הוא התשובה הנקייה היחידה: שער הבקרה מפענח את ה־URL, מחליט, ומוסר לכלי שם שרת ונתיב כשדות נפרדים שכבר פוענחו, לא מחרוזת לפענח שוב.</p>
+<h2 id="what-is-open">מה פתוח</h2>
+<p>ל־JSON יש צורה קנונית ול־HTTP/1.1 יש קריאה מחמירה, ולכן תכנון המפענח האחד זמין. ל־URLs, לנתיבי קבצים בין מערכות הפעלה, לשורות פקודה של shell ול«ארגומנטים» בשפה טבעית אין צורה קנונית ששני הצדדים מקבלים, וחלק מהכלים מקבלים רק מחרוזת. ההגנה שם נסוגה לתכנון השפה הקטנה (לדחות את מה שדו־משמעי), ועוד הכלה (containment) למה שעובר (מודול 12). עדיין אין עבודה שפורסמה שמודדת, על שרתי כלים אמיתיים של סוכנים, באיזו תדירות מפענחי הארגומנטים שלהם חלוקים על שערי הבקרה שלפניהם.</p>
+<h2 id="check-yourself">בדקו את עצמכם</h2>
+<ol>
+<li>שער בקרה רושם ביומן שמפענח ה־JSON שלו ושל הכלי הסכימו על כל 10 מיליון הקריאות שהוקלטו. מה המספר הזה חוסם, ומה לא?</li>
+<li>למה העברת סריאליזציה מחדש עוזרת, גם כשהמפענח של שער הבקרה הוא הפחות נפוץ מבין השניים?</li>
+<li>כלי מקבל רק מחרוזת של פקודת shell. אילו משלושת התכנונים זמינים לשער בקרה שעומד לפניו, ומה צריך לשאת את שאר הסיכון?</li>
+</ol>
+<details class="answers"><summary>תשובות</summary>
+<ol>
+<li>הוא חוסם את שיעור אי ההסכמה על טראפיק שדומה לטראפיק שהוקלט: אפס ב־<span class="math" data-display="0">10^7</span> נותן גבול עליון חד־צדדי של 95% של <span class="math" data-display="0">3.0 \times 10^{-7}</span>. הוא לא חוסם את קבוצת ההבדלים <span class="math" data-display="0">D</span> ולא מראה שהיא ריקה, כי התוקף לא דוגם מהטראפיק שהוקלט: <span class="math" data-display="0">x \in D</span> אחד שאפשר להגיע אליו, שנשלח בכל פעם, שובר את התקינות.</li>
+<li>כי אז התקינות נשענת על <span class="math" data-display="0">P_T(\text{serialise}(v)) = v</span> עבור הערכים ששער הבקרה פולט, ולא על הסכמה של שני המפענחים על בייטים שרירותיים. שער הבקרה יכול להגביל את הפלט שלו לתת־קבוצה קטנה (בלי מפתחות כפולים, מספרים שלמים בתוך <span class="math" data-display="0">2^{53}</span>, צורה נורמלית אחת של Unicode) שמפענחים נפוצים קוראים באופן זהה, ולכן כבר לא משנה איזה מפענח נפוץ יותר.</li>
+<li>רק השפה הקטנה יותר: לקבל פקודות מדקדוק צר וחד־משמעי (בלי טריקים של מירכאות, תווים מיוחדים או הרחבות) ולדחות כל דבר אחר, עם בדיקות הבדלים כחיפוש באגים במסנן הזה. מפענח אחד לא זמין, כי הכלי מקבל מחרוזת ומפענח אותה שוב. שאר הסיכון נופל על ההכלה: sandbox והרשאות מינימליות שמגבילים מה פקודה שהתקבלה יכולה לעשות (מודול 12).</li>
+</ol>
+</details>
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>סימון כהושלם</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="09-oauth-roles.html"><span class="label">הקודם</span>OAuth נותן לטוקן ייעוד: תפקידים, scope, קהל יעד</a><a class="pn next" href="11-oauth-threat-model.html"><span class="label">הבא</span>מודל האיום של OAuth עצמו: מה RFC 9700 דורש, ולמה סוכן צריך את כולו</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 הגנה על סוכני AI</span>
+  <nav aria-label="Footer">
+    <a href="../../../he/workshop/">סדנאות לצוותים</a>
+    <a href="../../../he/courses/">קורסים מקוונים</a>
+    <a href="mailto:shimon@defendingaiagents.com">יצירת קשר</a>
+    <a href="../../../.well-known/security.txt">אבטחה</a>
+    <a href="../../../learn/onramp/10-parser-differentials.html" lang="en" hreflang="en">English</a>
+  </nav>
+</footer>
+<script src="../../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"כהה":"בהיר";
+b.setAttribute("aria-label","מעבר למצב "+(n==="dark"?"כהה":"בהיר"))};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>

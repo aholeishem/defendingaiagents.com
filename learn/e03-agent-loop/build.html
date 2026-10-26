@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js">
+<head>
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Build: Module 1&#x27;s loop, made to run unattended, and measured · Defending AI Agents</title>
+<meta name="description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<link rel="canonical" href="https://defendingaiagents.com/learn/e03-agent-loop/build.html"><link rel="alternate" hreflang="en" href="https://defendingaiagents.com/learn/e03-agent-loop/build.html"><link rel="alternate" hreflang="he" href="https://defendingaiagents.com/he/learn/e03-agent-loop/build.html"><link rel="alternate" hreflang="x-default" href="https://defendingaiagents.com/learn/e03-agent-loop/build.html">
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Defending AI Agents">
+<meta property="og:title" content="Build: Module 1&#x27;s loop, made to run unattended, and measured · Defending AI Agents"><meta property="og:description" content="Build, attack and test your own AI agent defences. A free, self-paced course for engineering, ML and data teams. 22 modules in English and Hebrew. No security background needed. In preparation.">
+<meta property="og:url" content="https://defendingaiagents.com/learn/e03-agent-loop/build.html"><meta property="og:image" content="https://defendingaiagents.com/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preload" href="../../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="stylesheet" href="../../assets/course.css"><script src="../../assets/progress.js" defer></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script><script>addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".math").forEach(function(e){katex.render(e.textContent,e,{displayMode:e.dataset.display==="1",throwOnError:false})})})</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="../../"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">Defending AI Agents</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav>
+  <div class="end">
+    <button class="theme-toggle label" type="button" data-theme-toggle aria-label="Switch colour theme"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span data-theme-label>Theme</span></button>
+    <a class="lang label" href="../../he/learn/e03-agent-loop/build.html" lang="he" hreflang="he">עברית</a>
+    <a class="btn" href="../../course/#waitlist" data-waitlist>Join waitlist<span class="kbd" aria-hidden="true">W</span></a>
+    <details class="mobile-nav"><summary class="label">Menu</summary><nav aria-label="Menu"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav></details>
+  </div>
+</header>
+<main id="main" class="course" data-page="e03-agent-loop/build" data-module="e03-agent-loop">
+  <nav class="crumbs label" aria-label="Breadcrumb"><a href="../">Free preview</a><span>/</span><a href="./">E3</a></nav>
+  <div class="lesson-grid">
+    <aside class="side-nav" aria-label="E3">
+      <p class="label"><em>E3</em> Applied</p>
+      <p class="side-title">The agent loop from scratch</p>
+      <ol><li data-stem="index"><a href="./" data-page-link="e03-agent-loop/index"><span class="label">·</span><span>Overview</span></a></li><li data-stem="01-workflow-or-agent"><a href="01-workflow-or-agent.html" data-page-link="e03-agent-loop/01-workflow-or-agent"><span class="label">01</span><span>Who decides the next step? Workflows and agents</span></a></li><li data-stem="02-a-tool-is-three-texts"><a href="02-a-tool-is-three-texts.html" data-page-link="e03-agent-loop/02-a-tool-is-three-texts"><span class="label">02</span><span>A tool is a schema, a function and an error message, and the model reads two of them</span></a></li><li data-stem="03-three-wire-formats"><a href="03-three-wire-formats.html" data-page-link="e03-agent-loop/03-three-wire-formats"><span class="label">03</span><span>One tool call, three wire formats</span></a></li><li data-stem="04-parallel-calls"><a href="04-parallel-calls.html" data-page-link="e03-agent-loop/04-parallel-calls"><span class="label">04</span><span>Parallel tool calls: reads commute, writes do not</span></a></li><li data-stem="05-retries"><a href="05-retries.html" data-page-link="e03-agent-loop/05-retries"><span class="label">05</span><span>Retry the server, not the model: errors, backoff and jitter</span></a></li><li data-stem="06-budgets"><a href="06-budgets.html" data-page-link="e03-agent-loop/06-budgets"><span class="label">06</span><span>A step is not a unit of cost: four budgets and a stop reason</span></a></li><li data-stem="07-structured-answers"><a href="07-structured-answers.html" data-page-link="e03-agent-loop/07-structured-answers"><span class="label">07</span><span>An answer a program can read: schemas and one repair</span></a></li><li data-stem="08-streaming"><a href="08-streaming.html" data-page-link="e03-agent-loop/08-streaming"><span class="label">08</span><span>A streamed tool call is half a JSON object</span></a></li><li data-stem="09-long-horizons"><a href="09-long-horizons.html" data-page-link="e03-agent-loop/09-long-horizons"><span class="label">09</span><span>How far can a loop go? Compounding error, code actions and the time horizon</span></a></li><li data-stem="build" aria-current="page"><a href="build.html" data-page-link="e03-agent-loop/build"><span class="label">B</span><span>Build: Module 1&#x27;s loop, made to run unattended, and measured</span></a></li><li data-stem="at-scale"><a href="at-scale.html" data-page-link="e03-agent-loop/at-scale"><span class="label">S</span><span>At scale: the same loop, ten thousand times at once</span></a></li><li data-stem="problems"><a href="problems.html" data-page-link="e03-agent-loop/problems"><span class="label">P</span><span>Problems</span></a></li></ol>
+      <p class="progress-line label" data-module-progress="e03-agent-loop" data-total="13" data-problems="15" hidden></p>
+    </aside>
+    <article class="prose">
+      
+      <header class="lesson-head">
+        <p class="label">E3 · Build: Module 1&#x27;s loop, made to run unattended, and measured</p>
+        <h1>Build: Module 1&#x27;s loop, made to run unattended, and measured</h1>
+      </header>
+      <p>About three hours, of which about an hour is the machine running the twenty tasks. You implement eight pieces in <code>loop/</code>. The client, the scripted client, the twenty tasks and the study are provided. Steps 1 to 7 need neither the lab nor a model. Steps 8 and 9 need both (<code>make lab-up</code>, and the model server from Module 1 lesson 4).</p>
+<h2 id="0-setup">0. Setup</h2>
+<pre><code class="language-bash">CHECK_E3_OFFLINE=1 make check-E3      # fails: NotImplementedError in loop/
+</code></pre>
+<div class="table"><table>
+<thead>
+<tr>
+<th>File</th>
+<th>You implement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>loop/schema.py</code></td>
+<td><code>parse_arguments</code>, <code>check_arguments</code></td>
+</tr>
+<tr>
+<td><code>loop/formats.py</code></td>
+<td><code>to_anthropic_tools</code>, <code>to_anthropic_request</code>, <code>from_anthropic_response</code></td>
+</tr>
+<tr>
+<td><code>loop/parallel.py</code></td>
+<td><code>execute</code></td>
+</tr>
+<tr>
+<td><code>loop/retry.py</code></td>
+<td><code>classify</code>, <code>backoff</code>, <code>call_with_retries</code></td>
+</tr>
+<tr>
+<td><code>loop/budget.py</code></td>
+<td><code>Budget.start</code>, <code>charge</code>, <code>exceeded</code></td>
+</tr>
+<tr>
+<td><code>loop/structured.py</code></td>
+<td><code>extract_json</code>, <code>parse_final</code></td>
+</tr>
+<tr>
+<td><code>loop/stream.py</code></td>
+<td><code>assemble</code></td>
+</tr>
+<tr>
+<td><code>loop/agent.py</code></td>
+<td><code>run</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>Provided: <code>loop/client.py</code> (<code>ChatClient</code>, which returns the message with its usage and timing, and <code>LegacyAdapter</code>, which lets the study run Module 1's loop on the same client), <code>loop/scripted.py</code>, <code>loop/tasks.py</code>, <code>parallel.prepare</code> and <code>READ_ONLY</code>, the Responses adapter in <code>formats.py</code>, and <code>studies/loop_study.py</code>. Run one group at a time as you go: <code>uv run pytest checks/test_checkE3.py -k schema</code>.</p>
+<h2 id="1-arguments">1. Arguments</h2>
+<p>Implement <code>parse_arguments</code> and <code>check_arguments</code> (lesson 2). The docstrings fix the error wording, because the model and the tests both read it. <code>-k schema</code> passes when booleans are not integers, <code>3.0</code> is, and every error names its field.</p>
+<h2 id="2-formats">2. Formats</h2>
+<p>Implement the three Anthropic adapters (lesson 3). Read <code>to_responses_tools</code> and <code>from_responses_output</code> first: they are the same job for the other format. <code>-k formats</code> passes when a two-call turn's results land in one user message and the usage comes back renamed.</p>
+<h2 id="3-parallel-calls">3. Parallel calls</h2>
+<p>Implement <code>execute</code> (lesson 4). Build the groups by scanning in order, run each group of safe calls with <code>pool.map</code>, and write results into slots by position. <code>-k parallel</code> times three 200 ms reads and fails if they take more than 450 ms or come back out of order.</p>
+<h2 id="4-retries">4. Retries</h2>
+<p>Implement <code>classify</code>, <code>backoff</code> and <code>call_with_retries</code> (lesson 5). Then:</p>
+<pre><code class="language-bash">make loop-study PARTS=faults        # about a minute
+make loop-study PARTS=herd
+</code></pre>
+<p>Your <code>faults</code> table must match lesson 5's to within its intervals, and every <code>(1-p^k)^5</code> must sit inside its row's interval. If the <span class="math" data-display="0">k = 1</span> rows match and the others do not, your loop is probably charging failed calls to the budget, or retrying calls that <code>classify</code> says to fail.</p>
+<h2 id="5-budgets">5. Budgets</h2>
+<p>Implement <code>Budget.start</code>, <code>charge</code> and <code>exceeded</code> (lesson 6), then <code>make loop-study PARTS=growth</code>. Change the arguments in <code>growth()</code> to your own lab's sizes. Read <code>S + T</code> from the first <code>prompt_tokens</code> of a run in step 8, and <code>R</code> from the size of a file you read. Then predict at which step a 20,000-token budget stops a file-reading task.</p>
+<h2 id="6-structured-answers">6. Structured answers</h2>
+<p>Implement <code>extract_json</code> and <code>parse_final</code> (lesson 7). The fences regex is provided. The work is in finding the first decodable value with <code>json.JSONDecoder().raw_decode</code>.</p>
+<h2 id="7-streaming">7. Streaming</h2>
+<p>Implement <code>assemble</code> (lesson 8). Test it with fragments (the check) and with whole calls (what Ollama sends). Both must give the same message.</p>
+<h2 id="8-the-loop">8. The loop</h2>
+<p>Implement <code>run</code> (<code>loop/agent.py</code>), which puts the pieces together in the order its docstring gives. Then the whole check, and one run by hand:</p>
+<pre><code class="language-bash">make check-E3                                    # about two minutes with the live test
+make loop TASK=&quot;Read notes/q3-report.txt and e-mail a three-bullet summary to manager@acme.example.&quot;
+</code></pre>
+<p>The last line printed is the usage: steps, prompt and completion tokens, cost (zero, since no prices are set) and seconds. Run it with prices, <code>Budget(price_in=1.0, price_out=5.0)</code> in <code>main()</code>, and see what the laptop run would have cost.</p>
+<h2 id="9-measure-both-loops-on-twenty-tasks">9. Measure both loops on twenty tasks</h2>
+<pre><code class="language-bash">make loop-study PARTS=&quot;tasks reps=3&quot;     # 120 runs; about two hours on qwen3:4b with a busy laptop
+make loop-study PARTS=summary            # re-reads studies/out/loop_tasks.jsonl, no model
+make loop-study PARTS=&quot;stream n=10&quot;
+make loop-study PARTS=&quot;schema reps=2&quot;
+make loop-study PARTS=&quot;tasks reps=1 fault=0.1 out=loop_faults&quot;   # the same tasks with injected 503s, 40 runs
+</code></pre>
+<p>Each task starts from a reset lab, and both loops get the same model, server, temperature (0.7), system prompt, step limit (10) and tools. The only difference is the loop. <strong>Use a lab that nothing else is using:</strong> <code>tasks</code> resets it before every run.</p>
+<p>The author's run, 25 October 2026, <code>qwen3:4b</code> on Ollama, a MacBook with an Apple M5 and 32 GB, with another project's containers running:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>loop</th>
+<th style="text-align:right">runs</th>
+<th style="text-align:right">passed</th>
+<th style="text-align:right">rate</th>
+<th>95% Wilson</th>
+<th style="text-align:right">crashed</th>
+<th style="text-align:right">stopped on a limit</th>
+<th style="text-align:right">tokens per run (median)</th>
+<th style="text-align:right">seconds per run (median)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Module 1's loop</td>
+<td style="text-align:right">60</td>
+<td style="text-align:right">32</td>
+<td style="text-align:right">53.3%</td>
+<td>40.9% to 65.4%</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">4,582</td>
+<td style="text-align:right">51</td>
+</tr>
+<tr>
+<td>E3's loop</td>
+<td style="text-align:right">60</td>
+<td style="text-align:right">33</td>
+<td style="text-align:right">55.0%</td>
+<td>42.5% to 66.9%</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">4,194</td>
+<td style="text-align:right">47</td>
+</tr>
+</tbody>
+</table></div>
+<p>Paired by task and try: 5 pairs passed only with E3 and 4 only with Module 1 (exact McNemar <span class="math" data-display="0">p = 1.0</span>). The difference in pass rate, resampled by task, is <span class="math" data-display="0">+0.017</span> (95% <span class="math" data-display="0">-0.117</span> to <span class="math" data-display="0">+0.150</span>). By kind, Module 1 against E3: fact 7/12 and 9/12, combine 5/12 and 5/12, write 7/12 and 6/12, send 7/12 and 7/12, CRM 6/12 and 6/12. pass^1, pass^2 and pass^3 were 0.533, 0.433 and 0.400 for Module 1, and 0.550, 0.483 and 0.450 for E3. One pair (<code>send-dana</code>, first try) ran across a laptop sleep and was re-run, both loops, at the end. Its first E3 run took 380 s and failed.</p>
+<p><strong>On a healthy server, the loops tie.</strong> No run of either loop crashed, hit its step limit or had a call refused. <code>qwen3:4b</code> wrote well-formed arguments for every call in 120 runs, and the local server never failed. So nothing E3 adds had anything to do. Its pieces are insurance, and insurance shows its value when something goes wrong. The tie is the measurement, not a failed one: a design that changed success on a healthy server would have changed the agent's <em>behaviour</em>, which this module did not try to do.</p>
+<p>Read the failures too. About half the runs failed for both loops alike, because the model gave up (churn &quot;is not in the knowledge base&quot;, though it is in the Q3 report) or computed wrongly (the total customer value). On the revenue question, one Module 1 run e-mailed <code>finance@acme.example</code> to ask for the figure instead of reading the report: an action nobody asked for, taken by a loop with no policy. Better plumbing fixes none of that. E2 (context), E5 (retrieval) and E9 (evaluation) work on it, and Modules 3 and 13 on the e-mail.</p>
+<p>Notice the gap between pass^3 and <span class="math" data-display="0">(\text{pass}^1)^3</span>: 0.450 against <span class="math" data-display="0">0.55^3 = 0.166</span> for E3. The tasks split into ones the model nearly always solves and ones it nearly never does (lesson 9, problem 13).</p>
+<p><code>stream n=10</code>, the same prompt (read the Q3 report, then summarise it) ten times each way:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:right">total, median</th>
+<th style="text-align:right">first content or tool-call byte, median</th>
+<th style="text-align:right">completion tokens, median</th>
+<th style="text-align:right">replies with a tool call</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>not streamed</td>
+<td style="text-align:right">15.0 s</td>
+<td style="text-align:right">n/a</td>
+<td style="text-align:right">632</td>
+<td style="text-align:right">10/10</td>
+</tr>
+<tr>
+<td>streamed</td>
+<td style="text-align:right">14.6 s</td>
+<td style="text-align:right">14.6 s</td>
+<td style="text-align:right">584</td>
+<td style="text-align:right">10/10</td>
+</tr>
+</tbody>
+</table></div>
+<p>Every reply began with a tool call, and Ollama sends a call whole once the model has finished thinking, so the first useful byte arrived at the end. Lesson 8 predicted this: for a tool-calling turn, streaming buys nothing.</p>
+<p><code>schema reps=2</code>, four fact tasks and one CRM task, each twice, with a two-field answer schema (<code>answer</code>, <code>source</code>): all 10 replies conformed at the first attempt, so the repair never fired, and 6 of the 10 were correct. The four conforming wrong answers are lesson 7's dangerous cell. A pipeline that reported &quot;valid JSON 100%&quot; would have reported them as successes.</p>
+<p>Then the same twenty tasks once more, with each model call failing with a 503 with probability 0.1, for both loops alike (<code>tasks reps=1 fault=0.1 out=loop_faults</code>):</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>loop</th>
+<th style="text-align:right">runs</th>
+<th style="text-align:right">passed</th>
+<th style="text-align:right">rate</th>
+<th>95% Wilson</th>
+<th style="text-align:right">crashed</th>
+<th style="text-align:right">tokens per run (mean)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Module 1's loop</td>
+<td style="text-align:right">20</td>
+<td style="text-align:right">8</td>
+<td style="text-align:right">40.0%</td>
+<td>21.9% to 61.3%</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">4,926</td>
+</tr>
+<tr>
+<td>E3's loop</td>
+<td style="text-align:right">20</td>
+<td style="text-align:right">11</td>
+<td style="text-align:right">55.0%</td>
+<td>34.2% to 74.2%</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">4,490</td>
+</tr>
+</tbody>
+</table></div>
+<p>Five Module 1 runs died on their first 503, and no E3 run did. The count is what lesson 5 predicts: Module 1's runs averaged 2.7 model calls, and <span class="math" data-display="0">1 - 0.9^{2.7} = 25\%</span> of 20 is 5. E3's pass rate is the same as on the healthy server, 55%, so its retries absorbed the faults completely. The paired difference, <span class="math" data-display="0">+0.150</span> (95% <span class="math" data-display="0">-0.100</span> to <span class="math" data-display="0">+0.400</span>; 5 pairs passed only with E3, 2 only with Module 1, McNemar <span class="math" data-display="0">p = 0.45</span>), does not exclude zero on 20 pairs. The crash count is the sharper measurement, because it isolates what the retries do. Twenty runs give the model's own variance room to hide a 15-point difference. Problem 12 asks how many runs would not.</p>
+<h2 id="10-write-it-up">10. Write it up</h2>
+<p>Your own table, in the form above, and one paragraph: the largest difference between the two loops that you found, whether its interval excludes zero, and whether you believe it. Say what the twenty tasks are not: a sample of your workload, or of anyone's. The paragraph is better if it names a task where E3 lost.</p>
+
+      <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>Mark complete</button></p>
+      <nav class="pager" aria-label="Pages"><a class="pn prev" href="09-long-horizons.html"><span class="label">Previous</span>How far can a loop go? Compounding error, code actions and the time horizon</a><a class="pn next" href="at-scale.html"><span class="label">Next</span>At scale: the same loop, ten thousand times at once</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 Defending AI Agents</span>
+  <nav aria-label="Footer">
+    <a href="../../workshop/">Team workshops</a>
+    <a href="../../courses/">Online courses</a>
+    <a href="mailto:shimon@defendingaiagents.com">Contact</a>
+    <a href="../../.well-known/security.txt">Security</a>
+    <a href="../../he/learn/e03-agent-loop/build.html" lang="he" hreflang="he">עברית</a>
+  </nav>
+</footer>
+<script src="../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
+<script>(function(){var r=document.documentElement,b=document.querySelector("[data-theme-toggle]");if(!b)return;
+var sys=function(){return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"};
+var cur=function(){return r.dataset.theme||sys()};
+var show=function(){var n=cur()==="dark"?"light":"dark";b.querySelector("[data-theme-label]").textContent=n==="dark"?"Dark":"Light";
+b.setAttribute("aria-label","Switch to "+n+" mode")};
+b.addEventListener("click",function(){var n=cur()==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}show();
+if(document.querySelector(".mermaid"))location.reload()});show()})();</script>
