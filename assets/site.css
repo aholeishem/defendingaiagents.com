@@ -466,14 +466,14 @@ input[type="range"]::-moz-range-thumb { width: 14px; height: 14px; background: v
 .wl input[type="email"]::placeholder { color: var(--dim); opacity: 1; }
 .wl input[type="email"]:focus { outline: none; }
 :lang(he) .wl input[type="email"]:placeholder-shown { text-align: right; }
-.wl button { margin-bottom: 12px; display: inline-flex; align-items: center; gap: 10px; border: 0; border-radius: 6px; cursor: pointer; background: var(--sig); color: var(--on-sig); padding: 16px 22px; font: 500 14px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; transition: background-color .15s ease, color .15s ease, opacity .15s ease; }
-:lang(he) .wl button { font: 600 16px/1 var(--sans); letter-spacing: 0; }
-.wl button:hover { background: var(--fg); color: var(--bg); }
-.wl button .arrow { display: inline-block; transition: transform .25s ease; }
-.wl button:hover .arrow { transform: translateX(.2em); }
-:lang(he) .wl button .arrow { transform: scaleX(-1); }
-:lang(he) .wl button:hover .arrow { transform: scaleX(-1) translateX(.2em); }
-.wl[aria-busy="true"] button { opacity: .55; cursor: progress; }
+.wl button, .bk button { margin-bottom: 12px; display: inline-flex; align-items: center; gap: 10px; border: 0; border-radius: 6px; cursor: pointer; background: var(--sig); color: var(--on-sig); padding: 16px 22px; font: 500 14px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; transition: background-color .15s ease, color .15s ease, opacity .15s ease; }
+:lang(he) .wl button, :lang(he) .bk button { font: 600 16px/1 var(--sans); letter-spacing: 0; }
+.wl button:hover, .bk button:hover { background: var(--fg); color: var(--bg); }
+.wl button .arrow, .bk button .arrow { display: inline-block; transition: transform .25s ease; }
+.wl button:hover .arrow, .bk button:hover .arrow { transform: translateX(.2em); }
+:lang(he) .wl button .arrow, :lang(he) .bk button .arrow { transform: scaleX(-1); }
+:lang(he) .wl button:hover .arrow, :lang(he) .bk button:hover .arrow { transform: scaleX(-1) translateX(.2em); }
+.wl[aria-busy="true"] button, .bk[aria-busy="true"] button { opacity: .55; cursor: progress; }
 .wl-hp { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .wl-status { min-height: 1.5em; margin: 14px 0 0; font: 500 15px/1.5 var(--sans); color: var(--fg-2); }
 .wl-status[data-state="ok"] { color: var(--fg); }
@@ -489,6 +489,30 @@ input[type="range"]::-moz-range-thumb { width: 14px; height: 14px; background: v
   .wl input[type="email"] { border-bottom: 2px solid var(--fg); }
   .wl-row:focus-within input[type="email"] { border-color: var(--sig); }
   .wl button { margin: 14px 0 0; justify-content: center; padding: 18px 22px; }
+}
+/* Workshop booking form: the waitlist's look, five fields on a grid. */
+.bk { position: relative; margin-top: 56px; max-width: 980px; }
+.bk-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 32px; align-items: end; }
+.bk-field { position: relative; min-width: 0; }
+.bk-field .label { display: block; margin-bottom: 8px; }
+.bk-field input, .bk-field select { display: block; width: 100%; min-width: 0; border: 0; border-bottom: 2px solid var(--fg); border-radius: 0; background: transparent; color: var(--fg); padding: 6px 0 10px; font: 500 clamp(19px, 2vw, 24px)/1.25 var(--sans); letter-spacing: -0.01em; transition: border-color .15s ease; }
+.bk-field input::placeholder { color: var(--dim); opacity: 1; }
+.bk-field input:focus, .bk-field select:focus { outline: none; border-color: var(--sig); }
+.bk-field input[type="email"] { text-align: left; }
+:lang(he) .bk-field input[type="email"]:placeholder-shown { text-align: right; }
+.bk-field input[type="number"] { -moz-appearance: textfield; appearance: textfield; }
+.bk-field input[type="number"]::-webkit-inner-spin-button, .bk-field input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.bk-field select { -webkit-appearance: none; appearance: none; cursor: pointer; padding-inline-end: 28px; }
+.bk-field select:invalid { color: var(--dim); }
+.bk-field select option { color: var(--fg); background: var(--bg); }
+.bk-select::after { content: ""; position: absolute; inset-inline-end: 6px; bottom: 22px; width: 8px; height: 8px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg); pointer-events: none; }
+.bk-send { display: flex; justify-content: flex-end; }
+.bk button { margin-bottom: 0; }
+.bk-consent { margin: 18px 0 0; color: var(--dim); font-size: 14px; }
+@media (max-width: 559px) {
+  .bk-grid { grid-template-columns: 1fr; gap: 24px; }
+  .bk-send, .bk button { display: flex; width: 100%; justify-content: center; }
+  .bk button { padding: 18px 22px; }
 }
 .cta .fine { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 24px; margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line-2); }
 .cta .fine p { margin: 0; color: var(--fg-2); max-width: 38rem; }

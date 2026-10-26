@@ -27,7 +27,7 @@
   <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../he/workshop/" aria-current="location">סדנאות לצוותים</a><a class="label" href="../../he/courses/">קורסים מקוונים</a><a class="label" href="../../blog/">בלוג</a></nav>
   <div class="end">
     <a class="lang label" href="../../workshop/" lang="en" hreflang="en">English</a>
-    <a class="btn" href="mailto:shimon@defendingaiagents.com?subject=%D7%A1%D7%93%D7%A0%D7%94%20%D7%9C%D7%A6%D7%95%D7%95%D7%AA%3A%20%D7%A1%D7%95%D7%9B%D7%A0%D7%99%20AI">לתיאום סדנה</a>
+    <a class="btn" href="#contact">לתיאום סדנה</a>
     <details class="mobile-nav"><summary class="label">תפריט</summary><nav aria-label="תפריט"><a class="label" href="../../he/workshop/" aria-current="location">סדנאות לצוותים</a><a class="label" href="../../he/courses/">קורסים מקוונים</a><a class="label" href="../../blog/">בלוג</a></nav></details>
   </div>
 </header>
@@ -37,7 +37,7 @@
     <p class="kicker label"><i></i>סדנאות מעשיות לצוותים · מחצי יום ועד יומיים</p>
     <div class="word">
       <h1><span>סדנאות מעשיות</span><span>לצוות שלכם</span></h1>
-      <div class="side"><p>בוחרים לפי מה שהצוות צריך: לבנות סוכן ולבדוק את הביצועים שלו, להגן על סוכן שכבר מחובר לכלים ולמידע של הארגון, או לשלב בין השניים. בכל הסדנאות כותבים קוד ומתרגלים, אצלכם או בזום.</p><div class="readout"><span class="label">משך<b class="">חצי יום עד יומיים</b></span><span class="label">דגש<b class="">בנייה · אבטחה</b></span><span class="label">רקע באבטחה<b class="s">לא נדרש</b></span><span class="label">שפה<b class="">עברית · אנגלית</b></span></div><p class="ctas"><a class="btn" href="mailto:shimon@defendingaiagents.com?subject=%D7%A1%D7%93%D7%A0%D7%94%20%D7%9C%D7%A6%D7%95%D7%95%D7%AA%3A%20%D7%A1%D7%95%D7%9B%D7%A0%D7%99%20AI">לתיאום סדנה</a> <a class="label" href="#formats">לאפשרויות הסדנה <span class="arrow" aria-hidden="true">→</span></a></p></div>
+      <div class="side"><p>בוחרים לפי מה שהצוות צריך: לבנות סוכן ולבדוק את הביצועים שלו, להגן על סוכן שכבר מחובר לכלים ולמידע של הארגון, או לשלב בין השניים. בכל הסדנאות כותבים קוד ומתרגלים, אצלכם או בזום.</p><div class="readout"><span class="label">משך<b class="">חצי יום עד יומיים</b></span><span class="label">דגש<b class="">בנייה · אבטחה</b></span><span class="label">רקע באבטחה<b class="s">לא נדרש</b></span><span class="label">שפה<b class="">עברית · אנגלית</b></span></div><p class="ctas"><a class="btn" href="#contact">לתיאום סדנה</a> <a class="label" href="#formats">לאפשרויות הסדנה <span class="arrow" aria-hidden="true">→</span></a></p></div>
     </div>
   </section>
 
@@ -99,8 +99,24 @@
   </section>
 
   <section class="cta" id="contact">
-    <h2 class="big-link reveal"><a href="mailto:shimon@defendingaiagents.com?subject=%D7%A1%D7%93%D7%A0%D7%94%20%D7%9C%D7%A6%D7%95%D7%95%D7%AA%3A%20%D7%A1%D7%95%D7%9B%D7%A0%D7%99%20AI">בואו נקבע סדנה<br>לצוות שלכם <span class="arrow" aria-hidden="true">→</span></a></h2>
-    <div class="fine reveal"><span class="label"><em style="font-style:normal;color:var(--sig)">10</em>&nbsp; shimon@defendingaiagents.com</span><p>כתבו לשמעון כמה משתתפים צפויים, מה תרצו ללמוד (בנייה, אבטחה או שילוב ביניהן), מה אתם בונים ולאילו כלים הסוכן מחובר. נחזור תוך יום עסקים עם הצעה להמשך. כתובת המייל שלכם תשמש רק לשיחה הזאת.</p></div>
+    <h2 class="big-link reveal">בואו נקבע סדנה<br>לצוות שלכם</h2>
+    <form class="bk reveal" action="mailto:shimon@defendingaiagents.com?subject=%D7%A1%D7%93%D7%A0%D7%94%20%D7%9C%D7%A6%D7%95%D7%95%D7%AA%3A%20%D7%A1%D7%95%D7%9B%D7%A0%D7%99%20AI" method="post" enctype="text/plain">
+      <div class="bk-grid">
+        <div class="bk-field"><label class="label" for="bk-team">כמה משתתפים</label><input id="bk-team" name="team_size" type="number" required placeholder="למשל, 12" min="1" max="500" step="1" inputmode="numeric"></div>
+        <div class="bk-field bk-select"><label class="label" for="bk-workshop">איזו סדנה</label><select id="bk-workshop" name="workshop" required><option value="" disabled selected>בחרו סדנה</option><option value="building-half">בניית סוכנים · חצי יום</option><option value="building-day">בניית סוכנים · יום</option><option value="building-two-days">בניית סוכנים · יומיים</option><option value="security-half">אבטחת סוכנים · חצי יום</option><option value="both">שילוב: בנייה ואחריה אבטחה</option></select></div>
+        <div class="bk-field"><label class="label" for="bk-building">מה אתם בונים</label><input id="bk-building" name="building" type="text" required placeholder="למשל, עוזר תמיכה שעונה ממסמכי המוצר" maxlength="300"></div>
+        <div class="bk-field"><label class="label" for="bk-tools">לאילו כלים הסוכן מחובר</label><input id="bk-tools" name="tools" type="text" required placeholder="למשל, מייל, Jira ומסד נתונים ב־SQL" maxlength="300"></div>
+        <div class="bk-field"><label class="label" for="bk-email">כתובת המייל שלכם</label><input id="bk-email" name="email" type="email" required placeholder="you@company.com" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" maxlength="254" dir="ltr"></div>
+        <div class="bk-send"><button type="submit">שליחה <span class="arrow" aria-hidden="true">→</span></button></div>
+      </div>
+      <input type="hidden" name="lang" value="he">
+      <div class="wl-hp" aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off"></label></div>
+      <p class="bk-consent">נשתמש בפרטים רק כדי לענות על הפנייה הזאת, ולא נעביר אותם לאיש.</p>
+      <p class="wl-status" role="status" aria-live="polite"></p>
+      <p class="wl-note" id="bk-ok" data-state="ok">קיבלנו. נחזור אליכם תוך יום עסקים עם הצעה.</p><p class="wl-note" id="bk-invalid" data-state="invalid">חסר פרט או שכתובת המייל לא תקינה. בדקו ונסו שוב.</p><p class="wl-note" id="bk-busy" data-state="busy">יותר מדי ניסיונות מהרשת שלכם. נסו שוב בעוד שעה, או כתבו ל־shimon@defendingaiagents.com.</p><p class="wl-note" id="bk-error" data-state="error">הפנייה לא נשלחה. נסו שוב, או כתבו ל־shimon@defendingaiagents.com.</p>
+      <script type="application/json" id="bk-strings">{"sending": "שולחים…", "ok": "קיבלנו. נחזור אליכם תוך יום עסקים עם הצעה.", "mail": "תוכנת המייל שלכם אמורה להיפתח עם הפרטים. אם היא לא נפתחה, כתבו ל־shimon@defendingaiagents.com.", "invalid": "חסר פרט או שכתובת המייל לא תקינה. בדקו ונסו שוב.", "busy": "יותר מדי ניסיונות מהרשת שלכם. נסו שוב בעוד שעה, או כתבו ל־shimon@defendingaiagents.com.", "error": "הפנייה לא נשלחה. נסו שוב, או כתבו ל־shimon@defendingaiagents.com."}</script>
+    </form>
+    <div class="fine reveal"><span class="label"><em style="font-style:normal;color:var(--sig)">10</em>&nbsp; <a href="mailto:shimon@defendingaiagents.com?subject=%D7%A1%D7%93%D7%A0%D7%94%20%D7%9C%D7%A6%D7%95%D7%95%D7%AA%3A%20%D7%A1%D7%95%D7%9B%D7%A0%D7%99%20AI" dir="ltr">shimon@defendingaiagents.com</a></span><p>ספרו לנו בקצרה על הצוות ועל הסוכן, ונחזור תוך יום עסקים עם הצעת מחיר והצעה להמשך. מעדיפים מייל? כתבו ישירות לשמעון עם אותם פרטים.</p></div>
   </section>
 </main>
 
@@ -114,6 +130,6 @@
     <a href="../../workshop/" lang="en" hreflang="en">English</a>
   </nav>
 </footer>
-<script src="../../assets/site.js?v=cca123d69af4" defer></script>
+<script src="../../assets/site.js?v=bb169659bd96" defer></script>
 </body>
 </html>

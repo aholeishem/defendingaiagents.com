@@ -27,7 +27,7 @@
   <nav class="desktop-nav" aria-label="Main"><a class="label" href="../workshop/" aria-current="location">Team workshops</a><a class="label" href="../courses/">Online courses</a><a class="label" href="../blog/">Blog</a></nav>
   <div class="end">
     <a class="lang label" href="../he/workshop/" lang="he" hreflang="he">עברית</a>
-    <a class="btn" href="mailto:shimon@defendingaiagents.com?subject=AI%20agent%20workshop%20for%20our%20team">Book a workshop</a>
+    <a class="btn" href="#contact">Book a workshop</a>
     <details class="mobile-nav"><summary class="label">Menu</summary><nav aria-label="Menu"><a class="label" href="../workshop/" aria-current="location">Team workshops</a><a class="label" href="../courses/">Online courses</a><a class="label" href="../blog/">Blog</a></nav></details>
   </div>
 </header>
@@ -37,7 +37,7 @@
     <p class="kicker label"><i></i>Hands-on team workshops · half a day to two days</p>
     <div class="word">
       <h1><span>Hands-on</span><span>team workshops</span></h1>
-      <div class="side"><p>Build an agent and evaluate how well it handles its tasks, secure an agent already connected to company tools and data, or do both in sequence. Every workshop includes coding and practical exercises, at your office or on Zoom.</p><div class="readout"><span class="label">Duration<b class="">half day to 2 days</b></span><span class="label">Emphasis<b class="">build · secure</b></span><span class="label">Security skills<b class="s">none needed</b></span><span class="label">Language<b class="">Hebrew · English</b></span></div><p class="ctas"><a class="btn" href="mailto:shimon@defendingaiagents.com?subject=AI%20agent%20workshop%20for%20our%20team">Book a workshop</a> <a class="label" href="#formats">Explore the workshops <span class="arrow" aria-hidden="true">→</span></a></p></div>
+      <div class="side"><p>Build an agent and evaluate how well it handles its tasks, secure an agent already connected to company tools and data, or do both in sequence. Every workshop includes coding and practical exercises, at your office or on Zoom.</p><div class="readout"><span class="label">Duration<b class="">half day to 2 days</b></span><span class="label">Emphasis<b class="">build · secure</b></span><span class="label">Security skills<b class="s">none needed</b></span><span class="label">Language<b class="">Hebrew · English</b></span></div><p class="ctas"><a class="btn" href="#contact">Book a workshop</a> <a class="label" href="#formats">Explore the workshops <span class="arrow" aria-hidden="true">→</span></a></p></div>
     </div>
   </section>
 
@@ -99,8 +99,24 @@
   </section>
 
   <section class="cta" id="contact">
-    <h2 class="big-link reveal"><a href="mailto:shimon@defendingaiagents.com?subject=AI%20agent%20workshop%20for%20our%20team">Book a workshop<br>for your team <span class="arrow" aria-hidden="true">→</span></a></h2>
-    <div class="fine reveal"><span class="label"><em style="font-style:normal;color:var(--sig)">10</em>&nbsp; shimon@defendingaiagents.com</span><p>Email Shimon with your expected team size, what you want to learn (building, security or both), what you are building and which tools your agent uses. We will reply within one business day with a proposed next step. Your email address is used only for this conversation.</p></div>
+    <h2 class="big-link reveal">Book a workshop<br>for your team</h2>
+    <form class="bk reveal" action="mailto:shimon@defendingaiagents.com?subject=AI%20agent%20workshop%20for%20our%20team" method="post" enctype="text/plain">
+      <div class="bk-grid">
+        <div class="bk-field"><label class="label" for="bk-team">Team size</label><input id="bk-team" name="team_size" type="number" required placeholder="e.g. 12" min="1" max="500" step="1" inputmode="numeric"></div>
+        <div class="bk-field bk-select"><label class="label" for="bk-workshop">Workshop</label><select id="bk-workshop" name="workshop" required><option value="" disabled selected>Choose a workshop</option><option value="building-half">Building agents · half day</option><option value="building-day">Building agents · one day</option><option value="building-two-days">Building agents · two days</option><option value="security-half">Securing agents · half day</option><option value="both">Both: building, then security</option></select></div>
+        <div class="bk-field"><label class="label" for="bk-building">What you are building</label><input id="bk-building" name="building" type="text" required placeholder="e.g. a support assistant over our docs" maxlength="300"></div>
+        <div class="bk-field"><label class="label" for="bk-tools">Which tools the agent uses</label><input id="bk-tools" name="tools" type="text" required placeholder="e.g. e-mail, Jira and a SQL database" maxlength="300"></div>
+        <div class="bk-field"><label class="label" for="bk-email">Your e-mail address</label><input id="bk-email" name="email" type="email" required placeholder="you@company.com" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" maxlength="254" dir="ltr"></div>
+        <div class="bk-send"><button type="submit">Send <span class="arrow" aria-hidden="true">→</span></button></div>
+      </div>
+      <input type="hidden" name="lang" value="en">
+      <div class="wl-hp" aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off"></label></div>
+      <p class="bk-consent">We use these details only to reply to this enquiry and never share them.</p>
+      <p class="wl-status" role="status" aria-live="polite"></p>
+      <p class="wl-note" id="bk-ok" data-state="ok">Thank you. We will reply within one business day with a quote.</p><p class="wl-note" id="bk-invalid" data-state="invalid">A detail is missing or the e-mail address looks wrong. Check and try again.</p><p class="wl-note" id="bk-busy" data-state="busy">Too many attempts from your network. Please try again in an hour, or write to shimon@defendingaiagents.com.</p><p class="wl-note" id="bk-error" data-state="error">The enquiry could not be sent. Please try again, or write to shimon@defendingaiagents.com.</p>
+      <script type="application/json" id="bk-strings">{"sending": "Sending…", "ok": "Thank you. We will reply within one business day with a quote.", "mail": "Your e-mail app should open with the details filled in. If it does not, write to shimon@defendingaiagents.com.", "invalid": "A detail is missing or the e-mail address looks wrong. Check and try again.", "busy": "Too many attempts from your network. Please try again in an hour, or write to shimon@defendingaiagents.com.", "error": "The enquiry could not be sent. Please try again, or write to shimon@defendingaiagents.com."}</script>
+    </form>
+    <div class="fine reveal"><span class="label"><em style="font-style:normal;color:var(--sig)">10</em>&nbsp; <a href="mailto:shimon@defendingaiagents.com?subject=AI%20agent%20workshop%20for%20our%20team" dir="ltr">shimon@defendingaiagents.com</a></span><p>Tell us a little about your team and your agent, and we will reply within one business day with a quote and a proposed next step. Prefer e-mail? Write to Shimon directly with the same details.</p></div>
   </section>
 </main>
 
@@ -114,6 +130,6 @@
     <a href="../he/workshop/" lang="he" hreflang="he">עברית</a>
   </nav>
 </footer>
-<script src="../assets/site.js?v=cca123d69af4" defer></script>
+<script src="../assets/site.js?v=bb169659bd96" defer></script>
 </body>
 </html>

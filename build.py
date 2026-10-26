@@ -24,6 +24,9 @@ SITE = "https://defendingaiagents.com"
 EMAIL = "shimon@defendingaiagents.com"
 # The waitlist Worker (private repo, backend/waitlist). Set after `wrangler deploy`.
 WAITLIST_URL = "https://waitlist.defendingaiagents.workers.dev"
+# Where the workshop booking form posts. Until the booking Worker exists it opens an
+# e-mail with the answers filled in; then set it to the Worker's https://…/book URL.
+BOOKING_URL = f"mailto:{EMAIL}"
 AUTHOR = "Shimon R. Malka"
 LINKEDIN = "https://www.linkedin.com/in/srmalka/"
 E = html.escape
@@ -566,7 +569,7 @@ CATALOG = {
         "catalog_intro": "Two separate courses: one on building agents, one on securing them. Explore their goals and syllabuses, and sign up for release updates.",
         "team_note": "Want to learn with your team now?", "team_p": "The workshops are available to book and do not require either course.",
         "course_cards": [
-            ("building", "Engineering", "Building AI Agents", "Understand the model, build the agent loop and evaluate how well your agent performs. From the foundations to deployment.", ["13 modules · about 81 hours", "Local models · practical measurements"], "building/"),
+            ("building", "Engineering", "Building AI Agents", "Understand the model, build the agent loop and evaluate how well your agent performs. From the foundations to deployment.", ["13 modules · about 101 hours", "Local models · practical measurements"], "building/"),
             ("defending", "Security", "Defending AI Agents", "Find the attacks, build the defences and check that legitimate work still succeeds. From the first attack to incident response.", ["22 modules · about 248 hours", "Free · optional paid assessment", "English and Hebrew"], "course/"),
         ],
         "home": "Home",
@@ -594,7 +597,7 @@ CATALOG = {
         "catalog_intro": "שני קורסים נפרדים: אחד לבניית סוכנים ואחד לאבטחתם. כאן אפשר להכיר את המטרות ואת תוכניות הלימודים ולהירשם לעדכון כשהם ייפתחו.",
         "team_note": "רוצים ללמוד עם הצוות כבר עכשיו?", "team_p": "אפשר לתאם סדנה בלי להמתין לקורסים ובלי ללמוד בהם קודם.",
         "course_cards": [
-            ("building", "פיתוח סוכנים", "בניית סוכני AI", "מבינים איך המודל עובד, בונים את לולאת הסוכן ובודקים את הביצועים שלו. מהיסודות ועד לפריסה לפרודקשן.", ["13 מודולים · כ־81 שעות", "מודלים מקומיים · תרגול ומדידה"], "building/"),
+            ("building", "פיתוח סוכנים", "בניית סוכני AI", "מבינים איך המודל עובד, בונים את לולאת הסוכן ובודקים את הביצועים שלו. מהיסודות ועד לפריסה לפרודקשן.", ["13 מודולים · כ־101 שעות", "מודלים מקומיים · תרגול ומדידה"], "building/"),
             ("defending", "אבטחת סוכנים", "הגנה על סוכני AI", "מזהים מתקפות, בונים הגנות ובודקים שהסוכן ממשיך לבצע משימות תקינות. מהמתקפה הראשונה ועד לטיפול באירוע.", ["22 מודולים · כ־248 שעות", "חינם · הערכה בתשלום לבחירה", "בעברית ובאנגלית"], "course/"),
         ],
         "home": "דף הבית",
@@ -642,7 +645,7 @@ def course_cards(t, prefix, heading_level=3):
   <div class="card-top"><span class="label">{E(subject)}</span><span class="status">{E(c['course_status'])}</span></div>
   {course_symbol(kind)}
   <h{heading_level}>{E(title)}</h{heading_level}><p>{E(desc)}</p><ul>{items}</ul>
-  <a class="text-link" href="{prefix}{t['home_path']}{path}">{E(c['course_cta'])} {ARROW}<span class="sr-only"> — {E(title)}</span></a>
+  <a class="text-link" href="{prefix}{t['home_path']}{path}">{E(c['course_cta'])} {ARROW}<span class="sr-only">: {E(title)}</span></a>
 </article>"""
     return f'<div class="course-grid">{cards}</div>'
 
@@ -816,7 +819,31 @@ HE_WS = {
     ],
 
     "cta_link": ["בואו נקבע סדנה", "לצוות שלכם"],
-    "cta_fine": "כתבו לשמעון כמה משתתפים צפויים, מה תרצו ללמוד (בנייה, אבטחה או שילוב ביניהן), מה אתם בונים ולאילו כלים הסוכן מחובר. נחזור תוך יום עסקים עם הצעה להמשך. כתובת המייל שלכם תשמש רק לשיחה הזאת.",
+    "cta_fine": "ספרו לנו בקצרה על הצוות ועל הסוכן, ונחזור תוך יום עסקים עם הצעת מחיר והצעה להמשך. מעדיפים מייל? כתבו ישירות לשמעון עם אותם פרטים.",
+    "bk": {
+        "team": "כמה משתתפים", "team_ph": "למשל, 12",
+        "workshop": "איזו סדנה", "workshop_ph": "בחרו סדנה",
+        "workshops": [
+            ("building-half", "בניית סוכנים · חצי יום"),
+            ("building-day", "בניית סוכנים · יום"),
+            ("building-two-days", "בניית סוכנים · יומיים"),
+            ("security-half", "אבטחת סוכנים · חצי יום"),
+            ("both", "שילוב: בנייה ואחריה אבטחה"),
+        ],
+        "building": "מה אתם בונים", "building_ph": "למשל, עוזר תמיכה שעונה ממסמכי המוצר",
+        "tools": "לאילו כלים הסוכן מחובר", "tools_ph": "למשל, מייל, Jira ומסד נתונים ב־SQL",
+        "email": "כתובת המייל שלכם", "email_ph": "you@company.com",
+        "button": "שליחה",
+        "consent": "נשתמש בפרטים רק כדי לענות על הפנייה הזאת, ולא נעביר אותם לאיש.",
+        "msgs": {
+            "sending": "שולחים…",
+            "ok": "קיבלנו. נחזור אליכם תוך יום עסקים עם הצעה.",
+            "mail": "תוכנת המייל שלכם אמורה להיפתח עם הפרטים. אם היא לא נפתחה, כתבו ל־" + EMAIL + ".",
+            "invalid": "חסר פרט או שכתובת המייל לא תקינה. בדקו ונסו שוב.",
+            "busy": "יותר מדי ניסיונות מהרשת שלכם. נסו שוב בעוד שעה, או כתבו ל־" + EMAIL + ".",
+            "error": "הפנייה לא נשלחה. נסו שוב, או כתבו ל־" + EMAIL + ".",
+        },
+    },
 }
 
 
@@ -924,8 +951,64 @@ EN_WS = {
     ],
 
     "cta_link": ["Book a workshop", "for your team"],
-    "cta_fine": "Email Shimon with your expected team size, what you want to learn (building, security or both), what you are building and which tools your agent uses. We will reply within one business day with a proposed next step. Your email address is used only for this conversation.",
+    "cta_fine": "Tell us a little about your team and your agent, and we will reply within one business day with a quote and a proposed next step. Prefer e-mail? Write to Shimon directly with the same details.",
+    "bk": {
+        "team": "Team size", "team_ph": "e.g. 12",
+        "workshop": "Workshop", "workshop_ph": "Choose a workshop",
+        "workshops": [
+            ("building-half", "Building agents · half day"),
+            ("building-day", "Building agents · one day"),
+            ("building-two-days", "Building agents · two days"),
+            ("security-half", "Securing agents · half day"),
+            ("both", "Both: building, then security"),
+        ],
+        "building": "What you are building", "building_ph": "e.g. a support assistant over our docs",
+        "tools": "Which tools the agent uses", "tools_ph": "e.g. e-mail, Jira and a SQL database",
+        "email": "Your e-mail address", "email_ph": "you@company.com",
+        "button": "Send",
+        "consent": "We use these details only to reply to this enquiry and never share them.",
+        "msgs": {
+            "sending": "Sending…",
+            "ok": "Thank you. We will reply within one business day with a quote.",
+            "mail": "Your e-mail app should open with the details filled in. If it does not, write to " + EMAIL + ".",
+            "invalid": "A detail is missing or the e-mail address looks wrong. Check and try again.",
+            "busy": "Too many attempts from your network. Please try again in an hour, or write to " + EMAIL + ".",
+            "error": "The enquiry could not be sent. Please try again, or write to " + EMAIL + ".",
+        },
+    },
 }
+
+
+def booking_form(t, w, mail):
+    """The workshop enquiry, after the waitlist form. While BOOKING_URL is an e-mail
+    address the form opens the visitor's mail app with the answers filled in (site.js
+    writes them out; without it the browser sends them as plain text)."""
+    b = w["bk"]
+    to_mail = BOOKING_URL.startswith("mailto:")
+    action, enctype = (mail, ' enctype="text/plain"') if to_mail else (BOOKING_URL, "")
+
+    def field(key, name, kind, extra=""):
+        return (f'<div class="bk-field"><label class="label" for="bk-{key}">{E(b[key])}</label>'
+                f'<input id="bk-{key}" name="{name}" type="{kind}" required placeholder="{E(b[key + "_ph"])}"{extra}></div>')
+
+    options = "".join(f'<option value="{v}">{E(l)}</option>' for v, l in b["workshops"])
+    notes = "".join(f'<p class="wl-note" id="bk-{k}" data-state="{k}">{E(v)}</p>' for k, v in b["msgs"].items() if k not in ("sending", "mail"))
+    return f"""<form class="bk reveal" action="{E(action)}" method="post"{enctype}>
+      <div class="bk-grid">
+        {field("team", "team_size", "number", ' min="1" max="500" step="1" inputmode="numeric"')}
+        <div class="bk-field bk-select"><label class="label" for="bk-workshop">{E(b['workshop'])}</label><select id="bk-workshop" name="workshop" required><option value="" disabled selected>{E(b['workshop_ph'])}</option>{options}</select></div>
+        {field("building", "building", "text", ' maxlength="300"')}
+        {field("tools", "tools", "text", ' maxlength="300"')}
+        {field("email", "email", "email", ' inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" maxlength="254" dir="ltr"')}
+        <div class="bk-send"><button type="submit">{E(b['button'])} {ARROW}</button></div>
+      </div>
+      <input type="hidden" name="lang" value="{t['lang']}">
+      <div class="wl-hp" aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off"></label></div>
+      <p class="bk-consent">{E(b['consent'])}</p>
+      <p class="wl-status" role="status" aria-live="polite"></p>
+      {notes}
+      <script type="application/json" id="bk-strings">{json.dumps(b['msgs'], ensure_ascii=False)}</script>
+    </form>"""
 
 
 def workshop_page(t, w, prefix, url, mail, other):
@@ -974,7 +1057,7 @@ def workshop_page(t, w, prefix, url, mail, other):
     <p class="kicker label"><i></i>{E(w['kicker'])}</p>
     <div class="word">
       <h1><span>{E(w['h1'][0])}</span><span>{E(w['h1'][1])}</span></h1>
-      <div class="side"><p>{E(w['hero_p'])}</p><div class="readout">{readout}</div><p class="ctas"><a class="btn" href="{mail}">{E(w['cta'])}</a> <a class="label" href="#formats">{E(w['cta2'])} {ARROW}</a></p></div>
+      <div class="side"><p>{E(w['hero_p'])}</p><div class="readout">{readout}</div><p class="ctas"><a class="btn" href="#contact">{E(w['cta'])}</a> <a class="label" href="#formats">{E(w['cta2'])} {ARROW}</a></p></div>
     </div>
   </section>
 
@@ -1036,12 +1119,13 @@ def workshop_page(t, w, prefix, url, mail, other):
   </section>
 
   <section class="cta" id="contact">
-    <h2 class="big-link reveal"><a href="{mail}">{E(w['cta_link'][0])}<br>{E(w['cta_link'][1])} {ARROW}</a></h2>
-    <div class="fine reveal"><span class="label"><em style="font-style:normal;color:var(--sig)">10</em>&nbsp; {E(EMAIL)}</span><p>{E(w['cta_fine'])}</p></div>
+    <h2 class="big-link reveal">{E(w['cta_link'][0])}<br>{E(w['cta_link'][1])}</h2>
+    {booking_form(t, w, mail)}
+    <div class="fine reveal"><span class="label"><em style="font-style:normal;color:var(--sig)">10</em>&nbsp; <a href="{mail}" dir="ltr">{E(EMAIL)}</a></span><p>{E(w['cta_fine'])}</p></div>
   </section>
 </main>
 """
-    cta = (w["cta"], mail, False)
+    cta = (w["cta"], "#contact", False)
     return (head(t, prefix, f"{w['title']} · {t['brand']}", url, description=w["description"], alternates=("/workshop/", "/he/workshop/"))
             + topbar(t, prefix, prefix + t["home_path"] or "./", cta=cta, other=other, active=t["ws_path"]) + body + footer(t, prefix, other=other))
 
@@ -1050,18 +1134,19 @@ def workshop_page(t, w, prefix, url, mail, other):
 # the course lives in a private repo until launch.
 EN_BC = {
     "title": "Building AI Agents: a course for data scientists and engineers who build with AI",
-    "description": "Learn how an LLM works, then build and evaluate an agent: the agent loop from scratch, retrieval, MCP, orchestration, evaluation, serving and deployment. 13 modules, about 81 hours, with practical measurements using local models on your laptop. In preparation.",
+    "description": "Learn how an LLM works, then build and evaluate an agent: the agent loop from scratch, retrieval, MCP, orchestration, evaluation, serving and deployment. 13 modules, about 101 hours, with practical measurements using local models on your laptop. In preparation.",
     "kicker": "Course · online · in preparation",
     "h1": ["Building", "AI agents"],
     "hero_p": "For data scientists and engineers building with AI. Understand each part of an agent, from the model to production, and learn to evaluate its performance. Start with the basics and work through to current research. Study before or alongside Defending AI Agents.",
-    "readout": [("Modules", "13", ""), ("Hours", "about 81", ""), ("Models", "local", "s"), ("Status", "in preparation", "")],
+    "readout": [("Modules", "13", ""), ("Hours", "about 101", ""), ("Models", "local", "s"), ("Status", "in preparation", "")],
     "cta": "Hear when it opens", "cta2": "What it covers",
     "topics_h": ("01", "What it covers", "Thirteen modules, from the model to production.",
-                 "About 81 hours in total, from the basics to current research."),
-    "topics": ["How an LLM works", "Prompting and context", "The agent loop, from scratch", "Agent frameworks",
-               "Retrieval and memory", "MCP and A2A", "Orchestration", "Harnesses: coding, browser and computer-use agents",
-               "Evaluating agent quality", "Serving and inference", "LLMOps and observability", "Deployment",
-               "Fine-tuning versus retrieval"],
+                 "About 101 hours in total, from the basics to current research."),
+    "topics": ["LLM mechanics for builders", "Prompting and context engineering", "The agent loop, from scratch",
+               "Frameworks and SDKs, and what they hide", "Retrieval and memory", "Protocols: MCP, A2A and tools from OpenAPI",
+               "Orchestration and multi-agent systems", "Harnesses: coding, browser and computer-use agents",
+               "Evaluating agents for quality", "Serving and inference", "LLMOps and observability",
+               "Deployment and platform basics", "Adapting models: prompt, retrieve or fine-tune"],
     "measure_h": ("02", "How it works", "Build it. Measure how it performs.",
                   "Each module ends with practical measurements using local models on your own laptop. Make a change, measure the results and see how it affects your agent’s performance."),
     "pair_h": ("03", "With Defending AI Agents", "Build first. Then defend.",
@@ -1076,18 +1161,19 @@ EN_BC = {
 
 HE_BC = {
     "title": "בניית סוכני AI: קורס למדעני נתונים ולמהנדסים שעובדים עם AI",
-    "description": "מבינים איך LLM עובד, בונים סוכן ובודקים את הביצועים שלו: לולאת הסוכן מאפס, אחזור מידע, MCP, תזמור, הערכת איכות, הגשת מודלים ופריסה. 13 מודולים, כ־81 שעות, עם תרגול ומדידה באמצעות מודלים מקומיים על המחשב הנייד שלכם. הקורס בהכנה.",
+    "description": "מבינים איך LLM עובד, בונים סוכן ובודקים את הביצועים שלו: לולאת הסוכן מאפס, אחזור מידע, MCP, תזמור, הערכת איכות, הגשת מודלים ופריסה. 13 מודולים, כ־101 שעות, עם תרגול ומדידה באמצעות מודלים מקומיים על המחשב הנייד שלכם. הקורס בהכנה.",
     "kicker": "קורס · מקוון · בהכנה",
     "h1": ["בניית", "סוכני AI"],
     "hero_p": "למדעני נתונים ולמהנדסים שעובדים עם AI. לומדים איך כל חלק בסוכן עובד, מהמודל ועד הפרודקשן, ואיך לבדוק את הביצועים שלו. מתחילים ביסודות ומתקדמים עד למחקר העדכני. אפשר ללמוד לפני הקורס ״הגנה על סוכני AI״ או במקביל אליו.",
-    "readout": [("מודולים", "13", ""), ("שעות", "כ־81", ""), ("מודלים", "מקומיים", "s"), ("סטטוס", "בהכנה", "")],
+    "readout": [("מודולים", "13", ""), ("שעות", "כ־101", ""), ("מודלים", "מקומיים", "s"), ("סטטוס", "בהכנה", "")],
     "cta": "קבלו עדכון כשהקורס ייפתח", "cta2": "מה לומדים",
     "topics_h": ("01", "מה לומדים", "שלושה־עשר מודולים, מהמודל ועד הפרודקשן.",
-                 "כ־81 שעות בסך הכול, מהיסודות ועד המחקר העדכני."),
-    "topics": ["איך LLM עובד", "פרומפטים וניהול קונטקסט", "לולאת הסוכן, מאפס", "פריימוורקים לסוכנים",
-               "אחזור מידע וזיכרון", "MCP ו־A2A", "תזמור סוכנים", "סביבות הרצה: סוכני קוד, סוכני דפדפן וסוכנים שמפעילים מחשב",
-               "הערכת איכות של סוכנים", "הגשת מודלים ואינפרנס", "LLMOps וניטור", "פריסה לפרודקשן",
-               "פיין־טיונינג מול אחזור מידע"],
+                 "כ־101 שעות בסך הכול, מהיסודות ועד המחקר העדכני."),
+    "topics": ["איך LLM עובד, למי שבונה איתו", "פרומפטים והנדסת קונטקסט", "לולאת הסוכן, מאפס",
+               "פריימוורקים ו־SDKs, ומה הם מסתירים", "אחזור מידע וזיכרון", "פרוטוקולים: MCP,‏ A2A וכלים מתוך OpenAPI",
+               "תזמור ומערכות מרובות סוכנים", "סביבות הרצה: סוכני קוד, סוכני דפדפן וסוכנים שמפעילים מחשב",
+               "הערכת איכות של סוכנים", "הגשת מודלים ואינפרנס", "LLMOps וניטור",
+               "פריסה לפרודקשן ויסודות התשתית", "התאמת מודלים: פרומפט, אחזור מידע או פיין־טיונינג"],
     "measure_h": ("02", "איך לומדים", "בונים, משנים ומודדים את התוצאות.",
                   "בסוף כל מודול מריצים מודלים מקומיים על המחשב הנייד שלכם ומודדים את התוצאות. משנים את הקוד ובודקים איך השינוי משפיע על ביצועי הסוכן."),
     "pair_h": ("03", "הקורס המשלים", "קודם בונים. אחר כך מגינים.",

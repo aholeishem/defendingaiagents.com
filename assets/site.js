@@ -89,6 +89,54 @@
       goToForm();
     }
   }
+  // The workshop booking form. While it points at an e-mail address, this
+  // writes the answers out and opens the mail app; without this script the
+  // browser sends them as plain text. Once it points at the Worker it posts
+  // like the waitlist, and a script-less visit comes back with ?booking=<outcome>.
+  var bk = document.querySelector("form.bk");
+  if (bk) {
+    var BM = JSON.parse(document.getElementById("bk-strings").textContent);
+    var bkStatus = bk.querySelector(".wl-status");
+    var bkButton = bk.querySelector("button");
+    var bkShow = function (state) {
+      bkStatus.textContent = BM[state] || BM.error;
+      bkStatus.setAttribute("data-state", state);
+    };
+    var bkTo = bk.getAttribute("action");
+    var bkKnown = function (o) { return o && o !== "sending" && o !== "mail" && BM[o]; };
+    bk.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (bk.getAttribute("aria-busy") === "true") return;
+      var fields = Array.prototype.filter.call(bk.elements, function (el) { return el.name && el.name !== "website"; });
+      if (bkTo.indexOf("mailto:") === 0) {
+        var body = fields.filter(function (el) { return el.labels && el.labels.length; }).map(function (el) {
+          var v = el.tagName === "SELECT" ? el.options[el.selectedIndex].text : el.value.trim();
+          return el.labels[0].textContent + ": " + v;
+        }).join("\n");
+        window.location.href = bkTo + (bkTo.indexOf("?") < 0 ? "?" : "&") + "body=" + encodeURIComponent(body);
+        bkShow("mail");
+        return;
+      }
+      var data = { website: bk.website.value };
+      fields.forEach(function (el) { data[el.name] = el.value.trim(); });
+      bk.setAttribute("aria-busy", "true"); bkButton.disabled = true; bkShow("sending");
+      fetch(bkTo, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) })
+        .then(function (r) { return r.json().catch(function () { return { outcome: "error" }; }); })
+        .then(function (res) {
+          var outcome = res && bkKnown(res.outcome) ? res.outcome : "error";
+          bkShow(outcome);
+          if (outcome === "ok") bk.reset();
+        })
+        .catch(function () { bkShow("error"); })
+        .then(function () { bk.removeAttribute("aria-busy"); bkButton.disabled = false; });
+    });
+    var bkBack = new URLSearchParams(window.location.search).get("booking");
+    if (bkKnown(bkBack)) {
+      bkShow(bkBack);
+      if (window.history.replaceState) window.history.replaceState(null, "", window.location.pathname);
+      bk.scrollIntoView({ behavior: "auto", block: "center" });
+    }
+  }
   document.querySelectorAll("[data-waitlist]").forEach(function (a) {
     a.addEventListener("click", function (e) { if (email) goToForm(e); });
   });
