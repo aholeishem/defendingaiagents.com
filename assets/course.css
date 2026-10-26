@@ -316,3 +316,8 @@ details.answers { margin: 1.5em 0 0; padding: 0.6em 1em; border: 1px solid var(-
 details.answers summary { cursor: pointer; color: var(--sig); font-weight: 500; }
 details.answers summary:focus-visible { outline: 2px solid var(--sig); outline-offset: 2px; }
 details.answers[open] summary { margin-bottom: 0.6em; }
+
+/* The preview kit box on E3's build page (tools/publish_preview.py). */
+.kit-box { border: 1px solid var(--line-2); border-inline-start: 3px solid var(--sig); padding: 14px 18px; margin: 0 0 28px; }
+.kit-box p { margin: 0 0 10px; }
+.kit-box p:last-child { margin: 0; }
