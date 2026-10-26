@@ -34,6 +34,23 @@ E = html.escape
 # Blog posts, newest first. Every reference carries a link that was checked by hand.
 POSTS = [
     {
+        "slug": "the-503-test",
+        "date": "2026-11-10",
+        "title": "The 503 test: what a model outage does to an agent loop",
+        "dek": "Fail one model call in ten and a naive agent loop crashes 14 runs of 36. Add retries and the crashes vanish, six runs never stop, and the tokens go up ten times. Without classification and budgets, retries turn an outage into a bill.",
+        "tags": ["Agent loops", "Reliability", "Cost"],
+        "refs": [
+            ("Brooker (2015). Exponential Backoff And Jitter. AWS Architecture Blog.", "https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/"),
+            ("Ulrich (2016). Addressing Cascading Failures. In Site Reliability Engineering, Chapter 22. Google.", "https://sre.google/sre-book/addressing-cascading-failures/"),
+            ("Forero Cuervo (2016). Handling Overload. In Site Reliability Engineering, Chapter 21. Google.", "https://sre.google/sre-book/handling-overload/"),
+            ("Fielding, Nottingham, Reschke (2022). RFC 9110: HTTP Semantics. Section 10.2.3 Retry-After; section 15.6.4 503 Service Unavailable.", "https://www.rfc-editor.org/rfc/rfc9110"),
+            ("Nottingham, Fielding (2012). RFC 6585: Additional HTTP Status Codes. Section 4: 429 Too Many Requests.", "https://www.rfc-editor.org/rfc/rfc6585"),
+            ("OpenAI. Rate limits: retrying with exponential backoff. API documentation.", "https://developers.openai.com/api/docs/guides/rate-limits"),
+            ("Anthropic. Errors: HTTP errors (429 rate_limit_error, 529 overloaded_error). Claude API documentation.", "https://platform.claude.com/docs/en/api/errors"),
+            ("OWASP Gen AI Security Project (2025). LLM10:2025 Unbounded Consumption.", "https://genai.owasp.org/llmrisk/llm102025-unbounded-consumption/"),
+        ],
+    },
+    {
         "slug": "four-defences",
         "date": "2026-10-27",
         "title": "Seven attacks, four defences: what each one buys",

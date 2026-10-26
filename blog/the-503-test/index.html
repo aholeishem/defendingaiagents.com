@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The 503 test: what a model outage does to an agent loop · Defending AI Agents</title>
+<meta name="description" content="Fail one model call in ten and a naive agent loop crashes 14 runs of 36. Add retries and the crashes vanish, six runs never stop, and the tokens go up ten times. Without classification and budgets, retries turn an outage into a bill.">
+<link rel="canonical" href="https://defendingaiagents.com/blog/the-503-test/"><link rel="alternate" type="application/atom+xml" title="Defending AI Agents: blog" href="../feed.xml"><meta property="article:published_time" content="2026-11-10"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "The 503 test: what a model outage does to an agent loop", "description": "Fail one model call in ten and a naive agent loop crashes 14 runs of 36. Add retries and the crashes vanish, six runs never stop, and the tokens go up ten times. Without classification and budgets, retries turn an outage into a bill.", "datePublished": "2026-11-10", "url": "https://defendingaiagents.com/blog/the-503-test/", "image": "https://defendingaiagents.com/og.png", "author": {"@type": "Person", "name": "Shimon R. Malka", "url": "https://www.linkedin.com/in/srmalka/"}, "publisher": {"@type": "Organization", "name": "Defending AI Agents", "url": "https://defendingaiagents.com/"}}</script>
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Defending AI Agents">
+<meta property="og:title" content="The 503 test: what a model outage does to an agent loop · Defending AI Agents"><meta property="og:description" content="Fail one model call in ten and a naive agent loop crashes 14 runs of 36. Add retries and the crashes vanish, six runs never stop, and the tokens go up ten times. Without classification and budgets, retries turn an outage into a bill.">
+<meta property="og:url" content="https://defendingaiagents.com/blog/the-503-test/"><meta property="og:image" content="https://defendingaiagents.com/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preload" href="../../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="../../"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">Defending AI Agents</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav>
+  <div class="end">
+    <a class="lang label" href="../../he/" lang="he" hreflang="he">עברית</a>
+    <a class="btn" href="../../workshop/#contact">Book a workshop</a>
+    <details class="mobile-nav"><summary class="label">Menu</summary><nav aria-label="Menu"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav></details>
+  </div>
+</header>
+<main id="main">
+  <article class="post">
+    <header class="post-head">
+      <p class="label crumb"><a href="../">Blog</a></p>
+      <h1>The 503 test: what a model outage does to an agent loop</h1>
+      <p class="dek">Fail one model call in ten and a naive agent loop crashes 14 runs of 36. Add retries and the crashes vanish, six runs never stop, and the tokens go up ten times. Without classification and budgets, retries turn an outage into a bill.</p>
+      <p class="byline">By <a href="https://www.linkedin.com/in/srmalka/" rel="author">Shimon R. Malka</a></p><p class="label meta"><time datetime="2026-11-10">10 November 2026</time><span>8 min read</span><span>Agent loops</span><span>Reliability</span><span>Cost</span></p>
+    </header>
+    <div class="prose">
+<p>Here is the agent loop most first agents ship with:</p>
+
+<pre class="code"><code>def run(task, client):
+    messages = [{"role": "system", "content": SYSTEM}, {"role": "user", "content": task}]
+    while True:
+        reply = client.complete(messages, TOOLS)
+        messages.append(reply.message)
+        if not reply.message.get("tool_calls"):
+            return reply.message.get("content")
+        for call in reply.message["tool_calls"]:
+            messages.append({"role": "tool", "tool_call_id": call["id"],
+                             "content": run_tool(call["function"]["name"], call["function"]["arguments"])})</code></pre>
+
+<p>It works in the demo. It has two properties that the demo never shows: the first time the model server answers 503, the run dies, and if the model never decides it is finished, neither does the loop. This post puts that loop behind a server that fails one call in ten and measures what happens as the obvious fixes go in, one at a time. The short version: retries fix the crashes and reveal something worse, and an outage that used to cost a few failed runs starts costing ten times the tokens.</p>
+
+<h2 id="setup">The set-up</h2>
+
+<p>The measurement comes from a lab. A finance team wants an assistant that answers questions from its files: the total of Acme's invoices, the city of customer C-103, the number of invoices for September. It has three tools, <code>list_files</code>, <code>read_file</code> and <code>search_files</code>, and twelve tasks. Ten have an answer in the files. Two do not: the contracts with Hooli and Pied Piper do not exist, and a good agent says so and stops.</p>
+
+<p>The model is simulated: fixed, readable behaviour, so that every difference in the numbers comes from the loop and none from chance. Like a real model, it sometimes asks for <code>customers</code> when the file is <code>customers.csv</code>, and when it cannot find something it keeps searching with new phrasings. In front of it sits a server that fails 10% of calls, the way a busy model API does: mostly <code>503 Service Unavailable</code>, and one failure in four a <code>429 Too Many Requests</code> with <code>Retry-After: 2</code>. Every task runs three times, 36 runs in all, and the failures are seeded, so every version of the loop meets exactly the same outages. A guard stops any run at 60 model calls, so that a loop with no limit cannot hang the measurement.</p>
+
+<h2 id="results">The results</h2>
+
+<p>Four stages. <strong>A</strong> is the loop above, with the tool schemas. <strong>B</strong> rewrites one tool error message. <strong>C</strong> adds retries. <strong>D</strong> adds budgets.</p>
+
+<table class="tbl">
+  <thead><tr><th>Stage</th><th>Right / 36</th><th>Crashed</th><th>Never stopped</th><th>Model calls</th><th>Tokens</th><th>Seconds waiting</th></tr></thead>
+  <tbody>
+    <tr><td>A: schema and loop</td><td>6</td><td>13</td><td>0</td><td>127</td><td>67,216</td><td>0</td></tr>
+    <tr><td>A + B: a useful error message</td><td>22</td><td>14</td><td>0</td><td>144</td><td>78,957</td><td>0</td></tr>
+    <tr><td>A + B + C: retries</td><td>30</td><td>0</td><td>6</td><td>466</td><td>803,126</td><td>38</td></tr>
+    <tr><td>A + B + C + D: budgets</td><td>36</td><td>0</td><td>0</td><td>185</td><td>105,804</td><td>13</td></tr>
+  </tbody>
+</table>
+
+<p>Read the third row twice. It is where a loop lands when retries go in and budgets do not.</p>
+
+<h2 id="naive">Stage A and B: the outage is the only brake</h2>
+
+<p>Stage A gets 6 of 36 right, mostly because the model asks for files by the wrong name and the tool answers <code>error: no such file: customers</code>. That says what went wrong and nothing about how to fix it. Stage B changes only the message, to suggest the nearest file names, and the score goes from 6 to 22 without touching the loop. A tool's error message is a prompt; it deserves the same care as one.</p>
+
+<p>Then the crashes. A task that needs <em>n</em> model calls, each failing independently with probability <em>p</em>, survives with probability (1 &minus; <em>p</em>)<sup><em>n</em></sup>. The answerable tasks average about 3.2 calls, so 1 &minus; 0.9<sup>3.2</sup>, about 29%, of naive runs should crash. The measurement: 8 of 30 answerable runs, 27%.</p>
+
+<p>The other six crashes are the interesting ones. All six runs of the two impossible tasks crashed, every time, on a 503 or a 429. Nothing else would have stopped them: the model keeps searching for a contract that does not exist, and the loop has no reason to object. In stage B, the server outage is the agent's only budget.</p>
+
+<h2 id="retries">Stage C: retries, done properly</h2>
+
+<p>Retrying is the right response to a 503, and the lab does it by the book. First, <strong>classify</strong>: not every failure is worth repeating.</p>
+
+<table class="tbl">
+  <thead><tr><th>Failure</th><th>Retry?</th><th>Why</th></tr></thead>
+  <tbody>
+    <tr><td>Timeout, refused connection</td><td>yes</td><td>transient by nature</td></tr>
+    <tr><td>429 Too Many Requests</td><td>yes, after Retry-After</td><td>the server said "later"</td></tr>
+    <tr><td>500, 502, 503, 504</td><td>yes</td><td>overloaded or restarting</td></tr>
+    <tr><td>400, 401, 403, 404, 422</td><td>no</td><td>the same request fails the same way every time</td></tr>
+    <tr><td>A <code>KeyError</code> in your own code</td><td>no</td><td>a bug: retrying hides it</td></tr>
+  </tbody>
+</table>
+
+<p>The last row matters more than it looks. A policy that retries every exception turns a bug in your adapter into four slow failures and a report that the server is unreliable. And the status code is not always enough: Anthropic's API documentation notes that a 429 caused by reaching a spend cap carries no <code>Retry-After</code> and keeps failing until access resumes, and OpenAI's rate-limit guide says not to retry quota or billing errors at all.</p>
+
+<p>Second, <strong>back off with full jitter</strong>: wait a random time between zero and min(cap, base &times; 2<sup><em>n</em></sup>) before attempt <em>n</em>. Exponential backoff alone keeps a herd of clients that failed together in step, retrying together at 0.5 s, 1 s, 2 s. Marc Brooker's analysis on the AWS Architecture Blog is the standard reference. In the course's own simulation of 1,000 clients failing at the same instant, the busiest 100 ms at the first retry held all 1,000 requests without jitter and 211 with full jitter.</p>
+
+<p>Third, <strong>honour <code>Retry-After</code></strong> (RFC 9110, section 10.2.3; RFC 6585 for 429), as a minimum: wait the larger of the server's figure and the backoff draw. OpenAI's guide gives the same advice: treat the value as a floor and add a little randomness. Fourth, <strong>cap the attempts</strong>: four in all, then raise the last error.</p>
+
+<p>With all four, the crashes go from 14 to 0, and the right answers from 22 to 30. Then the other columns. Model calls go from 144 to 466. Tokens go from 78,957 to 803,126, ten times as many, and six runs never stop.</p>
+
+<p>Nothing is wrong with the retries. They did exactly their job: they removed the outage that was killing the impossible tasks, and now those tasks search until the guard stops them at 60 calls. Each of those calls re-sends the entire conversation, because the model keeps no state between calls, so a run's prompt tokens grow roughly with the square of its length. The six runaway runs account for 753,503 of the 803,126 tokens: 94% of the bill, for zero answers.</p>
+
+<p>In this lab the guard is a test fixture. In production there is no guard. There is an invoice.</p>
+
+<h2 id="multiply">Retries multiply</h2>
+
+<p>The lab retries at one level. Real systems rarely do. The Google SRE book's chapter on cascading failures points out that retries at several layers multiply: one request at the top can become the product of every layer's attempts at the bottom. An SDK that retries by default, inside a loop that retries, inside a job runner that retries, turns one 503 into dozens of calls aimed at a server that is already struggling. OpenAI's guide makes the same point about SDK retries nested inside your own. The SRE book's remedies are the ones the lab uses, plus one: limit the attempts per request, and keep a <em>retry budget</em> across requests, so that when a large share of calls are failing the client stops adding load. Its overload chapter describes a per-client budget that allows retries only while they are under 10% of requests.</p>
+
+<p>OpenAI's guide adds a detail that makes blind retries worse than useless: unsuccessful requests count towards the per-minute limit. Retrying a 429 at once spends quota on the act of being refused.</p>
+
+<h2 id="budgets">Stage D: budgets, checked before every call</h2>
+
+<p>The fix is a budget the loop checks <em>before</em> each model call, with four limits and the name of the one that stopped the run:</p>
+
+<table class="tbl">
+  <thead><tr><th>Limit</th><th>Counts</th><th>Protects against</th></tr></thead>
+  <tbody>
+    <tr><td>steps</td><td>model calls</td><td>the loop that never stops</td></tr>
+    <tr><td>tokens</td><td>prompt and completion, summed over the run</td><td>the context that grows every step</td></tr>
+    <tr><td>cost</td><td>tokens at a price per million</td><td>the bill</td></tr>
+    <tr><td>seconds</td><td>wall clock since the run started</td><td>the user who is waiting, and the server that is retrying</td></tr>
+  </tbody>
+</table>
+
+<p>The lab's defaults are 12 steps, 20,000 tokens and 120 seconds. With them, all 36 runs end, 36 are right, nothing crashes and nothing runs away. The two impossible tasks stop on their step limit after 12 calls and say they found nothing, rather than inventing a contract. The total is 105,804 tokens, less than a seventh of the stage C figure.</p>
+
+<p>Two details are easy to get wrong. "At the limit" means out: with a limit of 3 steps, three calls leave no room for a fourth, so the check has to come before the call, not after it. And a step is not a unit of cost. One step can send 600 tokens and the next 6,000, so a step limit alone is not a budget.</p>
+
+<p>The finished loop uses more tokens than the naive one, 105,804 against 78,957. That is the correct result. It finishes the runs the naive loop abandoned, and finishing costs tokens. The aim was never to spend less than a crash; it was to spend a known, bounded amount.</p>
+
+<h2 id="security">Why this is a security problem</h2>
+
+<p>OWASP's Top 10 for LLM Applications 2025 lists Unbounded Consumption as LLM10, and names <em>denial of wallet</em> among its risks: an attacker who exploits the cost-per-use model of AI services to run up a bill. Its listed mitigations include rate limiting, timeouts and resource-allocation management, which is to say budgets. The lab needed no attacker: an ordinary outage and an honest model were enough to multiply the token count by ten. An attacker who can make a task unanswerable, by planting a document that sends the agent looking for something that does not exist, gets the same effect on purpose.</p>
+
+<h2 id="checklist">The 503 test</h2>
+
+<p>Before an agent runs unattended, put it behind a server that fails one call in ten, and count. Specifically:</p>
+
+<ul class="limits">
+  <li><strong>Classify before you retry.</strong> Timeouts, 429 and 5xx: retry. Other 4xx and your own exceptions: fail at once, and loudly.</li>
+  <li><strong>Back off with full jitter, and honour <code>Retry-After</code> as a minimum.</strong> Cap the attempts, and retry at one layer only.</li>
+  <li><strong>Budget steps, tokens, cost and time, checked before every call.</strong> Report which one stopped the run, so that a stopped run is never mistaken for an answer.</li>
+  <li><strong>Include a task that has no answer.</strong> It is the only kind that shows whether your loop knows how to stop.</li>
+  <li><strong>Read the token column, not just the success column.</strong> Stage C scored 30 of 36 with no crashes, and looks like progress until the bill arrives.</li>
+</ul>
+
+<p>One caveat the lab does not hide: a failed call costs no tokens, so it is never charged to the budget, and the time limit is checked only between calls. A server that times out at 30 seconds, retried three times, will carry a run past a 120-second limit before the loop gets a chance to look. A time budget that should cut a retry sequence short has to be passed into the retry code itself.</p>
+
+<p>The lab is the core of the half-day building workshop, where each participant writes all four stages on their own laptop and then runs the same loop against a real model. <a href="/workshop/">Team workshops</a> are at your office or on Zoom, in Hebrew or English.</p>
+
+    </div>
+    <footer class="prose refs">
+      <h2 id="references">References</h2>
+      <ol><li>Brooker (2015). Exponential Backoff And Jitter. AWS Architecture Blog. <a href="https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/">aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/</a></li><li>Ulrich (2016). Addressing Cascading Failures. In Site Reliability Engineering, Chapter 22. Google. <a href="https://sre.google/sre-book/addressing-cascading-failures/">sre.google/sre-book/addressing-cascading-failures/</a></li><li>Forero Cuervo (2016). Handling Overload. In Site Reliability Engineering, Chapter 21. Google. <a href="https://sre.google/sre-book/handling-overload/">sre.google/sre-book/handling-overload/</a></li><li>Fielding, Nottingham, Reschke (2022). RFC 9110: HTTP Semantics. Section 10.2.3 Retry-After; section 15.6.4 503 Service Unavailable. <a href="https://www.rfc-editor.org/rfc/rfc9110">www.rfc-editor.org/rfc/rfc9110</a></li><li>Nottingham, Fielding (2012). RFC 6585: Additional HTTP Status Codes. Section 4: 429 Too Many Requests. <a href="https://www.rfc-editor.org/rfc/rfc6585">www.rfc-editor.org/rfc/rfc6585</a></li><li>OpenAI. Rate limits: retrying with exponential backoff. API documentation. <a href="https://developers.openai.com/api/docs/guides/rate-limits">developers.openai.com/api/docs/guides/rate-limits</a></li><li>Anthropic. Errors: HTTP errors (429 rate_limit_error, 529 overloaded_error). Claude API documentation. <a href="https://platform.claude.com/docs/en/api/errors">platform.claude.com/docs/en/api/errors</a></li><li>OWASP Gen AI Security Project (2025). LLM10:2025 Unbounded Consumption. <a href="https://genai.owasp.org/llmrisk/llm102025-unbounded-consumption/">genai.owasp.org/llmrisk/llm102025-unbounded-consumption/</a></li></ol>
+      <p class="label"><a href="../">← All posts</a></p>
+    </footer>
+  </article>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 Defending AI Agents</span>
+  <nav aria-label="Footer">
+    <a href="../../workshop/">Team workshops</a>
+    <a href="../../courses/">Online courses</a>
+    <a href="mailto:shimon@defendingaiagents.com">Contact</a>
+    <a href="../../.well-known/security.txt">Security</a>
+    <a href="../../he/" lang="he" hreflang="he">עברית</a>
+  </nav>
+</footer>
+<script src="../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>

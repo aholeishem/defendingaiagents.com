@@ -4,8 +4,16 @@
   <link href="https://defendingaiagents.com/blog/"/>
   <link rel="self" href="https://defendingaiagents.com/blog/feed.xml"/>
   <id>https://defendingaiagents.com/blog/</id>
-  <updated>2026-10-27T00:00:00Z</updated>
+  <updated>2026-11-10T00:00:00Z</updated>
   <author><name>Shimon R. Malka</name><uri>https://www.linkedin.com/in/srmalka/</uri></author>
+  <entry>
+    <title>The 503 test: what a model outage does to an agent loop</title>
+    <link href="https://defendingaiagents.com/blog/the-503-test/"/>
+    <id>https://defendingaiagents.com/blog/the-503-test/</id>
+    <published>2026-11-10T00:00:00Z</published>
+    <updated>2026-11-10T00:00:00Z</updated>
+    <summary>Fail one model call in ten and a naive agent loop crashes 14 runs of 36. Add retries and the crashes vanish, six runs never stop, and the tokens go up ten times. Without classification and budgets, retries turn an outage into a bill.</summary>
+  </entry>
   <entry>
     <title>Seven attacks, four defences: what each one buys</title>
     <link href="https://defendingaiagents.com/blog/four-defences/"/>
