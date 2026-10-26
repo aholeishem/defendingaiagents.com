@@ -646,3 +646,7 @@ input[type="range"]::-moz-range-thumb { width: 14px; height: 14px; background: v
 .map-list table { min-width: 640px; margin-top: 12px; }
 .map-list tbody th { text-align: start; font-weight: 500; white-space: nowrap; }
 .map-next { display: flex; flex-wrap: wrap; gap: 10px 28px; }
+.bench { margin-top: 48px; }
+.bench h3 { margin: 4px 0 8px; }
+.bench table { min-width: 720px; }
+.bench tbody tr:nth-last-child(-n+2) th, .bench tbody tr:nth-last-child(-n+2) td { color: var(--dim); }

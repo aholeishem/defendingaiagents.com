@@ -440,6 +440,15 @@ def sec_head(n, label, h, p=None):
             f'<div><h2>{E(h)}</h2>{para}</div></div>')
 
 
+def bench_table(t):
+    B = BENCH_HE if t["lang"] == "he" else BENCH_EN
+    rows = "".join('<tr><th scope="row">' + E(r[0]) + "</th>" + "".join(f"<td>{E(x)}</td>" for x in r[1:]) + "</tr>" for r in B["rows"])
+    head_ = "".join(f"<th scope=col>{E(c)}</th>" for c in B["cols"])
+    return (f'<div class="course-compare bench indent reveal" id="compare"><p class="label">{E(B["label"])}</p><h3>{E(B["h"])}</h3>'
+            f'<p>{E(B["p"])}</p><div class="lab-table" style="overflow-x:auto"><table><thead><tr>{head_}</tr></thead>'
+            f'<tbody>{rows}</tbody></table></div><p class="fineprint">{E(B["note"])}</p></div>')
+
+
 def course_page(t, prefix):
     readout = "".join(f'<span class="label">{E(l)}<b class="{c}">{E(v)}</b></span>' for l, v, c in t["course_readout"])
     twins = "".join(f'<article class="twin reveal"><div class="label">{k}</div><h3>{E(h)}</h3><p>{E(p)}</p></article>' for k, h, p in t["twins"])
@@ -512,6 +521,7 @@ def course_page(t, prefix):
     <div class="parts">{parts}</div>
     <div class="capstone reveal"><span class="label">{E(t['cap_label'])}</span><strong>{E(t['cap_h'])}</strong><span class="d">{E(t['cap_p'])}</span></div>
     <p class="label indent"><a href="{prefix}{t['home_path']}map/">{E(CATALOG[t['lang']]['map_link'])} {ARROW}</a></p>
+    {bench_table(t)}
   </section>
 
   <section id="certificate">
@@ -546,6 +556,66 @@ def course_page(t, prefix):
     alt = ("/course/", "/he/course/")
     return (head(t, prefix, t["title"], course_url, alternates=alt)
             + topbar(t, prefix, prefix + t["home_path"] or "./", other=t["course_other"], active=t["home_path"] + "courses/") + body + footer(t, prefix, other=t["course_other"]))
+
+
+# How the course compares: shown under the curriculum on the Defending AI Agents course page.
+# Source: ai-security-course/reviews/2026-10-breadth (matrix.md, REPORT.md), checked 2026-10-18,
+# with this course's cells re-checked against course/en on 2026-10-26.
+# Matrix row IDs, in row order: A6, H5, G11, G12+G13, G15, J3+J4, J5, J7, B2, B4.
+
+BENCH_EN = {
+    "label": "How it compares",
+    "h": "Against published syllabi",
+    "p": (
+        "Topics compared with the published syllabi of 15 university courses, "
+        "19 DeepLearning.AI short courses and 20 Anthropic courses, checked in October 2026. "
+        "The last two rows are where others teach as much or more."
+    ),
+    "cols": ("Topic", "This course", "University courses", "DeepLearning.AI", "Anthropic courses"),
+    "rows": [
+        ("Base rates: how often alerts are right", "In depth, M0 L6; M7 L1", "None of 15", "None", "None"),
+        ("Attack success as a curve, with intervals", "In depth, M1 L9; M9 L4-L5", "None in depth, 2 touched", "None", "None"),
+        ("Tracking untrusted data through an agent (taint)", "In depth, built and measured, M11 L4-L5", "None of 15", "None", "None"),
+        ("Credential broker and delegation", "In depth, M12 L2-L5", "None in depth, 1 touched", "A short course", "Touched"),
+        ("Policy engine with holds and human approval", "In depth, M13", "None of 15", "None", "Touched"),
+        ("Tamper-evident logs, replay and shadow mode", "In depth, M16", "None of 15", "None", "None"),
+        ("Incident response for agents", "In depth, M18", "None of 15", "None", "None"),
+        ("Running an in-path control: latency, capacity, failure", "In depth, M21", "None of 15", "None", "None"),
+        ("Indirect prompt injection", "In depth, M4 L2", "4 of 15 in depth, 3 touched", "None", "None"),
+        ("Optimisation-based jailbreaks (gradient attacks)", "Touched, M4 L3", "2 of 15 in depth, 4 touched", "None", "None"),
+    ],
+    "note": (
+        "This course's column was built from its full text and the others from their published syllabi, "
+        "which flatters this course. \"None\" means not in the published syllabus, not never mentioned in class."
+    ),
+}
+
+BENCH_HE = {
+    "label": "השוואה",
+    "h": "מול סילבוסים שפורסמו",
+    "p": (
+        "הנושאים הושוו לסילבוסים שפורסמו של 15 קורסים באוניברסיטאות, "
+        "19 קורסים קצרים של DeepLearning.AI ו־20 קורסים של Anthropic, באוקטובר 2026. "
+        "שתי השורות האחרונות הן נושאים שאחרים מלמדים באותה מידה או יותר."
+    ),
+    "cols": ("נושא", "הקורס הזה", "קורסים באוניברסיטאות", "DeepLearning.AI", "הקורסים של Anthropic"),
+    "rows": [
+        ("שיעור בסיס: כמה מההתרעות נכונות", "לעומק, מודול 0 שיעור 6; מודול 7", "אף אחד מה־15", "אין", "אין"),
+        ("הצלחת תקיפה כעקומה, עם רווחי סמך", "לעומק, מודול 9 שיעורים 4 ו־5; מודול 1", "אף אחד לעומק, 2 נוגעים בו", "אין", "אין"),
+        ("מעקב אחר מידע מזוהם בסוכן (taint)", "לעומק, נבנה ונמדד, מודול 11 שיעורים 4 ו־5", "אף אחד מה־15", "אין", "אין"),
+        ("מתווך פרטי גישה (credential broker) והאצלה", "לעומק, מודול 12 שיעורים 2 עד 5", "אף אחד לעומק, 1 נוגע בו", "קורס קצר", "נגיעה"),
+        ("מנוע מדיניות, קריאות מעוכבות ואישור אנושי", "לעומק, מודול 13", "אף אחד מה־15", "אין", "נגיעה"),
+        ("יומן ביקורת חושף זיוף, הרצה חוזרת, מצב צל", "לעומק, מודול 16", "אף אחד מה־15", "אין", "אין"),
+        ("תגובה לאירועים בסוכנים", "לעומק, מודול 18", "אף אחד מה־15", "אין", "אין"),
+        ("בקרה בנתיב הקריאה: זמן תגובה, קיבולת, כשל", "לעומק, מודול 21", "אף אחד מה־15", "אין", "אין"),
+        ("הזרקת פרומפט עקיפה", "לעומק, מודול 4 שיעור 2", "4 מתוך 15 לעומק, 3 נוגעים בו", "אין", "אין"),
+        ("ג'יילברייק מבוסס אופטימיזציה (מתקפות גרדיאנט)", "נגיעה, מודול 4 שיעור 3", "2 מתוך 15 לעומק, 4 נוגעים בו", "אין", "אין"),
+    ],
+    "note": (
+        "העמודה של הקורס הזה נבנתה מהטקסט המלא שלו, והאחרות מהסילבוסים שפורסמו, ולכן ההשוואה מחמיאה לו. "
+        "«אין» פירושו שהנושא לא מופיע בסילבוס שפורסם, לא שמעולם לא הוזכר בכיתה."
+    ),
+}
 
 
 CATALOG = {
