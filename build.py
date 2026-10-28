@@ -34,6 +34,23 @@ E = html.escape
 # Blog posts, newest first. Every reference carries a link that was checked by hand.
 POSTS = [
     {
+        "slug": "the-agent-that-searched-once",
+        "date": "2026-11-24",
+        "title": "The agent that searched once: agentic RAG, counted",
+        "dek": "Give a small model a search tool and permission to use it as often as it likes, and it searches once, in 30 runs out of 30. It beats one-shot RAG by one answer in thirty, at 2.7 times the tokens, and both score zero on the questions that need a second search.",
+        "tags": ["Retrieval", "Agent loops", "Evaluation"],
+        "refs": [
+            ("Lewis et al. (2020). Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks. NeurIPS.", "https://arxiv.org/abs/2005.11401"),
+            ("Singh, Ehtesham, Kumar, Talaei Khoei, Vasilakos (2025). Agentic Retrieval-Augmented Generation: A Survey on Agentic RAG.", "https://arxiv.org/abs/2501.09136"),
+            ("Yao, Zhao, Yu, Du, Shafran, Narasimhan, Cao (2022). ReAct: Synergizing Reasoning and Acting in Language Models.", "https://arxiv.org/abs/2210.03629"),
+            ("Asai, Wu, Wang, Sil, Hajishirzi (2023). Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection.", "https://arxiv.org/abs/2310.11511"),
+            ("Trivedi, Balasubramanian, Khot, Sabharwal (2022). Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions (IRCoT). ACL 2023.", "https://arxiv.org/abs/2212.10509"),
+            ("Es, James, Espinosa-Anke, Schockaert (2023). Ragas: Automated Evaluation of Retrieval Augmented Generation.", "https://arxiv.org/abs/2309.15217"),
+            ("McNemar's test: the exact binomial variant. Wikipedia.", "https://en.wikipedia.org/wiki/McNemar%27s_test"),
+            ("Binomial proportion confidence interval: Wilson score interval. Wikipedia.", "https://en.wikipedia.org/wiki/Binomial_proportion_confidence_interval#Wilson_score_interval"),
+        ],
+    },
+    {
         "slug": "the-503-test",
         "date": "2026-11-10",
         "title": "The 503 test: what a model outage does to an agent loop",

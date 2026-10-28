@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The agent that searched once: agentic RAG, counted · Defending AI Agents</title>
+<meta name="description" content="Give a small model a search tool and permission to use it as often as it likes, and it searches once, in 30 runs out of 30. It beats one-shot RAG by one answer in thirty, at 2.7 times the tokens, and both score zero on the questions that need a second search.">
+<link rel="canonical" href="https://defendingaiagents.com/blog/the-agent-that-searched-once/"><link rel="alternate" type="application/atom+xml" title="Defending AI Agents: blog" href="../feed.xml"><meta property="article:published_time" content="2026-11-24"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "The agent that searched once: agentic RAG, counted", "description": "Give a small model a search tool and permission to use it as often as it likes, and it searches once, in 30 runs out of 30. It beats one-shot RAG by one answer in thirty, at 2.7 times the tokens, and both score zero on the questions that need a second search.", "datePublished": "2026-11-24", "url": "https://defendingaiagents.com/blog/the-agent-that-searched-once/", "image": "https://defendingaiagents.com/og.png", "author": {"@type": "Person", "name": "Shimon R. Malka", "url": "https://www.linkedin.com/in/srmalka/"}, "publisher": {"@type": "Organization", "name": "Defending AI Agents", "url": "https://defendingaiagents.com/"}}</script>
+<meta name="theme-color" content="#e8e6df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Defending AI Agents">
+<meta property="og:title" content="The agent that searched once: agentic RAG, counted · Defending AI Agents"><meta property="og:description" content="Give a small model a search tool and permission to use it as often as it likes, and it searches once, in 30 runs out of 30. It beats one-shot RAG by one answer in thirty, at 2.7 times the tokens, and both score zero on the questions that need a second search.">
+<meta property="og:url" content="https://defendingaiagents.com/blog/the-agent-that-searched-once/"><meta property="og:image" content="https://defendingaiagents.com/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preload" href="../../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css">
+<script>document.documentElement.classList.remove("no-js")</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="../../"><svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect width="22" height="22" fill="var(--fg)"/><rect x="4.0" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="4.0" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="9.5" width="3" height="3" fill="var(--bg)"/><rect x="4.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="9.5" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15.0" y="15.0" width="3" height="3" fill="var(--bg)"/><rect x="15" y="4" width="3" height="3" fill="var(--sig)"/></svg><span class="label">Defending AI Agents</span></a>
+  <nav class="desktop-nav" aria-label="Main"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav>
+  <div class="end">
+    <a class="lang label" href="../../he/" lang="he" hreflang="he">עברית</a>
+    <a class="btn" href="../../workshop/#contact">Book a workshop</a>
+    <details class="mobile-nav"><summary class="label">Menu</summary><nav aria-label="Menu"><a class="label" href="../../workshop/">Team workshops</a><a class="label" href="../../courses/">Online courses</a><a class="label" href="../../blog/">Blog</a></nav></details>
+  </div>
+</header>
+<main id="main">
+  <article class="post">
+    <header class="post-head">
+      <p class="label crumb"><a href="../">Blog</a></p>
+      <h1>The agent that searched once: agentic RAG, counted</h1>
+      <p class="dek">Give a small model a search tool and permission to use it as often as it likes, and it searches once, in 30 runs out of 30. It beats one-shot RAG by one answer in thirty, at 2.7 times the tokens, and both score zero on the questions that need a second search.</p>
+      <p class="byline">By <a href="https://www.linkedin.com/in/srmalka/" rel="author">Shimon R. Malka</a></p><p class="label meta"><time datetime="2026-11-24">24 November 2026</time><span>9 min read</span><span>Retrieval</span><span>Agent loops</span><span>Evaluation</span></p>
+    </header>
+    <div class="prose">
+<p>Agentic RAG comes with a pitch: retrieval-augmented generation (Lewis et al., 2020) retrieves once and hopes, but an agent searches until it knows. It rewrites a bad query, follows a lead from one document to the next, and stops when it has the answer. A 2025 survey (Singh et al.) describes agents that plan, reflect and refine their retrieval over several rounds. The pitch is about behaviour, and behaviour can be counted. This post counts it.</p>
+
+<p>The Building AI Agents course has a study for exactly this question. The same 30 questions are answered twice by the same small local model: once by one-shot RAG, and once by an agent that may search as often as it likes. The short version: the agent searched once. Not once on average. Once, in every one of its 30 runs.</p>
+
+<h2 id="setup">The set-up</h2>
+
+<p>The document store belongs to a fictional manufacturer, Acme: policies, product sheets, support articles, supplier profiles and meeting notes, cut into passages with ids like <code>p0158</code>. A labelled set of 100 questions comes in four styles: <strong>identifier</strong> ("AW-2075 warranty"), <strong>lexical</strong> (the corpus's own words), <strong>paraphrase</strong> (the user's words, not the corpus's) and <strong>multi</strong>, which needs two documents. "What payment terms do we have with the company that supplies the parts for the Lever Widget Pro?" needs the product sheet to name the supplier, then the supplier's profile to give the terms. No single query retrieves both.</p>
+
+<p>Thirty questions are drawn at random from the hundred, and each is answered in two modes, with <code>qwen3:4b</code> on a laptop:</p>
+
+<ul>
+  <li><strong>rag</strong> is a workflow: search once with the question, paste the top five passages into the prompt, make one model call.</li>
+  <li><strong>agent</strong> is a loop: the model gets a <code>search_corpus</code> tool and chooses what to search for, how often and when to stop. Its budget is six model calls, so it has room for five searches and an answer.</li>
+</ul>
+
+<p>Both modes use the same retriever: hybrid search over BM25 and a dense index, each with the passage title prepended, fused by reciprocal rank, five passages per search. The agent's instructions do not leave the behaviour to its imagination:</p>
+
+<pre class="doc">Use the search_corpus tool to find passages, and search again with other words if the results do not answer the question.</pre>
+
+<p>An answer is correct when it matches the question's lenient answer pattern (<code>finance director</code>, or <code>\b45\b</code> for a number). Both modes must cite passages as <code>[p0123]</code>, and every run records each id that any search returned, so a citation of an id the run never saw is caught by set difference.</p>
+
+<h2 id="results">The results</h2>
+
+<table class="tbl">
+  <thead><tr><th>Mode</th><th>Correct (95% Wilson)</th><th>Gold passage retrieved</th><th>Cites an unseen id</th><th>Searches per run</th><th>Tokens per run (median)</th><th>Seconds per run (median)</th></tr></thead>
+  <tbody>
+    <tr><td>rag</td><td>25 / 30, 83% [66, 93]</td><td>27</td><td>0</td><td>1 in all 30</td><td>723</td><td>8.2</td></tr>
+    <tr><td>agent</td><td>26 / 30, 87% [70, 95]</td><td>26</td><td>0</td><td>1 in all 30</td><td>1,934</td><td>26.5</td></tr>
+  </tbody>
+</table>
+
+<p>One more right answer, for 2.7 times the tokens and 3.2 times the wait. The intervals overlap almost entirely. The rest of this post explains the columns, starting with the one the pitch gets wrong.</p>
+
+<h2 id="once">It searched once</h2>
+
+<p>Every agent run made exactly two model calls: one that issued a search, and one that answered. Not one of the 30 used a second search, although the budget allowed four more. In four runs the agent wrote that the results did not answer the question, which is the exact condition its instructions gave for searching again, and in all four it stopped. Two of those were the multi-hop questions, which are the reason to build an agent in the first place.</p>
+
+<p>On the Lever Widget Pro question the agent searched for "Lever Widget Pro parts supplier payment terms", got back the product sheet that names the supplier, Lyon Laiton, and answered that the results do not specify the payment terms for Lyon Laiton. The next step was a search for one name it had just read. It wrote the name down and stopped. On the Rivet Widget S question it searched for "Rivet Widget S", got the product specification and warranty passages, and reported that they "do not include payment terms with suppliers". Both modes scored 0 of 2 on multi-hop. One-shot RAG has the excuse that it cannot search twice. The agent had no excuse, only the habit.</p>
+
+<p>The freedom to search again is a sentence in a prompt. Whether the model uses it is a property of the model. Self-RAG (Asai et al., 2023) trains a model to decide when to retrieve. ReAct (Yao et al., 2022), which interleaves reasoning with calls to a Wikipedia search API, was measured on far larger models. A prompted four-billion-parameter model is neither, and it behaved like a workflow with an extra model call.</p>
+
+<h2 id="rewording">What the one search bought</h2>
+
+<p>Where did the extra answer come from, then? From the one search being a different search. The agent wrote its own query in 24 of the 30 runs: every lexical, paraphrase and multi question, and 2 of the 8 identifier ones. That rewording is the whole effect, in both directions.</p>
+
+<table class="tbl">
+  <thead><tr><th>Question</th><th>rag searched</th><th>agent searched</th><th>Who was right</th></tr></thead>
+  <tbody>
+    <tr><td>How much can I spend on food each day while travelling for the company?</td><td>the question</td><td><code>food expense daily travel company policy</code></td><td>agent only: 45 euros a day</td></tr>
+    <tr><td>Who does the surface finishing on our parts?</td><td>the question</td><td><code>surface finishing</code></td><td>agent only: Gent Coatings</td></tr>
+    <tr><td>Boxes pile into each other at the join between the two conveyors. Which error is this?</td><td>the question</td><td>the first sentence, without "Which error is this?"</td><td>rag only: error E-214</td></tr>
+  </tbody>
+</table>
+
+<p>The third row is the instructive one. Dropping "Which error is this?" looks like tidying, and it removed the only words that pointed at an error-code article. Rewriting a query is a bet that the model knows the corpus's vocabulary better than the user does, and a model that has never seen the corpus is guessing.</p>
+
+<p>By style, both modes were perfect on identifier (8 of 8) and lexical (9 of 9) questions. Every difference between them is on paraphrase, where rag scored 8 of 11 and the agent 9 of 11. That is where query rewriting should help, and it did, by one question net.</p>
+
+<h2 id="price">The price</h2>
+
+<p>The agent's median run used 1,934 tokens against rag's 723, 2.7 times as many; summed over the 30 runs the ratio is 3.0. Its median run took 26.5 seconds against 8.2. Both costs have the same cause: one search means two model calls, and the second re-sends the first.</p>
+
+<p>Split the tokens and the shape is clear. Prompt tokens grow 2.4 times (median 849 against 347), because the second call carries the instructions, the first call and the five passages again. Completion tokens grow 3.3 times (median 1,116 against 338), because each of the two calls thinks before it speaks, and <code>qwen3:4b</code> spends its thinking as output tokens, the expensive kind on a hosted API. Completion is 63% of the agent's tokens. The course's E3 lesson on <a href="/learn/e03-agent-loop/06-budgets.html">budgets</a> derives the growth formula; this is its two-step case, and the agent paid it for one search it could have been handed.</p>
+
+<h2 id="resolution">What 30 paired questions can tell you</h2>
+
+<p>Not much about the score, and that is worth knowing before the run, not after it.</p>
+
+<p>Pairing helps. On 27 of the 30 questions the two modes agreed, right or wrong, so the comparison lives in the 3 that disagreed: 2 went to the agent and 1 to rag. The exact McNemar test asks whether a 2 to 1 split is surprising for a fair coin, and the answer is p = 1.000. It is not a small effect that failed to reach significance. It is no evidence at all.</p>
+
+<p>The resolution is set by the number of questions. With 30, the smallest difference that can clear p &lt; 0.05 is six disagreements, all going the same way: a 6 to 0 split gives p = 0.031, and 5 to 0 gives 0.062. Six questions in thirty is 20 points. A smaller difference, in either direction, cannot be told from noise at this size, however the questions fall. In a simulation where 10% of questions disagree and the agent wins two in three of them, which is what this run saw, it takes about 750 questions to detect the difference four times in five.</p>
+
+<p>Behaviour is different. "Searched once in 30 of 30 runs" is not a comparison, it is a count, and it needs no test to be true of these runs. It can still be bounded: zero second searches in 30 runs is consistent with a true rate of up to about 11% (Wilson, 95%). That is enough to say the loop is mostly idle. It is not enough to say it never runs.</p>
+
+<p>And two multi-hop questions are two anecdotes. They show the failure clearly; they say nothing about its rate. The full set holds five, which is also too few. If multi-hop is the reason for the agent, it needs its own sample.</p>
+
+<h2 id="citations">The citations held, mostly</h2>
+
+<p>No answer in either mode cited an id it had not retrieved: zero fabricated citations in 60 runs. One agent answer cited nothing, because it said it had found nothing. That check is cheap, mechanical and worth running in production, because a model that has seen the format can write <code>p0159</code> as easily as <code>p0158</code>.</p>
+
+<p>The labelled check is weaker than it looks. The agent's right answer on surface finishing cited a passage from Gent Coatings' supplier profile, but not the one labelled as gold: it cited the delivery-performance passage, whose title names the supplier and whose text mentions colour matching, so "cites gold" scored a right answer as a miss. Whenever the store holds more than one passage that can answer and the labels mark one, "cites gold" undercounts. The same answer shows the opposite gap: the passage it cited never says that Gent Coatings does surface finishing. Neither check establishes that a cited passage supports the sentence beside it. That needs an entailment judgement: RAGAS (Es et al., 2023) asks a model whether each statement in an answer can be inferred from its context, which is a model grading a model.</p>
+
+<h2 id="checklist">Is your agent using its loop?</h2>
+
+<p>Agentic RAG is sold on what the loop does. Check that it does it:</p>
+
+<ul class="limits">
+  <li><strong>Count searches per run, and read the distribution.</strong> A mean of 1.4 can be most runs searching once and a few searching five times. A distribution that is all ones is a workflow that costs twice as much.</li>
+  <li><strong>Look at multi-hop questions separately, and have enough of them.</strong> They are where the loop should earn its price, and in a general question set they are a few percent. Two will show you a failure; thirty will give you a rate.</li>
+  <li><strong>Log the queries the agent writes.</strong> In this study the rewording was the entire effect, good and bad. You cannot see that in a score.</li>
+  <li><strong>Pair the comparison and know its resolution first.</strong> Same questions, both modes, McNemar on the disagreements. With 30 questions, anything under 20 points is a reason to run more, not a finding.</li>
+  <li><strong>Split the tokens into prompt and completion.</strong> With a thinking model, every extra call pays for thinking as well as for re-sent context.</li>
+  <li><strong>Check citations by set difference.</strong> Cited and never retrieved is a fabrication, and it costs one line to catch.</li>
+</ul>
+
+<p>If the counts say the model will not take the second step, code can take it. IRCoT (Trivedi et al., 2022) interleaves retrieval with each reasoning step, because what to retrieve next depends on what has been worked out so far; a workflow that extracts the supplier's name and searches for it is a few lines of ordinary code. Neither was measured here; both are cheaper to try than a bigger model.</p>
+
+<h2 id="limits">What the study leaves out</h2>
+
+<ul class="limits">
+  <li><strong>A bigger model.</strong> Four billion parameters with thinking on, one prompt. A frontier model may well search twice. That is the point of counting: you find out for your model, rather than assuming it from a diagram.</li>
+  <li><strong>Other prompts.</strong> One instruction, which already asked for a second search. A prompt that demands a plan before the first search may change the count. It is a cheap experiment, and the count is how you would score it.</li>
+  <li><strong>The grader.</strong> A lenient answer pattern accepts a right number beside a wrong reason. Both modes face the same pattern, which keeps the comparison fair and the absolute scores generous.</li>
+</ul>
+
+<p>The study is part of the retrieval and memory module of <a href="/building/">Building AI Agents</a>, where the learner builds both modes, the citation check and the retriever, and runs the comparison on their own laptop. The agent loop underneath it is in the <a href="/learn/">free preview</a>, starting with <a href="/learn/e03-agent-loop/01-workflow-or-agent.html">workflows and agents</a>.</p>
+
+    </div>
+    <footer class="prose refs">
+      <h2 id="references">References</h2>
+      <ol><li>Lewis et al. (2020). Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks. NeurIPS. <a href="https://arxiv.org/abs/2005.11401">arxiv.org/abs/2005.11401</a></li><li>Singh, Ehtesham, Kumar, Talaei Khoei, Vasilakos (2025). Agentic Retrieval-Augmented Generation: A Survey on Agentic RAG. <a href="https://arxiv.org/abs/2501.09136">arxiv.org/abs/2501.09136</a></li><li>Yao, Zhao, Yu, Du, Shafran, Narasimhan, Cao (2022). ReAct: Synergizing Reasoning and Acting in Language Models. <a href="https://arxiv.org/abs/2210.03629">arxiv.org/abs/2210.03629</a></li><li>Asai, Wu, Wang, Sil, Hajishirzi (2023). Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection. <a href="https://arxiv.org/abs/2310.11511">arxiv.org/abs/2310.11511</a></li><li>Trivedi, Balasubramanian, Khot, Sabharwal (2022). Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions (IRCoT). ACL 2023. <a href="https://arxiv.org/abs/2212.10509">arxiv.org/abs/2212.10509</a></li><li>Es, James, Espinosa-Anke, Schockaert (2023). Ragas: Automated Evaluation of Retrieval Augmented Generation. <a href="https://arxiv.org/abs/2309.15217">arxiv.org/abs/2309.15217</a></li><li>McNemar&#x27;s test: the exact binomial variant. Wikipedia. <a href="https://en.wikipedia.org/wiki/McNemar%27s_test">en.wikipedia.org/wiki/McNemar%27s_test</a></li><li>Binomial proportion confidence interval: Wilson score interval. Wikipedia. <a href="https://en.wikipedia.org/wiki/Binomial_proportion_confidence_interval#Wilson_score_interval">en.wikipedia.org/wiki/Binomial_proportion_confidence_interval#Wilson_score_interval</a></li></ol>
+      <p class="label"><a href="../">← All posts</a></p>
+    </footer>
+  </article>
+</main>
+
+<footer class="foot label">
+  <span>© 2026 Defending AI Agents</span>
+  <nav aria-label="Footer">
+    <a href="../../workshop/">Team workshops</a>
+    <a href="../../courses/">Online courses</a>
+    <a href="mailto:shimon@defendingaiagents.com">Contact</a>
+    <a href="../../.well-known/security.txt">Security</a>
+    <a href="../../he/" lang="he" hreflang="he">עברית</a>
+  </nav>
+</footer>
+<script src="../../assets/site.js?v=0141a844cb02" defer></script>
+</body>
+</html>
