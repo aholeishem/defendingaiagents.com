@@ -60,7 +60,7 @@ data: {&quot;choices&quot;:[{&quot;delta&quot;:{},&quot;finish_reason&quot;:&quo
 data: {&quot;choices&quot;:[],&quot;usage&quot;:{&quot;prompt_tokens&quot;:140,&quot;completion_tokens&quot;:31}}
 data: [DONE]
 </code></pre>
-<p>The call's id and name come in its first fragment, and its arguments are every fragment's <code>arguments</code> joined in arrival order. Usage arrives last, in a chunk with no choices, and only if you asked for it (<code>stream_options: {&quot;include_usage&quot;: true}</code>). A loop that streams without asking has no token counts, and its token budget never fires (lesson 6).</p>
+<p>The call's id and name come in its first fragment, and its arguments are every fragment's <code>arguments</code> joined in arrival order. Later fragments carry no id, and some servers send an empty one, so an assembler that overwrites the id with each fragment's ends up with none. Usage arrives last, in a chunk with no choices, and only if you asked for it (<code>stream_options: {&quot;include_usage&quot;: true}</code>). A loop that streams without asking has no token counts, and its token budget never fires (lesson 6).</p>
 <h2 id="servers-differ-so-write-for-the-hardest-one">Servers differ, so write for the hardest one</h2>
 <p>OpenAI's API sends arguments in fragments, as above (its function-calling guide shows <code>response.function_call_arguments.delta</code> events for the Responses API). Ollama sends each tool call whole, in one chunk:</p>
 <pre><code class="language-text">data: {&quot;choices&quot;:[{&quot;index&quot;:0,&quot;delta&quot;:{&quot;content&quot;:&quot;&quot;,&quot;tool_calls&quot;:[{&quot;id&quot;:&quot;call_6n2ulo9l&quot;,&quot;index&quot;:1,

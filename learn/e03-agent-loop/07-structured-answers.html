@@ -55,7 +55,7 @@
 <li><strong>Ask.</strong> With an <code>answer_schema</code>, the system prompt gains one instruction: reply with only a JSON value matching this schema, followed by the schema itself (<code>loop/structured.py</code>, <code>instruction</code>).</li>
 <li><strong>Extract.</strong> Models wrap JSON in prose and code fences: &quot;Sure! Here it is:&quot; and three backticks. <code>extract_json</code> takes the contents of the first fence if there is one, otherwise the first <code>{</code> or <code>[</code> from which a complete JSON value decodes. That is what a person would take.</li>
 <li><strong>Check.</strong> The value goes through the same <code>check_arguments</code> as tool arguments (lesson 2). A schema for a final answer and a schema for a tool call are the same kind of contract.</li>
-<li><strong>Repair once.</strong> If the check fails, the loop appends a user message listing the errors and asks again. If the second reply also fails, the run stops with <code>stop == &quot;schema&quot;</code> and the errors.</li>
+<li><strong>Repair once.</strong> If the check fails, the loop appends a user message listing the errors and asks again. It is a <code>user</code> message, not a <code>tool</code> result, because a <code>tool</code> message must answer a call's id, and a final answer made no call. The complaint comes from the caller, and the caller speaks in the user's role. If the second reply also fails, the run stops with <code>stop == &quot;schema&quot;</code> and the errors.</li>
 </ol>
 <pre><code class="language-python">&gt;&gt;&gt; extract_json('Sure! Here it is:\n```json\n{&quot;a&quot;: [1, 2]}\n```\nAnything else?')
 {'a': [1, 2]}

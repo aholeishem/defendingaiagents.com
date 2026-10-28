@@ -88,7 +88,39 @@
 </tr>
 </tbody>
 </table></div>
-<p>The statistical twin is the difference between a fixed design and a sequential one. A workflow is a pipeline of estimators applied in a fixed order. An agent is a policy <span class="math" data-display="0">\pi(a_t \mid h_t)</span>: at step <span class="math" data-display="0">t</span> it samples an action <span class="math" data-display="0">a_t</span> (a tool call, or an answer) given the history <span class="math" data-display="0">h_t</span> of everything so far. The environment answers, the answer joins the history, and the policy samples again. That is a Markov decision process whose policy is a language model at temperature 0.7 and whose horizon is whatever your loop allows.</p>
+<p>The statistical twin is the difference between a fixed design and a sequential one. A workflow is a pipeline of estimators applied in a fixed order. An agent is a sequential decision-maker, and the standard model of one is a <strong>Markov decision process</strong> (MDP), which has four parts:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>MDP part</th>
+<th>Meaning</th>
+<th>In an agent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>state <span class="math" data-display="0">s_t</span></td>
+<td>what the decision-maker knows at step <span class="math" data-display="0">t</span></td>
+<td>the history <span class="math" data-display="0">h_t</span>: the task, and every call and result so far</td>
+</tr>
+<tr>
+<td>action <span class="math" data-display="0">a_t</span></td>
+<td>what it chooses</td>
+<td>a tool call, or an answer</td>
+</tr>
+<tr>
+<td>transition function <span class="math" data-display="0">P(s_{t+1} \mid s_t, a_t)</span></td>
+<td>how the world answers an action</td>
+<td>what the tool returns, which then joins the history</td>
+</tr>
+<tr>
+<td>reward</td>
+<td>what counts as success</td>
+<td>the grader's verdict at the end of the run</td>
+</tr>
+</tbody>
+</table></div>
+<p>A <strong>policy</strong> <span class="math" data-display="0">\pi(a_t \mid s_t)</span> chooses the actions. Here it is the language model, sampling at temperature 0.7, and the <strong>horizon</strong> is the number of steps your loop allows. &quot;Markov&quot; means that the next state depends only on the current state and action. An agent satisfies that by construction, because its state is the whole history.</p>
 <figure class="diagram"><pre class="mermaid">flowchart LR
   T[task] --&gt; H[history]
   H --&gt; M{model samples&lt;br/&gt;the next step}

@@ -60,7 +60,7 @@ data: {&quot;choices&quot;:[{&quot;delta&quot;:{},&quot;finish_reason&quot;:&quo
 data: {&quot;choices&quot;:[],&quot;usage&quot;:{&quot;prompt_tokens&quot;:140,&quot;completion_tokens&quot;:31}}
 data: [DONE]
 </code></pre>
-<p>ה־id והשם של הקריאה מגיעים בפרגמנט הראשון שלה, והארגומנטים שלה הם ה־<code>arguments</code> של כל הפרגמנטים, מחוברים לפי סדר ההגעה. נתוני השימוש מגיעים אחרונים, ב־chunk בלי choices, ורק אם ביקשתם אותם (<code>stream_options: {&quot;include_usage&quot;: true}</code>). ללולאה שמזרימה בלי לבקש אין ספירת טוקנים, ותקציב הטוקנים שלה לא נכנס לפעולה לעולם (שיעור 6).</p>
+<p>ה־id והשם של הקריאה מגיעים בפרגמנט הראשון שלה, והארגומנטים שלה הם ה־<code>arguments</code> של כל הפרגמנטים, מחוברים לפי סדר ההגעה. פרגמנטים מאוחרים יותר לא נושאים id, וחלק מהשרתים שולחים id ריק, כך שמרכיב שדורס את ה־id עם זה של כל פרגמנט נשאר בלי id בכלל. נתוני השימוש מגיעים אחרונים, ב־chunk בלי choices, ורק אם ביקשתם אותם (<code>stream_options: {&quot;include_usage&quot;: true}</code>). ללולאה שמזרימה בלי לבקש אין ספירת טוקנים, ותקציב הטוקנים שלה לא נכנס לפעולה לעולם (שיעור 6).</p>
 <h2 id="servers-differ-so-write-for-the-hardest-one">השרתים שונים, אז כתבו לקשה מכולם</h2>
 <p>ה־API של OpenAI שולח ארגומנטים בפרגמנטים, כמו למעלה (המדריך שלה ל־function calling מציג אירועי <code>response.function_call_arguments.delta</code> עבור ה־Responses API). Ollama שולח כל קריאה לכלי שלמה, ב־chunk אחד:</p>
 <pre><code class="language-text">data: {&quot;choices&quot;:[{&quot;index&quot;:0,&quot;delta&quot;:{&quot;content&quot;:&quot;&quot;,&quot;tool_calls&quot;:[{&quot;id&quot;:&quot;call_6n2ulo9l&quot;,&quot;index&quot;:1,

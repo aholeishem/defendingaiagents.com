@@ -55,7 +55,7 @@
 <li><strong>לבקש.</strong> כשיש <code>answer_schema</code>, פרומפט המערכת מקבל הוראה אחת: להשיב רק בערך JSON שתואם את הסכמה (schema), ואחריה הסכמה עצמה (<code>loop/structured.py</code>, <code>instruction</code>).</li>
 <li><strong>לחלץ.</strong> מודלים עוטפים JSON בפרוזה ובגדרות קוד: «בטח! הנה:» ושלושה backticks. <code>extract_json</code> לוקח את התוכן של הגדר הראשונה אם יש כזו, ואחרת את ה־<code>{</code> או ה־<code>[</code> הראשון שממנו מתפענח ערך JSON שלם. זה מה שאדם היה לוקח.</li>
 <li><strong>לבדוק.</strong> הערך עובר דרך אותו <code>check_arguments</code> שעובר על ארגומנטים של כלים (שיעור 2). סכמה לתשובה סופית וסכמה לקריאה לכלי הן אותו סוג של חוזה.</li>
-<li><strong>לתקן פעם אחת.</strong> אם הבדיקה נכשלת, הלולאה מוסיפה הודעת משתמש שמפרטת את השגיאות ומבקשת שוב. אם גם התשובה השנייה נכשלת, הריצה נעצרת עם <code>stop == &quot;schema&quot;</code> ועם השגיאות.</li>
+<li><strong>לתקן פעם אחת.</strong> אם הבדיקה נכשלת, הלולאה מוסיפה הודעת משתמש שמפרטת את השגיאות ומבקשת שוב. זו הודעת <code>user</code>, לא תוצאת <code>tool</code>, כי הודעת <code>tool</code> חייבת לענות ל־id של קריאה, ותשובה סופית לא ביצעה שום קריאה. התלונה באה מהקורא, והקורא מדבר בתפקיד (role) של המשתמש. אם גם התשובה השנייה נכשלת, הריצה נעצרת עם <code>stop == &quot;schema&quot;</code> ועם השגיאות.</li>
 </ol>
 <pre><code class="language-python">&gt;&gt;&gt; extract_json('Sure! Here it is:\n```json\n{&quot;a&quot;: [1, 2]}\n```\nAnything else?')
 {'a': [1, 2]}

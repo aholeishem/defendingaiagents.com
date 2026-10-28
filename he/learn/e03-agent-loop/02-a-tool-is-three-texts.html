@@ -78,7 +78,7 @@
 </code></pre>
 <p><code>check_arguments</code> מכסה את החלק של JSON Schema שהגדרות כלים משתמשות בו: <code>type</code>, <code>properties</code>, <code>required</code>, <code>additionalProperties: false</code>, <code>enum</code> ו־<code>items</code>. את השאר, כמו <code>pattern</code> ו־<code>format</code>, היא מתעלמת מהם ולא נכשלת עליהם. שני פרטים קל לפספס. ב־JSON Schema <code>3.0</code> הוא integer ו־<code>true</code> אינו, ואילו ב־Python <code>True == 1</code>, כך שבדיקה תמימה של <code>isinstance(v, int)</code> מקבלת ערך בוליאני בתור ספירה. ובלי <code>additionalProperties: false</code>, שדה שהסכמה לא מונה עובר. ה־<code>send_email</code> של המעבדה למעלה לא מגדיר אותו, ולכן <code>{&quot;to&quot;: ..., &quot;subject&quot;: ..., &quot;body&quot;: ..., &quot;cc&quot;: &quot;boss@acme.example&quot;}</code> עובר את הבדיקה, והכלי מתעלם בשקט מנמען שהמודל חשב שהוסיף. בשדה אופציונלי, שגיאת כתיב (<code>&quot;subjcet&quot;</code>) עוברת באותה דרך. הדקו את הסכמות שבבעלותכם. באלה שלא, הבדיקה יכולה לאכוף רק את מה שכתוב בהן.</p>
 <h2 id="the-error-message-is-the-second-prompt">הודעת השגיאה היא הפרומפט השני</h2>
-<p>שתי השגיאות חוזרות למודל כתוצאה של הכלי, והכלי לא רץ:</p>
+<p>שתי השגיאות חוזרות למודל כתוצאה של הכלי, בהודעת <code>tool</code> שנושאת את ה־id של הקריאה, והכלי לא רץ. ה־id אינו אופציונלי. שרתי Chat Completions מצפים שכל קריאה בתור של assistant תיענה בהודעת <code>tool</code> עם ה־id שלה, ורבים מהם דוחים את הבקשה הבאה אם אחת חסרה. קריאה שנדחתה ונעלמת בשקט גם משאירה את המודל בטוח שהיא רצה:</p>
 <pre><code class="language-text">ERROR: send_email: invalid arguments: missing required field 'body'.
 </code></pre>
 <p>ההודעה הזו היא המידע היחיד של המודל על מה שהשתבש, אז כתבו אותה לקורא שיפעל לפיה מיד. שלושה כללים:</p>

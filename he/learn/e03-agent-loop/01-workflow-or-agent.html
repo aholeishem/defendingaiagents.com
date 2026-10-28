@@ -88,7 +88,39 @@
 </tr>
 </tbody>
 </table></div>
-<p>התאום הסטטיסטי הוא ההבדל בין תכנון ניסוי קבוע לתכנון סדרתי. תהליך קבוע הוא צינור של אומדים שמופעלים בסדר קבוע. סוכן הוא מדיניות (policy) <span class="math" data-display="0">\pi(a_t \mid h_t)</span>: בצעד <span class="math" data-display="0">t</span> הוא דוגם פעולה <span class="math" data-display="0">a_t</span> (קריאה לכלי, או תשובה) בהינתן ההיסטוריה <span class="math" data-display="0">h_t</span> של כל מה שקרה עד כה. הסביבה עונה, התשובה מצטרפת להיסטוריה, והמדיניות דוגמת שוב. זהו תהליך החלטה מרקובי (Markov decision process, MDP) שהמדיניות שלו היא מודל שפה בטמפרטורה 0.7, והאופק שלו הוא כל מה שהלולאה שלכם מרשה.</p>
+<p>התאום הסטטיסטי הוא ההבדל בין תכנון ניסוי קבוע לתכנון סדרתי. תהליך קבוע הוא צינור של אומדים שמופעלים בסדר קבוע. סוכן הוא מקבל החלטות סדרתי, והמודל המקובל לכזה הוא <strong>תהליך החלטה מרקובי</strong> (Markov decision process, MDP), שיש לו ארבעה חלקים:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>חלק ב־MDP</th>
+<th>משמעות</th>
+<th>בסוכן</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>מצב (state) <span class="math" data-display="0">s_t</span></td>
+<td>מה שמקבל ההחלטות יודע בצעד <span class="math" data-display="0">t</span></td>
+<td>ההיסטוריה <span class="math" data-display="0">h_t</span>: המשימה, וכל קריאה ותוצאה עד כה</td>
+</tr>
+<tr>
+<td>פעולה (action) <span class="math" data-display="0">a_t</span></td>
+<td>מה שהוא בוחר</td>
+<td>קריאה לכלי, או תשובה</td>
+</tr>
+<tr>
+<td>פונקציית מעבר (transition function) <span class="math" data-display="0">P(s_{t+1} \mid s_t, a_t)</span></td>
+<td>איך העולם עונה לפעולה</td>
+<td>מה שהכלי מחזיר, ומצטרף אחר כך להיסטוריה</td>
+</tr>
+<tr>
+<td>תגמול (reward)</td>
+<td>מה נחשב הצלחה</td>
+<td>ההכרעה של הבודק האוטומטי (grader) בסוף הריצה</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>מדיניות</strong> (policy) <span class="math" data-display="0">\pi(a_t \mid s_t)</span> בוחרת את הפעולות. כאן זה מודל השפה, שדוגם בטמפרטורה 0.7, וה<strong>אופק</strong> (horizon) הוא מספר הצעדים שהלולאה שלכם מרשה. «מרקובי» אומר שהמצב הבא תלוי רק במצב הנוכחי ובפעולה. סוכן מקיים את זה מעצם הבנייה, כי המצב שלו הוא ההיסטוריה כולה.</p>
 <figure class="diagram"><pre class="mermaid">flowchart RL
   T[&quot;משימה&quot;] --&gt; H[&quot;היסטוריה&quot;]
   H --&gt; M{&quot;המודל דוגם&lt;br/&gt;את הצעד הבא&quot;}
