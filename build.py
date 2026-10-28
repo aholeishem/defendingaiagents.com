@@ -13,6 +13,7 @@ from __future__ import annotations
 import html
 import json
 import re
+import shutil
 from datetime import date
 from hashlib import sha256
 from pathlib import Path
@@ -105,6 +106,9 @@ POSTS = [
         ],
     },
 ]
+# A post dated in the future stays off the site until a build on or after its date.
+SCHEDULED = [p for p in POSTS if p["date"] > date.today().isoformat()]
+POSTS = [p for p in POSTS if p not in SCHEDULED]
 
 EN = {
     "lang": "en", "dir": "ltr", "path": "/", "other_path": "he/", "other_lang": "he", "other_label": "עברית",
@@ -1896,6 +1900,8 @@ def main():
     for p in POSTS:
         (blog / p["slug"]).mkdir(exist_ok=True)
         (blog / p["slug"] / "index.html").write_text(post_page(EN, p), encoding="utf-8")
+    for p in SCHEDULED:
+        shutil.rmtree(blog / p["slug"], ignore_errors=True)
     print(f"built index.html, he/index.html, courses/, course/, building/, workshop/, lab/, map/ (EN and HE), 404.html, blog/ ({len(POSTS)} posts)")
 
 
