@@ -117,7 +117,7 @@
 <tr>
 <td><code>seconds</code></td>
 <td>wall clock since the run started</td>
-<td>the user who is waiting; the server that is retrying</td>
+<td>the user who is waiting; a slow server, between calls</td>
 </tr>
 </tbody>
 </table></div>
@@ -141,7 +141,7 @@
 <ol>
 <li>After 7 steps, at 26,600 tokens. The prompt total after <span class="math" data-display="0">n</span> steps is <span class="math" data-display="0">800n + 1000\,n(n-1)/2</span>: 800, 2,600, 5,400, 9,200, 14,000, 19,800 for <span class="math" data-display="0">n = 1, \dots, 6</span>, and 26,600 for <span class="math" data-display="0">n = 7</span>. The check before step 7 sees 19,800, below 20,000, so step 7 is sent and the run ends at 26,600. The overshoot is the one-call-worth this lesson describes.</li>
 <li>Because the same loop will run on a priced API, and a budget you never set is a budget you never tested. With a price set, the laptop run reports what it would have cost, so a design that is ten times more expensive shows up before it is deployed.</li>
-<li>None of them. A failed call is never charged, so the step, token and cost limits never move, and the time limit is checked only <em>between</em> model calls. After four attempts (three retries) and about 125 s, <code>call_with_retries</code> re-raises the timeout and the run stops with <code>stop == &quot;error&quot;</code> and zero charged steps, already past its 120 s. Problem 11 asks how to let the time budget cut a retry sequence short.</li>
+<li>None of them. A failed call is never charged, so the step, token and cost limits never move, and the time limit is checked only <em>between</em> model calls. After four attempts (three retries) and about 122 s (120 s of timeouts, and three backoff waits of at most 3.5 s in all), <code>call_with_retries</code> re-raises the timeout and the run stops with <code>stop == &quot;error&quot;</code> and zero charged steps, already past its 120 s. Problem 11 asks how to let the time budget cut a retry sequence short.</li>
 </ol>
 </details>
       <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>Mark complete</button></p>

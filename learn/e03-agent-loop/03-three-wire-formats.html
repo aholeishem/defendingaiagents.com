@@ -124,7 +124,7 @@
 </table></div>
 <p>Three of these are behaviour, not spelling.</p>
 <ul>
-<li><strong>String or object.</strong> Only the string can be malformed (lesson 2). An adapter from Anthropic to Chat Completions must serialise <code>input</code>, and one going the other way must parse <code>arguments</code>. An empty string means <code>{}</code>, and the Anthropic side needs an object.</li>
+<li><strong>String or object.</strong> Only the string can be malformed (lesson 2). An adapter from Anthropic to Chat Completions must serialise <code>input</code>, and one going the other way must parse <code>arguments</code>. An empty string means <code>{}</code>, and the Anthropic side needs an object. So does a string that does not parse: <code>run</code> keeps a refused call in the history (lesson 2), and the adapter sends it with <code>input: {}</code>, since the <code>tool_result</code> after it already says what was wrong.</li>
 <li><strong>One user message for all results.</strong> Anthropic's documentation says that sending each result in its own user message &quot;teaches&quot; the model to stop making parallel calls. The history is a few-shot prompt, and its format is part of what the model learns from it.</li>
 <li><strong>The system prompt moves.</strong> Leave a <code>system</code> message in Anthropic's <code>messages</code> list and the request fails. Drop it silently and you lose the instructions.</li>
 </ul>

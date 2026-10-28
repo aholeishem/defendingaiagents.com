@@ -82,7 +82,7 @@ print(0.1 + 0.2)                                       # 0.30000000000000004
 <tr>
 <td><strong>Strings</strong></td>
 <td><code>\u0000</code>, lone surrogates, differently normalised Unicode</td>
-<td>a name that compares unequal to the allow-list and resolves to the same file</td>
+<td>a name that compares unequal to a deny-list entry and opens the denied file</td>
 </tr>
 <tr>
 <td><strong>Depth and size</strong></td>
@@ -90,12 +90,13 @@ print(0.1 + 0.2)                                       # 0.30000000000000004
 <td>a deep array that crashes one parser and not another</td>
 </tr>
 <tr>
-<td><strong>Type</strong></td>
-<td><code>&quot;1&quot;</code> is a string, <code>1</code> a number</td>
-<td><code>&quot;amount&quot;: &quot;1000000&quot;</code> that one side coerces</td>
+<td><strong>Extensions</strong></td>
+<td>&quot;A JSON parser MAY accept non-JSON forms or extensions&quot;: <code>NaN</code>, <code>Infinity</code>, comments, trailing commas; Python accepts the first two</td>
+<td>send <code>&quot;amount&quot;: NaN</code>: <code>NaN &gt; 1000</code> is false, so a check that denies above 1,000 passes it</td>
 </tr>
 </tbody>
 </table></div>
+<p>Type is not on the list: the grammar fixes that <code>&quot;1&quot;</code> is a string and <code>1</code> a number. A service that turns <code>&quot;amount&quot;: &quot;1000000&quot;</code> into a number does so in its own code, which gives the control one more reading to match.</p>
 <h2 id="the-rule-the-course-follows">The rule the course follows</h2>
 <p>Decide on the same bytes you forward, parsed by a parser that <strong>rejects</strong> what is ambiguous. Module 3 lesson 6 builds that: the gateway rejects any object with a repeated key, and forwards the <em>re-serialised</em> form it decided on, not the original bytes. Then the only parser the tool service meets is the gateway's own.</p>
 <h2 id="expert-canonical-form-is-a-proof-obligation">Expert: canonical form is a proof obligation</h2>
@@ -103,14 +104,14 @@ print(0.1 + 0.2)                                       # 0.30000000000000004
 <h2 id="check-yourself">Check yourself</h2>
 <ol>
 <li>Why is &quot;the gateway parses with a strict parser&quot; not enough if it forwards the original bytes?</li>
-<li>A float field <code>&quot;risk&quot;: 0.1</code> is summed ten times and compared with <code>1.0</code>. What will it say, and what does that say about using floats as money?</li>
-<li>A tool takes <code>{&quot;path&quot;: &quot;notes/café.txt&quot;}</code>, and the gateway compares the parsed string with an allow-list. Using the table's Strings row, describe a second valid JSON value that the comparison treats as different and a file system may open as the same file.</li>
+<li>A float field <code>&quot;risk&quot;: 0.1</code> is added ten times with <code>+=</code> and compared with <code>1.0</code>. What will it say, and what does that say about using floats as money?</li>
+<li>A tool takes <code>{&quot;path&quot;: &quot;notes/q3.txt&quot;}</code>, and the gateway refuses any path equal to the deny-list entry <code>private/café.txt</code> (precomposed <code>é</code>). Using the table's Strings row, describe a second valid JSON value that the comparison lets through and a file system may open as the denied file.</li>
 </ol>
 <details class="answers"><summary>Answers</summary>
 <ol>
-<li>Strictness only fixes the gateway's own reading. The tool still parses the original bytes with its own parser, and on any input where the two differ (number range, Unicode forms, type coercion) the gateway has decided on a value the tool never sees. Only forwarding the re-serialised form makes the gateway's reading the one the tool receives.</li>
-<li>Adding <code>0.1</code> ten times in a loop gives <code>0.9999999999999999</code>, so <code>== 1.0</code> is <code>False</code> and a check at exactly the limit flips. <code>0.1</code> has no exact binary representation and the errors accumulate; money belongs in integer minor units or a decimal type, never in floats.</li>
-<li><code>&quot;notes/café.txt&quot;</code>: <code>e</code> followed by the combining acute accent (U+0301), against the precomposed <code>é</code> (U+00E9) of the original. The two strings differ code point by code point, so the allow-list comparison fails, while a file system that normalises names opens the same file.</li>
+<li>Strictness only fixes the gateway's own reading. The tool still parses the original bytes with its own parser, and on any input where the two differ (number range, Unicode forms, <code>NaN</code>) the gateway has decided on a value the tool never sees. Only forwarding the re-serialised form makes the gateway's reading the one the tool receives.</li>
+<li>Adding <code>0.1</code> ten times with <code>+=</code> gives <code>0.9999999999999999</code>, so <code>== 1.0</code> is <code>False</code> and a check at exactly the limit flips. <code>0.1</code> has no exact binary representation and the errors accumulate. <code>sum()</code> (Python 3.12 and later) and <code>numpy.sum</code> order or compensate the additions and give <code>1.0</code>, so the verdict depends on how the code adds, not on the data. Money belongs in integer minor units or a decimal type, never in floats.</li>
+<li><code>&quot;private/café.txt&quot;</code>: <code>e</code> followed by the combining acute accent (U+0301), against the precomposed <code>é</code> (U+00E9) of the entry. The two strings differ code point by code point, so the deny-list comparison lets it through, while a file system that normalises names opens the denied file. Against an allow-list the same mismatch costs only a false denial.</li>
 </ol>
 </details>
       <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>Mark complete</button></p>

@@ -114,7 +114,7 @@ Content-Length: 51
 </tr>
 </tbody>
 </table></div>
-<p>The reply has the same shape, with a <strong>status line</strong> (<code>HTTP/1.1 200 OK</code>) in place of the request line. The code is a promise about the outcome (RFC 9110, 2022): 2xx succeeded, 3xx look elsewhere, 4xx the request is at fault, 5xx the server is. The ones the course keeps meeting are 200, 400, 401 (no valid credential), 403 (a valid credential that is not enough), 404, 429 (too many) and 502 (a gateway got a bad reply upstream).</p>
+<p>The reply has the same shape, with a <strong>status line</strong> in place of the request line: here <code>HTTP/1.0 200 OK</code>, because <code>BaseHTTPRequestHandler</code> speaks HTTP/1.0 unless its <code>protocol_version</code> is set to <code>&quot;HTTP/1.1&quot;</code>. The code is a promise about the outcome (RFC 9110, 2022): 2xx succeeded, 3xx look elsewhere, 4xx the request is at fault, 5xx the server is. The ones the course keeps meeting are 200, 400, 401 (no valid credential), 403 (a valid credential that is not enough), 404, 429 (too many) and 502 (a gateway got a bad reply upstream).</p>
 <figure class="diagram"><pre class="mermaid">flowchart TD
   C[&quot;Client: method, target, headers, body&quot;] --&gt;|&quot;one TCP connection&quot;| S[&quot;Server&quot;]
   S --&gt;|&quot;status, headers, body&quot;| C

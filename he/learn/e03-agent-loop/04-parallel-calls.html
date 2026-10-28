@@ -79,13 +79,13 @@
 <ol>
 <li>תור מבקש <code>read_file a</code>, <code>send_email</code>, <code>read_file b</code>, <code>read_file c</code>, <code>write_file d</code>. אילו קריאות רצות בו־זמנית, ובכמה קבוצות?</li>
 <li>למה קריאה שנדחתה (שיעור 2) חייבת עדיין לתפוס את המשבצת שלה בתוצאות?</li>
-<li>תנו זוג קריאות לשני כלים <em>שונים</em> שאינן מתחלפות, למרות שאף אחת מהן אינה כתיבה למשאב של השנייה.</li>
+<li>תנו זוג קריאות לשני כלים <em>שונים</em> שאינן מתחלפות, אף שהארגומנטים שלהן לא נוקבים בשום דבר משותף.</li>
 </ol>
 <details class="answers"><summary>תשובות</summary>
 <ol>
 <li>ארבע קבוצות: <code>read_file a</code> לבד (רצף של קריאה בטוחה אחת), אחר כך <code>send_email</code> לבד, אחר כך <code>read_file b</code> ו־<code>read_file c</code> יחד, ואחר כך <code>write_file d</code> לבד. רק b ו־c רצות בו־זמנית.</li>
 <li>כל קריאה בתור חייבת לקבל תשובה, עם ה־id שלה ובמקום שלה. המשבצת מחזיקה את טקסט הדחייה, כך שהמודל לומד איזו קריאה נכשלה ולמה, והתוצאות נשארות מיושרות עם הקריאות.</li>
-<li><code>recall</code> ו־<code>remember</code>: recall לפני ה־remember לא מחזיר את הפתק החדש, ו־recall אחריו כן. או <code>list_files</code> ו־<code>write_file</code> של קובץ חדש: הרשימה כוללת את הקובץ או שלא. חילופיות עוסקת במצב משותף, לא בשאלה איזה שם של כלי כותב.</li>
+<li><code>list_files</code> ו־<code>write_file</code> של קובץ חדש. ‏<code>list_files</code> לא מקבל ארגומנטים, ובכל זאת רשימה לפני הכתיבה חסרה את הקובץ ורשימה אחריה כוללת אותו. שתיהן נוגעות בתיקייה. חילופיות עוסקת במצב משותף, לא במה שהארגומנטים נוקבים בו.</li>
 </ol>
 </details>
       <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>סימון כהושלם</button></p>

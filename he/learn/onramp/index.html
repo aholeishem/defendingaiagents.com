@@ -60,7 +60,8 @@
 <li>לתכנן בדיקת שם ששרת DNS שמבצע rebinding לא יכול לעקוף, על ידי התחברות לכתובת שנבדקה. &lt;span class=&quot;label tier&quot;&gt;מתקדם&lt;/span&gt;</li>
 <li>לשלוף את כתובת הלקוח משרשרת <code>X-Forwarded-For</code>, בהינתן הפרוקסים שאתם מפעילים. &lt;span class=&quot;label tier&quot;&gt;מתקדם&lt;/span&gt;</li>
 <li>לבדוק אילו שמות תעודת wildcard מכסה, ולנסח מה לחיצת היד הוכיחה. &lt;span class=&quot;label tier&quot;&gt;מתקדם&lt;/span&gt;</li>
-<li>לכתוב מאמת JWT שבודק אלגוריתם, חתימה, מנפיק, קהל יעד (audience) וזמן, בסדר הזה, עם מדיניות אורך חיים, ולהדגים מקצה לקצה את בלבול המפתחות שקריאת האלגוריתם מתוך הטוקן מאפשרת. &lt;span class=&quot;label tier&quot;&gt;מומחה&lt;/span&gt;</li>
+<li>לכתוב מאמת JWT שבודק אלגוריתם, חתימה, מנפיק, קהל יעד (audience) וזמן, בסדר הזה, עם מדיניות אורך חיים. &lt;span class=&quot;label tier&quot;&gt;מתקדם&lt;/span&gt;</li>
+<li>להדגים מקצה לקצה את בלבול המפתחות שקריאת האלגוריתם מתוך הטוקן מאפשרת. &lt;span class=&quot;label tier&quot;&gt;מומחה&lt;/span&gt;</li>
 <li>לפרש שלב אחר שלב זרימת הרשאה של MCP בעזרת התפקידים של OAuth, <code>scope</code>, <code>aud</code> ו־<code>sub</code>, ולספור כמה טוקנים נוצרים כשמנפיקים טוקן לכל קריאה. &lt;span class=&quot;label tier&quot;&gt;מומחה&lt;/span&gt;</li>
 <li>לקבוע מתי בדיקה על הודעה תקפה ביחס למפענח שפועל עליה, ולבחור בין מפענח אחד, שפה קטנה יותר ובדיקות הבדלים (differential testing). &lt;span class=&quot;label tier&quot;&gt;מומחה&lt;/span&gt;</li>
 <li>לבקר לקוח OAuth של סוכן מול מודל התוקף של RFC 9700, ולתזמן רוטציה (rotation) של מפתח חתימה לפי זמני המטמון ואורך החיים של הטוקנים. &lt;span class=&quot;label tier&quot;&gt;מומחה&lt;/span&gt;</li>
@@ -122,21 +123,11 @@
 </ol>
 <p><strong>מתקדם</strong></p>
 <ol start="5">
-<li>
-<p><a href="05-dns.html">שם הוא לא כתובת, והתשובה יכולה להשתנות</a></p>
-</li>
-<li>
-<p><a href="06-proxy.html">פרוקסי הוא שרת שהוא גם לקוח</a></p>
-</li>
-<li>
-<p><a href="07-tls.html">TLS מוכיח שהגעתם לשם, לא שהשם ישר</a></p>
-</li>
-<li>
-<p><a href="08-jwt.html">JWT הוא טענות חתומות, ולבדיקה יש סדר</a></p>
-</li>
-<li>
-<p><a href="09-oauth-roles.html">OAuth נותן לטוקן ייעוד: תפקידים, scope, קהל יעד</a></p>
-</li>
+<li><a href="05-dns.html">שם הוא לא כתובת, והתשובה יכולה להשתנות</a></li>
+<li><a href="06-proxy.html">פרוקסי הוא שרת שהוא גם לקוח</a></li>
+<li><a href="07-tls.html">TLS מוכיח שהגעתם לשם, לא שהשם ישר</a></li>
+<li><a href="08-jwt.html">JWT הוא טענות חתומות, ולבדיקה יש סדר</a></li>
+<li><a href="09-oauth-roles.html">OAuth נותן לטוקן ייעוד: תפקידים, scope, קהל יעד</a></li>
 </ol>
 <p><strong>מומחה</strong></p>
 <ol start="10">
@@ -163,7 +154,7 @@
 <li>Jones, M. and Hardt, D. &quot;<a href="https://www.rfc-editor.org/rfc/rfc6750">The OAuth 2.0 Authorization Framework: Bearer Token Usage</a>.&quot; RFC 6750, 2012. סעיף 2 וסעיף 5.</li>
 <li>Mockapetris, P. &quot;<a href="https://www.rfc-editor.org/rfc/rfc1035">Domain names: implementation and specification</a>.&quot; RFC 1035, 1987. סעיפים 3.2 ו־4.1.</li>
 <li>Petersson, A. and Nilsson, M. &quot;<a href="https://www.rfc-editor.org/rfc/rfc7239">Forwarded HTTP Extension</a>.&quot; RFC 7239, 2014.</li>
-<li>Rescorla, E. &quot;<a href="https://www.rfc-editor.org/rfc/rfc8446">The Transport Layer Security (TLS) Protocol Version 1.3</a>.&quot; RFC 8446, 2018. סעיפים 1 ו־4.4.</li>
+<li>Rescorla, E. &quot;<a href="https://www.rfc-editor.org/rfc/rfc8446">The Transport Layer Security (TLS) Protocol Version 1.3</a>.&quot; RFC 8446, 2018. סעיפים 1, 4.3.2 ו־4.4.</li>
 <li>Saint-Andre, P. and Salz, R. &quot;<a href="https://www.rfc-editor.org/rfc/rfc9525">Service Identity in TLS</a>.&quot; RFC 9525, 2023.</li>
 <li>Jones, M., Bradley, J. and Sakimura, N. &quot;<a href="https://www.rfc-editor.org/rfc/rfc7519">JSON Web Token (JWT)</a>.&quot; RFC 7519, 2015. סעיפים 4 ו־7.</li>
 <li>Sheffer, Y., Hardt, D. and Jones, M. &quot;<a href="https://www.rfc-editor.org/rfc/rfc8725">JSON Web Token Best Current Practices</a>.&quot; RFC 8725, 2020.</li>

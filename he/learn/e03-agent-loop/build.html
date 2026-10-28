@@ -44,90 +44,113 @@
       <p class="progress-line label" data-module-progress="e03-agent-loop" data-total="13" data-problems="15" hidden></p>
     </aside>
     <article class="prose">
-      <aside class="kit-box"><p>שלבים 1 עד 7 רצים בלי חיבור לרשת עם ערכת התצוגה המקדימה: Python 3.11 ו־uv, בלי מודל ובלי Docker. שלבים 8 ו־9 צריכים את המעבדה של מודול 1 ומודל מקומי, והם יגיעו עם הערכה המלאה כשהקורס ייפתח.</p><p><a class="btn" href="../../../assets/kits/e3-preview-kit.zip" download>להורדת ערכת התצוגה המקדימה (34KB)</a></p></aside>
+      <aside class="kit-box"><p>שלבים 1 עד 8 רצים בלי חיבור לרשת עם ערכת התצוגה המקדימה: Python 3.11 ו־uv, בלי מודל ובלי Docker. שלבים 9 ו־10 צריכים את המעבדה של מודול 1 ומודל מקומי, והם יגיעו עם ערכת הקורס המלאה כשהקורס ייפתח.</p><p><a class="btn" href="../../../assets/kits/e3-preview-kit.zip" download>להורדת ערכת התצוגה המקדימה (35KB)</a></p></aside>
       <header class="lesson-head">
         <p class="label">E3 · הבנייה: הלולאה של מודול 1, שהופכת לכזו שרצה בלי השגחה, ונמדדת</p>
         <h1>הבנייה: הלולאה של מודול 1, שהופכת לכזו שרצה בלי השגחה, ונמדדת</h1>
       </header>
-      <p>בערך שלוש שעות, ומתוכן בערך שעה המחשב מריץ את עשרים המשימות. אתם מממשים שמונה חלקים ב־<code>loop/</code>. הלקוח, הלקוח המתוסרט, עשרים המשימות והמחקר מסופקים. שלבים 1 עד 7 לא צריכים לא את המעבדה ולא מודל. שלבים 8 ו־9 צריכים את שניהם (<code>make lab-up</code>, ושרת המודל ממודול 1, שיעור 4).</p>
+      <p>בערך שלוש וחצי שעות, ומתוכן בערך 100 דקות המחשב מריץ את עשרים המשימות. אתם מממשים שמונה חלקים ב־<code>loop/</code>, חלק אחד בכל שלב. הלקוח, הלקוח המתוסרט, עשרים המשימות והמחקר מסופקים. שלבים 1 עד 8 לא צריכים לא את המעבדה ולא מודל. שלבים 9 ו־10 צריכים את שניהם (<code>make lab-up</code>, ושרת המודל ממודול 1, שיעור 4).</p>
 <h2 id="0-setup">0. הכנה</h2>
-<pre><code class="language-bash">CHECK_E3_OFFLINE=1 make check-E3      # fails: NotImplementedError in loop/
+<pre><code class="language-bash">make check-E3      # fails: NotImplementedError in loop/
 </code></pre>
 <div class="table"><table>
 <thead>
 <tr>
+<th style="text-align:right">שלב</th>
 <th>קובץ</th>
 <th>מה אתם מממשים</th>
+<th>קבוצת בדיקה</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td style="text-align:right">1</td>
 <td><code>loop/schema.py</code></td>
 <td><code>parse_arguments</code>, <code>check_arguments</code></td>
+<td><code>schema</code></td>
 </tr>
 <tr>
+<td style="text-align:right">2</td>
 <td><code>loop/formats.py</code></td>
 <td><code>to_anthropic_tools</code>, <code>to_anthropic_request</code>, <code>from_anthropic_response</code></td>
+<td><code>formats</code></td>
 </tr>
 <tr>
+<td style="text-align:right">3</td>
 <td><code>loop/parallel.py</code></td>
 <td><code>execute</code></td>
+<td><code>parallel</code></td>
 </tr>
 <tr>
+<td style="text-align:right">4</td>
 <td><code>loop/retry.py</code></td>
 <td><code>classify</code>, <code>backoff</code>, <code>call_with_retries</code></td>
+<td><code>retry</code></td>
 </tr>
 <tr>
+<td style="text-align:right">5</td>
 <td><code>loop/budget.py</code></td>
 <td><code>Budget.start</code>, <code>charge</code>, <code>exceeded</code></td>
+<td><code>budget</code></td>
 </tr>
 <tr>
+<td style="text-align:right">6</td>
 <td><code>loop/structured.py</code></td>
 <td><code>extract_json</code>, <code>parse_final</code></td>
+<td><code>structured</code></td>
 </tr>
 <tr>
+<td style="text-align:right">7</td>
 <td><code>loop/stream.py</code></td>
 <td><code>assemble</code></td>
+<td><code>stream</code></td>
 </tr>
 <tr>
+<td style="text-align:right">8</td>
 <td><code>loop/agent.py</code></td>
 <td><code>run</code></td>
+<td><code>loop</code></td>
 </tr>
 </tbody>
 </table></div>
-<p>מסופקים: <code>loop/client.py</code> (<code>ChatClient</code>, שמחזיר את ההודעה עם נתוני השימוש והתזמון שלה, ו־<code>LegacyAdapter</code>, שמאפשר למחקר להריץ את הלולאה של מודול 1 על אותו לקוח), <code>loop/scripted.py</code>, <code>loop/tasks.py</code>, <code>parallel.prepare</code> ו־<code>READ_ONLY</code>, מתאם ה־Responses שב־<code>formats.py</code>, ו־<code>studies/loop_study.py</code>. הריצו קבוצה אחת בכל פעם תוך כדי עבודה: <code>uv run pytest checks/test_checkE3.py -k schema</code>.</p>
+<p>מסופקים: <code>loop/client.py</code> (<code>ChatClient</code>, שמחזיר את ההודעה עם נתוני השימוש והתזמון שלה, ו־<code>LegacyAdapter</code>, שמאפשר למחקר להריץ את הלולאה של מודול 1 על אותו לקוח), <code>loop/scripted.py</code>, <code>loop/tasks.py</code>, <code>parallel.prepare</code> ו־<code>READ_ONLY</code>, מתאם ה־Responses שב־<code>formats.py</code>, ו־<code>studies/loop_study.py</code>. שם הקבוצה מופיע בשמות הבדיקות שלה ובשום בדיקה אחרת, כך ש־<code>-k</code> מריץ בדיוק את הבדיקות של שלב אחד תוך כדי עבודה: <code>uv run pytest checks/test_checkE3.py -k schema</code>. הבדיקה החיה (שלב 9) רצה רק כשמבקשים אותה, כי היא מאפסת את המעבדה.</p>
 <h2 id="1-arguments">1. ארגומנטים</h2>
-<p>ממשו את <code>parse_arguments</code> ואת <code>check_arguments</code> (שיעור 2). ה־docstrings קובעים את נוסח השגיאות, כי גם המודל וגם הבדיקות קוראים אותו. <code>-k schema</code> עובר כשבוליאנים לא נחשבים מספרים שלמים, ‏<code>3.0</code> כן נחשב, וכל שגיאה נוקבת בשם השדה שלה.</p>
+<p>ממשו את <code>parse_arguments</code> ואת <code>check_arguments</code> (שיעור 2). ה־docstrings קובעים את נוסח השגיאות ואת הסדר שלהן, כי גם המודל וגם הבדיקות קוראים אותם. <code>-k schema</code> עובר כשבוליאנים לא נחשבים מספרים שלמים, ‏<code>3.0</code> כן נחשב, וכל שגיאה נוקבת בשם השדה שלה.</p>
 <h2 id="2-formats">2. פורמטים</h2>
-<p>ממשו את שלושת המתאמים של Anthropic (שיעור 3). קראו קודם את <code>to_responses_tools</code> ואת <code>from_responses_output</code>: הם עושים את אותה עבודה עבור הפורמט השני. <code>-k formats</code> עובר כשהתוצאות של תור עם שתי קריאות נוחתות בהודעת משתמש אחת, ונתוני השימוש חוזרים עם השמות החדשים.</p>
+<p>ממשו את שלושת המתאמים של Anthropic (שיעור 3). קראו קודם את <code>to_responses_tools</code> ואת <code>from_responses_output</code>: הם עושים את אותה עבודה עבור הפורמט השני. <code>-k formats</code> עובר כשהתוצאות של תור עם שתי קריאות נוחתות בהודעת משתמש אחת, קריאה פגומה שנשארה בהיסטוריה מומרת, ונתוני השימוש חוזרים עם השמות החדשים.</p>
 <h2 id="3-parallel-calls">3. קריאות מקבילות</h2>
 <p>ממשו את <code>execute</code> (שיעור 4). בנו את הקבוצות בסריקה לפי הסדר, הריצו כל קבוצה של קריאות בטוחות עם <code>pool.map</code>, וכתבו את התוצאות לתאים לפי מיקום. <code>-k parallel</code> מתזמן שלוש קריאות של 200 ms ונכשל אם הן לוקחות יותר מ־450 ms או חוזרות בסדר הלא נכון.</p>
 <h2 id="4-retries">4. ניסיונות חוזרים</h2>
-<p>ממשו את <code>classify</code>, ‏<code>backoff</code> ו־<code>call_with_retries</code> (שיעור 5). אחר כך:</p>
-<pre><code class="language-bash">make loop-study PARTS=faults        # about a minute
-make loop-study PARTS=herd
-</code></pre>
-<p>טבלת ה־<code>faults</code> שלכם חייבת להתאים לזו של שיעור 5 בתוך רווחי הסמך (confidence intervals) שלה, וכל <code>(1-p^k)^5</code> חייב לשבת בתוך רווח הסמך של השורה שלו. אם השורות של <span class="math" data-display="0">k = 1</span> מתאימות והאחרות לא, כנראה שהלולאה שלכם מחייבת את התקציב על קריאות שנכשלו, או מנסה שוב קריאות ש־<code>classify</code> אומר להכשיל.</p>
+<p>ממשו את <code>classify</code>, ‏<code>backoff</code> ו־<code>call_with_retries</code> (שיעור 5). אחר כך <code>make loop-study PARTS=herd</code>, שמשתמש רק ב־<code>backoff</code>, והשוו לטבלת העדר של שיעור 5. המחקר <code>faults</code> מריץ את הלולאה כולה, ולכן הוא מחכה לשלב 8.</p>
 <h2 id="5-budgets">5. תקציבים</h2>
-<p>ממשו את <code>Budget.start</code>, ‏<code>charge</code> ו־<code>exceeded</code> (שיעור 6), ואז <code>make loop-study PARTS=growth</code>. שנו את הארגומנטים ב־<code>growth()</code> לגדלים של המעבדה שלכם. קחו את <code>S + T</code> מה־<code>prompt_tokens</code> הראשון של ריצה בשלב 8, ואת <code>R</code> מהגודל של קובץ שקראתם. ואז נחשו באיזה צעד תקציב של 20,000 טוקנים עוצר משימה שקוראת קבצים.</p>
+<p>ממשו את <code>Budget.start</code>, ‏<code>charge</code> ו־<code>exceeded</code> (שיעור 6). ‏<code>-k budget</code> בודק אותם. המחקר <code>growth</code> הוא חשבון בלבד ולא משתמש ב־<code>Budget</code> שלכם: הוא מדפיס את הטבלה של שיעור 6 עבור הגדלים שתתנו לו, וערכי ברירת המחדל שלו הם אלה של שיעור 6.</p>
+<pre><code class="language-bash">make loop-study PARTS=&quot;growth system=900 result=800&quot;
+</code></pre>
+<p>נחשו באיזה צעד תקציב של 20,000 טוקנים עוצר משימה שקוראת קבצים, קודם בלי טוקני ההשלמה, כמו בשאלה 1 של שיעור 6, ואחר כך כשטוקני ההשלמה של המודל שלכם מתווספים לכל צעד (שיעור 6 מדד 702 בצעד אחד של <code>qwen3:4b</code>). שלב 9 נותן לכם גדלים אמיתיים: <code>S + T</code> הוא ה־<code>prompt_tokens</code> הראשון של ריצה חיה, ו־<code>R</code> הוא הגודל של קובץ שהיא קראה.</p>
 <h2 id="6-structured-answers">6. תשובות מובנות</h2>
 <p>ממשו את <code>extract_json</code> ואת <code>parse_final</code> (שיעור 7). ה־regex של הגדרות מסופק. העבודה היא למצוא את הערך הראשון שניתן לפענוח עם <code>json.JSONDecoder().raw_decode</code>.</p>
 <h2 id="7-streaming">7. סטרימינג</h2>
-<p>ממשו את <code>assemble</code> (שיעור 8). בדקו אותו עם פרגמנטים (הבדיקה) ועם קריאות שלמות (מה ש־Ollama שולח). שניהם חייבים לתת את אותה הודעה.</p>
+<p>ממשו את <code>assemble</code> (שיעור 8). בדקו אותו עם פרגמנטים (הבדיקה) ועם קריאות שלמות (מה ש־Ollama שולח). שניהם חייבים לתת את אותה הודעה, והמקום של קריאה נקבע לפי ה־<code>index</code> שלה, לא לפי מתי הגיע הפרגמנט הראשון שלה.</p>
 <h2 id="8-the-loop">8. הלולאה</h2>
-<p>ממשו את <code>run</code> (<code>loop/agent.py</code>), שמחבר את החלקים לפי הסדר שה־docstring שלו נותן. ואז את הבדיקה כולה, וריצה אחת ביד:</p>
-<pre><code class="language-bash">make check-E3                                    # about two minutes with the live test
+<p>ממשו את <code>run</code> (<code>loop/agent.py</code>), שמחבר את החלקים לפי הסדר שה־docstring שלו נותן. ‏<code>-k loop</code> בודק אותו. ואז את הבדיקה כולה, ואת המחקר שמריץ את הלולאה שלכם 48,000 פעמים:</p>
+<pre><code class="language-bash">make check-E3                       # every test but the live one passes
+make loop-study PARTS=faults        # about 4 seconds
+</code></pre>
+<p><code>faults</code> מדפיס שתים־עשרה שורות, <span class="math" data-display="0">k = 1</span> עד 4 לכל <span class="math" data-display="0">p</span>, ושיעור 5 מציג שמונה מהן. שלכם חייבות להתאים לשמונה האלה בתוך רווחי הסמך (confidence intervals) שלהן, וכל <span class="math" data-display="0">(1-p^k)^5</span> חייב לשבת בתוך רווח הסמך של השורה שלו. הטבלה בודקת את <code>run</code> ואת <code>call_with_retries</code> יחד. אם כל השורות של <span class="math" data-display="0">p</span> מסוים נראות כמו השורה של <span class="math" data-display="0">k = 4</span>, ‏<code>run</code> לא מעביר את <code>retry</code> הלאה, ו־<code>call_with_retries</code> משתמש בברירת המחדל שלו, ארבעה ניסיונות. חיוב התקציב על קריאות שנכשלו לא נראה כאן: התקציב של המחקר הוא 20 צעדים, וריצה צריכה בערך שש קריאות. ‏<code>-k loop</code> תופס את שני המקרים.</p>
+<h2 id="9-one-live-run">9. ריצה חיה אחת</h2>
+<pre><code class="language-bash">export TOOLS_URL=http://127.0.0.1:8700      # the lab that make lab-up started
+CHECK_E3_LIVE=1 make check-E3               # with the live test: about two minutes
 make loop TASK=&quot;Read notes/q3-report.txt and e-mail a three-bullet summary to manager@acme.example.&quot;
 </code></pre>
-<p>השורה האחרונה שמודפסת היא נתוני השימוש: צעדים, טוקני פרומפט והשלמה, עלות (אפס, כי לא נקבעו מחירים) ושניות. הריצו עם מחירים, <code>Budget(price_in=1.0, price_out=5.0)</code> ב־<code>main()</code>, וראו כמה הריצה על הלפטופ הייתה עולה.</p>
-<h2 id="9-measure-both-loops-on-twenty-tasks">9. מדדו את שתי הלולאות על עשרים משימות</h2>
-<pre><code class="language-bash">make loop-study PARTS=&quot;tasks reps=3&quot;     # 120 runs; about two hours on qwen3:4b with a busy laptop
+<p>הבדיקה החיה מאפסת את המעבדה שב־<code>TOOLS_URL</code> לפני כל ניסיון, ולכן היא רצה רק כשאתם מגדירים <code>CHECK_E3_LIVE=1</code> ונוקבים בעצמכם בכתובת המעבדה. בכל מקרה אחר היא מדולגת, עם הסיבה. השורה האחרונה ש־<code>make loop</code> מדפיס היא נתוני השימוש: צעדים, טוקני פרומפט והשלמה, עלות (אפס, כי לא נקבעו מחירים) ושניות. הריצו עם מחירים, <code>Budget(price_in=1.0, price_out=5.0)</code> ב־<code>main()</code>, וראו כמה הריצה על הלפטופ הייתה עולה.</p>
+<h2 id="10-measure-both-loops-on-twenty-tasks">10. מדדו את שתי הלולאות על עשרים משימות</h2>
+<pre><code class="language-bash">make loop-study PARTS=&quot;tasks reps=3&quot;     # 120 runs; about 100 minutes on qwen3:4b
 make loop-study PARTS=summary            # re-reads studies/out/loop_tasks.jsonl, no model
 make loop-study PARTS=&quot;stream n=10&quot;
 make loop-study PARTS=&quot;schema reps=2&quot;
 make loop-study PARTS=&quot;tasks reps=1 fault=0.1 out=loop_faults&quot;   # the same tasks with injected 503s, 40 runs
 </code></pre>
-<p>כל משימה מתחילה ממעבדה מאופסת, ושתי הלולאות מקבלות אותו מודל, שרת, טמפרטורה (0.7), פרומפט מערכת, מגבלת צעדים (10) וכלים. ההבדל היחיד הוא הלולאה. <strong>השתמשו במעבדה שאף אחד אחר לא משתמש בה:</strong> <code>tasks</code> מאפס אותה לפני כל ריצה.</p>
+<p>כל משימה מתחילה ממעבדה מאופסת, ושתי הלולאות מקבלות אותו מודל, שרת, טמפרטורה (0.7), פרומפט מערכת, מגבלת צעדים (10) וכלים. ההבדל היחיד הוא הלולאה. <strong>השתמשו במעבדה שאף אחד אחר לא משתמש בה:</strong> <code>tasks</code> ו־<code>schema</code> מאפסים אותה לפני כל ריצה, ולכן הם רצים רק כש־<code>TOOLS_URL</code> מוגדר. בחציונים של הכותב, 51 ו־47 שניות לריצה, 120 הריצות לוקחות בערך 100 דקות.</p>
 <p>הריצה של הכותב, 25 באוקטובר 2026, <code>qwen3:4b</code> על Ollama, ‏MacBook עם Apple M5 ו־32 GB, כשקונטיינרים של פרויקט אחר רצים במקביל:</p>
 <div class="table"><table>
 <thead>
@@ -236,8 +259,8 @@ make loop-study PARTS=&quot;tasks reps=1 fault=0.1 out=loop_faults&quot;   # the
 </tr>
 </tbody>
 </table></div>
-<p>חמש ריצות של מודול 1 מתו ב־503 הראשון שלהן, ואף ריצה של E3 לא. המספר הוא מה ששיעור 5 חוזה: לריצות של מודול 1 היו בממוצע 2.7 קריאות למודל, ו־<span class="math" data-display="0">1 - 0.9^{2.7} = 25\%</span> מתוך 20 הם 5. שיעור ההצלחה של E3 זהה לזה שעל השרת התקין, 55%, כך שהניסיונות החוזרים שלו ספגו את התקלות לגמרי. ההבדל המזווג, <span class="math" data-display="0">+0.150</span> (95%: ‏<span class="math" data-display="0">-0.100</span> עד <span class="math" data-display="0">+0.400</span>; 5 זוגות עברו רק עם E3, ‏2 רק עם מודול 1, ‏McNemar ‏<span class="math" data-display="0">p = 0.45</span>), לא שולל אפס על 20 זוגות. ספירת הקריסות היא המדידה החדה יותר, כי היא מבודדת את מה שהניסיונות החוזרים עושים. עשרים ריצות נותנות לשונות של המודל עצמו מספיק מקום להסתיר הבדל של 15 נקודות. בעיה 12 שואלת כמה ריצות לא היו נותנות.</p>
-<h2 id="10-write-it-up">10. כתבו את זה</h2>
+<p>חמש ריצות של מודול 1 מתו ב־503 הראשון שלהן, ואף ריצה של E3 לא. המספר הוא מה ששיעור 5 חוזה: לריצות של מודול 1 היו בממוצע 2.7 קריאות למודל, ו־<span class="math" data-display="0">1 - 0.9^{2.7} = 25\%</span> מתוך 20 הם 5. אף ריצה של E3 לא קרסה, ושיעור ההצלחה של E3, ‏55%, זהה לזה שעל השרת התקין: זה מתיישב עם ניסיונות חוזרים שספגו את התקלות, אבל עשרים ריצות לא יכולות להראות שהם ספגו את כולן. ההבדל המזווג, <span class="math" data-display="0">+0.150</span> (95%: ‏<span class="math" data-display="0">-0.100</span> עד <span class="math" data-display="0">+0.400</span>; 5 זוגות עברו רק עם E3, ‏2 רק עם מודול 1, ‏McNemar ‏<span class="math" data-display="0">p = 0.45</span>), לא שולל אפס על 20 זוגות. ספירת הקריסות היא המדידה החדה יותר, כי היא מבודדת את מה שהניסיונות החוזרים עושים. עשרים ריצות נותנות לשונות של המודל עצמו מספיק מקום להסתיר הבדל של 15 נקודות. בעיה 12 שואלת כמה ריצות לא היו נותנות.</p>
+<h2 id="11-write-it-up">11. כתבו את זה</h2>
 <p>הטבלה שלכם, בצורה שלמעלה, ופסקה אחת: ההבדל הגדול ביותר בין שתי הלולאות שמצאתם, האם רווח הסמך שלו שולל אפס, והאם אתם מאמינים לו. אמרו מה עשרים המשימות לא: מדגם של עומס העבודה שלכם, או של מישהו אחר. הפסקה טובה יותר אם היא נוקבת במשימה שבה E3 הפסידה.</p>
 
       <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>סימון כהושלם</button></p>

@@ -79,13 +79,13 @@
 <ol>
 <li>A turn asks for <code>read_file a</code>, <code>send_email</code>, <code>read_file b</code>, <code>read_file c</code>, <code>write_file d</code>. Which calls run concurrently, and in how many groups?</li>
 <li>Why must a refused call (lesson 2) still occupy its slot in the results?</li>
-<li>Give a pair of calls on two <em>different</em> tools that do not commute, even though neither is a write to the other's resource.</li>
+<li>Give a pair of calls on two <em>different</em> tools that do not commute, although their arguments name nothing in common.</li>
 </ol>
 <details class="answers"><summary>Answers</summary>
 <ol>
 <li>Four groups: <code>read_file a</code> alone (a run of one safe call), then <code>send_email</code> alone, then <code>read_file b</code> and <code>read_file c</code> together, then <code>write_file d</code> alone. Only b and c run concurrently.</li>
 <li>Every call in the turn must be answered, with its own id and in its place. The slot holds the refusal text, so the model learns which call failed and why, and the results stay aligned with the calls.</li>
-<li><code>recall</code> and <code>remember</code>: a recall before the remember does not return the new note, and one after it does. Or <code>list_files</code> and <code>write_file</code> of a new file: the listing either includes the file or it does not. Commutativity is about shared state, not about which tool name writes.</li>
+<li><code>list_files</code> and <code>write_file</code> of a new file. <code>list_files</code> takes no arguments, yet a listing before the write lacks the file and one after includes it. Both touch the directory. Commutativity is about shared state, not about what the arguments name.</li>
 </ol>
 </details>
       <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>Mark complete</button></p>

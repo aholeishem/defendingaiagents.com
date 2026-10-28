@@ -92,12 +92,12 @@
 <tr>
 <td><code>Connection</code>, <code>Upgrade</code>, <code>TE</code></td>
 <td>hop-by-hop: for this connection only</td>
-<td>an intermediary must remove them (RFC 9110, section 7.6.1)</td>
+<td>an intermediary MUST remove <code>Connection</code> and the fields it names, and SHOULD remove <code>TE</code>, <code>Upgrade</code> and <code>Transfer-Encoding</code> (RFC 9110, section 7.6.1)</td>
 </tr>
 <tr>
 <td><code>Content-Length</code>, <code>Transfer-Encoding</code></td>
-<td>message framing</td>
-<td>whoever sent it; see lesson 1</td>
+<td>message framing; <code>Transfer-Encoding</code> is hop-by-hop too</td>
+<td>whoever sent it on this hop; see lesson 1</td>
 </tr>
 </tbody>
 </table></div>

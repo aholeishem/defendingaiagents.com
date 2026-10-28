@@ -69,13 +69,13 @@
 <ol>
 <li>In the example, what FPR would make half the alerts real, at the same TPR and base rate?</li>
 <li>The same detector is moved from scoring prose to scoring tool arguments, and its FPR rises from 1% to 3%. Which of the five problems is this, and what does it do to the precision in the example?</li>
-<li>Which two of the five problems can a red-team report with no benign traffic in it not speak to, and why?</li>
+<li>Which of the five problems can a red-team report with no benign traffic in it speak to, which can it not, and why?</li>
 </ol>
 <details class="answers"><summary>Answers</summary>
 <ol>
 <li><span class="math" data-display="0">\text{FPR} = \text{TPR}\,\pi/(1-\pi) = 0.99 \times 10^{-4}/0.9999 = 9.9 \times 10^{-5}</span>, about one in ten thousand: a hundred times lower than the detector's 1%.</li>
 <li>Distribution shift (problem 3): the benign population moved from prose to JSON, diffs and SQL. Precision falls from 0.98% to <span class="math" data-display="0">0.99 \times 10^{-4}/(0.99 \times 10^{-4} + 0.03 \times 0.9999) = 0.33\%</span>, about 301 alerts per 10,000 calls with one real.</li>
-<li>Rare events (problem 1) and operating points under a budget (problem 2). Both need the false-positive rate, which only benign traffic can estimate: precision cannot be computed without it, and a threshold cannot be set against a false-positive budget. A red-team report gives the TPR alone.</li>
+<li>It speaks to the adversary who moves second (problem 4) and to the TPR half of rare events (problem 1). It cannot speak to the rest, because each needs benign traffic: precision (problem 1) and a threshold set against a false-positive budget (problem 2) need the FPR; the shift in problem 3 is a move of the benign population; and problem 5's extra holds are benign calls held, counted in last month's logs.</li>
 </ol>
 </details>
       <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>Mark complete</button></p>

@@ -92,12 +92,12 @@
 <tr>
 <td><code>Connection</code>, <code>Upgrade</code>, <code>TE</code></td>
 <td>hop-by-hop: לחיבור הזה בלבד</td>
-<td>מתווך חייב להסיר אותן (RFC 9110, סעיף 7.6.1)</td>
+<td>מתווך חייב (MUST) להסיר את <code>Connection</code> ואת השדות שהיא מציינת, וצריך (SHOULD) להסיר את <code>TE</code>, <code>Upgrade</code> ו־<code>Transfer-Encoding</code> (RFC 9110, סעיף 7.6.1)</td>
 </tr>
 <tr>
 <td><code>Content-Length</code>, <code>Transfer-Encoding</code></td>
-<td>מסגור ההודעה</td>
-<td>מי ששלח אותה; ראו שיעור 1</td>
+<td>מסגור ההודעה; גם <code>Transfer-Encoding</code> הוא hop-by-hop</td>
+<td>מי ששלח אותה בקפיצה הזו; ראו שיעור 1</td>
 </tr>
 </tbody>
 </table></div>

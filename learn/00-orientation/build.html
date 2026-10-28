@@ -56,7 +56,7 @@
 <li><strong>Mark the step</strong> that did the harm: a tool call, or, for incident 4, the client's fetch of the rendered answer.</li>
 <li><strong>Mark the earliest point</strong> where a control could have stopped it, and the <strong>latest</strong>. The latest is just before the harmful step happens: before the tool call executes, or, for incident 4, before the client fetches what the answer points to. For incident 4 the latest point is not a tool call, so a gateway on tool calls cannot stand there.</li>
 <li><strong>Strike out one leg</strong> of the trifecta that, if removed, would have prevented the incident. Write down the task the agent could no longer do.</li>
-<li><strong>Label the control</strong> at each mark: design, deterministic rule, or detector.</li>
+<li><strong>Label the control</strong> at each mark: by design (a removed capability or a deterministic rule, lesson 4) or by detection.</li>
 </ol>
 <h2 id="a-worked-example-incident-1-the-helpful-summary">A worked example: incident 1, the helpful summary</h2>
 <div class="table"><table>
@@ -81,7 +81,7 @@
 </tr>
 <tr>
 <td>Latest stop</td>
-<td>At <code>send_email</code>: an attachment drawn from the CRM going to an external domain (deterministic rule), or a hold because the arguments carry data the untrusted e-mail could have influenced (design: taint, Module 11)</td>
+<td>At <code>send_email</code>: an attachment drawn from the CRM going to an external domain (design: a deterministic rule on the destination and the attachment's source), or a hold because the arguments carry data the untrusted e-mail could have influenced (design: taint, Module 11)</td>
 </tr>
 <tr>
 <td>Leg to remove</td>

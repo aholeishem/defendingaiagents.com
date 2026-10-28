@@ -125,7 +125,7 @@ def verify(tok, key, aud, now):
 <ol>
 <li><strong>Algorithm</strong>: the one <em>you</em> configured, never the one the token's header asks for.</li>
 <li><strong>Signature</strong>: recompute and compare in constant time.</li>
-<li><strong>Issuer</strong>: the issuer you trust.</li>
+<li><strong>Issuer</strong>: the issuer you trust. With keys for several issuers, choose the key by the <code>iss</code> claimed, or check that the key that verified belongs to it: a valid signature from the wrong issuer's key must fail.</li>
 <li><strong>Audience</strong>: you are in it (Module 3, lesson 10).</li>
 <li><strong>Time</strong>: <code>exp</code> is in the future; allow seconds, not minutes, of clock skew.</li>
 <li><strong>Then</strong> read <code>sub</code> and <code>scope</code>.</li>
@@ -161,13 +161,13 @@ def verify(tok, key, aud, now):
 <p><code>alg: none</code> is a valid algorithm in the RFC, meaning &quot;unsecured&quot;. A library that honours it accepts a token no one signed. The second is <strong>key confusion</strong>: a server expects RS256 and verifies with its public key; an attacker sets <code>alg: HS256</code>, signs with the <em>public key as the HMAC secret</em>, and a library that picks the algorithm from the header verifies it. JWT Best Current Practices (RFC 8725, 2020) lists both and the cure: pin the algorithm per key, and refuse anything else. Two header parameters invite the same mistake: <code>kid</code> (which key to use) and <code>jku</code> (a URL to fetch a key set from). A verifier that follows either as the <em>token</em> says has let the token choose its own judge.</p>
 <h2 id="check-yourself">Check yourself</h2>
 <ol>
-<li>A server holds keys for two issuers and accepts a signature made with either. Why is a token with <code>&quot;role&quot;: &quot;admin&quot;</code> signed by the other issuer more dangerous to it than a token with no signature, and which step stops it?</li>
+<li>A server holds keys for issuers A and B and accepts a signature made with either. A token signed with B's key claims <code>iss</code> A and <code>&quot;role&quot;: &quot;admin&quot;</code>. Why is it more dangerous to the server than a token with no signature, and which step stops it?</li>
 <li>A server verifies the signature and <code>exp</code> but not <code>aud</code>, and one authorization server issues tokens for 20 resource servers that all skip the check. At how many servers can a token stolen from one of them be replayed, before and after they add step 4?</li>
 <li>A verifier reads <code>alg</code> from the token and picks a library function for it. Describe, in one sentence each, <code>none</code> and key confusion against it.</li>
 </ol>
 <details class="answers"><summary>Answers</summary>
 <ol>
-<li>A token with no signature fails at step 1 or 2 on any sound verifier. One signed by the other issuer passes step 2, because the server holds that key, so <code>&quot;role&quot;: &quot;admin&quot;</code> arrives looking authentic. Step 3 stops it, provided the issuer is checked against the key that verified the signature: a token signed with B's key but claiming <code>iss</code> A must fail.</li>
+<li>A token with no signature fails at step 1 or 2 on any sound verifier. One signed with B's key passes step 2, because the server holds that key, so <code>&quot;role&quot;: &quot;admin&quot;</code> arrives looking authentic. Step 3 stops it, because it binds the issuer to the key: B's key did not sign for A, so a token claiming <code>iss</code> A fails.</li>
 <li>Before: at all 20, since every one verifies the same authorization server's signature and none checks the audience. After step 4: at one, the server named in its <code>aud</code>; if it was stolen from that server, nowhere else.</li>
 <li><code>none</code>: the attacker sets <code>&quot;alg&quot;: &quot;none&quot;</code>, sends an empty signature, and the verifier calls its &quot;unsecured&quot; function, which accepts claims nobody signed. Key confusion: the server holds an RS256 public key; the attacker sets <code>&quot;alg&quot;: &quot;HS256&quot;</code> and signs with that public key as the HMAC secret, and the verifier, running HMAC with the key it holds, finds the signature valid.</li>
 </ol>

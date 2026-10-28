@@ -87,10 +87,11 @@
 <p>ואחר כך: <a href="build.html">הבנייה</a>, <a href="at-scale.html">בקנה מידה</a> ו<a href="problems.html">בעיות</a>.</p>
 <p>מניח את מודול 1 (המעבדה, המודל המקומי ורווחי הסמך (confidence intervals) של שיעור 9). לא משתמש בשום דבר ממודולים 2 עד 21. E1 ו־E2 עוזרים אבל אינם חובה. מודול 3 שיעור 1 (הקריאה לכלי כרשומה) ושיעור 5 (ה־shell) הם הקריאה האבטחתית של שיעורים 2 ו־9.</p>
 <h2 id="check">בדיקה</h2>
-<pre><code class="language-bash">make check-E3                         # about two minutes, most of it the live test
-CHECK_E3_OFFLINE=1 make check-E3      # under a second: everything but the live test
-make loop-study PARTS=&quot;faults herd growth&quot;   # the model-free numbers, about a minute
-make loop-study PARTS=&quot;tasks reps=3&quot;         # the twenty tasks, both loops: about an hour on qwen3:4b
+<pre><code class="language-bash">make check-E3                                  # under a second: everything but the live test
+export TOOLS_URL=http://127.0.0.1:8700         # your lab: the live test and the tasks study reset it
+CHECK_E3_LIVE=1 make check-E3                  # with the live test: about two minutes
+make loop-study PARTS=&quot;faults herd growth&quot;     # the model-free numbers, about 4 seconds
+make loop-study PARTS=&quot;tasks reps=3&quot;           # the twenty tasks, both loops: about 100 minutes on qwen3:4b
 </code></pre>
 <div class="table"><table>
 <thead>
@@ -102,11 +103,11 @@ make loop-study PARTS=&quot;tasks reps=3&quot;         # the twenty tasks, both 
 <tbody>
 <tr>
 <td>formats</td>
-<td>סכמות של כלים והיסטוריה עם קריאות מקבילות, קריאה בלי ארגומנטים ופרומפט מערכת מומרות ל־Anthropic Messages, וכל התוצאות בהודעת משתמש אחת; תשובה מומרת בחזרה, עם שדות השימוש (usage) בשמות החדשים</td>
+<td>סכמות של כלים והיסטוריה עם קריאות מקבילות, קריאה בלי ארגומנטים ופרומפט מערכת מומרות ל־Anthropic Messages, וכל התוצאות בהודעת משתמש אחת; קריאה פגומה שנשארה בהיסטוריה מקבלת <code>input</code> ריק; תשובה מומרת בחזרה, עם שדות השימוש (usage) בשמות החדשים</td>
 </tr>
 <tr>
 <td>schema</td>
-<td>ארגומנטים פגומים, ריקים ושאינם אובייקט מובחנים זה מזה; שדות חסרים, מטיפוס שגוי, לא צפויים ומחוץ ל־enum מצוינים בשמם; <code>true</code> אינו integer ו־<code>3.0</code> כן</td>
+<td>ארגומנטים פגומים, ריקים, חסרים ושאינם אובייקט מובחנים זה מזה; שדות חסרים, מטיפוס שגוי, לא צפויים ומחוץ ל־enum מצוינים בשמם, בסדר שה־docstring קובע; <code>true</code> אינו integer ו־<code>3.0</code> כן</td>
 </tr>
 <tr>
 <td>retry</td>
@@ -126,15 +127,15 @@ make loop-study PARTS=&quot;tasks reps=3&quot;         # the twenty tasks, both 
 </tr>
 <tr>
 <td>stream</td>
-<td>טקסט וקריאות לכלים שהגיעו בקטעים מורכבים מחדש לפי אינדקס; גם קריאות שלמות, כפי ש־Ollama שולח אותן, עוברות</td>
+<td>טקסט וקריאות לכלים שהגיעו בקטעים מורכבים מחדש בסדר האינדקס, בכל סדר שבו הגיעו; קטע מאוחר לא יכול לשנות את ה־id או את השם של קריאה; גם קריאות שלמות, כפי ש־Ollama שולח אותן, עוברות</td>
 </tr>
 <tr>
 <td>loop</td>
-<td>הלולאה עונה ורושמת קריאות ושימוש; ארגומנטים פגומים חוזרים למודל והכלי לא רץ אף פעם; כל תקציב עוצר אותה; כשלי מודל מקבלים ניסיון חוזר, וכשל קבוע מדווח; תיקון סכמה אחד, ואז <code>schema</code>; תשובה בסטרימינג רצה</td>
+<td>הלולאה עונה ורושמת קריאות ושימוש; ארגומנטים פגומים חוזרים למודל והכלי לא רץ אף פעם; כל תקציב עוצר אותה; כשלי מודל מקבלים ניסיונות חוזרים כמה ש־<code>retry</code> מתיר, וכשל קבוע מדווח; תיקון סכמה אחד, ואז <code>schema</code>; ‏<code>run(stream=True)</code> מבקש מהמודל סטרימינג, והתשובה בסטרימינג רצה</td>
 </tr>
 <tr>
 <td>live</td>
-<td>על המודל המקומי שלכם, הלולאה שלכם משלימה את המשימה של מודול 1 (סיכום נשלח במייל למנהל) לפחות באחד משלושה ניסיונות</td>
+<td>כשמבקשים אותה עם <code>CHECK_E3_LIVE=1</code> ו־<code>TOOLS_URL</code>: על המודל המקומי שלכם, הלולאה שלכם משלימה את המשימה של מודול 1 (סיכום נשלח במייל למנהל) לפחות באחד משלושה ניסיונות</td>
 </tr>
 </tbody>
 </table></div>

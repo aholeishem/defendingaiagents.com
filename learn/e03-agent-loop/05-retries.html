@@ -214,7 +214,7 @@
 <h2 id="retry-after">Retry-After</h2>
 <p>A 429 or 503 may carry <code>Retry-After: 7</code>, the server's own estimate of when to come back (RFC 9110, section 10.2.3). Honour it: wait at least that long, and wait longer if the backoff draw says so. That is <code>max(backoff, retry_after)</code> in <code>call_with_retries</code>. A thousand clients that all honour the same Retry-After exactly come back together, which is a herd again. Problem 7 asks how to fix that without ignoring the server.</p>
 <h2 id="what-the-budget-sees">What the budget sees</h2>
-<p>A failed model call costs no tokens, so <code>run</code> charges the budget only for successful calls. It still costs wall-clock time, and the seconds budget (lesson 6) counts that. An agent behind a struggling server should stop on its time limit before it has retried for ten minutes.</p>
+<p>A failed model call costs no tokens, so <code>run</code> charges the budget only for successful calls. It still costs wall-clock time, and the seconds budget (lesson 6) counts that, but only between calls: a retry sequence runs to its end whatever <code>max_seconds</code> says (lesson 6, question 3). With <code>ChatClient</code>'s default timeout of 300 s and four attempts, a hung server holds one call for about 20 minutes. Problem 11 asks how to let the time limit cut it short.</p>
 <h2 id="check-yourself">Check yourself</h2>
 <ol>
 <li>Your adapter has a bug that raises <code>KeyError('choices')</code> on every reply. What does a retry-everything policy report after four attempts, and what does <code>classify</code> do instead?</li>
@@ -223,7 +223,7 @@
 </ol>
 <details class="answers"><summary>Answers</summary>
 <ol>
-<li>After four attempts and about 4 s of backoff it reports the same <code>KeyError</code>, now looking like a flaky server. <code>classify</code> calls <code>KeyError</code> &quot;fail&quot;, so the loop stops on the first attempt and reports the bug as it is.</li>
+<li>After four attempts and about 2 s of backoff (three waits, uniform on <span class="math" data-display="0">[0, 0.5]</span>, <span class="math" data-display="0">[0, 1]</span> and <span class="math" data-display="0">[0, 2]</span>: 1.75 s on average, at most 3.5 s) it reports the same <code>KeyError</code>, now looking like a flaky server. <code>classify</code> calls <code>KeyError</code> &quot;fail&quot;, so the loop stops on the first attempt and reports the bug as it is.</li>
 <li>Three. <span class="math" data-display="0">(1 - 0.1^2)^{10} = 0.99^{10} = 90.4\%</span>, too low. <span class="math" data-display="0">(1 - 0.1^3)^{10} = 0.999^{10} = 99.0\%</span>, just enough. <span class="math" data-display="0">(1 - 0.1^4)^{10} = 99.9\%</span>.</li>
 <li>Each wait is uniform on <span class="math" data-display="0">[0, \text{base} \cdot 2^n]</span>, so the window doubles with each attempt, and because the waits add up, the spread of the cumulative retry times grows too. The first retry spreads 1,000 clients over 0.5 s, five buckets. The fourth spreads them over the sum of four draws, about 7.5 s wide.</li>
 </ol>

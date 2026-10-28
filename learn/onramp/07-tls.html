@@ -110,7 +110,7 @@ cal.acme.example -&gt; Hostname mismatch, certificate is not valid for 'cal.acme
 </tr>
 <tr>
 <td>&quot;the client is who it says&quot;</td>
-<td>by default, nothing: only the server proved itself (mutual TLS adds the client, RFC 8705)</td>
+<td>by default, nothing: only the server proved itself (mutual TLS adds the client: the server requests a certificate, RFC 8446, section 4.3.2)</td>
 </tr>
 <tr>
 <td>&quot;nobody sees the traffic&quot;</td>
@@ -133,7 +133,7 @@ cal.acme.example -&gt; Hostname mismatch, certificate is not valid for 'cal.acme
 <ol>
 <li>Server authentication: no chain check and no name check. The traffic is still encrypted and integrity-protected, but with whoever answered, so anyone on the path can terminate it, read and change everything, and re-encrypt: &quot;a conversation with nobody in particular&quot;.</li>
 <li>All three: the text arrived confidential, unaltered and from the server the client named. TLS says nothing about content. The component placed to inspect it is a proxy that terminates TLS, such as the gateway acting as a reverse proxy (lesson 6), a man in the middle by design that reads the plaintext.</li>
-<li>The gateway-to-CRM connection must authenticate the gateway, and be the only way in. By default TLS proves only the server, so the CRM needs mutual TLS with the gateway's client certificate (RFC 8705) or a network on which nothing else can reach it; and the gateway must verify the CRM's certificate in turn. Otherwise &quot;the gateway&quot; in the log is just whoever connected.</li>
+<li>The gateway-to-CRM connection must authenticate the gateway, and be the only way in. By default TLS proves only the server, so the CRM needs mutual TLS with the gateway's client certificate (RFC 8446, section 4.3.2) or a network on which nothing else can reach it; and the gateway must verify the CRM's certificate in turn. Otherwise &quot;the gateway&quot; in the log is just whoever connected.</li>
 </ol>
 </details>
       <p class="complete-row"><button type="button" class="complete" data-complete aria-pressed="false" hidden>Mark complete</button></p>

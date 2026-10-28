@@ -87,10 +87,11 @@
 <p>Then: <a href="build.html">the build</a>, <a href="at-scale.html">at scale</a> and <a href="problems.html">problems</a>.</p>
 <p>Assumes Module 1 (the lab, the local model and lesson 9's intervals). Uses nothing from Modules 2 to 21. E1 and E2 help but are not required. Module 3 lesson 1 (the tool call as a record) and lesson 5 (the shell) are the security reading of lessons 2 and 9.</p>
 <h2 id="check">Check</h2>
-<pre><code class="language-bash">make check-E3                         # about two minutes, most of it the live test
-CHECK_E3_OFFLINE=1 make check-E3      # under a second: everything but the live test
-make loop-study PARTS=&quot;faults herd growth&quot;   # the model-free numbers, about a minute
-make loop-study PARTS=&quot;tasks reps=3&quot;         # the twenty tasks, both loops: about an hour on qwen3:4b
+<pre><code class="language-bash">make check-E3                                  # under a second: everything but the live test
+export TOOLS_URL=http://127.0.0.1:8700         # your lab: the live test and the tasks study reset it
+CHECK_E3_LIVE=1 make check-E3                  # with the live test: about two minutes
+make loop-study PARTS=&quot;faults herd growth&quot;     # the model-free numbers, about 4 seconds
+make loop-study PARTS=&quot;tasks reps=3&quot;           # the twenty tasks, both loops: about 100 minutes on qwen3:4b
 </code></pre>
 <div class="table"><table>
 <thead>
@@ -102,11 +103,11 @@ make loop-study PARTS=&quot;tasks reps=3&quot;         # the twenty tasks, both 
 <tbody>
 <tr>
 <td>formats</td>
-<td>tool schemas and a history with parallel calls, an empty-arguments call and a system prompt convert to Anthropic Messages, all results in one user message; a reply converts back with its usage renamed</td>
+<td>tool schemas and a history with parallel calls, an empty-arguments call and a system prompt convert to Anthropic Messages, all results in one user message; a malformed call kept in the history gets an empty <code>input</code>; a reply converts back with its usage renamed</td>
 </tr>
 <tr>
 <td>schema</td>
-<td>malformed, empty and non-object arguments are told apart; missing, mistyped, unexpected and out-of-enum fields are named; <code>true</code> is not an integer and <code>3.0</code> is</td>
+<td>malformed, empty, missing and non-object arguments are told apart; missing, mistyped, unexpected and out-of-enum fields are named, in the docstring's order; <code>true</code> is not an integer and <code>3.0</code> is</td>
 </tr>
 <tr>
 <td>retry</td>
@@ -126,15 +127,15 @@ make loop-study PARTS=&quot;tasks reps=3&quot;         # the twenty tasks, both 
 </tr>
 <tr>
 <td>stream</td>
-<td>text and fragmented tool calls are reassembled by index; whole calls as Ollama sends them pass too</td>
+<td>text and fragmented tool calls are reassembled in index order, whatever order they arrive in; a later fragment cannot change a call's id or name; whole calls as Ollama sends them pass too</td>
 </tr>
 <tr>
 <td>loop</td>
-<td>the loop answers and records calls and usage; malformed arguments go back to the model and the tool never runs; each budget stops it; model failures are retried and a permanent one reported; one schema repair, then <code>schema</code>; a streamed reply runs</td>
+<td>the loop answers and records calls and usage; malformed arguments go back to the model and the tool never runs; each budget stops it; model failures are retried as often as <code>retry</code> allows and a permanent one reported; one schema repair, then <code>schema</code>; <code>run(stream=True)</code> asks the model for a stream, and the streamed reply runs</td>
 </tr>
 <tr>
 <td>live</td>
-<td>on your local model, your loop completes Module 1's task (summary e-mailed to the manager) in at least one of three tries</td>
+<td>asked for with <code>CHECK_E3_LIVE=1</code> and <code>TOOLS_URL</code>: on your local model, your loop completes Module 1's task (summary e-mailed to the manager) in at least one of three tries</td>
 </tr>
 </tbody>
 </table></div>
