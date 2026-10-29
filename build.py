@@ -703,6 +703,8 @@ CATALOG = {
         "compare_p": "One agent runs through both: you build it in the first course, then attack and defend it in the second.",
         "map_link": "Every module of both courses on one map",
         "preview_link": "Read the free preview: the on-ramp, Module 0 and E3",
+        "trailer_label": "Trailer: both courses in 76 seconds",
+        "trailer_caption": "Trailer · 1:16 · sound on",
         "compare_cols": ("", "Building AI Agents", "Defending AI Agents", "Both, in order"),
         "compare_rows": [
             ("For", "Data scientists and engineers who build with AI; no experience of building LLM applications needed", "Developers, ML engineers and data practitioners responsible for an agent; no security background needed", "Anyone who will build an agent and answer for it"),
@@ -744,6 +746,8 @@ CATALOG = {
         "compare_p": "סוכן אחד עובר בשני הקורסים: בונים אותו בראשון, ותוקפים ומגינים עליו בשני.",
         "map_link": "כל המודולים של שני הקורסים על מפה אחת",
         "preview_link": "לקריאת התצוגה המקדימה החינמית: מסלול ההכנה, מודול 0 ו־E3",
+        "trailer_label": "טריילר: שני הקורסים ב־76 שניות",
+        "trailer_caption": "טריילר · 1:16 · באנגלית, עם סאונד",
         "compare_cols": ("", "בניית סוכני AI", "הגנה על סוכני AI", "שניהם, לפי הסדר"),
         "compare_rows": [
             ("למי", "מדעני נתונים ומהנדסים שבונים עם AI; לא נדרש ניסיון בבניית אפליקציות LLM", "מפתחים, מהנדסי ML ואנשי דאטה שאחראים על סוכן; לא נדרש רקע באבטחה", "מי שיבנה סוכן ויהיה אחראי עליו"),
@@ -854,6 +858,12 @@ def courses_page(t, prefix):
     <p class="label">{E(c['courses'])} · {E(c['course_format'])}</p>
     <h1>{E(c['catalog_h'])}</h1>
     <p class="catalog-description">{E(c['catalog_intro'])}</p>
+  </section>
+  <section class="trailer" aria-label="{E(c['trailer_label'])}">
+    <video controls playsinline preload="none" width="1920" height="1080" poster="{prefix}assets/video/trailer-poster.jpg">
+      <source src="{prefix}assets/video/trailer.mp4" type="video/mp4">
+    </video>
+    <p class="label">{E(c['trailer_caption'])}</p>
   </section>
   <section class="course-collection" id="courses" aria-label="{E(c['courses'])}">
     <p class="availability-note"><span class="status">{E(c['course_status'])}</span>{E(c['course_p'])}</p>

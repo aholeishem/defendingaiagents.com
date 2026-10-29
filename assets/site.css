@@ -243,6 +243,9 @@ input[type="range"]::-moz-range-thumb { width: 14px; height: 14px; background: v
 .courses-catalog .catalog-intro > .label { grid-column: 1 / -1; margin: 0; }
 .courses-catalog .catalog-intro h1 { font-size: clamp(40px, 5.2vw, 76px); }
 .courses-catalog .catalog-description { margin: 0; align-self: end; }
+.courses-catalog .trailer { padding-block: 0 48px; border-top: 0; }
+.trailer video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #060606; border: 1px solid var(--line-2); }
+.trailer .label { margin: 12px 0 0; color: var(--dim); }
 .category-jump { display: grid; gap: 0; border-top: 1px solid var(--line-2); }
 .category-jump a { display: flex; align-items: center; gap: 16px; padding: 15px 0; border-bottom: 1px solid var(--line-2); text-decoration: none; font-weight: 500; transition: padding .2s ease, color .2s ease; }
 .category-jump a > span:first-child { color: var(--dim); font: 500 12px var(--mono); }
